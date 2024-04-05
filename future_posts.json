@@ -1,0 +1,42 @@
+[
+    {
+        "title": "All real numbers have a decimal representation",
+        "description": "My attempt to prove that all real numbers have a decimal representation without much background in analysis",
+        "categories": "math",
+        "length": "short",
+        "progress": "completed",
+        "url": "./realnumdecrep.html"
+    },
+    {
+        "title": "My answers and thoughts for Stephen Abbott's Understanding Analysis exercises 1.5.1 - 1.5.11",
+        "description": "",
+        "categories": "math",
+        "length": "long",
+        "progress": "ongoing",
+        "url": "underanalysis-ex-151-1511"
+    },
+    {
+        "title": "Fully connected neural networks",
+        "description": "My attempt at explaining fully connected neural networks for recognizing digits, a classic start for learning neural networks",
+        "categories": "math, programming",
+        "progress": "completed",
+        "length": "long",
+        "url": "./fcnn.html"
+    },
+    {
+        "title": "Lagrange multipliers in multivariable calculus",
+        "description": "My attempt at explaining Lagrange multipliers in multivariable calculus.",
+        "categories": "math, programming",
+        "progress": "completed",
+        "length": "medium",
+        "url": "lagranmul-mvcalc.html"
+    },
+    {
+        "title": "Attempt at making a 2.5D renderer",
+        "description": "A documentation of my honest attempt at creating my own 2.5D renderer from scratch without any kind of tutorial",
+        "categories": "programming",
+        "progress": "ongoing",
+        "length": "long",
+        "url": "./render25.html"
+    }
+]

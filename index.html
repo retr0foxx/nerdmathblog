@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .post {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .post-title {
+            margin-top: 0;
+        }
+
+        .tags {
+            margin-top: 10px;
+        }
+
+        .post-tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: #333;
+            border-radius: 10px;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+
+        .post-tag.ongoing {
+            background-color: #FFFF00;
+        }
+
+        .post-tag.completed {
+            background-color: #90EE90;
+        }
+
+        .post-tag.short-content {
+            background-color: #90EE90;
+        }
+
+        .post-tag.medium-sized-content {
+            background-color: #FFFF00;
+        }
+
+        .post-tag.long-content {
+            background-color: #FF6347;
+        }
+
+        .post:hover {
+            background-color: lightgrey; /* Background color on hover */
+            cursor: pointer;
+        }
+    </style>
+
+    <template id="post-template">
+        <div class="post">
+            <h2 class="post-title"></h2>
+            <p class="post-description"></p>
+            <div class="post-tags"></div>
+        </div>
+    </template>
+
+    <script src="./posts.js" type="text/javasript">
+        
+    </script>
+    <script>
+        async function fetch_post_list()
+        {
+            let response = await fetch("./posts.json", {"method": "GET"});
+            if (!response.ok)
+            {
+                throw new Error("not ok response");
+            }
+            return await response.json();
+        }
+
+        function capitalize_first_letter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h2>Welcome to my nerd site</h2>
+        <p>This is kind of used for a blog about math and programming. I know it looks really, really bad right now and yeah that's because I really cannot do any of this web stuff but I have been really wanting to put my math thoughts somewhere accessible on the internet and this was the first thing I thought of. Let's just hope that I'll be able to make it better in the future. You will probably cringe if you read the code of this as well. I wanted to make the github repository for this private due to my embarassingly bad programming skills but I can't enable github pages on a private repo.</p>
+    </div>
+    <!-- <div>
+        Filters: <br>
+        Math: <input type="checkbox" id="filter-math" value="1" checked>
+        Programming: <input type="checkbox" id="filter-programming" value="2" checked>
+    </div> -->
+    <div id="post-list">
+        Posts:
+    </div>
+
+    <script>
+        const post_template = document.getElementById("post-template");
+        const post_list = document.getElementById("post-list");
+
+        const content_size_name_to_class = {
+            "short": "short-content",
+            "medium": "medium-sized-content",
+            "long": "long-content",
+        };
+
+        const content_size_name_to_text = {
+            "short": "Short",
+            "medium": "Medium sized",
+            "long": "Long",
+        };
+
+        const content_progress_name_to_text = {
+            "ongoing": "Ongoing",
+            "completed": "Completed"
+        };
+
+        function create_span_tag_element(content)
+        {
+            let elem = document.createElement("span");
+            elem.classList.add("post-tag");
+            elem.textContent = content;
+            return elem;
+        }
+
+        async function create_post_elements()
+        {
+            let posts = await fetch_post_list();
+            for (let i = 0; i < posts.length; ++i)
+            {
+                let current_post = posts[i];
+
+                let new_post = post_template.content.cloneNode(true);
+                let new_post_title = new_post.querySelector(".post-title");
+                let new_post_description = new_post.querySelector(".post-description");
+                let new_post_tags = new_post.querySelector(".post-tags");
+
+                new_post_title.textContent = current_post["title"];
+                new_post_description.textContent = current_post["description"];
+
+
+                let curpost_progress = current_post["progress"];
+                let new_post_progress_tag_elem = create_span_tag_element(content_progress_name_to_text[curpost_progress]);
+                new_post_progress_tag_elem.classList.add(curpost_progress);
+                new_post_tags.appendChild(new_post_progress_tag_elem);
+
+                let curpost_length = current_post["length"];
+                let new_post_length_tag_elem = create_span_tag_element(content_size_name_to_text[curpost_length]);
+                new_post_length_tag_elem.classList.add(content_size_name_to_class[curpost_length]);
+                new_post_tags.appendChild(new_post_length_tag_elem);
+
+                // ill change this in the future idk why i did this
+                const new_post_catlist = current_post["categories"].split(',').map(item => item.trim()).filter(item => item !== '');
+
+                console.log(new_post_catlist);
+                for (let i = 0; i < new_post_catlist.length; ++i)
+                {
+                    let cat = capitalize_first_letter(new_post_catlist[i]);
+                    new_post_tags.appendChild(create_span_tag_element(cat));
+                }
+
+
+                new_post.querySelector(".post").addEventListener("click", function() {
+                    // Redirect to a new URL
+                    window.location.href = current_post["url"];
+                });
+                post_list.appendChild(new_post);
+            }
+        }
+        create_post_elements();
+    </script>
+</body>
+</html>

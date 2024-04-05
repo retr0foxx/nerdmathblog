@@ -1,0 +1,10 @@
+[
+    {
+        "title": "Projecting vectors onto a subspace of R^n",
+        "description": "Projecting vectors onto a subspace of R^n that is defined by an orthonormal basis and creating an orthonormal basis of the span of some other orthonormal basis added by a vector that is linearly independent to it",
+        "categories": "math",
+        "progress": "completed",
+        "length": "short",
+        "url": "./vecproj.html"
+    }
+]
