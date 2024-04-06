@@ -5,7 +5,8 @@
         "categories": "math",
         "progress": "completed",
         "length": "short",
-        "url": "./vecproj.html"
+        "url": "./vecproj.html",
+        "creation_date": "2024-04-05"
     },
     {
         "title": "All real numbers have a decimal representation",
@@ -13,6 +14,7 @@
         "categories": "math",
         "length": "short",
         "progress": "completed",
-        "url": "./realnumdecrep.html"
+        "url": "./realnumdecrep.html",
+        "creation_date": "2024-04-06"
     }
 ]

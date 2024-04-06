@@ -148,10 +148,29 @@
             Therefore, by induction, you can conclude that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$ $\forall m \in \mathbb{N}$ therefore $|a| = \sum_{i=1}^{\infty} d_i \cdot 10^{p_i}$ based on the proof from earlier.
         </p>
         <p>
-            Now for the final step, which is to prove that $a_n$ really does represent $|a|$
+            Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
+            Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
+            I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
+            The strategy is to first prove that all $i$s higher than than a certain integer doesn't matter.
+            But with the way I did it, that would mean the sum would now be in the form $\sum_{i=-\infty}^{N}$ which is still really weird because you're starting from $-\infty$ but then you set the upper bound to a finite value.
+            The problem is that I've never seen nor used this kind of notation. I know what I want this notation to do and I want it to do a very specific thing.
+            If this notation is actually valid in math, then the interpretation that I specifically want in here might be wrong.
+            I specifically want that sum to literally be the same as $\sum_{i=-N}^{\infty}$ while $i$ will be used as $-i$ inside.
+            One possible way to define what is really meant by $\sum_{i=-\infty}^{\infty} a_i$ now is by using a bijective mapping $f: \mathbb{N} \rightarrow \mathbb{Z}$ and change the sum to start from 1 to infinity while substituting any $i$ inside with $f(i)$.
+            And the bijective mapping f is defined as the classic alternating $0, 1, -1, ...$ mapping.
+            The issue is that, if I want to decrease the upper bound and make it a finite value, the resulting sum that is supposed to represent the same thing now becomes weird.
+            Because you can't just change the upper bound, it's still an infinite sum, but now you're somehow excluding every odd/even terms.
+            But I can simply NOT use the other representation of the sum. I can simply argue that this is what the completely unbounded sum really means.
+            And in the end, I would still use the original representation. The other one just helps with what this completely unbounded sum really means.
+            Yeah, I think that's fair enough.
         </p>
-        <h2>Projecting a vector onto a plane in R^3</h2>
-        
+        <p>
+            Start with whatever $p_1$ is. If $r_1$ is 0, then we have actually proved earlier that every other $r_n$ is also 0 which means $d_n$ is all 0.
+            So the sum from earlier will just be summing over zeros which is just 0 so that's done.
+            If $r_1$ is not zero, then start with whatever $p_1$ is, and prove that in the earlier sum, any $i$ that is higher than $p_1$ will be 0.
+            This means you can change the form of the sum to something else.
+            After that, you can prove that every term in the sum for |a| is in the sum for $a_n$ and vice versa, and there is only 1 of the "same" term in each.
+        </p>
     </div>
 </body>
 </html>
