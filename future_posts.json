@@ -1,13 +1,5 @@
 [
     {
-        "title": "All real numbers have a decimal representation",
-        "description": "My attempt to prove that all real numbers have a decimal representation without much background in analysis",
-        "categories": "math",
-        "length": "short",
-        "progress": "completed",
-        "url": "./realnumdecrep.html"
-    },
-    {
         "title": "My answers and thoughts for Stephen Abbott's Understanding Analysis exercises 1.5.1 - 1.5.11",
         "description": "",
         "categories": "math",
