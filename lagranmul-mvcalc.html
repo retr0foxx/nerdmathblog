@@ -28,6 +28,13 @@
         p {
             font-size: 20px; /* Adjust the font size to your preference */
         }
+        img {
+            max-width: 100%;
+        }
+        .MathJax {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
     </style>
 </head>
 <body>
@@ -144,13 +151,20 @@
             <p>
             For a vector that is defined like that, you can always get two vectors, one contained in the blue line and one contained in the red line, then this plane is actually the span of those two vectors added by the intersection point.
             In other words, every vector on this plane can be denoted as $\vec{u} + \lambda_1\vec{v_1} + \lambda_2\vec{v_2}$
-            where $lambda_1$, $lambda_2$ can be any two arbitrary scalars, $\vec{u}$ is the intersection point (blue in the picture), and $\vec{v_1}$, $\vec{v_2}$ are the two vectors on the lines
+            where $\lambda_1$, $\lambda_2$ can be any two arbitrary scalars, $\vec{u}$ is the intersection point (blue in the picture), and $\vec{v_1}$, $\vec{v_2}$ are the two vectors on the lines
             
-            </p><p>
+            </p>
+            <p>
             Okay, so what? Well, let's go back to what the gradient is.
             Going back to the first image about the sinusoidal function, I will now tell you that the two blue arrows are actually the derivative of f in the direction of the x-axis and the y-axis respectively.
             Meaning that the slope of the lines is the first element of the gradient vector 
             </p>
+        </p>
+        <p>
+            Yeah, I have seriosuly overcomplicated this. I can't teach man, can someone give advice on how to teach things.
+            Anyway, I'm just gonna fallback on a less intuitive explanation. If you understand all of that I'm sure you can generalize it into higher dimensions yourself
+            because no actual multivariable calculus beginner would be able to understand that if they don't already know about gradients and directional derivatives.
+            Next will be an attempt to prove, with the formal limit definition of derivatives, that the "intuitive" description of directional derivatives with slicing really is the same as simply multiplying the directional vector with the gradient vector.
         </p>
     </div>
 </body>
