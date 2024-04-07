@@ -16,5 +16,13 @@
         "progress": "completed",
         "url": "./realnumdecrep.html",
         "creation_date": "2024-04-06"
+    },
+    {
+        "title": "Lagrange multipliers in multivariable calculus",
+        "description": "My attempt at explaining Lagrange multipliers in multivariable calculus.",
+        "categories": "math",
+        "progress": "ongoing",
+        "length": "medium",
+        "url": "lagranmul-mvcalc.html"
     }
 ]
