@@ -24,6 +24,14 @@
         "url": "lagranmul-mvcalc.html"
     },
     {
+        "title": "Proof that $\text{dot}(A, B) = |A||B|cos(\\theta)$",
+        "description": "My attempt at proving the projection representation of dot products.",
+        "categories": "math, programming",
+        "progress": "ongoing",
+        "length": "short",
+        "url": "proj-dotprod.html"
+    },
+    {
         "title": "Attempt at making a 2.5D renderer",
         "description": "A documentation of my honest attempt at creating my own 2.5D renderer from scratch without any kind of tutorial",
         "categories": "programming",

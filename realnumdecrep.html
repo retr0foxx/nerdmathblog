@@ -162,7 +162,10 @@
             &\implies 0 \leq r_{m + 1} < 10^{p_m}
             \end{align}
             $$
-            And there we go, we have proven that $r_{m + 1} \leq 10^{p_m}$ when $r_m \neq 0$.
+            And there we go, we have proven that $r_{m + 1} < 10^{p_m}$ when $r_m \neq 0$.
+            You can slightly extend this to reveal one more possibly useful property, which is that $p_{m + 1} < p_m$ when $r_m \neq 0$.
+            Since $r_{m + 1} < 10^{p_m}$, $r_m$ is either 0 or non-zero. If it is 0, then $p_{m + 1} = \-infty$ which is less than $p_m$ which is known to be an integer.
+            Otherwise, $p_{m + 1}$ is an integer that must satisfy $10^{p_{m+1}} < r_{m+1}$ therefore $10^{p_{m+1}} < 10^{p_m}$ and so $p_{m + 1} < p_m$ whenever $r_m \neq 0$.
         </p>
         <p>
             The next step is to prove that the actual limit. Start with any $\epsilon > 0$, then $\exists k \in \mathbb{Z}$ such that $10^k < \epsilon$ which is something that has been proved earlier.
@@ -248,7 +251,7 @@
         </p>
         <p>
             Now for the inductive proof that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$, first:<br>
-            $$r_1 = |a| = |a| - \sum_{i=1}^0$$ <br>
+            $$r_1 = |a| = |a| - \sum_{i=1}^0 d_i \cdot 10^{p_i}$$<br>
             Then:
             $$
             \begin{align}
@@ -262,7 +265,18 @@
         <p>
             Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
             Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
-            I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
+            I have never seen a sum that is unbounded below, let alone one that is unbounded above and below.
+            I will now define that such a sum means that it evaluates the inner expression with the sum variable being an integer, such that for every integer, the inner function is evaluated exactly once with the sum variable being that variable only exactly once.
+            The next step I'm thinking of is to prove that all $i$s higher than than a certain integer doesn't matter.
+            To do that, it will be proven that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $r_{m + n} < r_m$ by induction.
+            Start with $n = 1$, $r_{m + 1}$ we have proved earlier that $r_m \neq 0$ implies $p_{m + 1} < p_m$ so the first step of the induction is done.
+            Now for the general n case, so assume $p_{m + n} < p_m$. $p_{m + n}$ is either $-\infty$ or an integer.
+            If it is $-\infty$, then $r_{m + n} = 0$ therefore $r_{m + (n + 1)} = 0$ and so $p_{m + (n + 1)} = -\infty$ as well which is less than $p_m$.
+            If it is not $-\infty$, then we know $p_{m + (n + 1)} < p_{m + n}$ anyway, so $p_{m + (n + 1)} < p_m$.
+            Therefore, by induction, it can be concluded that $p_{m + n} < p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
+        </p>
+        <p>
+            <!-- I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
             The strategy is to first prove that all $i$s higher than than a certain integer doesn't matter.
             But with the way I did it, that would mean the sum would now be in the form $\sum_{i=-\infty}^{N}$ which is still really weird because you're starting from $-\infty$ but then you set the upper bound to a finite value.
             The problem is that I've never seen nor used this kind of notation. I know what I want this notation to do and I want it to do a very specific thing.
@@ -280,8 +294,19 @@
             Start with whatever $p_1$ is. If $r_1$ is 0, then we have actually proved earlier that every other $r_n$ is also 0 which means $d_n$ is all 0.
             So the sum from earlier will just be summing over zeros which is just 0 so that's done.
             If $r_1$ is not zero, then start with whatever $p_1$ is, and prove that in the earlier sum, any $i$ that is higher than $p_1$ will be 0.
-            This means you can change the form of the sum to something else.
+            In other words, I have to prove that $a_i = 0$ for any $i > p_1$.
+            The strategy to prove this is to prove that any element $x$ in the set $\{p_m | m \in \mathbb{N}\}$ satisfies $x \leq p_1$.
+            We have earlier proved that $p_{n+1} < p_n$ when $r_n \neq 0$, but that's technically not enough because $r_n$ might be 0.
+            The reason I thought that I can't just say that's true for all natural number n is, of course, because I am not sure how comparison works with infinities.
+            So instead, I will prove that for any $m \in \mathbb{N}$ such that $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} < p_n$.
+            This is done instead of simply saying "for all $n > m$" so that it aligns more with the induction proof template.
+            
             After that, you can prove that every term in the sum for |a| is in the sum for $a_n$ and vice versa, and there is only 1 of the "same" term in each.
+        </p> -->
+        <p>
+            I wanted to prove this because there was an exercise on my analysis book which assumes this for some reason. It also assumes that real numbers only have at most 2 representations, that is one having a 9-repeating and one that doesn't have a 9-repeating, which is quite annoying. The whole point of analysis is to study Calculus and properties of the real numbers more rigorously. I feel like this assumption is non-trivial enough for it to need a proof.
+            But it is just an exercise. I really do want to know how you would prove that all real numbers have only at most 2 representations.
+            I would think that only rational numbers with 0-repeating decimal representations have 2 representations. Everything else only has one.
         </p>
     </div>
 </body>

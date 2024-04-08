@@ -253,7 +253,7 @@
         And that's the end of the proof. An obvious theoretical application of this is creating an orthogonal vector to a space given a space defined by an orthogonal list of vectors added by a single vector that is just linearly independent to the list.
         And as an extension of that, creating an orthogonal basis for any subspace of R^n that is defined by a linearly independent list of vectors. </p>
         <p>
-            For the first concept, another way to describe it is given a list of orthogonal vectors $(v_1, v_2, ..., v_n)$ and a single vector $w$ that is linearly independent to all of $v_i$, create a list of orthogonal vectors $(v_1, v_2, ..., v_n, P)$ such that $span(v_1, v_2, ..., v_n, P) = span(v_1, v_2, ..., v_n, w)$.
+            For the first concept, another way to describe it is given a list of orthogonal vectors $(v_1, v_2, ..., v_n)$ and a single vector $w$ that is linearly independent to all of $v_i$, create a list of orthogonal vectors $(v_1, v_2, ..., v_n, P)$ such that $$span(v_1, v_2, ..., v_n, P) = span(v_1, v_2, ..., v_n, w)$$
             The way you would do this is to define P as the difference between w and the result of w projected onto the space defined by $(v_1, v_2, ..., v_n)$, which we have proved to be orthogonal to $(v_1, v_2, ..., v_n)$ earlier. In other words:
             $$ P = w - \sum_{i=1}^{n} (\frac{w \cdot v_i}{|v_i|^2})v_i $$
         </p>
