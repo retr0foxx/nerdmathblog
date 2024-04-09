@@ -1,6 +1,6 @@
 [
     {
-        "title": "Projecting vectors onto a subspace of R^n",
+        "title": "Projecting vectors onto a subspace of $R^n$",
         "description": "Projecting vectors onto a subspace of R^n that is defined by an orthonormal basis and creating an orthonormal basis of the span of some other orthonormal basis added by a vector that is linearly independent to it",
         "categories": "math",
         "progress": "completed",
@@ -24,5 +24,13 @@
         "progress": "ongoing",
         "length": "medium",
         "url": "lagranmul-mvcalc.html"
+    },
+    {
+        "title": "Show that $ln(x + 1)^2 \\geq ln(x)ln(x + 2)$",
+        "description": "Showing the inequality in the title using multivariable calculus.",
+        "categories": "math",
+        "progress": "completed",
+        "length": "short",
+        "url": "ln-ineq.html"
     }
 ]

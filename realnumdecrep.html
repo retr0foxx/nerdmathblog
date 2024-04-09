@@ -164,7 +164,7 @@
             $$
             And there we go, we have proven that $r_{m + 1} < 10^{p_m}$ when $r_m \neq 0$.
             You can slightly extend this to reveal one more possibly useful property, which is that $p_{m + 1} < p_m$ when $r_m \neq 0$.
-            Since $r_{m + 1} < 10^{p_m}$, $r_m$ is either 0 or non-zero. If it is 0, then $p_{m + 1} = \-infty$ which is less than $p_m$ which is known to be an integer.
+            Since $r_{m + 1} < 10^{p_m}$, $r_m$ is either 0 or non-zero. If it is 0, then $p_{m + 1} = -\infty$ which is less than $p_m$ which is known to be an integer.
             Otherwise, $p_{m + 1}$ is an integer that must satisfy $10^{p_{m+1}} < r_{m+1}$ therefore $10^{p_{m+1}} < 10^{p_m}$ and so $p_{m + 1} < p_m$ whenever $r_m \neq 0$.
         </p>
         <p>
@@ -262,7 +262,7 @@
             $$
             Therefore, by induction, you can conclude that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$ $\forall m \in \mathbb{N}$ therefore $|a| = \sum_{i=1}^{\infty} d_i \cdot 10^{p_i}$ based on the proof from earlier.
         </p>
-        <p>
+        <!--<p>
             Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
             Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
             I have never seen a sum that is unbounded below, let alone one that is unbounded above and below.
@@ -274,9 +274,57 @@
             If it is $-\infty$, then $r_{m + n} = 0$ therefore $r_{m + (n + 1)} = 0$ and so $p_{m + (n + 1)} = -\infty$ as well which is less than $p_m$.
             If it is not $-\infty$, then we know $p_{m + (n + 1)} < p_{m + n}$ anyway, so $p_{m + (n + 1)} < p_m$.
             Therefore, by induction, it can be concluded that $p_{m + n} < p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
+        </p> -->
+        <p>
+            Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
+            Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
+            The next step I'm thinking of is to prove that all $i$s higher than $p_1$ doesn't matter.
+            That is going to be done by proving that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} < p_m$  
+            Start with $n = 1$, so $r_{m + 1}$.
+            We have proved earlier that $r_m \neq 0$ implies $p_{m + 1} < p_m$ so the first step of the induction is done.
+            Now for the general n case, so assume $p_{m + n} < p_m$.
+            p_{m + n} is either $-\infty$ or an integer.
+            If it is $-\infty$, then $r_{m + n} = 0$ therefore $r_{m + (n + 1)} = 0$ and so $p_{m + (n + 1)}$ as well which is less than $p_m$.
+            If it is not $-\infty$, then we know $p_{m + (n + 1)} < p_{m + n}$ anyway, so $p_{m + (n + 1)} < p_m$.
+            Therefore, by induction, it can be concluded that $p_{m + n} < p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
         </p>
         <p>
-            <!-- I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
+            Now to actually prove that $a_i = 0$ for all $i > p_1$ when $p_1 \in \mathbb{Z}$.
+            From the previous proof, it can be concluded that $\{p_m | m \in \mathbb{N}\}$ is bounded above by $p_1$ when $r_1 \neq 0$.
+            By the definition of $a_i$, it is 0 whenever $i \notin \{p_m | m \in \mathbb{N}\}$.
+            Since the set is bounded above by $p_1$, then any $i > p_1$ is not in the set, $a_i$ is equal to 0 whenever $i > p_1$. 
+        </p>
+        <p>
+            If $r_1 = 0$, then every other $r_n$ is also 0 and so all of $p_m$ is $-\infty$.
+            Therefore, the set $\{p_m    | m \in \mathbb{N}\}$ is empty. So then every $a_i$ is equal to 0. So we don't need to care about that anymore from now on.
+            The sum of $a_i$ is actually equal to:
+            $$\sum_{i=-\infty}^{\infty} a_i \cdot 10^{p_i} = \sum_{i=-infty}^{k} a_i \cdot 10^i + \sum_{k+1}^{\infty} a_i \cdot 10^i$$
+            for any $k \in \mathbb{Z}$. Picking k to be $p_1$, we get:
+            $$
+            \begin{align*}
+            \sum_{i=-\infty}^{\infty} a_i \cdot 10^{p_i} &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + \sum_{p_i+1}^{\infty} a_i \cdot 10^i \\
+            &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + 0 \\
+            &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i
+            \end{align*}
+            $$
+        </p>
+        <p>
+            The next part is to ACTUALLY prove that the sum for $a_i$ really does represent $|a|$.
+        </p>
+        <p>
+            What have been done: <br>
+            1. Defined a sequence from |a| to 0 with $r_m$, $p_m$, $d_m$ where $d_m$ represents the $p_m$th digit of the decimal representation<br>
+            2. Proved that there is no contradictions in the definition <br>
+            3. Prove that $r_m \geq 0$ for all natural number $m$<br>
+            4. Define the decimal representation and prove it has no contradictions<br>
+            5. Proved that $r_{m + 1} < p_m$ and $p_{m + 1} < p_m$ when $r_m \neq 0$ <br>
+            6. Proved that the limit of the sequence is 0 <br>
+            7. Proved that $\sum_{i = 1}^{\infty} d_i \cdot 10^{p_i} = |a|$ <br>
+            8. Proved that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} < p_m$ <br>
+            9. Proved that $a_i = 0$ for all $i > p_1$ when $p_1 \in \mathbb{Z}$
+        </p>
+        <!-- <p>
+            I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
             The strategy is to first prove that all $i$s higher than than a certain integer doesn't matter.
             But with the way I did it, that would mean the sum would now be in the form $\sum_{i=-\infty}^{N}$ which is still really weird because you're starting from $-\infty$ but then you set the upper bound to a finite value.
             The problem is that I've never seen nor used this kind of notation. I know what I want this notation to do and I want it to do a very specific thing.
