@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Brainstorms regarding polytopes</h1>
+        Here are the questions that I had while brainstorming about polytopes: <br>
+        1. How do you define and "construct" higher dimensional polytopes? <br>
+        2. Point-collision of higher dimensional polytopes <br>
+        3. Volume of higher dimensional polytopes <br>
+        <br><br>
+        I have noticed that in my attempt to formalize these notions, I still lack a lot of tools from Linear Algebra and Analysis that are in the books that I have but simply haven't read because I haven't reached the chapters for them.
+        The strategy is to define the concept of a "closed-continuous-body" in a vector space V under F to be a set $C$ which satisfies: <br>
+        1. For any two vectors $v_1,\ v_2$ in C, there exist a continuous function $f: [0, 1] -> C$ such that $f(0) = v_1$ and $f(1) = v_2$ and $\forall r \in [0, 1]$, $f(r) \in C$ <br> 
+        2. $\forall v \in V,\ c \in C$ where $v$ is not the additive identity of $V$, there exists $\lambda \in F$ such that $\lambda c = O$ satisfies $O \in C$ and $\forall \epsilon \geq 0$, $O + \epsilon v \notin C$ <br>
+        The issue is that I still haven't properly studied what it means for a function vector-valued function like that to be continuous and maybe the details of what the range and image of a continuous function must satisfy.
+        I'm imagining that we can define what it means for a function from $R$ to a euclidean vector space BECAUSE there exists the concept of "distance," but not all vector spaces may have that.
+        Here's my attempt at writing what it means for a function to be continuous:
+        Define a metric set $A$ to be a set with a distance function $d_A: A -> R_+$ which satisfies $d_A(a, a) = 0$, and $d_A(a, b) \leq d_A(a, c) + d_A(b, c)$
+        A function $f: A -> B$ from a measurable set A and B is continuous if and only if 
+        Yeah I kinda cheated there, I researched the definition of continuity and metric spaces, I learned something new anyway though that's all that matters.
+        <br><br>
+        Next is to define the concept of the affine space $A$ of a set of vectors $C$ in $V$ to be the set of all vectors $v$ that satisfies:
+        $\exists k \in \mathbb{N}$ such that $\exists O, u_1, ..., u_k \in C$ where $\exists \lambda_1, ..., \lambda_k$ which satisfies $$
+
+        <!-- I will attempt to explain what I mean by starting from the 2-dimensional and 3-dimensional case.
+        In 2-dimensions, you can define a polygon using a list of points arranged in a certain order.
+        Then you can visually think of the polygon in terms of it's line-segment boundaries where each line-segment is defined by each adjacent pair of points in the list. 
+        And that method seem like the most natural way to represent them.
+        However with the way I'm gonna explain it right now, it is a bit different for the purpose of ease of generalization. -->
+        <br><br>
+        <!-- A point-extension operation is an operation which generally takes a polytope and a face of the polytope, and a point as parameters for the operation, and creates a new polytope based on them.
+        There are two undefined words there: dimension and face.
+        Define a polytope as a set F of euclidean vectors that can be defined in the steps defined later.
+        A polytope is N-dimensional if you can find a list of N+1 vectors inside of the polytope such that, if you take an element K in the list and the sublist that does not contain K denoted S, the list of vectors made from every element of S substracted by K is linearly independent and it's span contains every element in F substracted by K.
+        In other words, a polytope is N-dimensional if $\exists L = v_1, ..., v_{n+1}$ s.t. $\forall k \in {1, ..., n + 1}$, $S = L \backslash v_{k} - v_{k}$, where the substraction substracts every element of $L \backslash v_k$ by $v_k$, is linearly independent and $\forall f \in F$, $f - v_k \in \text{span}(S)$.
+        Now to define the "face" of a polytope. This is an interesting problem in-itself and I'm actually not sure yet on how to do that.
+        I will only define the intuitive definition of a face which is just a boundary of a polytope which itself is a polytope that is contained inside of the polytope that it's a face of.
+        An N-dimensional polytope has faces of dimensions 1 to N-1.
+        A 0-dimensional face is a point, a 1-dimensional face is a line, a 2-dimensional face is a plane, and so on.
+        A cube has eight 0-dimensional faces, twelve 1-dimensional faces, and six 2-dimensional faces.
+        I will also define the affine space of a polytope F as being the set of all vectors that, if substracted by any vector V in the polytope, it can be made by a linear combination of a list of vectors in the polytope added by V.
+        In other words, the set of all vectors $A$ where there exists $k \in N$ such that there exists $O, v_1, ..., v_k \in F$, $\lambda_1, ..., \lambda_k \in \mathbb{R}$ such that $\sum_{i=1}^k \lambda_i(v_i - O) = A$
+        <br><br>
+        There are two types of point extensions, one that increases the dimension of the polytope and one that keeps it the same.
+        A point-extension with point P that increases the dimension of the current polytope does not need a face parameter.
+        Because the entirety of the current existing polytope will become one of the face of the extended polygon.
+        An extension with the point P does not increase the dimension of the polytope if and only if P is in the affine space of the polytope.
+        <br><br>
+        If F is the original polygon and G is the polygon made from extending F to the point P with the face polygon K (which may only be F itself if P is not in the affine space of F),
+        then it is defined the "extension polygon" of the extension to be a polygon E
+        where $V \in E$ is true if and only if $\exists \lambda \in \mathbb{R}, R \in F$ such that $P + \lambda(R - P) = V$.
+        <br><br>
+        Now to define the steps to make a polygon. -->
+        Definition 1. A point-dilation-extension of a set of vectors S onto the point P is the set 
+        Definition 2. A 
+        A polytope is a set of vectors in a certain vector space P under the field F which may be constructed 
+    </div>
+</body>
+</html>
