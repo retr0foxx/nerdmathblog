@@ -97,7 +97,7 @@
         Now to define the steps to make a polygon. -->
         <b>Definition</b>: An continuous internal path of a set of vectors S from $a$ to $b$ where $a, b \in S$ is  mapping $p: [0, 1] \to S$ that is continuous and $p(0) = a$ while $p(1) = b$. <br>
         <b>Definition</b>: A linear continuous internal path of a set of vectors S from $a$ to $b$ where $a, b \in S$ is a continuous path <br> 
-        <b>Definition</b>: An SD boundary point $P \in B$ of a set of vectors $B$ in the vector space $V$ is a vector such that there exists a non-zero vector $v \in V$ such that for any $\lambda > 0$, $\lambda v + P \notin B$ <br>
+        <b>Definition</b>: An SD boundary point $P \in B$ of a set of vectors $B$ in the vector space $V$ is a vector such that there exists a non-zero vector $v \in V$ where there exists an $\epsilon > 0$ such that for any $\epsilon > \lambda > 0$, $\lambda v + P \notin B$ <br>
         <b>Definition</b>: The dimension of (the affine space of) a set of vectors B is the length of the largest linearly-independent list of vectors $v_1 - O, ..., v_k - O$ where $O, v_1, ..., v_k \in B$ <br>
         <b>Definition</b>: A point-dilation-extension of a set of vectors S onto the point P is the set of vectors where each vector $v$ in the set satisfies $\exists \lambda \in \mathbb{R} > 0, R \in S$ such that $P + \lambda(R - P) = v$. <br>
         <b>Definition</b>: A polytope is a closed-continuous-body that satisfies certain properties
@@ -109,7 +109,7 @@
         The issue with this definition is that, if you have a 2-dimensional polytope in 3-dimensions, every point in there is a boundary point.
         So a definition that might fix that is as follows: A boundary point is a point inside of the polytope such that there exists a direction you can move in such that there's a distance of movement where if you move in that direction by that amount or less, but not zero, you will always stay inside of the polytope yet moving in the opposite direction always lands you outside of the polytope for any amount of movement that is less than another amount of movement value.
         In other words: <br>
-        <B>Definition:</B> A non-intersecting boundary point $P \in B$ of a set of vectors B in the vector space V is a vector where $\exists v \in V$ such that $\exists \epsilon > 0$ where $\forall \lambda < \epsilon$, $P + \lambda v \in B$ while $P - \lambda v \notin B$ <br>
+        <B>Definition:</B> A non-intersecting boundary point $P \in B$ of a set of vectors B in the vector space V is a vector where $\exists v \in V$ such that $\exists \epsilon > 0$ where $\forall 0 < \lambda < \epsilon$, $P + \lambda v \in B$ while $P - \lambda v \notin B$ <br>
         The issue is that, now this definition will not work with intersecting polytopes. Since, on the intersection part (imagine it intuitively) of a polytope, going in the opposite if a direction that still lands you inside of the polytope will always still land you inside of the polytope or something like that.
         I'm imagining that I can combine these two boundary point definitions and also affine spaces for this.
         So here's what I'm thinking of: <br>
@@ -147,6 +147,7 @@
         <br><br>
         Let's talk about the intuitive meanings of these definitions.
         The non-intersecting dimension definition was my first attempt at defining the dimension of a boundary point.
+        The issue with it is that 
 
         <br><br>
         Everything I've been doing really motivates the need of another framework that deals with bodies in some space.
