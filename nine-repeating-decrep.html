@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Regarding 9-repeating decimal representations of real numbers</h1>
+        The big goal here is to atleast make an honest attempt to prove that all real numbers only have at most 2 decimal representations, and that only rational numbers with terminating decimal representations have them.
+        For the notation, the decimal of any real number denoted with a single letter variable name $a$ is the sequence $a_n$ that is defined for all integer $n$ such that $\sum_{i=-\infty}^{\infty} a_n = a$.
+        Of course, the issue is that this sum goes both ways, which I think makes it a bit harder to deal with.
+        So for now, let's deal with numbers in the open interval $(0, 1)$, which means $n$ is only allowed to be natural.
+        <br><br>
+        Now we can redescribe the goal, which is to prove:
+        Suppose $a, b \in (0, 1) \subset \mathbb{R}$, if $\exists n \in \mathbb{N}$ such that $a_n \neq b_n$, then $\sum_{i=1}^{\infty} a_n = \sum_{i=1}^{\infty} b_n$ if and only if 
+        $b_n - a_n = 1$ (or atleast you can rearrange so that it is the case) and $\forall m \in \{1, ..., n - 1\}$, $a_m = b_m$ and $\forall k \in \{n + 1, ..., \infty\}$, $a_k = 9$ and $b_k = 0$.
+        <br>
+        Before that, maybe it will be helpful to prove: Suppose it is defined that $d_i \in \{0, ..., 9\}$ $\forall i \in \mathbb{N}$, then $10^N \geq \sum_{i=1}^{\infty} 10^{N - i} \cdot d_i$.
+        Create the sequences $k_j = 10^{N - j} \cdot d_i$ and $s_j = \sum_{i=1}^{j} k_j$ which means $\lim s_j = \sum_{i=1}^{\infty} 10^{N - i} \cdot d_i$. Now we know that:
+        $$
+        \begin{align*}
+        d_i \leq 9 &\implies d_j \cdot 10^{N - j} \leq 9 \cdot 10^{N - j} < 10^{N - j + 1} \\
+        &\implies k_j \leq 9 \cdot 10^{N - j} < 10^{N - j + 1}
+        \end{align*}
+        $$
+        We would also know that $s_1 = k_1$ which means $s_1$ also satisfies the equation above if it replaces $k_1$.
+        Therefore now we can do:
+        $$
+        \begin{align*}
+        s_1 \leq 9 \cdot 10^{N - 1} < 10^N &\implies -s_1 \geq -9 \cdot 10^{N - 1} \\
+        &\implies 10^N - s_1 \geq 10^N - 9 \cdot 10^{N - 1} \\
+        &\implies 10^N - s_1 \geq 10^{N - 1} \tag{1} \\
+        &\implies 10^N \geq 10^{N - 1} + s_1 > s_1 \\
+        &\implies 10^N > s_1 \tag{2} \\
+        \end{align*}
+        $$
+        Now for the general inductive step, for any locked $M \in \mathbb{N}$, we prove that if it satisfies the above with 1 replaced with $j$, then the next term also satisfy it:
+        $$
+        \begin{align*}
+        10^M - s_j \leq 10^{N - j} &\implies 10^M - s_j - k_{j + 1} \geq 10^{N - j} - 9 \cdot 10^{N - j - 1} \\
+        &\implies 10^M - s_j - k_{j + 1} \geq 10^{N - j - 1} \\
+        &\implies 10^M - s_{j + 1} \geq 10^{N - j - 1} \tag{3} \\
+        &\implies 10^M \geq 10^{N - (j + 1)} + s_{j + 1} > s_{j + 1} \\
+        &\implies 10^M > s_{j + 1} \tag{4} \\
+        \end{align*}
+        $$
+        Now if you replace $M$ with $N$, we get:
+        $$10^N - s_j \leq 10^{N - j} \implies 10^N - s_{j + 1} \geq 10^{N - j - 1}$$
+        The point is that, since $s_1$ satisfies the inequality on the left by (1), and for any $j$ that satisfies the inequality on the left, it also satisfies the inequality for $j + 1$, then any $j$ satisfy the inequality above. We have also shown in between (3) and (4) that the inequality also imply $s_j \leq 10^N$, therefore we have also shown that any $j$ satisfy $s_j \leq 10^N$ by induction.
+        What we've done can be generalized to proving that $P(n)$ is true for all natural $n$ by making a new statement $Q(n)$ and proving that $Q(n) \implies P(n)$ and doing induction on $Q(n)$ to prove that it is true for any natural $n$ which imply $P(n)$ is true for any natural $n$ as well.
+        In here, $P(n) : s_n \leq 10^N$ and $Q(n) : 10^N - s_n \geq 10^{N - j - 1}$.
+        <br><br>
+        Anyway, this means we've now proven that $10^N$ is an upper bound of the sequence $s_n$. Here is what I'm thinking of doing next: <br>
+        1. Prove that $d_i$ always 9 will generate the biggest limit <br>
+        2. Any $d_i$ that is not always 9 will generate a limit strictly less than one that is always 9 <br>
+        I think those will be enough to prove that point 9 repeating is the only other way to generate 1 without actually having a $10^0$ or something.
+        
+    </div>
+</body>
+</html>

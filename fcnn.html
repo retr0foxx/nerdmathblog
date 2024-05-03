@@ -145,13 +145,13 @@
         This helps a LOT in these cases for gradient descent. So it helps an issue that might be described as undershooting but it still doesn't help with the other problem of overshooting.
         There's not much that's actually done about that.
         We'll talk about the details of this later on. Here's an awesome demonstration of it in action though: <br>
-        <img src="./images/fcnn-2.html">
+        <img src="./images/fcnn-2.gif">
         <br><br>
         <h3>Regression</h3>
         The next concept that will be talked about here is regression.
         First, we will talk about Linear Regression, then Logistic Regression, and then finally regression in a more general sense.
         Linear Regression is a task of finding the best linear function that fits a given data.
-        In 2-diensional linear regression, the task would be to find the best function linear function $f(x)$, where x is a single number, to best fit the array of inputs $x_i$ and expected outputs $y_i$.
+        In 2-dimensional linear regression, the task would be to find the best linear function $f(x)$, where x is a single number, to best fit the array of inputs $x_i$ and expected outputs $y_i$.
         Since $f(x)$ must be linear, then it's form is $f(x) = mx + c$. Every linear function with one input and one output can be given in that form.
         If you still remember Algebra, you should notice that that is the equation for a line. Therefore, if you visualize that, you will get a line with a slope of $m$ and intercept (where it hits the y-axis) $c$.
         <br><br>
@@ -159,7 +159,7 @@
         <img src="./images/fcnn-1.png"> <br>
         in which there are 100 points in the image.
         Each of the point has an x and y coordinate value.
-        The first point is $(x_1, y_1)$, the second point $(x_2, y_2)$, and the $i$th point in general is $(x_i, y_i)$. These are called the data points.
+        If you imagine putting those points in a list in any order, then the first point is $(x_1, y_1)$, the second point $(x_2, y_2)$, and the $i$th point in general is $(x_i, y_i)$. These are called the data points.
         The task is to create a linear function $f(x)$ that "best fits the data points."
         There are two ways to interpret this.
         The first time I found out about linear regression, I was thinking of finding a line (or a hyperplane in higher dimensions) that best fits the data points.
@@ -244,13 +244,157 @@
         Therefore the optimization task is to minimize:
         $$
         \begin{align*}
-        \sum_{i=1}^{N} &= (f(x_i) - y_i)^2 \\
-        &= (w^Tx_i + b - y_i)^2
+        \sum_{i=1}^{N} (f(x_i) - y_i)^2 = \sum_{i=1}^{N} (w^Tx_i + b - y_i)^2
         \end{align*}
         $$
         where N is the amount of input data.
-        Denote $x_{j,i}$ to be the $i$th vector's $j$th element, and so $x$ is a matrix that represents all of the input data.
-        Now the problem can be reformulated with matrix-vector
+        Denote $x_{i,j}$ to be the $i$th data vector's $j$th element, and M for the dimensions, then the expression can be reformulated into:
+        $$
+        L(w_1, ..., w_M, b) = \sum_{i=1}^{N} \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right)^2
+        $$
+        Now you can try to take the derivative in terms of each of the parameters, set them to zero, and solve the systems of linear equations to get a general formula for linear regression in M dimensions.
+        $$
+        \frac{\partial L}{\partial w_k} = \sum_{i=1}^N 2 x_{i,k} \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right) = 0
+        $$
+        $$
+        \frac{\partial L}{\partial b} = \sum_{i=1}^N 2 \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right) = 0
+        $$
+        To make it be able to be reformulated into a matrix inverse problem, you can rearrange the expression so that it's separated for each different $w_i$ and $b$. 
+        Since both expressions for the derivative in terms of $b$ and $w_k$ is quite similar, the only difference being one having $2x_{i,k}$ and the other being just $2$, you can do this more generally:
+        $$
+        \begin{align*}
+        2\sum_{i=1}^N A_i \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right) &=
+        2 \left( \left( \sum_{i=1}^N A_i \sum_{j=1}^M w_j \cdot x_{i,j} \right) + \sum_{i=1}^N A_i b - \sum_{i=1}^N A_i y_i \right) \\
+        &= 2 \left( \left( \sum_{i=1}^N \sum_{j=1}^M A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &= 2 \left( \left( \sum_{j=1}^M \sum_{i=1}^N A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &= 2 \left( \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &= 0 \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i &= 0 \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) &= \sum_{i=1}^N A_i y_i
+        \end{align*}
+        $$
+        Therefore, the equations for the derivative in terms of the weights becomes:
+        $$
+        \begin{align*}
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,k} \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N x_{i,k} \right) &= \sum_{i=1}^N x_{i,k} y_i
+        \end{align*}
+        $$
+        And then the bias:
+        $$
+        \begin{align*}
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + b \left( \sum_{i=1}^N 1 \right) &= \sum_{i=1}^N y_i \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + bN &= \sum_{i=1}^N y_i
+        \end{align*}
+        $$
+        Therefore you can turn it into a matrix inverse problem because this is the same as solving $Av = u$ for $v$ with $M$ and $u$ being: <br>
+        For $p, q \in {1, ..., M}$, in other words, the weight coefficients for the weight equations:
+        $$
+        A_{p,q} = \sum_{i=1}^N x_{i,p} \cdot x_{i,q}
+        $$
+        $$
+        u_p = \sum_{i=1}^N x_{i,p} \cdot y_i
+        $$
+        For $p = M+1$ and $q \in {1, ..., M}$, in other words, the weight coefficients for the bias equation:
+        $$
+        A_{M+1,q} = \sum_{i=1}^N x_{i,q}
+        $$
+        $$
+        u_{M+1} = \sum_{i=1}^N y_i
+        $$
+        Then for when $q = M + 1$ for all of the equations, in other words, the bias coefficient for all of the equations:
+        $$
+        A_{p,M+1} = \sum_{i=1}^N x_{i,p}
+        $$
+        $$
+        A_{M+1,M+1} = N
+        $$
+        So if you try to picture the equation, it would look like this:
+        <!-- $$
+        \begin{bmatrix}
+        a & b & \dots & c & d \\
+        a & b & \dots & c & d \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        a & b & \dots & c & d \\
+        a & b & \dots & c & d \\
+        \end{bmatrix}
+        \begin{bmatrix}
+        w_1 \\
+        w_2 \\
+        \vdots \\
+        w_M \\
+        b
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        a \\
+        b \\
+        \vdots \\
+        c \\
+        d
+        \end{bmatrix}
+        $$ -->
+
+        $$
+        \begin{bmatrix}
+        \sum_{i=1}^N x_{i,1} \cdot x_{i,1} & \sum_{i=1}^N x_{i,1} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,1} \cdot x_{i,M} & \sum_{i=1}^N x_{i,1} \\
+        \sum_{i=1}^N x_{i,2} \cdot x_{i,1} & \sum_{i=1}^N x_{i,2} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,2} \cdot x_{i,M} & \sum_{i=1}^N x_{i,2} \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        \sum_{i=1}^N x_{i,M} \cdot x_{i,1} & \sum_{i=1}^N x_{i,M} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} \cdot x_{i,M} & \sum_{i=1}^N x_{i,M} \\
+        \sum_{i=1}^N x_{i,1} & \sum_{i=1}^N x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} & N \\
+        \end{bmatrix}
+        \begin{bmatrix}
+        w_1 \\
+        w_2 \\
+        \vdots \\
+        w_M \\
+        b
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        \sum_{i=1}^N x_{i,1} \cdot y_i \\
+        \sum_{i=1}^N x_{i,2} \cdot y_i \\
+        \vdots \\
+        \sum_{i=1}^N x_{i,M} \cdot y_i \\
+        \sum_{i=1}^N y_i
+        \end{bmatrix}
+        $$
+        Which also makes it very visible that it would make the resulting expression a lot nicer if you define
+        $$
+        X_k =
+        \begin{bmatrix}
+        x_1,k \\
+        x_2,k \\
+        \vdots \\
+        x_N,k \\
+        \end{bmatrix}
+        $$
+        also think of $y_i$ as a vector, and replace the sums with dot products, it becomes:
+        
+        $$  
+        \begin{bmatrix}
+        X_1 \cdot X_1 & X_1 \cdot X_2 & \dots & X_1 \cdot X_M & \sum X_1 \\
+        X_2 \cdot X_1 & X_2 \cdot X_2 & \dots & X_2 \cdot X_M & \sum X_2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        X_M \cdot X_1 \cdot & X_M \cdot X_2 & \dots & X_M \cdot X_M & \sum X_M \\
+        \sum X_1 & \sum X_2 & \dots & \sum X_M & N \\
+        \end{bmatrix}
+        \begin{bmatrix}
+        w_1 \\
+        w_2 \\
+        \vdots \\
+        w_M \\
+        b
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        X_1 \cdot y \\
+        X_2 \cdot y \\
+        \vdots \\
+        x_M \cdot y \\
+        \sum y
+        \end{bmatrix}
+        $$
+        How do you solve that? I don't know.
     </div>
 </body>
 </html>

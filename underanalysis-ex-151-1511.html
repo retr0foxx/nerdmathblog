@@ -44,58 +44,50 @@
 </head>
 <body>
     <div class="content">
-        <h1>Brainstorms regarding polytopes</h1>
-        Here are the questions that I had while brainstorming about polytopes: <br>
-        1. How do you define and "construct" higher dimensional polytopes? <br>
-        2. Point-collision of higher dimensional polytopes <br>
-        3. Volume of higher dimensional polytopes <br>
+        <h1>Schroder-Bernstein theorem</h1>
+        This is a proof guided by an exercise in my analysis book.
+        Here is the statement of the theorem: <br>
+        <b>Schroder-Bernstein Theorem</b>: Suppose there exists a 1-1 function $f: X \to Y$ and another 1-1 function $g: Y \to X$, then there exists a bijective function $h: X \to Y$. <br>
+        Here are the exercise questions provided by the book for guiding the proof of this theorem: <br>
+        (a) Partition $X$ and $Y$ into two components 
+        $$X = A \cup A' \quad \text{and} \quad Y = B \cup B'$$
+        with $A \cap A' = \emptyset$ and $B \cap B' = \emptyset$ in such a way that $f$ maps $A$ onto $B$, and $g$ maps $B'$ onto $A$.
+        Explain how achieving this would lead to a proof that $X ~ Y$. <br>
+        (b) Set $A_1 = X \backslash g(Y)$ (what happens if $A_1 = \emptyset$?) and inductively define a sequence of sets by letting $A_{n+1} = f(g(A_n))$.
+        Show that ${A_n : n \in \mathbb{N}}$ is a pairwise disjoint collection of subsets of X, while ${f(A_n) : n \in \mathbb{N}}$ is a similar collection in Y. <br>
+        (c) Let $A = \bigcup_{n=1}^{\infty}$ and $B = \bigcup_{n=1}^{\infty}$. Show that $f$ maps $A$ onto $B$. <br>
+        (d) Let $A' = X \backslash A$ and $B' = Y \backslash B$. Show that $G$ maps $B'$ onto $A'$. <br>
+        <br>
+        Now here's my attempt at answering all of those questions: <br>
+        (a) Define the $h: X \to Y$ to be 
+        $$h(x) = \begin{cases}
+        f(x) & \text{if } x \in A \\
+        g^{-1}(x) & \text{if } x \in A'
+        \end{cases}$$
+        And notice that since $g$ is bijective, then $g^{-1}$ is also bijective. Also that there is not going to be any conflicts because $A \cap A' = \emptyset$.
+        Take any $y \in Y$, then since $B \cup B' = Y$, then $y \in B$ xor $y \in B'$.
+        If $y \in B$, then $\exists! x \in A$ such that $f(x) = y$ because $f$ maps $A$ <i>onto</i> $B$ and $f$ is also 1-1 hence the exclamation mark denoting there exists only 1.
+        If $y \in B'$, then $x = g(y)$ must exist, and by the injectivity of $g$, there is only 1 such $x$. Therefore $g^{-1}(x) = y$.
+        Therefore it can be concluded that $h$ is surjective and injective because in both cases, we have argued why there exists only 1 $x$ for each $y \in Y$.
         <br><br>
-        I have noticed that in my attempt to formalize these notions, I still lack a lot of tools from Linear Algebra and Analysis that are in the books that I have but simply haven't read because I haven't reached the chapters for them.
-        The strategy is to define the concept of a "closed-continuous-body" in a vector space V under F to be a set $C$ which satisfies: <br>
-        1. For any two vectors $v_1,\ v_2$ in C, there exist a continuous function $f: [0, 1] -> C$ such that $f(0) = v_1$ and $f(1) = v_2$ and $\forall r \in [0, 1]$, $f(r) \in C$ <br> 
-        2. $\forall v \in V,\ c \in C$ where $v$ is not the additive identity of $V$, there exists $\lambda \in F$ such that $\lambda c = O$ satisfies $O \in C$ and $\forall \epsilon \geq 0$, $O + \epsilon v \notin C$ <br>
-        The issue is that I still haven't properly studied what it means for a function vector-valued function like that to be continuous and maybe the details of what the range and image of a continuous function must satisfy.
-        I'm imagining that we can define what it means for a function from $R$ to a euclidean vector space BECAUSE there exists the concept of "distance," but not all vector spaces may have that.
-        Here's my attempt at writing what it means for a function to be continuous:
-        Define a metric set $A$ to be a set with a distance function $d_A: A -> R_+$ which satisfies $d_A(a, a) = 0$, and $d_A(a, b) \leq d_A(a, c) + d_A(b, c)$
-        A function $f: A -> B$ from a measurable set A and B is continuous if and only if 
-        Yeah I kinda cheated there, I researched the definition of continuity and metric spaces, I learned something new anyway though that's all that matters.
+        (b) Since $A_2 = g(f(A_1))$ and $A_1$ excludes any result of $g$, then $A_1 \cap A_2 = \emptyset$. 
+        It will now be proven that if $A_1, ..., A_n$ with $n > 1$ is pairwise disjoint, then $A_1, ..., A_{n+1}$ is also pairwise disjoint by proving that each of $A_1, ..., A_{n}$ individually is disjoint with $A_{n + 1}$.
+        $\forall m \in \{1, ..., n-1\}$, $A_m \cap A_n = \emptyset$. By the injectivity of $f$ and $g$ which keeps intersection relations, $g(f(A_m)) \cap g(f(A_n)) = \emptyset$.
+        By the definition of $A_{n+1}$, that implies $A_{m + 1} \cap A_{n + 1} = \emptyset$ which means the entire statement now becomes
+        $\forall m \in \{2, ..., n\}$, $A_m \cap A_{n} = \emptyset$. But we also know that $A_{n + 1}$ is the result of a call to $g$, and since $A_1$ excludes any result of $g$, then $A_1 \cap A_{n+1} = \emptyset$.
+        Therefore we have proven that $A_{n+1}$ is always individually disjoint with each of $A_1, ..., A_n$. Since $A_1, ..., A_n$ is also already pairwise disjoint, then the resulting $A_1, ..., A_{n+1}$ is also pairwise disjoint.
+        By induction, it can be conluded that $A_1, ..., A_n$ for any $n \in \mathbb{N}$ is always pairwise disjoint. 
         <br><br>
-        Next is to define the concept of the affine space $A$ of a set of vectors $C$ in $V$ to be the set of all vectors $v$ that satisfies:
-        $\exists k \in \mathbb{N}$ such that $\exists O, u_1, ..., u_k \in C$ where $\exists \lambda_1, ..., \lambda_k$ which satisfies $$
-
-        <!-- I will attempt to explain what I mean by starting from the 2-dimensional and 3-dimensional case.
-        In 2-dimensions, you can define a polygon using a list of points arranged in a certain order.
-        Then you can visually think of the polygon in terms of it's line-segment boundaries where each line-segment is defined by each adjacent pair of points in the list. 
-        And that method seem like the most natural way to represent them.
-        However with the way I'm gonna explain it right now, it is a bit different for the purpose of ease of generalization. -->
+        (c) This is very trivial, take any $b \in B$, this means $\exists n \in \mathbb{N}$ such that $b \in B_n$ which, by the definition of $B_n$, imply $b \in f(A_n)$ which implies that $\exists a \in A_n$ such that $f(a) = b$ which also means $a \in A$.
+        So it can be concluded that $\forall b \in B$, $\exists a \in A$ such that $f(a) = b$. We also know that, since for any $a \in A$, $\exists n \in \mathbb{N}$ such that $a \in A_n$, then $f(a) \in B_n$ by the definition of $B_n$. Therefore it can be concluded that $f$ maps $A$ onto $B$.
         <br><br>
-        <!-- A point-extension operation is an operation which generally takes a polytope and a face of the polytope, and a point as parameters for the operation, and creates a new polytope based on them.
-        There are two undefined words there: dimension and face.
-        Define a polytope as a set F of euclidean vectors that can be defined in the steps defined later.
-        A polytope is N-dimensional if you can find a list of N+1 vectors inside of the polytope such that, if you take an element K in the list and the sublist that does not contain K denoted S, the list of vectors made from every element of S substracted by K is linearly independent and it's span contains every element in F substracted by K.
-        In other words, a polytope is N-dimensional if $\exists L = v_1, ..., v_{n+1}$ s.t. $\forall k \in {1, ..., n + 1}$, $S = L \backslash v_{k} - v_{k}$, where the substraction substracts every element of $L \backslash v_k$ by $v_k$, is linearly independent and $\forall f \in F$, $f - v_k \in \text{span}(S)$.
-        Now to define the "face" of a polytope. This is an interesting problem in-itself and I'm actually not sure yet on how to do that.
-        I will only define the intuitive definition of a face which is just a boundary of a polytope which itself is a polytope that is contained inside of the polytope that it's a face of.
-        An N-dimensional polytope has faces of dimensions 1 to N-1.
-        A 0-dimensional face is a point, a 1-dimensional face is a line, a 2-dimensional face is a plane, and so on.
-        A cube has eight 0-dimensional faces, twelve 1-dimensional faces, and six 2-dimensional faces.
-        I will also define the affine space of a polytope F as being the set of all vectors that, if substracted by any vector V in the polytope, it can be made by a linear combination of a list of vectors in the polytope added by V.
-        In other words, the set of all vectors $A$ where there exists $k \in N$ such that there exists $O, v_1, ..., v_k \in F$, $\lambda_1, ..., \lambda_k \in \mathbb{R}$ such that $\sum_{i=1}^k \lambda_i(v_i - O) = A$
+        (d) Notice that since $A_1 = X \backslash g(Y)$ and $A_1 \subset A$, then $A' = X \backslash A \subset g(Y)$.
+        Therefore $\forall a \in A'$, $\exists b \in Y$ such that $g(b) = a$.
+        It will now be proven that $b$ must be in $B'$ because if it is not, $a$ must be in $A$.
+        Suppose $b \in B$, then $\exists n \in \mathbb{N}$ such that $b \in B_n$, and since $B_n = f(A_n)$ then $a \in A_n$ must be true by the injectivity of $f$ and so $a \in A$.
+        Therefore when $a \in A'$, $b$ cannot be in $B$ and so it must be in $B'$.
+        And for any $b \in B'$, $g(b) \in A'$ because it cannot be in $A$ since $A$ excludes any result of $g$. 
         <br><br>
-        There are two types of point extensions, one that increases the dimension of the polytope and one that keeps it the same.
-        A point-extension with point P that increases the dimension of the current polytope does not need a face parameter.
-        Because the entirety of the current existing polytope will become one of the face of the extended polygon.
-        An extension with the point P does not increase the dimension of the polytope if and only if P is in the affine space of the polytope.
-        <br><br>
-        If F is the original polygon and G is the polygon made from extending F to the point P with the face polygon K (which may only be F itself if P is not in the affine space of F),
-        then it is defined the "extension polygon" of the extension to be a polygon E
-        where $V \in E$ is true if and only if $\exists \lambda \in \mathbb{R}, R \in F$ such that $P + \lambda(R - P) = V$.
-        <br><br>
-        Now to define the steps to make a polygon. -->
-        Definition 1. A point-dilation-extension of a set of vectors S onto the point P is the set 
-        Definition 2. A 
-        A polytope is a set of vectors in a certain vector space P under the field F which may be constructed 
     </div>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+          tex: {
+            packages: ['base', 'ams'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Exercises on my analysis book part 1</h1>
+        <b>Exercise 1.6.1.</b> Show that $(0, 1)$ is uncountable if and only if $\mathbb{R}$ is uncountable. <br>
+        The book already gave a bijective function from $(-1, 1)$ to $\mathbb{R}$ on the earlier pages so this is pretty easy.
+        Take the function $f(x) = x/(x^2 - 1)$.
+        <!-- which is a bijective function from earlier pages of the book from $(-1, 1)$ to $\mathbb{R}$ and make $g(x) = f(2x - 1)$ therefore, with a little algebra, $g(x) = \frac{2x - 1}{4(x^2 - x)}$ -->
+        It will be proven that $f$ maps $(-1, 1)$ to $\mathbb{R}$ bijectively.
+        The range of this function is already definitely a subset of $\mathbb{R}$ so that's one part done.
+        Take any $r \in \mathbb{R}$, with a little bit of algebra from solving $r = \frac{x}{x^2 - 1}$, you can take $x = \frac{1 - \sqrt{1 + 4r^2}}{2r}$ and see:
+        $$
+        \begin{align*}
+        f(\frac{1 - \sqrt{1 + 4r^2}}{2r}) &= \frac{\frac{1 - \sqrt{1 + 4r^2}}{2r}}{(\frac{1 - \sqrt{1 + 4r^2}}{2r})^2 - 1} \\
+        &= \frac{1 - \sqrt{1 + 4r^2}}{(\frac{(1 - \sqrt{1 + 4r^2})^2}{2r}) - 2r} \\
+        &= \frac{1 - \sqrt{1 + 4r^2}}{\frac{(1 - \sqrt{1 + 4r^2})^2 - 4r^2}{2r}} \\
+        &= \frac{2r(1 - \sqrt{1 + 4r^2})}{(1 - \sqrt{1 + 4r^2})^2 - 4r^2} \\
+        &= \frac{2r(1 - \sqrt{1 + 4r^2})}{1 - 2\sqrt{1 + 4r^2} + 1 + 4r^2 - 4r^2} \\
+        &= \frac{2r(1 - \sqrt{1 + 4r^2})}{2 - 2\sqrt{1 + 4r^2}} \\
+        &= \frac{2r(1 - \sqrt{1 + 4r^2})}{2(1 - \sqrt{1 + 4r^2})} \\
+        &= r\\
+        \end{align*}
+        $$
+        Now to prove that $x \in (-1, -1)$. 
+        sqrt(4r^2) = |2r|
+sqrt(1 + 4r^2) > |2r| > 0 -> (1)
+1 - sqrt(1 + 4r^2) > 1 - |2r|
+(1 - sqrt(1 + 4r^2))/(2r) > (1 - |2r|)/(2r)
+(1 - sqrt(1 + 4r^2))/(2r) > (1 - |2r|)/(2r)
+
+if r is positive:
+(1 - sqrt(1 + 4r^2))/|2r| > 1/|2r| - 1
+1/|2r| - sqrt(1 + 4r^2)/|2r| > 1/|2r| - 1
+-sqrt(1 + 4r^2)/|2r| > -1
+by (1), it also means:
+0 > -sqrt(1 + 4r^2)/|2r| > -1
+0 > 1/|2r| > (1 - sqrt(1 + 4r^2))/|2r| > -1 + 1/|2r| > -1
+Therefore 0 > (1 - sqrt(1 + 4r^2))/|2r| > -1
+
+    </div>
+</body>
+</html>
