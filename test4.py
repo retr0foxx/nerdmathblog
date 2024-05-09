@@ -50,17 +50,6 @@ def project(basis, point):
 # project a point into the affine space defined by the affine set of points.
 def project_affine(affine_space, point, origin_index=0):
     return project(np.array([affine_space[i] - affine_space[origin_index] for i in range(len(affine_space)) if i != origin_index]), point - affine_space[origin_index]);
-    """origin = affine_space[origin_index];
-    result = origin;
-    for i in range(len(affine_space)):
-        if (i == origin_index):
-            continue;
-
-        rel_point = point - result;
-        rel_curvec = affine_space[i] - result;
-        result += np.dot(rel_point, rel_curvec) / (np.linalg.norm(rel_curvec) ** 2) * rel_curvec;
-
-    return result;"""
 
 r = project_affine(vertices.copy(), proj_point);
 print(r);

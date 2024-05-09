@@ -6,8 +6,12 @@
     <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
     <script>
         MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
           tex: {
-            packages: ['base', 'ams'],
+            packages: ['base', 'ams', 'xypic'],
             tags: 'none',
             inlineMath: [['$', '$'], ['\\(', '\\)']]
           }
@@ -64,8 +68,115 @@
         &= r\\
         \end{align*}
         $$
-        Now to prove that $x \in (-1, -1)$. 
-        sqrt(4r^2) = |2r|
+        Now to prove that $x \in (-1, -1)$. The idea is that, when $r$ is zero, the expression is also zero which is in the interval.
+        While when $r$ is non-zero, the square root is strictly less than 1 + |2r| (which is not true if r is zero) while also being strictly higher than |2r|.
+        That would imply that the final expression is in the interval.
+        Here's the complete proof: <br>
+        Lemma 1: Suppose $a > 0$, then $\sqrt{a + b^2} = \sqrt{a} + |b|$ if and only if $b = 0$. <br>
+        Proof: $\sqrt{a + b^2} = \sqrt{a} + |b|$ imply $a + b^2 = a + 2\sqrt{a}|b| + b^2$ which imply $\sqrt{a}|b| = 0$. Since $\sqrt{a}$ is non-zero, then $|b|$ must be zero which also mean $b = 0$. 
+        If $b = 0$, then:
+        $$\sqrt{a + b^2} = \sqrt{a + 0} = \sqrt{a} + 0 = \sqrt{a} + |b|$$<br>
+        Lemma 2: Suppose $a > 0$ and $b \neq 0$, then $\sqrt{a + b^2} < \sqrt{a} + |b|$ <br>
+        Proof: The statement imply $2\sqrt{a}|b| > 0$ therefore $a + b^2 < a + 2\sqrt{a}|b| + b^2 = \left( a + |b| \right)^2$ which imply $\sqrt{a + b^2} < a + |b|$ <br>
+        <br>
+        When $r = 0$, $\frac{1 - \sqrt{1 + 4r^2}}{2r} = 0/0$, taking the limit of the expression, maybe by using L'Hopital or something, it is equal to 0.
+        when $r \neq 0$, by lemma 2 (setting a = 1), it is known that $\sqrt{1 + 4r^2} < 1 + |2r|$ but it is also known that $|2r| < \sqrt{1 + 4r^2}$.
+        Therefore, you can now do:
+        $$
+        \begin{align*}
+        |2r| < \sqrt{1 + 4r^2} < 1 + |2r| &\implies |2r| - 1 < \sqrt{1 + 4r^2} - 1 < |2r| && \text{(substract by 1)} \\
+        &\implies 1 - |2r| > 1 - \sqrt{1 + 4r^2} > -|2r| && \text{(negate)} \\
+        &\implies \frac{1}{|2r|} - 1 > \frac{1 - \sqrt{1 + 4r^2}}{|2r|} > -1 && \text{(divide by $|2r|$)} \\
+        &\implies 0 > \frac{1 - \sqrt{1 + 4r^2}}{|2r|} > -1 && \text{(for the positive case)} \\ 
+        &\implies 0 < \frac{1 - \sqrt{1 + 4r^2}}{-|2r|} < 1 && \text{(for the negative case)} \\
+        &\implies -1 < \frac{1 - \sqrt{1 + 4r^2}}{2r} < 1 \\ 
+        \end{align*}
+        $$
+        Therefore the expression is always in the interval $(-1, 1)$
+        <br><br>
+        Note that some exercises are skipped because I already did them on my notebook. <br>
+        <b>Exercise 1.6.5.</b> (b) If $A$ is finite with $n$ elements, show that $P(A)$ has $2^n$ elements. <br>
+        Proof: This will be proved by induction. Define $A_0 = \emptyset$ and $A_n$ such that $|A_n| = |A_{n - 1}| + 1$ and $A_{n-1} \subset A_n$.
+        Since $|A_0| = 0$, then $|A_n| = n$ for any $n$. With the way $A_n$ is defined, it is able to represent any finite set of size $n$.
+        The definition also implies that $\exists a_n \in A_n$ such that $a_n \notin A_{n-1}$ yet for any $k \in A_n$ where $k \neq a_n$, $k \in A_{n-1}$.
+        In other words, there is only a single new element in $A_n$ compared to $A_{n-1}$.
+        Therefore, you can create an alternative definition of each of $A_n$ to be $A_n = \{a_1, ..., a_n\}$ and then $A_{n+1} = \{a_1, ..., a_{n+1}\} = A_n \cup \{ a_{n+1} \}$
+        where each of $a_k$ may represent <i>any</i> value of the set which also satisfy $a_k \in A_j \forall j \geq k$ while $a_k \notin A_l \forall l < k$.
+        I mean, technically, I need to prove that a sequence of sets that satisfy the first condition stated above also states the latter definition AND vice-versa to say that it is an equivalent definition, but I think it's trivial enough.<br>
+        Now for the induction: <br>
+        (i) $P(A_0) = \{ \emptyset \}$, |P(A_0)| = 1 = $2^n$ <br>
+        (ii) When $|P(A_n)| = 2^n$, it will be proven that $P(A_{n+1}) = 2^{n+1}$. Define $f: P(A_n) \to P(A_{n+1})$ with $f(s) = s \cup \{ a_{n+1} \}$ and define $H = \{ f(s) | s \in P(A_n) \}$.
+        I will now state an assumption that will be used in here. If S and C are finite sets and $f: S \to C$ is 1-1 and K is defined as $K = \{ f(s) | s \in S \}$, then $|K| = |S|$.
+        This is obviously because every element of K is based on an element of S in such a way that any 2 different elements in S creates two different elements that will be put into K because $f$ is 1-1.
+        Going back to the previous $f$, it will be proven that $f$ is 1-1. 
+        Take any $s_1, s_2 \in P(A_n)$ such that $s_1 \neq s_2$. It is also known that $a_{n+1} \notin s_1, s_2$, therefore $s_1 \cup \{ a_{n+1} \} \neq s_2 \cup \{ a_{n+1} \}$.
+        This is true based on the general trivial assumption that for any three sets $A, B, C$ such that $A \neq B$ and $A \cap C = B \cap C = \emptyset$, then it also follows that $A \cup C \neq B \cup C$.
+        All of that implies that $|H| = |P(A_n)|$ because $H, P(A_n)$ is finite and $f$ is 1-1 and the assumption from before. 
+        Since any result of $f(s)$ contains $a_{n+1}$, any result of $f(s)$ is not in $A_n$ and so $H \cap P(A_n) = \emptyset$.
+        This means $|H \cup P(A_n)| = |P(A_n)| + |H| = 2|P(A_n)| = 2^{n+1}$. It will now be proven that $H \cup P(A_n) = P(A_{n+1})$ which would imply $|P(A_{n+1})| = 2^{n+1}$.
+        Take any $k \in P(A_{n+1})$, $a_{n+1}$ is either in k or not in k. If $a_{n+1}$ is not in $k$, then $k \in P(A_n)$ because $A_n = \{ a_1, ..., a_n \}$ and $A_{n+1} = \{ a_1, ..., a_{n+1} \}$.
+        If $a_{n+1}$ is in $k$, then $k \backslash \{ a_{n+1} \} \in P(A_n)$ and so $k \in H$ because it is an element of $P(A_n)$ added with $a_{n+1}$. Therefore $k \in P(A_n) \cup H$.
+        Then for any $j \in H \cup P(A_n)$, j is either in $H$ or $P(A_n)$. If it is in $P(A_n)$, then it is also in $P(A_{n+1})$ because $A_n \subset A_{n+1}$.
+        If $j \in H$, then $\exists k \in P(A_n)$ such that $j = k \cup \{ a_{n+1} \}$ therefore $j \in P(A_{n+1})$ because $k \subseteq A_n$ implies $k \cup \{ a_{n+1} \} = j \subseteq A_n \cup \{ a_{n+1} \} = A_{n+1}$. Therefore $P(A_n) \cup H = P(A_{n+1})$ and so it can be concluded that $|P(A_{n+1})| = 2^{n+1}$.
+        <br><br>
+        Yup I am the absolute WORST at writing proofs. They are never clear and concise and always have a bunch of redundancy probably. Anyway, next.
+        <br><br>
+        <b>Theorem 1.6.2 (Cantor's Theorem).</b> Given any set $A$, <i>there does not exist</i> a function $f: A \to P(A)$ that is <i>onto</i>. <br>
+        <b>Exercise 1.6.6. - Exercise 1.6.8.</b> Prove Cantor's Theorem. <br>
+        The book basically slowly guides you into how you would prove this theorem, starting from using an obvious example of why you cannot have an onto mapping from a finite set to it's power set in Exercise 1.6.6.
+        And then it tells you that you're supposed to prove Cantor's Theorem indirectly by assuming that such a function exists and say that, in that case, a contradictio would occur which is that if you create the set
+        $B = \{ a \in A : a \notin f(a) \}$, then $f$ have not mapped anything in $A$ to $B$. Exercise 1.6.7. tells you to try to do this for finite sets before going generally into infinite sets in Exercise 1.6.8. <br><br>
+        <br><br>
+        In this exercise, I want to highlight a generalization of the template of a diagonalization argument that I learned from a YouTube video. Here's the diagram in the video:
+        <!-- In a diagonalization argument, you have sets $A$ and $B$, a function $f: A^2 \to B$, then the function $g: A \to B$ and a function $h: A \to B$.
+        These functions should satisfy: $g(a) = f(a, a)$, then $h(a) \neq g(a)$. -->
+        $$
+        \xymatrix{
+        A^2 \ar[r]^f & B \ar[d]^h \\
+        A \ar[u]^g \ar[r]_s & B
+        }
+        $$
+        <!-- What's essentially going on here is that you have the sets A and B. A is for indexing (it will be N^2 for the uncountability of (0, 1)), and B will be the value for each input of $f$. 
+        After that there's the function $h$ which "negates" a value of $B$ so it must satisfy $h(b) \neq b$. And then you have the function $g$ which does the diagonalization such that $g(a) = f(a, a)$.
+        And then finally $s$ is the special function which is defined as $s(a) = h(g(a))$, therefore $s(a) \neq f(a, a)$ and so, as a function of $a$ with $j$ being locked, $s(a) \neq f(j, a)$ for any value of $j$ -->
+        Now to explain this diagram. So, in general, the shared theme in diagonalization proofs is that you start with an indexed collection of functions, say functions $f_i : A \to B$ for any $i \in A$.
+        And then you would try to create the function $s: A \to B$ that is not already in that indexed collection of functions.
+        It does this by utilizing the indexing set of the collection is the same as domain of each of the functions in the collection which allows you to do a process called we know as diagonalization.
+        So you can create $s$ by making it not equal to any $f_i$ by simply making the $s(i)$ not equal to $f_i(i)$. 
+        And so in the process of defining $s$ on all of it's domain, you are essentially going through the process of getting the value of $f_i(i)$, and then creating a value that is not equal to that.
+        In the diagram, the function which generates this not-equal value is $h$, and the function which goes from $i$ to $f_i(i)$ is $g$. 
+        This diagram is just showing that $s$ is a composition of $g$, $f$, and $h$ IF you redefine $f_a(b)$ to be $f(a, b)$. Therefore, $s(i) = h(f(g(i)))$.
+        Basically, this is an attempt to generalize diagonalization arguments using <i>category theory</i> which is what the video is actually about. It is an attempt at an introduction to category theory.
+        <br><br>
+        Anyway, for the actual proof of Cantor's Theorem. Start with a set $H$ and prove that any mapping from $H$ to $P(H)$ is not onto.
+        Start by defining $k: H \to P(H)$ and assume that it is an onto mapping from $H$ to $P(H)$.
+        By using the diagonalization proof template from before, you can define $A = H$, $B = \{ 0, 1 \}$. 
+        And then define $f: A^2 \to B$ (which is just $f: H^2 \to \{ 0, 1 \}$) which, if called with $f(a, b)$, represents whether or not $b$ is in $k(a)$.
+
+        This means, if you lock $a$ to be some element of $H$, then $f(a, b)$ completely represents $k(b)$ because $k(b) = \{ h | f(a, h) = 1 \}$.
+        The point is that $f(a, b)$ with $a$ being locked is able to represent any subset of $H$. 
+        The final goal is to create a set $S \in P(H)$ that $k$ have not mapped any element of $H$ to.
+        This is equivalent to creating a function $s: A \to B$ that is not equal to any $f(a, x)$ as a function of $x$ with $a$ being locked to any element of H and then you can define $S = {b | s(b) = 1}$
+        To do this, you create the function $g$ which does the diagonalization, therefore $g(i) = (i, i)$, and then create the function $h: B \to B$ which generates the "not-equal" value therefore $h(0) = 1$ and $h(1) = 0$.
+        Then you define $s(i)$ to be $h(f(g(i)))$ which is the same as $h(f(i, i))$.
+        The set that $s$ represents, S, cannot be equal to any $k(b)$. Because, suppose $b \in k(b)$, then, by definition, $f(b, b) = 1$ and so $s(b) = h(f(b, b)) = h(1) = 0$ and so $b$ is not in $S$ therefore $S \neq k(b)$.
+        You can use basically the same logic for if $b \in k(b)$. 
+        <br><br>
+        <b>Exercise 1.6.9.</b> Give a compelling argument that $P(N) \sim \mathbb{R}$. <br>
+        On earlier exercises, the book gave a guided proof to the Schroder-Bernstein theorem, which we should be able to use here. 
+        So now we can just try to create a 1-1 mapping from $P(N)$ to $\mathbb{R}$ and vice versa. <br>
+        It shouldn't be too hard. You can define the mapping from $\mathbb{R}$ to $P(N)$ by making one from $(0, 1)$ to $P(N)$ and you should be able to do that using decimal representations.
+        I'm imagining that you would map any element $r \in (0, 1)$ with it's (non-9-repeating) decimal representation being $r_n \in \{ 0, ..., 9 \}$ to be the set $\{ r_n \cdot 10^n | n \in \mathbb{N} \}$.
+        Then for the mapping from $P(N)$ to $(0, 1)$, you can say that $p \in P(N)$ maps to a real number $r = 10^{-1} + \sum_{i \in p} 10^{-(p + 1)}$. In other words:
+        $$f(p) = 10^{-1} + \sum_{i \in p} 10^{-(p + 1)}$$
+        $$g(r) = \{ r_n \cdot 10^n | n \in \mathbb{N} \}$$
+        The intuition is that $f$ creates a real number which has a decimal representation where the $(n + 1)$th digit after the decimal point is 1 if $n \in p$ and 0 if $n \notin p$.
+        For example, the set $\{ 2, 4, 5 \}$ represents the real number $0.101011$.
+        The reason that it's $(n + 1)$ instead of $n$ and we're also adding the sum with $0.1$ is to prevent the value that the empty set would represent from being $0$.
+        Any two different sets cannot represent the same real number because two different decimal representations can only represent the same real number when one of them is 9-repeating.
+        In this case, the resulting decimal representation is never 9-repeating.
+        And the for $g$, it essentially creates a set of natural numbers such that 
+        <!-- sqrt(4r^2) = |2r|
 sqrt(1 + 4r^2) > |2r| > 0 -> (1)
 1 - sqrt(1 + 4r^2) > 1 - |2r|
 (1 - sqrt(1 + 4r^2))/(2r) > (1 - |2r|)/(2r)
@@ -78,8 +189,7 @@ if r is positive:
 by (1), it also means:
 0 > -sqrt(1 + 4r^2)/|2r| > -1
 0 > 1/|2r| > (1 - sqrt(1 + 4r^2))/|2r| > -1 + 1/|2r| > -1
-Therefore 0 > (1 - sqrt(1 + 4r^2))/|2r| > -1
-
+Therefore 0 > (1 - sqrt(1 + 4r^2))/|2r| > -1 -->
     </div>
 </body>
 </html>

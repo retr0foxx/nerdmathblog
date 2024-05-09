@@ -32,5 +32,29 @@
         "progress": "completed",
         "length": "short",
         "url": "ln-ineq.html"
+    },
+    {
+        "title": "Exercises on Stephen Abbott's Understanding Analysis book part 1",
+        "description": "The last exercises on the first chapter of the book.",
+        "categories": "math",
+        "length": "long",
+        "progress": "ongoing",
+        "url": "./analysis-exercises-1.html"
+    },
+    {
+        "title": "Fully connected neural networks",
+        "description": "My attempt at explaining fully connected neural networks for recognizing digits, a classic start for learning neural networks",
+        "categories": "math, programming",
+        "progress": "ongoing",
+        "length": "long",
+        "url": "./fcnn.html"
+    },
+    {
+        "title": "Brainstorm on polytopes",
+        "description": "Brainstorming about polytopes. How would you formally define polytopes? How do you construct arbitrary-volume polytopes, do point-collision with them, and calculate their volume?",
+        "categories":"math",
+        "progress": "ongoing",
+        "length": "medium",
+        "url": "./mypolytope.html"
     }
 ]

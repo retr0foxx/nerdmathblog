@@ -390,11 +390,103 @@
         X_1 \cdot y \\
         X_2 \cdot y \\
         \vdots \\
-        x_M \cdot y \\
+        X_M \cdot y \\
         \sum y
         \end{bmatrix}
         $$
-        How do you solve that? I don't know.
+        <!-- And that actually reveals something very nice to us. The matrix is literally just the result of a matrix-matrix product of a matrix with itself.
+        That is, if we define $I$ to be the vector filled with 1s, and define the matrix:
+        $$X = [X_1, X_2, ..., X_M, I]$$
+        Or:
+        $$
+        X = \begin{bmatrix}
+        x_{1,1} & x_{1,2} & \dots & x_{1,M} & 1 \\
+        x_{2,1} & x_{2,2} & \dots & x_{2,M} & 1 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        x_{N,1} & x_{N,2} & \dots & x_{N,M} & 1 \\
+        \end{bmatrix}
+        $$
+        Then the matrix is equavilent to $X^T X$.
+        The intuition you should have to get a better understanding of why this works is that you can think of a matrix-matrix multiplication similar to how you would be thinking of thinking about vector outer-products.
+        That is, the vector multiplcation $AB$ can be thuoght of as an outer-product of A and B as <i>vectors of vectors</i> where each sub-vector is on the same column.
+        $$
+        \begin{array}{c|ccccc}
+            & X_1 & X_2 & \dots & X_M & I \\
+        \hline
+        X_1 & X_1 \cdot X_1 & X_1 \cdot X_2 & \dots & X_1 \cdot X_M & X_1 \cdot I \\
+        X_2 & X_2 \cdot X_1 & X_2 \cdot X_2 & \dots & X_2 \cdot X_M & X_2 \cdot I \\
+        \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+        X_M & X_M \cdot X_1 & X_M \cdot X_2 & \dots & X_M \cdot X_M & X_M \cdot I \\
+        1 & I \cdot X_1 & I \cdot X_2 & \dots & I \cdot X_M & I \cdot I \\
+        \end{array}
+        $$
+        Where each of those multiplications are dot products, so the expression above is equavilent to:
+        $$
+        \begin{array}{cccc|ccccc}
+        &&&& x_{1,1} & x_{1,2} & \dots & x_{1,M} & 1 \\
+        &&&& x_{2,1} & x_{2,2} & \dots & x_{2,M} & 1 \\
+        &&&& \vdots & \vdots & \ddots & \vdots & \vdots \\
+        &&&& x_{N,1} & x_{N,2} & \dots & x_{N,M} & 1 \\
+        \hline
+
+        x_{1,1} & x_{2,1} & \dots & x_{N,1}
+            & \sum_{i=1}^N x_{i,1} \cdot x_{i,1} & \sum_{i=1}^N x_{i,1} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,1} \cdot x_{i,M} & \sum_{i=1}^N x_{i,1} \\
+        x_{1,2} & x_{2,2} & \dots & x_{N,2}
+            & \sum_{i=1}^N x_{i,2} \cdot x_{i,1} & \sum_{i=1}^N x_{i,2} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,2} \cdot x_{i,M} & \sum_{i=1}^N x_{i,2} \\
+        \vdots & \vdots & \ddots & \vdots
+            & \vdots & \vdots & \vdots & \ddots & \vdots \\
+        x_{1,M} & x_{2,M} & \dots & x_{N,M}
+            & \sum_{i=1}^N x_{i,M} \cdot x_{i,1} & \sum_{i=1}^N x_{i,M} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} \cdot x_{i,M} & \sum_{i=1}^N x_{i,M} \\
+        1 & 1 & 1 & 1
+            & \sum_{i=1}^N x_{i,1} & \sum_{i=1}^N x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} & N \\
+        \end{array}
+        $$
+        Those are some illustrations to maybe help a bit with understanding, the point is that it works and you can try to think about it more yourselves if you still don't understand.
+
+        So, if you rename the weights and biases matrix to $p$ the expression from before can be decomposed into:
+        $$X^T X p = X^T y$$
+        So yes, the right side can also be turned into $X y$ which is very convenient.
+        And of course, by the associativity of matrix-matrix multiplication, this is the same as solving:
+        $$Xp = y$$
+        for $p$. Which is very awesome, we have simplified the problem a lot.
+        The equation there is basically the same as:
+        $$
+        \begin{bmatrix}
+        x_{1,1} & x_{1,2} & \dots & x_{1,M} & 1 \\
+        x_{2,1} & x_{2,2} & \dots & x_{2,M} & 1 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        x_{N,1} & x_{N,2} & \dots & x_{N,M} & 1 \\
+        \end{bmatrix}
+        \begin{bmatrix}
+        w_1 \\
+        w_2 \\
+        \vdots \\
+        w_M \\
+        b
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        y_1 \\
+        y_2 \\
+        \vdots \\
+        y_N
+        \end{bmatrix}
+        $$
+        --> 
+        Which makes it apparent that the final problem for linear regression actually looks really nice.
+        Now is there a really nice way to solve it or something like that? I don't know and it would probably take too long to try to find by ourselves.
+        What is for sure is that now we know that we can just solve this matrix equation to solve the linear regression problem.
+        The point is all of this is I guess just practice on linear regression and calculus optimization. Next we can talk about logistic regression.
+
+        <h3>Logistic Regression</h3>
+        Logistic regression is similar to linear regression, except that we're trying to find the best "logistic function" to fit a given data.
+        I honestly don't actually know what exactly logistic regression is <i>generally trying to do</i>, but I can explain what exactly it is mathematically and the obvious possible uses of it from that.
+        A logistic function is basically a function that looks like this: <br>
+        <img src="./images/fcnn-5.png" alt=""> <br>
+        As you can see, the output is very much bounded on a certain interval in such a way that there's some kind of small area where the output changes very quickly from opposite ends of the interval, yet everywhere else, the function doesn't change very much and is very close to the endpoints of the interval.
+        The possible parameters you would typically have for this logistic function is a parameter that intuitively represents the position of the area where the function changes quickly, and the speed of that change.
+        So, yes, you typically don't include it's height and y-position as a parameter. Those values is typically on the range of 0 to 1.
+        One perfect usage of this function is when you have a value that can be any real number, but then you want to squeeze it into a finite interval.
     </div>
 </body>
 </html>
