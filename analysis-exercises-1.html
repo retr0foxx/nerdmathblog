@@ -68,8 +68,9 @@
         &= r\\
         \end{align*}
         $$
-        Now to prove that $x \in (-1, -1)$. The idea is that, when $r$ is zero, the expression is also zero which is in the interval.
-        While when $r$ is non-zero, the square root is strictly less than 1 + |2r| (which is not true if r is zero) while also being strictly higher than |2r|.
+        Notice that $x$ is actually undefined when $r = 0$. In that case, we will define $x = 0$ whenever $r = 0$.
+        Now to prove that $x \in (-1, -1)$. This is already done for when $r = 0$, now for the rest.
+        When $r$ is non-zero, the square root is strictly less than 1 + |2r| (which is not true if r is zero) while also being strictly higher than |2r|.
         That would imply that the final expression is in the interval.
         Here's the complete proof: <br>
         Lemma 1: Suppose $a > 0$, then $\sqrt{a + b^2} = \sqrt{a} + |b|$ if and only if $b = 0$. <br>
@@ -79,7 +80,6 @@
         Lemma 2: Suppose $a > 0$ and $b \neq 0$, then $\sqrt{a + b^2} < \sqrt{a} + |b|$ <br>
         Proof: The statement imply $2\sqrt{a}|b| > 0$ therefore $a + b^2 < a + 2\sqrt{a}|b| + b^2 = \left( a + |b| \right)^2$ which imply $\sqrt{a + b^2} < a + |b|$ <br>
         <br>
-        When $r = 0$, $\frac{1 - \sqrt{1 + 4r^2}}{2r} = 0/0$, taking the limit of the expression, maybe by using L'Hopital or something, it is equal to 0.
         when $r \neq 0$, by lemma 2 (setting a = 1), it is known that $\sqrt{1 + 4r^2} < 1 + |2r|$ but it is also known that $|2r| < \sqrt{1 + 4r^2}$.
         Therefore, you can now do:
         $$
@@ -89,7 +89,7 @@
         &\implies \frac{1}{|2r|} - 1 > \frac{1 - \sqrt{1 + 4r^2}}{|2r|} > -1 && \text{(divide by $|2r|$)} \\
         &\implies 0 > \frac{1 - \sqrt{1 + 4r^2}}{|2r|} > -1 && \text{(for the positive case)} \\ 
         &\implies 0 < \frac{1 - \sqrt{1 + 4r^2}}{-|2r|} < 1 && \text{(for the negative case)} \\
-        &\implies -1 < \frac{1 - \sqrt{1 + 4r^2}}{2r} < 1 \\ 
+        &\implies -1 < \frac{1 - \sqrt{1 + 4r^2}}{2r} < 1 && \text{(combination of the +/- cases)} \\ 
         \end{align*}
         $$
         Therefore the expression is always in the interval $(-1, 1)$
@@ -104,7 +104,7 @@
         where each of $a_k$ may represent <i>any</i> value of the set which also satisfy $a_k \in A_j \forall j \geq k$ while $a_k \notin A_l \forall l < k$.
         I mean, technically, I need to prove that a sequence of sets that satisfy the first condition stated above also states the latter definition AND vice-versa to say that it is an equivalent definition, but I think it's trivial enough.<br>
         Now for the induction: <br>
-        (i) $P(A_0) = \{ \emptyset \}$, |P(A_0)| = 1 = $2^n$ <br>
+        (i) $P(A_0) = \{ \emptyset \}$, |P(A_0)| = 1 = $2^0$ <br>
         (ii) When $|P(A_n)| = 2^n$, it will be proven that $P(A_{n+1}) = 2^{n+1}$. Define $f: P(A_n) \to P(A_{n+1})$ with $f(s) = s \cup \{ a_{n+1} \}$ and define $H = \{ f(s) | s \in P(A_n) \}$.
         I will now state an assumption that will be used in here. If S and C are finite sets and $f: S \to C$ is 1-1 and K is defined as $K = \{ f(s) | s \in S \}$, then $|K| = |S|$.
         This is obviously because every element of K is based on an element of S in such a way that any 2 different elements in S creates two different elements that will be put into K because $f$ is 1-1.
@@ -127,7 +127,7 @@
         And then it tells you that you're supposed to prove Cantor's Theorem indirectly by assuming that such a function exists and say that, in that case, a contradictio would occur which is that if you create the set
         $B = \{ a \in A : a \notin f(a) \}$, then $f$ have not mapped anything in $A$ to $B$. Exercise 1.6.7. tells you to try to do this for finite sets before going generally into infinite sets in Exercise 1.6.8. <br><br>
         <br><br>
-        In this exercise, I want to highlight a generalization of the template of a diagonalization argument that I learned from a YouTube video. Here's the diagram in the video:
+        In this exercise, I want to highlight a general proof template for diagonalization that I learned from a YouTube video. Here's the diagram in the video:
         <!-- In a diagonalization argument, you have sets $A$ and $B$, a function $f: A^2 \to B$, then the function $g: A \to B$ and a function $h: A \to B$.
         These functions should satisfy: $g(a) = f(a, a)$, then $h(a) \neq g(a)$. -->
         $$
@@ -146,21 +146,21 @@
         And so in the process of defining $s$ on all of it's domain, you are essentially going through the process of getting the value of $f_i(i)$, and then creating a value that is not equal to that.
         In the diagram, the function which generates this not-equal value is $h$, and the function which goes from $i$ to $f_i(i)$ is $g$. 
         This diagram is just showing that $s$ is a composition of $g$, $f$, and $h$ IF you redefine $f_a(b)$ to be $f(a, b)$. Therefore, $s(i) = h(f(g(i)))$.
-        Basically, this is an attempt to generalize diagonalization arguments using <i>category theory</i> which is what the video is actually about. It is an attempt at an introduction to category theory.
+        Basically, this is an attempt to generalize diagonalization arguments using <i>category theory</i> which is what the video is actually about. It is supposed to be an introduction to category theory.
         <br><br>
         Anyway, for the actual proof of Cantor's Theorem. Start with a set $H$ and prove that any mapping from $H$ to $P(H)$ is not onto.
         Start by defining $k: H \to P(H)$ and assume that it is an onto mapping from $H$ to $P(H)$.
         By using the diagonalization proof template from before, you can define $A = H$, $B = \{ 0, 1 \}$. 
         And then define $f: A^2 \to B$ (which is just $f: H^2 \to \{ 0, 1 \}$) which, if called with $f(a, b)$, represents whether or not $b$ is in $k(a)$.
 
-        This means, if you lock $a$ to be some element of $H$, then $f(a, b)$ completely represents $k(b)$ because $k(b) = \{ h | f(a, h) = 1 \}$.
-        The point is that $f(a, b)$ with $a$ being locked is able to represent any subset of $H$. 
+        This means, if you lock $a$ to be some element of $H$, then $f(a, b)$ completely represents $k(a)$ because $k(a) = \{ h | f(a, h) = 1 \}$.
+        The point is that $f(a, b)$ with $a$ being locked is able to represent any subset of $H$.
         The final goal is to create a set $S \in P(H)$ that $k$ have not mapped any element of $H$ to.
-        This is equivalent to creating a function $s: A \to B$ that is not equal to any $f(a, x)$ as a function of $x$ with $a$ being locked to any element of H and then you can define $S = {b | s(b) = 1}$
+        This is equivalent to creating a function $s: H \to \{ 0, 1 \}$ that is not equal to any $f(a, x)$ as a function of $x$ with $a$ being locked to any element of H and then you can define $S = \{ b | s(b) = 1 \}$
         To do this, you create the function $g$ which does the diagonalization, therefore $g(i) = (i, i)$, and then create the function $h: B \to B$ which generates the "not-equal" value therefore $h(0) = 1$ and $h(1) = 0$.
         Then you define $s(i)$ to be $h(f(g(i)))$ which is the same as $h(f(i, i))$.
         The set that $s$ represents, S, cannot be equal to any $k(b)$. Because, suppose $b \in k(b)$, then, by definition, $f(b, b) = 1$ and so $s(b) = h(f(b, b)) = h(1) = 0$ and so $b$ is not in $S$ therefore $S \neq k(b)$.
-        You can use basically the same logic for if $b \in k(b)$. 
+        You can use basically the same logic for if $b \notin k(b)$. 
         <br><br>
         <b>Exercise 1.6.9.</b> Give a compelling argument that $P(N) \sim \mathbb{R}$. <br>
         On earlier exercises, the book gave a guided proof to the Schroder-Bernstein theorem, which we should be able to use here. 
@@ -175,7 +175,142 @@
         The reason that it's $(n + 1)$ instead of $n$ and we're also adding the sum with $0.1$ is to prevent the value that the empty set would represent from being $0$.
         Any two different sets cannot represent the same real number because two different decimal representations can only represent the same real number when one of them is 9-repeating.
         In this case, the resulting decimal representation is never 9-repeating.
-        And the for $g$, it essentially creates a set of natural numbers such that 
+        <br><br>
+        And then for $g(r)$, it essentially creates a set of natural numbers such that, if the $d$ the $nth$ digit of the decimal number that $r$ represents (using only non-9-repeating representations), then the resulting set contains $d \cdot 10^n$.
+        In other words, $g(r) = \{ r_n \cdot 10^n | n \in \mathbb{N} \}$ if $r_n$ is the $nth$ digit in the decimal representation of $r$.
+        For example, $g$ would map $0.3067$ to $\{ 3, 600, 7000 \}$.
+        It should be obvious from here that $g$ is a 1-1 mapping from $\mathbb{R}$ to $P(\mathbb{N})$.
+        If I had to try to explain why (with unnecessarily level of details), it's because $g$ uses the decimal representations that satisfy the requirement that any two different representations cannot represent the same real number (because it uses the non-9-repeating only representation). 
+        Any two decimal representations that are <i>different</i>, $a_n$ and $b_n$, means that there exists a natural $m$ such that $a_m \neq b_m$.
+        Rearrange $a$ and $b$ such that it is guarranteed that $a_m \neq 0$, this is definitely always possible.
+        By the definition of $g(a)$, $a_m \cdot 10^m \in g(a)$.
+        Yet $a_m \cdot 10^m \notin g(b)$ because, if it is, then, because $b_m \neq a_m$, there must exist some other natural $k \neq m$ such that $b_k \cdot 10^k = a_m \cdot 10^m$.
+        This means $b_k \neq 0$ because if it is then $a_m$ must be zero which it isn't.
+        Yet this means $b_k = a_m \cdot 10^{m - k}$. If $k < m$, then $10^{m - k} \geq 10$ and since since $a_m \in \{ 1, ..., 9 \}$, $b_k = a_m \cdot 10^{m - k} \geq 10$ which contradicts the fact that $b_k \in \{ 0, ..., 9 \}$.
+        $k > m$ would also have the same issue because $10^{m - k} \leq 10^-1 = \frac{1}{10}$ and by the constraint of $a_m$, $a_m \cdot 10^{m - k} \leq \frac{9}{10} < 1$.
+        This means it is not possible for there to be <i>any</i> natural $k$ such that $b_k \cdot 10^k = a_m \cdot 10^m$ (any instead of $k \neq m$ because $b_k \neq a_m$ anyway).
+        Therefore you can conclude that $a_m \cdot 10^m \notin g(b)$.
+
+        <br><br>
+        <b>Exercise 1.6.10.</b> As a final exercise, answer each of the following by establishing a 1-1 correspondence with a set of known cardinality <br>
+        (a) Is the set of all functions from $\{ 0, 1 \}$ to $\mathbb{N}$ countable or uncountable? <br>
+        (b) Is the set of all functions from $\mathbb{N}$ to $\{ 0, 1 \}$ countable or uncountable? <br>
+        (c) Given a set $B$, a subset $A$ of $P(B)$ is called an antichain if no element of $A$ is a subset of any other element of $A$.
+        Does $P(N)$ contain an uncountable antichain? <br>
+        <br>
+        (a) It is countable. You can bijectively map the set of all functions $f: \{ 0, 1 \} \to \mathbb{N}$ to $\mathbb{N}^2$ by defining $g(f) = (f(0), f(1))$. <br>
+        (b) It is uncountable. You can bijectively map the set of all functions $f: \mathbb{N} \to \{ 0, 1 \}$ to $P(\mathbb{N})$ by defining $g(f) = \{ a | f(a) = 1 \}$ <br>
+        <!-- (c) Okay this one makes us have to think about subsets of $P(P(\mathbb{N}))$ which is kind of hard for me. -->
+        (c) Given a set $B$, it is possible to create an antichain of $B$ denoted $A$ such that $A \sim B$ by defining $A = \{ \{ a \} | a \in B \}$.
+        Therefore, since $P(\mathbb{N})$ is uncountable, you can also create an uncountable antichain of it. Therefore, yes, $P(\mathbb{N})$ does contain an uncountable antichain.
+        Except that I just misunderstood the question, damn it. Of course it wouldn't be that easy. <br>
+        Okay I have an idea now. The strategy is to map all sequences of zeros and ones to an antichain in $P(\mathbb{N})$ with the function
+        $p: \{ 0, 1 \}^{\infty} \to T$ where T is the antichain.
+        The strategy for defining this function is a recursive process which has a countably infinite set as a state in each step (it starts with $\mathbb{N}$ as the first set) and splits the current countably infinite set into three parts and then pick one of those to be put in the final set.
+        Pick another one of the three sets to be the next countably infinite set in the process.
+        The set that is picked for the next step must be independent of the values of the sequence.
+        For example, on the current step, the process might ALWAYS pick the middle set to be the next step's countably infinite set, but then pick either the leftmost or the rightmost set to be added onto the final set depending on the values of the sequence.
+        This kind of process guarantees the unpicked subset to definitely not be in the resulting union.
+        Notice that you can't do this with just two sets. Otherwise, the resulting set will always be the entire set that we start with. 
+        Take two different binary sequences B and C and an index n that is the first index where B and C are different.
+        This should mean that the recursive process has been the same up to the nth step.
+        Suppose the nth value of B is 0 yet the nth value of C is 1.
+        If we follow the example from before, the final set from B will definitely not contain anything in the subset of N which corresponds to the rightmost part of the current set yet it will definitely have the leftmost part.
+        While the final set from C will definitely not contain anything in the leftmost part yet it will definitely contain the rightmost part.
+        Therefore, for any two sequences, the final set will never be subsets of each other. Atleast that is the intuition, now for the formal definitions and proof.
+        <br><br>
+        Define $g_n: P(\mathbb{N}) \to P(\mathbb{N})$ for $n \in \{ 1, 2, 3 \}$ and only takes in countably infinite sets and returns countably infinite sets.
+        $g_1(A), g_2(A), g_3(A)$ must be pairwise-disjoint and must unionize to A.
+        To define them, first define the function $g(A, n)$ which takes in a countably infinite set $A$ and a natural number $n$ such that $f(n) = g(A, n)$ is always a bijective mapping from $n$ to $A$.
+        In other words, $\forall a \in A$, $\exists! n \in \mathbb{N}$ such that $g(A, n) = a$. 
+        Then, you can define them as:
+        $g_r(A) = \{ g(A, 3k - r + 1) | k \in \mathbb{N} \}$. It should be obvious that $g$ satisfy all of the properties listed above, but if I had to explain it (with unnecessary level of details), then here it is:
+        Take any $a \in \mathbb{A}$, there's only one $n$ such that $g(A, n) = a$ and there exist only one $k, r$ where $0 \leq r < 3$ such that $n = 3k - r$ by the division algorithm.
+        Define $x = r + 1$ and so $n = 3k - x + 1$, so $n \in g_x(A)$.
+        For any $k$, $g_k(A)$ only has $a \in A$ such that the corresponding $n$ where $g(A, n) = a$ has a remainder of $k - 1$. 
+        Therefore, any $a \in g_k(A)$ cannot be in $g_j(A)$ if $j \neq k$ because then $g_j(A)$ only contain $b \in A$ with remainders of $j - 1$ when divided by 3.
+        If two numbers have different remainders when divided by another number, then those two numbers are different. So, yeah, $a$ cannot be in $g_j(A)$.
+        Therefore the $g_k(A)$s are pairwise disjoint.
+        <br><br>
+        <!-- Next is to define $q_n: \{ 0, 1 \}^{\infty} \to P(\mathbb{N})$ which decides the current countably infinite set in the $n$th step.
+        $q_1(B) = \mathbb{N}$, then for the rest, $q_n(B) = g_2(q_{n-1}(B))$. -->
+        Next is to define $q_n \in P(\mathbb{N})$ for all natural $n$ which decides the current countably infinite set in the $n$th step.
+        $q_1 = \mathbb{N}$, then for the rest, $q_n = g_2(q_{n-1})$.
+        Then to define $p_n: \{ 0, 1 \}^{\infty} \to P(\mathbb{N})$ which decides the set to be added to the final union set at the $n$th step.
+        It is defined as:
+        $$
+        p_n(B) = \begin{cases}
+        g_1(q_n) & \text{ if } B_n = 0 \\
+        g_3(q_n) & \text{ if } B_n = 1 \\
+        \end{cases}
+        $$
+        Then $P(B)$, which decides the set of natural numbers in the antichain that a certain sequence maps to. 
+        $P(B) = \bigcup_{i \in \mathbb{N}} p_i(B)$.
+        Before continuing, notice that these definitions imply: <br>
+        (1) $q_{n+1} \cap p_n = \emptyset$ for any input of $p_n$
+        because $q_{n+1} = g_2(q_n)$ and $p_n = g_k(q_n)$ such that $k \neq 2$. <br>
+        (2) $p_{n+1} \cap p_n = \emptyset$. This is because (1) and $p_{n+1} = g_k(q_{n+1}) \subset q_{n+1}$ <br>
+        (3) For any $a \neq b$, $p_b \cap p_a = \emptyset$. Because $a > b \implies a \geq b + 1$ imply $q_a \subseteq q_{b+1}$ and since $p_b \cap q_{b+1} = \emptyset$, then $p_b \cap q_a = \emptyset$ and so $p_b \cap p_a = \emptyset$ since $p_a \subset q_a$. <br>
+        Now to prove that $S = \{ P(B) | B \in \{ 0, 1 \}^{\infty} \}$ is a valid antichain in $P(\mathbb{N})$.
+        The strategy is to prove that the result of $P$ to any two different sequences, $B$ and $C$, are incomparable. 
+        In other words, both sets have elements in them that is not in the other set.
+        Since $B$ and $C$ are different, you can take $m = \text{min} \{ h | B_h \neq C_h \}$ and know it exists.
+        This means, for any $n < m$, $p_n(B) = p_n(C)$ yet $p_m(B) \cap p_m(C) = \emptyset$ because $B_m \neq C_m$ and so they result in calls to different $g_k$s which we know is disjoint.
+        $p_j(C)$ for any $j < m$ is equal to $p_j(B)$ which is disjoint with $p_m(B)$ by (3) therefore $p_j(C) \cap p_m(B) = \emptyset$.
+        $p_j(C)$ for any $j > m$ satisfy $p_j(C) \subseteq q_{m+1}$ and since $q_{m+1} \cap p_m(B) = \emptyset$, then $p_j(C) \cap p_m(B) = \emptyset$.
+        And so for any natural $j$, $p_j(C) \cap p_m(B) = \emptyset$.
+        Therefore $p_m(B) \subseteq P(B)$ yet $p_m(B) \cap P(C) = \emptyset$.
+        By the using the same logic and switching $C$ with $B$ in the past few sentences, you can also say that $p_m(C) \subset P(C)$ yet $p_m(C) \cap P(B) = \emptyset$. 
+        Therefore, yes, $S$ is a valid antichain because it is "pairwise-incomparable." 
+        <!-- Oh, you can actually create an uncountable set of disjoint sets of natural numbers.
+        The strategy is to map the set of all binary sequences onto $\mathbb{N}$ in that manner.
+        The intuition for this map is that, for the first element of the sequence, you split $N$ into two infinite parts.
+        Pick one of those infinite parts based on the value of the first element. Then for the next element, you start from the unpicked infinite set and do the same thing. <br><br>
+        Now to describe it more formally. Define $g_1(A)$ and $g_2(A)$ to take an infinite subset of $\mathbb{N}$ and creates another infinite subset of $A$ such that $g_1(A) \cap g_2(A) = \emptyset$.
+        For their formal definition, for any input A, create a mapping $f_A: \mathbb{N} \to A$ that is bijective (which is always possible because $A$ is countably infinite).
+        This mapping must always be the same for $g_1$ and $g_2$ for the same input $A$.
+        Then, define $g_1(A) = \{ f_A(2n) | n \in \mathbb{N} \}$ and $g_2(A) = \{ f_A(2n - 1) | n \in \mathbb{N} \}$.
+        Now create the function $p: \{ 0, 1 \}^{\infty} \to P(\mathbb{N})$ denoted $P(B)$ which takes in a binary sequence $B$ and returns an infinite subset of the naturals such that any two different binary sequences will map to two disjoint subsets of the naturals.
+        <!-- To actually define this function, I will first define $p_n(B)$ for 0 and any natural $n$ to be $p_0(B) = \mathbb{N}$ and then $p_1(B) = g_1(p_0(B))$ if $B_1 = 0$, else $p_1(B) = g_2(p_0(B))$.
+        Then $p_n(B) = g_1(p_{n-2}(B) \backslash p_{n-1}(B))$ if $B_n = 1$ else $p_n(B) = g_2(p_{n-2}(B) \backslash p_{n-1}(B))$. -- >
+        To actually define this function, I will define the functions $q_n(B)$ and $p_n(B)$ such that $q_1(B) = \mathbb{N}$ and the rest the following way:
+        $$
+        q_n(B) = \begin{cases}
+        g_2(q_{n-1}(B)) & \text{ if } B_{n-1} = 0 \\
+        g_1(q_{n-1}(B)) & \text{ if } B_{n-1} = 1 \\
+        \end{cases}
+        $$
+        then
+        $$
+        p_n(B) = \begin{cases}
+        g_1(q_{n}(B)) & \text{ if } B_{n} = 0 \\
+        g_2(q_{n}(B)) & \text{ if } B_{n} = 1 \\
+        \end{cases}
+        $$
+        So, $q_n$ satisfy $q_{n+1} \subset q_n$ because each of $q_{n+1}$ is based on a function of $q_n$, $g$, that returns a subset of $q_n$, and so $n > m$ imply $q_n \subset q_m$.
+        It's also true that $q_{n+1}$ and $p_n$ is disjoint because they're based on two different functions of $q_n$ which results in disjoint subsets of $q_n(B)$.
+        Since $p_{n+1}$ is based on $q_{n+1}$ with a function which returns a subset of $q_{n+1}$, then $p_{n+1}$ and $p_n$ is disjoint.
+        Take any $m > n$, then $q_m \subset q_n$ and so $q_m \subseteq q_{n+1}$ and since $q_{n+1}$ is disjoint with $p_n$, $p_n$ is disjoint with $q_m$ which also means it's disjoint with $p_m$ because $p_m \subset q_m$.
+        Therefore $m \neq n$ imply $p_m \cap p_n = \emptyset$.
+        Then you can finally define $p$ to be $p(B) = \{ p_n(B) | n \in \mathbb{N} \}$.
+        <br><br>
+        Now to prove that the map is 1-1.
+        Take the binary sequences $B$ and $C$. Since they are different, $m = \text{min } \{ m | B_m \neq C_m \}$ exist.
+        Therefore $m$ satisfy, for any, $n < m$, $q_n(B) = q_n(C)$ and $p_n(B) = p_n(C)$.
+        Since $B_m \neq C_m$, $q_m(B) \neq q_m(C)$ and they are disjoint.
+        Remember that, in general, for any $a \geq b$, then $p(a) \subset q(b)$. 
+        This means for any $n \geq m$, $p_n(B) \subset q_m(B)$ and $p_n(C) \subset q_m(C)$ -->
+        <!-- This actually feels so hard, idk how to do it. I think I'm somehow very much overthinking the problem right now.
+        Here are some observations I made about antichains <br>
+        The subset of $P(\mathbb{N})$ which consists of every finite subsets of $\mathbb{N}$ that is of size $N$ is always countable antichain.
+        Suppose you have an existing antichain $A$, then here is an algorithm to find a random set $S$ such that $A \cup \{ S \}$ is still an antichain: <br>
+        Take any random element of $\mathbb{N}$ denoted $n$. If it is not in any of the sets in $A$, then any subset of the natural numbers that has $n$ in it may be chosen as S.
+        -->
+        <!-- Notice that this means for any $a, M$, there exists only 1 element in $g(a) \cap \{ 10^M, 2 \cdot 10^M, ..., 9 \cdot 10^M \}$.
+        Suppose there are more than one, say $x, y$, then you can represent $x$ as $x_d \cdot 10^M$ and $y$ as $y_d \cdot 10^M$ with $x_d \neq y_d$.
+        By the definition of $g$, this means $x_b$ and $y_b$ are both the $M$th digit of the decimal representation of $r$ which require $r$ to have two different decimal representations which is not possible because $g$ uses the method of representation of $r$ such that any two real numbers will have a different representation.
+        Therefore, any two different decimal representations $a_n$ and $b_n$ cannot map to the same set because, if they are different, then there exists an $m$ such that $a_m \neq b_m$ and so $a_m \cdot 10^m \neq b_m \cdot 10^m$. 
+        Since $a_m \cdot 10^m \in g(a)$, then any other digit $o \neq a_m$ in $g(a)$ -->
         <!-- sqrt(4r^2) = |2r|
 sqrt(1 + 4r^2) > |2r| > 0 -> (1)
 1 - sqrt(1 + 4r^2) > 1 - |2r|

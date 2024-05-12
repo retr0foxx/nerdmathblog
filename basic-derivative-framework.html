@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Creating a basic derivative framework for a basic FCNN framework</h1>
+        The date is 12/5/2024 and I am having my school break which will be quite long as it is the break between middle school and high school.
+        I am trying to review fully connected neural networks which is something that I have made many months prior.
+        It seems like a useful tool to have here would be a basic derivative framework.
+        The goal is to create objects that may represent derivatives of functions which takes in arrays and outputs arrays.
+        The framework must also allow easy general chain-rule applications. 
+        It will be able to represent derivatives of such functions in general, but it will also have specialized 
+        objects to represent derivatives of certain types of functions that appear in the standard FCNN models more efficiently.
+        <h2>General derivatives of multidimensional-array functions</h2>
+        <h3>Representation</h3>
+        Given a function $F(A)$ which returns a multidimensional-array and takes in a multidimensional-array,
+        how do you represent the derivative of such a function?
+        The derivative is represented by an array of shape A.shape + F.shape which should be thought of as an array of shape A.shape of arrays of shape B.shape.
+        Each element in depth len(A.shape), say in index $i$ (remember that this index is a tuple, not a single integer because it indexes a multidimensional-array),
+        is an array of shape F.shape which represents how the best linear approximation of F changes as the $i$th element of A changes by 1.
+        In other words, it is literally the derivative of F in terms of the $i$th element of the input of F.
+        which is easier to manage because the input in that case would be a single real number.
+        <br><br>
+        This actually lines up as an obvious generalization of grads for vector-valued multivariable functions.
+        If you think of such a function, the "grad" is a matrix. 
+        This matrix can be thought of as a vector of vectors, or an array of arrays.
+        Each $i$th element of this array is a vector which represents the best linear approximation of how the function changes as the $i$th element of it's input changes by exactly 1.
+        In other words, it is literally the derivative of $i$th element of the input vector.
+        <br><br>
+        Notice that this sounds exactly the same as before, it's just that $i$ is a proper integer index of a 1-dimensional array rather than a tuple-index of a multidimensional-array.
+        It's just that, in the grad case, there is the operations of basic matrix-matrix multiplication between grads to do chain-rule.
+        You can also do directional derivatives by simply doing matrix-vector multiplication with the grad and a direction vector. 
+        So we will be exploring on how to generalize that on the next section.
+        <h3>Chain rule and "directional derivatives"</h3>
+        You may have noticed since earlier that I have been describing derivatives
+        as an object of the same type as the output of a function
+        which represents how the best linear approximation of the function changes as the input changes by exactly 1.
+        This is because it is the mindset that I have been using while thinking of all of this which has proven to be quite helpful.
+        Now to generalize directional derivatives. Going back to the case of vector-valued vector functions, suppose you have the functions
+        $\vec{f}(\vec{a})$ and $\vec{g}(\vec{b})$, then you are able to have $\nabla \vec{f}(\vec{a})$ and $\nabla \vec{g}(\vec{b})$
+        which represent the grad matrix of these two functions at the point $\vec{a}$ and $\vec{b}$.
+        For now, ignore $\vec{g}$, that will be used later for the generalization of grads, and focus on $\vec{f}$.
+        We know that we can take the directional-derivative at $\vec{c}$ in the direction of $\vec{d}$ by simply doing
+        $\nabla \vec{f}(\vec{c}) \cdot \vec{d}$ as a matrix-vector multiplication.
+        <br><br>
+        Remember the statement from the previous section that $\nabla \vec{f}(\vec{c})$ is a matrix
+        such that each $i$th column-vector of the matrix represents how the best linear approximation of the function changes as the $i$th input changes by exactly one.
+        Since matrix-vector multiplication is just multiplying each element of the vector with the corresponding column-vector of the matrix on the same index and then summing them up,
+        you can represent $\nabla \vec{f}(\vec{c}) \cdot \vec{d}$
+        as simply being the sum for all $i$ of how the best linear approximation of the function changes as the $i$th input of the function changes by exactly the $i$th element of $\vec{d}$.
+        The last statement is the key for generalizing this.
+        <br><br>
+        Actually, calling this "directional-derivatives" is a bit restrictive. 
+        With this representation, now we can actually interpret this as simply being how the best linear approximation of the function changes as the input vector changes by any arbitrary vector $\vec{d}$ 
+        which does not need to have a magnitude of one. 
+        Just picture a function in 3D and a tangent plane at some point, that tangent plane is called the best linear approximation of the function at that point because it matches the value and also it's derivative/speed-of-movement.
+        You are able to get any point in that tangent plane to get how the best linear approximation of the function as the input changes in any way you want.
+        This is useful because you can't really think of directions anymore for array functions, 
+        and even in vector functions, this operation where you are multiplying the grad by a non-directional-vector will still be useful
+        in interpreting chain rule for the array function generalization.
+        So, in conclusion, the important key statement from the previous paragraph can be stated symbolically as, if we define V to be the grad which is $V = \nabla \vec{f}(\vec{c})$ and L to 
+        be the final linear approximation as the input changes by the arbitrary vector $\vec{d}$ which means $L = V \cdot \vec{d}$ as:
+        $L = \sum_{i} V_i \vec{d}_i$
+        where the sum variable $i$ ranges over all possible indexes of the input $\vec{a}$ which is just ${1, ..., \text{len}(\vec{a})}$
+        <br><br> 
+        Going back to the case of array functions with $F(A)$ and an array $D$.
+        From what we have covered just now, we can now get something that may be interpreted as
+        how the best linear approximation of F changes as A changes by any arbitrary amount $D$.
+        The $i$th index of the derivative of F at A represents how the best linear approximation of F changes at A
+        as the input changes by exactly one. 
+        This means, based on the same logic as before, you can get the best linear approximation of how F changes as it's input 
+        changes by the entire array D by summing up, for all possible index $i$, of how the output of F changes as the $i$th input of F changes by exactly $D_i$
+        Which is literally just summing up, for all i, the ith element of the derivative of F times the scalar that is on the ith element of D. 
+        Therefore, if L is the linear approximation and V is the derivative of F at A, then:
+        $L = \sum_{i} V_i D_i$ where the sum variable $i$ ranges over all possible (tuple) indexes of the input of $F$.
+        And of course, this is very similar to the previous expression for vector-valued vector functions.
+        <br><br>
+        The next step is to finally generalize the chain-rule. 
+        The thing about them is that even the vector function version can be easily stated in terms of the type of operation we did before which is a more unrestricted version of directional-derivatives.
+        Again, we start from the vector function case and then generalize from there. Remember the we will use the two functions, $\vec{f}(\vec{a})$ and $\vec{g}{\vec{b}}$ that we have defined before
+        and then define a new composition function $\vec{g}(\vec{c}) = \vec{f}(\vec{g}(\vec{c}))$.
+        The goal is to find $\nabla \vec{g}(\vec{c})$ which we actually already know is equal to
+        $$\nabla \vec{h}(\vec{c}) = \nabla \vec{f}(\vec{g}(\vec{c})) \cdot \nabla \vec{g}(\vec{c})$$
+        So we know that this expression is split into the multiplication of two matrices, \nabla \vec{f} and \nabla \vec{g}.
+        Using the logic we've been using a lot since earlier, we kno
+        <!-- Suppose you create the function $\vec{h}(\vec{c}) = \vec{f}(\vec{g}(\vec{c}))$, how do you interpret the process of getting
+        $\nabla \vec{h}(\vec{c})$ which may help us for generalization.
+        We know that $\nabla \vec{h}(\vec{c}) = \nabla \vec{f}(\vec{g}(\vec{c})) \cdot \nabla \vec{g}(\vec{c})$.
+        Here is how we should interpret this:  -->
+
+    </div>
+</body>
+</html>

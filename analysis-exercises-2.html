@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Exercises on my analysis book part 2</h1>
+        <b>Definition 2.2.3 (Convergene of a Sequence).</b> A sequence $(a_n)$ converges to a real number $a$ if,
+        for every positive real number $\epsilon$, there exists an $N \in \mathbb{N}$ such that whenever $n \geq N$ it follows that $|a_n - a| < \epsilon$. <br>
+        <b>Exercise 2.2.1.</b> What happens if we reverse the order of the quantifiers in Definition 2.2.3? <br>
+        <i>Definition:</i> A sequence $(a_n)$ verconges (lmao) to $x$ if there <i>exists</i> an $epsilon > 0$
+        such that <i>for all</i> $N \in \mathbb{N}$ it is true that $n \geq N$ implies $|x_n - x| < \epsilon$. <br>
+        Give an example of a vercongent sequence. 
+        Is there an example of a vercongent sequence that is divergent?
+        Can a sequence verconge to two different values?
+        What exactly is being described in this strange definition? <br>
+        The thing in this definition is 
+    </div>
+</body>
+</html>
