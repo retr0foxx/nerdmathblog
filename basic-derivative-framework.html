@@ -118,21 +118,45 @@
         Which is literally just summing up, for all i, the ith element of the derivative of F times the scalar that is on the ith element of D. 
         Therefore, if L is the linear approximation and V is the derivative of F at A, then:
         $L = \sum_{i} V_i D_i$ where the sum variable $i$ ranges over all possible (tuple) indexes of the input of $F$.
-        And of course, this is very similar to the previous expression for vector-valued vector functions.
+        And of course, this is very similar to the previous expression for vector-valued vector functions. This will be defined as multiplication between these two types of objects.
         <br><br>
         The next step is to finally generalize the chain-rule. 
         The thing about them is that even the vector function version can be easily stated in terms of the type of operation we did before which is a more unrestricted version of directional-derivatives.
-        Again, we start from the vector function case and then generalize from there. Remember the we will use the two functions, $\vec{f}(\vec{a})$ and $\vec{g}{\vec{b}}$ that we have defined before
+        Again, we start from the vector function case and then generalize from there. we will use the two functions $\vec{f}(\vec{a})$ and $\vec{g}{\vec{b}}$ that we have defined earlier
         and then define a new composition function $\vec{g}(\vec{c}) = \vec{f}(\vec{g}(\vec{c}))$.
         The goal is to find $\nabla \vec{g}(\vec{c})$ which we actually already know is equal to
         $$\nabla \vec{h}(\vec{c}) = \nabla \vec{f}(\vec{g}(\vec{c})) \cdot \nabla \vec{g}(\vec{c})$$
-        So we know that this expression is split into the multiplication of two matrices, \nabla \vec{f} and \nabla \vec{g}.
-        Using the logic we've been using a lot since earlier, we kno
+        So we know that this expression is split into the multiplication of two matrices, $\nabla \vec{f}$ and $\nabla \vec{g}$.
+        <!-- To make things easier, let's say that
+        $\vec{J} = \nabla \vec{f}(\vec{g}(\vec{c}))$ and $\$-->
+        This means the $i$th column vector of $\nabla h$ is equal to the $i$th column vector of $\nabla g$ times the matrix $\nabla f$.
+        The $i$th column vector of $\nabla g$ represents how the best linear approximation of $g$ changes as the $i$th element of $c$ changes by exactly 1 and that column vector dotted by $\nabla f$ represents how the best linear approximation of $f$ changes as the input, $g$, changes by exactly that $i$th column vector which itself is how g changes as the $i$th column of c changes.
+        To reiterate, the vector which represents how the output of h changes as the ith element of it's input changes is equal to how f changes as g changes in the way it would when the $i$th element of c changes. Whenever we say "how f changes" it more exactly means how the best linear approximation of f changes.     
+        This is essentially saying that the vector which represents how the best linear approximation of $h$, a composition of f and g, changes as the $i$th input changes by exactly one is lierally the composition of how the best linear approximation of f and g changes as the $i$th input of $g$ changes.
+        <br><br>
+        I will try to describe this in another way assuming no knowledge of what $\nabla h$ is. As the ith element of c changes by exactly one, the output of g changes by the ith column vector of the grad of g which means the way the output of f changes (which is the same as h in this composition) is equal to the ith column vector of g multiplied by the grad of f. Therefore that should be the ith column vector of the grad of h.
+        <br><br>
+        Following this logic, you can now generalize chain rule for multidimensional array functions. This time we will define the functions $F(A)$, $G(B)$, and $H(C) = F(G(C))$.
+        Following the logic from before, as the ith (tuple) index of C changes by exactly one, G changes by the sub-array of the derivative of G in index $i$ which means F changes by the derivative of F times that sub-array. Where times is the operation of "directional derivatives" that we have defined before.
         <!-- Suppose you create the function $\vec{h}(\vec{c}) = \vec{f}(\vec{g}(\vec{c}))$, how do you interpret the process of getting
         $\nabla \vec{h}(\vec{c})$ which may help us for generalization.
         We know that $\nabla \vec{h}(\vec{c}) = \nabla \vec{f}(\vec{g}(\vec{c})) \cdot \nabla \vec{g}(\vec{c})$.
         Here is how we should interpret this:  -->
+    <br><br>
+    Yeah so that was a lot of stuff that was possibly mixed with a lot of hard to understand attempt at explaining. I will now summarize all of the concepts I talked about: <br>
+    Interpretations of vector-valued multivariable functions concepts for generalization: <br>
+    (1) The ith column vector of the grad of a function at some point P represents how the best linear approximation of the function at P changes as the ith element of the input, P, changes by exactly one <br>
+    (2) The unrestricted directional derivative of a function at a point P with the direction vector D represents how the best linear approximation of the function at P changes as it's input moves by exactly the vector D. If the grad is G then this value may be symbolically represented as $\sum_i G_i D_i$ (which is exactly what matrix-vector multiplication is with G_i being the ith column vector of G) which may be interpreted as the sum of how the output of the function changes as each input i changes by the value on $D_i$ <br> 
+    (3) The process of getting the grad of the composition of the functions f and g can be interpreted as: The ith column vector of the grad of g represents how the best linear approximation changes as the ith input of g changes by exactly one which may be dotted with the grad of f to get how f changes as g changes by that amount meaning the final value of the ith column of g dotted by grad f may be interpreted as how f changes as the ith input of c changes by exactly one which, if it is true, then according to (1) it must be the grad of f composed with g.<br>
+    <br>
+    Interpretations of multidimensional array functions that is generalized from the previous concepts: <br> 
+    (1) The "grad" of a multidimensional function F(A) is a multidimensional array of shape A.shape + F.shape where the sub-array in depth len(A.shape) with index $i$ represents how the best linear approximation of F changes as the input, A, changes in index $i$ by exaxctly one. <br>
+    (2) The unrestricted "directional derivative" of a function at a point P with the input difference array being D is an array of the same shape as the output of the function which represents how the best linear approximation of the function changes as it's input changes by exactly D. If the "multidimensional grad" is G then this value is $\sum_i G_i D_i$
+    (3) 
 
+    <h2>Derivative framework</h2>
+    Now that we're done with that, it's time to finally make the derivative framework. 
+    The idea is to have a class which generally represents the derivative of any multidimensional array function. 
     </div>
 </body>
 </html>
