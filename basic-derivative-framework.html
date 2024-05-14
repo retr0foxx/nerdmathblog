@@ -16,7 +16,10 @@
             inlineMath: [['$', '$'], ['\\(', '\\)']]
           }
         };
-      </script>
+      </script><link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.min.css"
+/>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -47,6 +50,9 @@
     </style>
 </head>
 <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script>
+
     <div class="content">
         <h1>Creating a basic derivative framework for a basic FCNN framework</h1>
         The date is 12/5/2024 and I am having my school break which will be quite long as it is the break between middle school and high school.
@@ -57,10 +63,11 @@
         It will be able to represent derivatives of such functions in general, but it will also have specialized 
         objects to represent derivatives of certain types of functions that appear in the standard FCNN models more efficiently.
         <h2>General derivatives of multidimensional-array functions</h2>
+        Note: BLA = best linear approximation
         <h3>Representation</h3>
         Given a function $F(A)$ which returns a multidimensional-array and takes in a multidimensional-array,
         how do you represent the derivative of such a function?
-        The derivative is represented by an array of shape A.shape + F.shape which should be thought of as an array of shape A.shape of arrays of shape B.shape.
+        The derivative is represented by an array of shape A.shape + F.shape which should be thought of as an array of shape A.shape of arrays of shape F.shape.
         Each element in depth len(A.shape), say in index $i$ (remember that this index is a tuple, not a single integer because it indexes a multidimensional-array),
         is an array of shape F.shape which represents how the best linear approximation of F changes as the $i$th element of A changes by 1.
         In other words, it is literally the derivative of F in terms of the $i$th element of the input of F.
@@ -130,14 +137,26 @@
         <!-- To make things easier, let's say that
         $\vec{J} = \nabla \vec{f}(\vec{g}(\vec{c}))$ and $\$-->
         This means the $i$th column vector of $\nabla h$ is equal to the $i$th column vector of $\nabla g$ times the matrix $\nabla f$.
-        The $i$th column vector of $\nabla g$ represents how the best linear approximation of $g$ changes as the $i$th element of $c$ changes by exactly 1 and that column vector dotted by $\nabla f$ represents how the best linear approximation of $f$ changes as the input, $g$, changes by exactly that $i$th column vector which itself is how g changes as the $i$th column of c changes.
-        To reiterate, the vector which represents how the output of h changes as the ith element of it's input changes is equal to how f changes as g changes in the way it would when the $i$th element of c changes. Whenever we say "how f changes" it more exactly means how the best linear approximation of f changes.     
-        This is essentially saying that the vector which represents how the best linear approximation of $h$, a composition of f and g, changes as the $i$th input changes by exactly one is lierally the composition of how the best linear approximation of f and g changes as the $i$th input of $g$ changes.
+        The $i$th column vector of $\nabla g$ represents how the best linear approximation of $g$ changes as the $i$th element of $c$ changes by exactly one
+        and that column vector dotted by $\nabla f$ represents how the best linear approximation of $f$ changes as the input, $g$,
+        changes by exactly that $i$th column vector which itself is how g changes as the $i$th element of c changes.
+        To reiterate, the vector which represents how the BLA (best linear approximation) of h changes as the ith element of it's input changes
+        is equal to how the BLA of f changes as the BLA of g changes in the way it would when the $i$th element of c changes.
+        This is essentially saying that the vector which represents how the BLA of $h$, a composition of f and g,
+        changes as the $i$th input changes by exactly one is lierally the composition of how the BLA of f and g changes as the $i$th input of $g$ changes.
         <br><br>
-        I will try to describe this in another way assuming no knowledge of what $\nabla h$ is. As the ith element of c changes by exactly one, the output of g changes by the ith column vector of the grad of g which means the way the output of f changes (which is the same as h in this composition) is equal to the ith column vector of g multiplied by the grad of f. Therefore that should be the ith column vector of the grad of h.
+        I will try to describe this in another way assuming no knowledge of what $\nabla h$ is.
+        As the ith element of c changes by exactly one, the output of the BLA of g changes by the ith column vector of the grad of g
+        which means the way the output of the BLA of f changes (which is the same as h) 
+        is equal to the ith column vector of g multiplied by the grad of f.
+        Therefore that should be the ith column vector of the grad of h.
         <br><br>
-        Following this logic, you can now generalize chain rule for multidimensional array functions. This time we will define the functions $F(A)$, $G(B)$, and $H(C) = F(G(C))$.
-        Following the logic from before, as the ith (tuple) index of C changes by exactly one, G changes by the sub-array of the derivative of G in index $i$ which means F changes by the derivative of F times that sub-array. Where times is the operation of "directional derivatives" that we have defined before.
+        Following this logic, you can now generalize chain rule for multidimensional array functions.
+        This time we will define the functions $F(A)$, $G(B)$, and $H(C) = F(G(C))$.
+        Following the logic from before, as the ith (tuple) index of C changes by exactly one,
+        G changes by the sub-array of the derivative of G in index $i$ which means
+        F changes by the derivative of F times that sub-array.
+        Where times is the operation of "directional derivatives" that we have defined before.
         <!-- Suppose you create the function $\vec{h}(\vec{c}) = \vec{f}(\vec{g}(\vec{c}))$, how do you interpret the process of getting
         $\nabla \vec{h}(\vec{c})$ which may help us for generalization.
         We know that $\nabla \vec{h}(\vec{c}) = \nabla \vec{f}(\vec{g}(\vec{c})) \cdot \nabla \vec{g}(\vec{c})$.
@@ -145,18 +164,133 @@
     <br><br>
     Yeah so that was a lot of stuff that was possibly mixed with a lot of hard to understand attempt at explaining. I will now summarize all of the concepts I talked about: <br>
     Interpretations of vector-valued multivariable functions concepts for generalization: <br>
-    (1) The ith column vector of the grad of a function at some point P represents how the best linear approximation of the function at P changes as the ith element of the input, P, changes by exactly one <br>
-    (2) The unrestricted directional derivative of a function at a point P with the direction vector D represents how the best linear approximation of the function at P changes as it's input moves by exactly the vector D. If the grad is G then this value may be symbolically represented as $\sum_i G_i D_i$ (which is exactly what matrix-vector multiplication is with G_i being the ith column vector of G) which may be interpreted as the sum of how the output of the function changes as each input i changes by the value on $D_i$ <br> 
-    (3) The process of getting the grad of the composition of the functions f and g can be interpreted as: The ith column vector of the grad of g represents how the best linear approximation changes as the ith input of g changes by exactly one which may be dotted with the grad of f to get how f changes as g changes by that amount meaning the final value of the ith column of g dotted by grad f may be interpreted as how f changes as the ith input of c changes by exactly one which, if it is true, then according to (1) it must be the grad of f composed with g.<br>
+    (1) The ith column vector of the grad of a function at some point P represents how the BLA of the function at P changes
+        as the ith element of the input, P, changes by exactly one <br>
+    (2) The unrestricted directional derivative of a function at a point P with the direction vector D
+        represents how the BLA of the function at P changes as it's input moves by exactly the vector D.
+        If the grad is G then this value may be symbolically represented as $\sum_i G_i D_i$
+        (which is exactly what matrix-vector multiplication is with G_i being the ith column vector of G)
+        which may be interpreted as the sum of how the output of the function changes as each input i
+        changes by the value on $D_i$ <br> 
+    (3) The process of getting the grad of the composition of the functions f and g can be interpreted as:
+        The ith column vector of the grad of g represents how the BLA of g changes as the ith input of g changes
+        by exactly one, which may then be dotted with the grad of f to get how the BLA of f changes as g changes
+        by that amount meaning the final value of the ith column of g dotted by grad f may be interpreted as how
+        the BLA of f changes as the ith input of c changes by exactly one which,
+        if it is true, then according to (1) it must be the grad of f composed with g.
+        In other words, if L is the grad of f composed with g, J is the grad of f and K is the grad of g, then symbolically:
+        $L_i = \sum_j J \cdot K_i$ the indexing gets the ith column vector of the corresponding grad matrix.
+        Each jth term in the sum represents how the BLA of f changes as the jth element of c changes by exactly one.<br>
     <br>
     Interpretations of multidimensional array functions that is generalized from the previous concepts: <br> 
-    (1) The "grad" of a multidimensional function F(A) is a multidimensional array of shape A.shape + F.shape where the sub-array in depth len(A.shape) with index $i$ represents how the best linear approximation of F changes as the input, A, changes in index $i$ by exaxctly one. <br>
-    (2) The unrestricted "directional derivative" of a function at a point P with the input difference array being D is an array of the same shape as the output of the function which represents how the best linear approximation of the function changes as it's input changes by exactly D. If the "multidimensional grad" is G then this value is $\sum_i G_i D_i$
-    (3) 
+    (1) The "grad" of a multidimensional function F(A) is a multidimensional array of shape A.shape + F.shape
+        where the sub-array in depth len(A.shape) with index $i$ represents how the BLA of F changes
+        as the input, A, changes in index $i$ by exaxctly one. <br>
+    (2) The unrestricted "directional derivative" of a function at a point P with the input difference array being D
+        is an array of the same shape as the output of the function which represents how the BLA of the function changes
+        as it's input changes by exactly D. If the "multidimensional grad" is G then this value is $\sum_i G_i D_i$.
+        The only difference from the previous case is that i is the index of a multidimensional, therefore it is a tuple rather than a single number.
+        This is how the operation of multiplication is defined. <br>
+    (3) Suppose we have the function F(A) and G(B), then H(C) = F(G(C)).
+        The sub-array in depth len(B.shape) with index $i$ in the MDA (multidimensional array) grad of G
+        represents how the BLA of G changes as the ith input of G changes by exactly one,
+        then you can multiply (the operation on (2)) that sub-array by the grad of F to get how the BLA of F changes as
+        it's input changes by exactly that sub-array which is also how much G changes as it's input in index i changes by exactly one.
+        In other words, the way the BLA of H changes as the ith element of C changes is exactly how much the BLA of F changes as the BLA of G changes in the way it would when the ith element changes by exactly one.
+        Therefore, the ith element of the grad of H, which by (1) is supposed to represent how the BLA of H changes as the ith input of H changes,
+        is exactly equal to the operation on (2) applied to the grad of F and the ith element of the grad of G.
+        Symbolically, if L is the grad of H, J is the grad of F and K if the grad of G, then:
+        $L_i = \sum_j J \cdot K_j$. This is the same as the vector function case except that i is now the index of a multidimensional array.
+        Each jth term in the sum represents how the BLA of F (or H) changes as the jth element of C changes by exactly one.<br>
 
     <h2>Derivative framework</h2>
     Now that we're done with that, it's time to finally make the derivative framework. 
-    The idea is to have a class which generally represents the derivative of any multidimensional array function. 
+    The idea is to have an abstract base class which is able to generally represent the derivative of any multidimensional array function.
+    Then there will be subclasses which is going to represent specialized types of MDA function derivatives.
+    The purpose of these specialized subclasses is for it to be able to store the derivatives
+    in a more efficient way and do the chain rule more efficiently as well.
+    For example, the derivative of an elementwise function can be stored in an array of the same shape as the input/output
+    rather than an array that has the shape of both of those shapes combined.
+    One of the subclasses of the abstract base class is going to be the general MDA function derivative class
+    that is always going to store derivatives using the input.shape + output.shape array representation.
+    Now for the chain-rule method, each specialized class will have it's own chain-rule method which must be able to accept
+    an array of the same size as the function's input and another derivative object with the same output shape as the self's input shape.
+    Each class' chain-rule method must be able to handle any specialized derivative representation.
+    Anyway here are the code in Python: <br>
+    <pre><code class="language-python">class derivative:
+    def input_shape(self) -> int:
+        raise NotImplementedError();
+        # return self.array.shape[:self.input_depth];
+
+    def output_shape(self) -> int:
+        raise NotImplementedError();
+        # return self.array.shape[self.input_depth + 1:];
+
+    # how the output changes as the input in the index changes by 1
+    def __getitem__(self, index: tuple):
+        raise NotImplementedError();
+
+    def to_ndarray(self):
+        raise NotImplementedError();
+
+    # multiply with a difference in input to get how the BLA changes as the input changes by div_input
+    def mul_di(self, div_input):
+        raise NotImplementedError();
+
+    def compose(self, inner):
+        raise NotImplementedError();
+    </code></pre>
+    Then the standard derivative class:
+    <pre><code class="language-python">class standard_derivative(derivative):
+        def __init__(self, array: np.ndarray, input_depth: int):
+            self.array = array;
+            self.input_depth = input_depth;
+    
+        @property
+        def output_depth(self) -> int:
+            return len(self.array.shape) - self.input_depth;
+    
+        def input_shape(self) -> int:
+            return self.array.shape[:self.input_depth];
+    
+        def output_shape(self) -> int:
+            return self.array.shape[self.input_depth + 1:];
+    
+        # how the output changes as the input in the index changes by 1
+        def __getitem__(self, index: tuple):
+            return self.array[*index];
+    
+        def to_ndarray(self):
+            return self.array;
+    
+        # multiply with a difference in input to get how the BLA changes as the input changes by div_input
+        def mul_di(self, div_input):
+            r = np.arange(self.output_depth);
+            return np.einsum(self.array, [*r, Ellipsis], div_input, [r], [Ellipsis]);
+    
+        def compose(self, inner):
+            t = type(inner);
+            if (t == standard_derivative):
+                return np.einsum();
+            elif (t == ew_derivative):
+                pass;
+            elif (t == matvec_mat_derivative):
+                pass;
+        </code></pre>
+        The other specialized derivatives that we will need for FCNNs are derivatives of elementwise functions,
+        and derivatives of matrix-vector multiplications. For the matrix-vector multiplication derivative,
+        we will actually be thinking of it as the more general version we have described earlier.
+        After that, we will need to think about what the most efficient way of representing the composition of these derivative types are.
+        Before that, I will review the mathematical model of FCNNs.
+        For the entire network there is the loss function $\mathcal{L}$,
+        then for individual layers $F_i$ there is the activation function $\sigmoi_id$, the weights $w_i$ and biases $b_i$.
+        Then there is the network function $N(x, w, b)$.
+        Then there is the cost function which is the sum of the loss function for all of the data that is used for training.
+        There is the list of data $x_i$ with the expected output $y_i$.
+        So the cost function is literally just $C(x, y, w, b) = \sum_{i=1}^N \mathcal{L}(F(x_i, w, b), y_i)$
+        The goal is to minimize C in terms of all the ws and bs.
+
     </div>
+    <script src="prism.js"></script>
 </body>
 </html>
