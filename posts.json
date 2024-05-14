@@ -56,5 +56,13 @@
         "progress": "ongoing",
         "length": "medium",
         "url": "./mypolytope.html"
+    },
+    {
+        "title": "FCNN review - basic derivative framework",
+        "description": "A review on FCNN focusing on making a simple derivative framework",
+        "categories": "programming",
+        "progress": "ongoing",
+        "length": "medium",
+        "url": "./basic-derivative-framework.html"
     }
 ]

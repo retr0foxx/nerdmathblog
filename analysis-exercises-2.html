@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Exercises on my analysis book part 2</h1>
+        <b>Definition 2.2.3 (Convergene of a Sequence).</b> A sequence $(a_n)$ converges to a real number $a$ if,
+        for every positive real number $\epsilon$, there exists an $N \in \mathbb{N}$ such that whenever $n \geq N$ it follows that $|a_n - a| < \epsilon$. <br>
+        <b>Exercise 2.2.1.</b> What happens if we reverse the order of the quantifiers in Definition 2.2.3? <br>
+        <i>Definition:</i> A sequence $(a_n)$ verconges (lmao) to $x$ if there <i>exists</i> an $\epsilon > 0$
+        such that <i>for all</i> $N \in \mathbb{N}$ it is true that $n \geq N$ implies $|a_n - x| < \epsilon$. <br>
+        Give an example of a vercongent sequence. 
+        Is there an example of a vercongent sequence that is divergent?
+        Can a sequence verconge to two different values?
+        What exactly is being described in this strange definition? <br>
+        There is a part of this definition that is redundant. 
+        The condition that $\forall N \in \mathbb{N}$, it is true that $\forall n \geq N$ $P(n)$ is true
+        is the exact same as $\forall N \in \mathbb{N}$, $P(N)$ is true.
+        Because when the latter is true, you can just pick an $n$ that is equal to $N$ which makes the former true.
+        When the former is true, you know you can pick $n = N$ again which means the condition is satisfied for $P(N)$
+        which also makes the latter true. <br>
+        <i>Definition:</i> A sequence ($a_n$) verconges to $x$ if there <i>exists</i> an $\epsilon > 0$ 
+        such that <i>for all</i> $n \in \mathbb{N}$ it follows that $|a_n - x| < \epsilon$<br>
+        Another thing with this definition is that if a number verconges to some real number $x$, then it verconges to any other real number $y$.
+        Therefore it is not needed to say that a sequence verconges to some real number $x$, because if it does then it also verconges to any other real number.
+        Here is the proof of that:
+        Suppose $a_n$ verconges to $x$ then take the $\epsilon_1 > 0$ such that $\forall n \in \mathbb{N}$, $|a_n - x| < \epsilon_1$.
+        Then you can take any other real number $y$ and say that $\epsilon_2 = epsilon_1 + |x - y|$.
+        By the triangle inequality which states that $|a + b| \leq |a| + |b|$, then:
+        $$|a_n - y| = |(a_n - x) + (x - y)| \leq |a_n - x| + |x - y| < \epsilon_1 + |x - y| = \epsilon_2$$
+        Therefore $|a_n - y| < \epsilon_2$ for all $n \in \mathbb{N}$ and so $a_n$ verconges to $y$.
+        It would then make more sense to change the definition as follows: <br>
+        <i>Definition:</i> A sequence ($a_n$) verconges if there <i>exists</i> an $\epsilon > 0$ and any $x \in \mathbb{R}$
+        such that <i>for all</i> $n \in \mathbb{N}$ it follows that $|a_n - x| < \epsilon$<br>
+        Now this actually just describes a bounded sequence. You would imagine that $x$ is the center of the bound and $\epsilon$ is the radius.
+        It would also be equivalent to define it as a sequence such that there exists an open interval where the entire sequence is inside of.
+        In this case, that open interval will be $(x - \epsilon, x + \epsilon)$. Now to finally answer the questions by the book: <br>
+        (a) Example: $a_n = \frac{1}{n}$, or any other bounded sequence. <br>
+        (b) Is there a divergent vercongent sequence? Yes, because there are divergent bounded sequence. Take $a_n = (-1)^n$ <br>
+        (c) Can a sequence verconge to two different values? Yes, if a sequence verconges to one real number, it verconges to every other real number. <br>
+            Therefore you can say that a sequence can verconge to an uncountably infinite set of real numbers. <br>
+        (d) What exactly is being described in this strange definition? It just describes a bounded sequence in a strange way. <br>
+        <br><br>
+        <b>Exercise 2.2.2.</b> Verify, using the definition of convergence of a sequence, that the following sequences converge to the proposed limit. <br>
+        (a) $\lim \frac{2n + 1}{5n + 4} = \frac{2}{5}$ <br>
+        (b) $\lim \frac{2n^2}{n^3 + 3} = 0$ <br>
+        (c) $\lim \frac{\sin({n^2})}{\sqrt[3]{n}} = 0$ <br>
+        <br>
+        So the strategy for doing these in this case is to find, for some $n$, the difference (or in other words the $\epsilon$)
+        between that term and the proposed limit which is the opposite of what you'd normally do.
+        Then you can somehow inverse that so that you can then get the $n$ for a certain $\epsilon$ or something.
+        When doing these limit exercises, the nth term will usually always be denoted $a_n$ and the proposed limit $a$<br>
+        (a) 
+        $$
+        \begin{align}
+        \frac{2}{5} - a_n &= \frac{2}{5} - \frac{2n + 1}{5n + 4} \\
+        &= \frac{2}{5} - \left( \frac{2}{5} + \frac{2n + 1 - (5n + 4) \cdot \frac{2}{5}}{5n + 4} \right) \\
+        &= \frac{2}{5} - \left( \frac{2}{5} + \frac{1 - \frac{8}{5}}{5n + 4} \right) \\
+        &= \frac{2}{5} - \left( \frac{2}{5} - \frac{\frac{3}{5}}{5n + 4} \right) \\
+        &= \frac{2}{5} - \left( \frac{2}{5} - \frac{3}{25n + 20} \right) \\
+        |a - a_n| &= \frac{3}{25n + 20} \\
+        \end{align}
+        $$
+        Now we know that the epsilon needs to atleast be that value when you choose such an $N$.
+        The strategy now is to start with some epsilon, choose an $N$ which would be less than epsilon
+        by turning epsilon into a smaller rational number which is in the form that we had earlier,
+        then prove that any $n \geq N$ is also smaller than that. <br>
+        Take some $\epsilon \geq 0$, then we know there exists an $N$ such that $\frac{1}{N} < \frac{\epsilon}{3}$  
+        therefore $\epsilon > \frac{3}{N} > \frac{3}{25N + 20} = |a_N - a|$.
+        For all $n \geq N$, it is clear that $\frac{3}{25n + 20} \leq \frac{3}{25N + 20}$ therefore $|a_n - a| \leq |a_N - a| < \epsilon$.
+        End of proof.
+        <br><br>
+        (2) 
+        Actually, there's also the strategy of constructing a larger-valued expression that is easier to work with
+        for the difference between the nth term compared to the proposed limit.
+        In this case, we know that
+        $$
+        |a_n - a| = \frac{2n^2}{n^3 + 3} < \frac{2n^2}{n^3} = \frac{2}{n}
+        <!-- \begin{align}
+        \frac{2n^2}{n^3 + 3} &= \frac{2}{n} + \frac{2n^2 - \frac{2}{n} (n^3 + 3)}{n^3 + 3} \\
+        &= \frac{2}{n} - \frac{\frac{6}{n}}{n^3 + 3} \\
+        &= \frac{2}{n} - \frac{6}{n^4 + 3n} \\
+        |a_n - a| &< \frac{2}{n}
+        \end{align}
+        --> 
+        $$
+        and so $|a_n - a| < \frac{2}{n}$.
+        Take any $\epsilon > 0$, then there exists some $N$ such that $\frac{1}{N} < \frac{\epsilon}{2}$ and so $\frac{2}{N} < \epsilon$. 
+        therefore $|a_N - a| < \epsilon$. For any $n \geq N$, we know that $|a_n - a| < \frac{2}{n} < \frac{2}{N} < \epsilon$ therefore
+        $|a_n - a| < \epsilon$. End of proof. <br>
+        (c) First of all, it is known that for any x, $|\sin(x)| \leq 1$
+        and so $|a_n - a| = |a_n| = \left| \frac{\sin(n^2)}{\sqrt[3]{n}} \right| \leq \frac{1}{\sqrt[3]{n}}$.
+        Take any $\epsilon > 0$, then it is known that there exists an $N \in \mathbb{N}$ such that $\frac{1}{N} < \epsilon^3$
+        and so $\frac{1}{\sqrt[3]{N}} < \epsilon$ therefore $|a_N - a| < \epsilon$.
+        For any $n \geq N$, it is known that $|a_n - a| = \frac{1}{\sqrt[3]{n}} < \frac{1}{\sqrt[3]{N}} < \epsilon$ and so $|a_n - a| < \epsilon$.
+        End of proof.
+        <br><br>
+        <b>Exercise 2.2.3.</b> Describe what we would have to demonstrate in order to desprove each of the following statements. <br>
+        (a) At every college in the United States, there is a student who is at least seven feet tall. <br>
+        (b) For all colleges in the United States, there exists a professor which gives every student a grade of either A or B. <br>
+        (c) There exists a college in the United States where every student is at least six feet tall. <br>
+        Answers: <br>
+        (a) There is a college in the United States where there every student is less than seven feet tall. <br>
+        (b) There exists a college in the United State such that every professor gives some of the students a grade that is neither A nor B. <br>
+        (c) Every college in the United States has a student that is less than six feet tall. <br>
+        bro am i taking a middle school english test for negating sentences lmao <br>
+        <br>
+        <b>Exercise 2.2.4.</b> Give an example of each or state that the request is impossible.
+        For any that are impossible, give a compelling argument for why that is the case. <br>
+        (a) A sequence with an infinite number of ones that does not converge to one <br>
+        (b) A sequence with an infinite number of ones that converges to a limit not equal to one <br>
+        (c) A divergent sequence such that for every $n \in \mathbb{N}$ it is possible to find $n$ consecutive ones somewhere in the sequence<br>
+        <br>
+        (a) $a_n = (-1)^n$ <br>
+        (b) Not possible. Since the sequence has an infinite number of ones, then for any $N \in \mathbb{N}$,
+        there exists an $n \geq N$ such that $a_n = 1$. If you try to assume that the sequence converges to some real number $a$
+        that is not equal to one, then it will not work because suppose you take some $0 < \epsilon < |1 - a|$, then
+        try to take any $N \in \mathbb{N}$ which means we know there's an $n \geq N$ such that $a_n = 1$,
+        then $|a_n - a| = |1 - a| > \epsilon$ then such an epsilon will never work for any $N$.
+        Notice that all we have shown here is the negation of the convergence criterion, that is, a sequence ($a_n$) does not converge to $a$
+        if there exists an $\epsilon > 0$ such that for all $N \in \mathbb{N}$ there exists an $n \geq N$ such that $|a_n - a| \geq \epsilon$.
+            <br>
+        (c) Just make a sequence that's like 1, -1, 1, 1, -1, 1, 1, 1, -1, ...
+        basically starts with 1 consecutive one, then a -1, then 2 consecutive ones, then -1, and so on.
+        <br><br>
+        <b>Exercise 2.2.5.</b> Let $\lfloor x \rfloor$ be the floor function, in other words, it returns the greatest integer less than or equal to $x$.
+        For each sequence, find $\lim a_n$ and verify it with the definition of convergence. <br>
+        (a) $a_n = \lfloor 5/n \rfloor$ <br>
+        (b) $a_n = \lfloor (12 + 4n)/3n \rfloor$ <br>
+        <br>
+        (a) It's clear that the limit is zero. Take any $5 < n$, then $5/n < 1$ therefore $\lfloor 5/n \rfloor = 0$.
+        So for any $\epsilon > 0$, it is known that if you just take $N = 6$, then for any $n \geq N$, $a_n = 0$ therefore $|a_n - a| = 0 < \epsilon$. <br>
+        (b) It's clear that the expression is equal to $4/n + 4/3$ and so it's limit without the floor must be $4/3$ therefore with the floor it is one.
+        So for any $\epsilon > 0$, it is known that for any $n \geq 8$, $4/n < 1/2$ and so $4/n + 4/3 < 1/2 + 4/3 = 5/6 < 2$
+        yet it is known that $4/n + 4/3 > 1$ so $1 < 4/n + 4/3 < 2$.
+        Therefore, whenever $n \geq 8$, $\lfloor 4/N + 4/3 \rfloor = a_n = 1$ and so $|a_n - 1| = 0 < \epsilon$. 
+        To make it line up with the definition of convergence, this means we can choose $N = 8$. 
+        <br><br>
+        <b>Exercise 2.2.6.</b> Prove theorem 2.2.7. To get started, assume $(a_n) \to a$ and that $(a_n) \to b$. Now argue $a = b$. <br>
+        Maybe I can argue by using the differemce between them and proving that it's zero..
+        It is known that for any $\epsilon > 0$, there exists $N_1, N_2 \in \mathbb{N}$ such that for any $n_1 \geq N_1$ and $n_2 \geq N_2$, $|a_{n_1} - a| < \epsilon$ and $|a_{n_2} - b| < \epsilon$.
+        Set $m = \max \{ N_1, N_2 \}$ which means $|a_m - a| < \epsilon$ and $|a_m - b| < \epsilon$. By the triangle inequality, it is known that $$|b - a| = |(a_m - a) - (a_m - b)| \leq |a_m - a| + |b_m - b| < 2\epsilon$$ therefore, for any positive $\epsilon$, it is known that $|b - a| < 2\epsilon$ therefore the difference between a and b is less than any positive real number and so it must be zero therefore they must be equal.
+        <br><br>
+        <b>Exercise 2.2.7.</b> Here are two useful definitions: <br>
+        (i) A sequence $(a_n)$ is eventually in a set $A \subseteq \mathbb{R}$ if there exists an $N \in \mathbb{N}$ such that $a_n \in A$ for all $n \geq N$. <br>
+        (ii) A sequence is frequently in a set $A \subseteq \mathbb{R}$ if, for every $N \in \mathbb{N}$, there exists an $n \geq N$ such that $a_n \in A$. <br>
+        (a) Is the sequence (-1)^n eventually or frequently in the set $\{1\}$. <br>
+        (b) Which definition is stronger? Does frequently imply eventually or does eventually imply frequently? <br>
+        (c) Give an alternate rephrasing of Definition 2.2.3B using either frequently of eventually. Which is the term we want? <br>
+        (d) Suppose an infinite number of terms of a sequence $(x_n)$ is equal to 2. Is $(x_n)$ necessarily eventually in the interval $(1.9, 2.1)$? Is it frequently in $(1.9, 2.1)$ <br>
+        <br>
+        (a) Frequently. <br>
+        (b) Eventually implies frequently <br>
+        (c) We want the term eventually. A sequence $(a_n)$ converges to $a$ if, for any $\epsilon > 0$, $(a_n)$ is frequently in the epsilon neighborhood of $a$ denoted $V_\epsilon(a)$. <br> 
+        (d) It is not necessarily in that interval, however it must be frequently in the interval. This is because, if a sequence has an infinite number of twos, then for any $N \in \mathbb{N}$ there exists an $n \geq N$such that $a_n = 2$. Otherwise, there exists an N where the sequence stops having twos after the Nth term which means there are only finitely many twos since there are only finitely many terms before the Nth term. The more formal definition of a sequence having infinitely many twos from earlier clearly implies the sequence is frequently in $(1.9, 2.1)$ <br>
+        <br>
+        <b>Exercise 2.2.8.</b> For some additional practice with nested quantifiers, consider the following invented definition: <br>
+        Let's call a sequence $(x_n)$ <i>zero-heavy</i> if there exists $M \in \mathbb{N}$ such that for all $N \in \mathbb{N}$ 
+        (a) Is the sequence (0, 1, 0, 1, 0, 1, ...) zero-heavy? <br>
+        (b) If a sequence is zero-heavy does is necessarily contain an infinite number of zeros? If not, provide a counterexample. <br>
+        (c) If a sequence contains an infinite number of zeros, is it necessarily zero-heavy? If not, provide a counterexample. <br>
+        (d) Form the logical negation of the above definition. That is, complete the sentence: A sequence is <i>not</i> zero-heavy if . . . . <br>
+        <br>
+        Before I answer the questions, note that the definition of a zero-heavy sequence can be restated as a sequence where there's an amount of terms $M$ such thay every M consecutive terms in the sequence has a zero in it. <br>
+        (a) It is clear that any two consecutive terms.in this sequence is either (0, 1) or (1, 0) which botu contain zero. Therefore, yes, this sequence is zero-heavy and you can choose M to be atleast 2. <br>
+        (b) Yes it does. <br>
+        (c) No it does not. If the frequency in which zeros occur in the sequence gets smaller and smaller, for example if the term distance between two zeros grows exponentially, then it contains an infinite number of zeros but is not zero-heavy. An example would be any sequence such that, for any natural $n$, the $2^n$th term is zero yet every other term is non-zero. <br>
+        (d) A sequence $(x_n)$ is not zero-heavy if, for all $M \in \mathbb{N}$, there exists an $N \in \mathbb{N}$ such that there does not exist a natural $n$ satisfying $N \leq n \leq N + M$ where $x_n = 0$. In other words, for any set amount of terms M, there exist M consecutive terms in the sequence that does not contain a zero.<br> 
+    </div>
+</body>
+</html>
