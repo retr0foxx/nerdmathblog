@@ -6,7 +6,7 @@
         "progress": "completed",
         "length": "short",
         "url": "./vecproj.html",
-        "creation_date": "2024-04-05"
+        "creation_date": 1712309964
     },
     {
         "title": "All real numbers have a decimal representation",
@@ -15,15 +15,16 @@
         "length": "short",
         "progress": "completed",
         "url": "./realnumdecrep.html",
-        "creation_date": "2024-04-06"
+        "creation_date": 1712364592
     },
     {
-        "title": "Lagrange multipliers in multivariable calculus",
-        "description": "My attempt at explaining Lagrange multipliers in multivariable calculus.",
+        "title": "Algebraic and Order Limit Theorems Exercises",
+        "description": "My attempt at proving the algebraic and order limit theorems without reading the given ones on my book and doing the exercises about them on my analysis book.",
         "categories": "math",
-        "progress": "ongoing",
+        "progress": "completed",
         "length": "medium",
-        "url": "lagranmul-mvcalc.html"
+        "url": "./algeb-order-lim.html",
+        "creation_date": 1715696465
     },
     {
         "title": "Show that $ln(x + 1)^2 \\geq ln(x)ln(x + 2)$",
@@ -31,15 +32,26 @@
         "categories": "math",
         "progress": "completed",
         "length": "short",
-        "url": "ln-ineq.html"
+        "url": "ln-ineq.html",
+        "creation_date": 1712661678
+    },
+    {
+        "title": "Lagrange multipliers in multivariable calculus",
+        "description": "My attempt at explaining Lagrange multipliers in multivariable calculus.",
+        "categories": "math",
+        "progress": "ongoing",
+        "length": "medium",
+        "url": "lagranmul-mvcalc.html",
+        "creation_date": 1712438028
     },
     {
         "title": "Exercises on Stephen Abbott's Understanding Analysis book part 1",
         "description": "The last exercises on the first chapter of the book.",
         "categories": "math",
         "length": "long",
-        "progress": "ongoing",
-        "url": "./analysis-exercises-1.html"
+        "progress": "completed",
+        "url": "./analysis-exercises-1.html",
+        "creation_date": 1713715396
     },
     {
         "title": "Fully connected neural networks",
@@ -47,15 +59,17 @@
         "categories": "math, programming",
         "progress": "ongoing",
         "length": "long",
-        "url": "./fcnn.html"
+        "url": "./fcnn.html",
+        "creation_date": 1712679469
     },
     {
         "title": "Brainstorm on polytopes",
         "description": "Brainstorming about polytopes. How would you formally define polytopes? How do you construct arbitrary-volume polytopes, do point-collision with them, and calculate their volume?",
-        "categories":"math",
+        "categories": "math",
         "progress": "ongoing",
         "length": "medium",
-        "url": "./mypolytope.html"
+        "url": "./mypolytope.html",
+        "creation_date": 1712963845
     },
     {
         "title": "FCNN review - basic derivative framework",
@@ -63,6 +77,7 @@
         "categories": "programming",
         "progress": "ongoing",
         "length": "medium",
-        "url": "./basic-derivative-framework.html"
+        "url": "./basic-derivative-framework.html",
+        "creation_date": 1715522900
     }
 ]

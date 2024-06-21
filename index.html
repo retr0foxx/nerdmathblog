@@ -74,6 +74,7 @@
             <h2 class="post-title"></h2>
             <p class="post-description"></p>
             <div class="post-tags"></div>
+            <div>Creation date: <span class="post-creation-date"></span></div>
         </div>
     </template>
 
@@ -100,14 +101,14 @@
     <div>
         <h2>Welcome to my math & programming blog site</h2>
         <p>
-            This is kind of used for a blog about math and programming.
+            This is used for a blog about math and programming.
             I know it looks really, really bad right now and yeah that's because I really cannot do any of this web stuff but I have been really wanting to put my math thoughts somewhere accessible on the internet and this was the first thing I thought of.
             Let's just hope that I'll be able to make it better in the future.
             You will probably cringe if you read the code of this as well.
             I wanted to make the github repository for this private due to my embarassingly bad programming skills but I can't enable github pages on a private repo.
         </p>
         <p>
-            As of early 2024 right now, I still don't have much knowledge about math so most of the math posts in here will probably be quite elementary for a math graduate.
+            As of early 2024 right now, I still don't have much knowledge about math so most of the math posts in here will probably be quite elementary for a math undergraduate.
         </p>
     </div>
     <!-- <div>
@@ -159,10 +160,10 @@
                 let new_post_title = new_post.querySelector(".post-title");
                 let new_post_description = new_post.querySelector(".post-description");
                 let new_post_tags = new_post.querySelector(".post-tags");
+                let new_post_creation_date = new_post.querySelector(".post-creation-date");
 
                 new_post_title.textContent = current_post["title"];
                 new_post_description.textContent = current_post["description"];
-
 
                 let curpost_progress = current_post["progress"];
                 let new_post_progress_tag_elem = create_span_tag_element(content_progress_name_to_text[curpost_progress]);
@@ -177,13 +178,20 @@
                 // ill change this in the future idk why i did this
                 const new_post_catlist = current_post["categories"].split(',').map(item => item.trim()).filter(item => item !== '');
 
+                if (current_post["creation_date" == undefined])
+                    new_post_creation_date.remove();
+                else
+                {
+                    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+                    const event = new Date(current_post["creation_date"] * 1000);
+                    new_post_creation_date.textContent = event.toLocaleDateString();
+                }
                 console.log(new_post_catlist);
                 for (let i = 0; i < new_post_catlist.length; ++i)
                 {
                     let cat = capitalize_first_letter(new_post_catlist[i]);
                     new_post_tags.appendChild(create_span_tag_element(cat));
                 }
-
 
                 new_post.querySelector(".post").addEventListener("click", function() {
                     // Redirect to a new URL
