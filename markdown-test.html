@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>markdown-test</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<h1
+id="epsilon-delta-definition-of-continuity-and-topological-definition-of-continuity-for-the-reals"><span
+class="math inline">\(\epsilon-\delta\)</span> definition of continuity
+and topological definition of continuity for the reals</h1>
+<p>In this page, I will be talking about the <span
+class="math inline">\(\epsilon-\delta\)</span> definition and how it
+relates to the topological definition of continuity specifically for the
+real numbers.</p>
+<blockquote>
+<p><strong>Definition 1 (<span
+class="math inline">\(\epsilon-\delta\)</span> Continuity).</strong> A
+function <span class="math inline">\(f: A \to \mathbb{R}\)</span> with
+<span class="math inline">\(A \subseteq \mathbb{R}\)</span> is
+continuous if, for all <span class="math inline">\(x_0 \in A\)</span>
+and <span class="math inline">\(\epsilon &gt; 0\)</span> there exists a
+<span class="math inline">\(\delta &gt; 0\)</span> such that for all
+<span class="math inline">\(x \in (x_0 - \delta, x_0 + \delta)\)</span>
+it follows that <span class="math inline">\(f(x) \in (f(x_0) - \epsilon,
+f(x_0) + \epsilon)\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>Definition 2 (Topological Definition of Continuity).</strong>
+Let <span class="math inline">\((X, \tau)\)</span> and <span
+class="math inline">\((Y, \mathcal{B})\)</span> be topological spaces,
+then <span class="math inline">\(f: X \to Y\)</span> is continuous if
+for any <span class="math inline">\(B \subseteq Y\)</span> that is an
+open set under the topology <span
+class="math inline">\(\mathcal{B}\)</span> it follows that the preimage
+of <span class="math inline">\(B\)</span> in <span
+class="math inline">\(X\)</span> denoted <span class="math inline">\(A =
+f^{-1}(B)\)</span> is also open under the topology <span
+class="math inline">\(\tau\)</span>.</p>
+</blockquote>
+<p>Now I want to tell yo u a story about this. One day, I wanted to
+prove that the first definition implies the second definition. When I
+was trying to do that, I got the reference for the second definition
+from the automatic top results in a Google search. The issue with that
+is that the definition Google gave me was not very rigorous which made
+me forget about the fact that I need to care about the topologies when
+talking about the pure topological definition. Here was the definition
+Google gave</p>
+<blockquote>
+<p><span class="math inline">\(f: X \to Y\)</span> is continuous if the
+pre-image of every open set in <span class="math inline">\(Y\)</span> is
+open in <span class="math inline">\(X\)</span></p>
+</blockquote>
+<p>When trying to prove this, I forgot to actually think about the
+topologies. I was thinking that if I wanted to prove that the <span
+class="math inline">\(\epsilon - \delta\)</span> definition implies the
+topological definition, I would simply be proving that the pre-image of
+every open intervals in <span class="math inline">\(R\)</span> (which
+comes from the fact that every open set is the union of open intervals)
+under <span class="math inline">\(f\)</span> such that every element in
+the open interval has an element in the domain of the function which
+corresponds to that element is strictly an open set which is NOT TRUE.
+If that’s the case, then any function from the rationals to the reals is
+discontinuous which is not necessarily true (I still thought it was
+true, though) and that functions with only one possible input cannot be
+continuous. Heck, by that definition, constant functions will not be
+continuous since there is no open interval in <span
+class="math inline">\(\mathbb{R}\)</span> which contains only one
+element which is required for the part which says that “every element in
+the open interval has an element in the domain of the function which
+corresponds to that element in the open interval.”</p>
+<p>A part (since most of it simply happened from sheer stupidity) of the
+previous train of thought makes a tiny bit more sense when looking at my
+actual misunderstanding. When you have a function <span
+class="math inline">\(f : A \to \mathbb{R}\)</span> where <span
+class="math inline">\(A \subseteq \mathbb{R}\)</span>, then if you’re
+trying to describe it’s continuity using the topological definition of
+continuity, you would have to describe the topology to use for <span
+class="math inline">\(A\)</span>. This would mean that earlier, I was
+thinking that you would always use the same topology that you would use
+for <span class="math inline">\(\mathbb{R}\)</span>. The topology in
+which open sets are the way we know them to be but that is not the case.
+If it were the case, then the topological statement would imply that the
+pre-image of every open interval in <span
+class="math inline">\(\mathbb{R}\)</span> is a strictly open set in
+<span class="math inline">\(A\)</span>.</p>
+<p>The right topology to use is something called the “subset topology”
+or “relative topology” for <span class="math inline">\(A\)</span> which
+is the topology in which open sets in <span
+class="math inline">\(A\)</span> denoted <span
+class="math inline">\(S\)</span> is defined as any set where there
+exists an open set in <span class="math inline">\(\mathbb{R}\)</span>
+that you can intersect with <span class="math inline">\(A\)</span> to be
+strictly equal to <span class="math inline">\(S\)</span>. More formally,
+if <span class="math inline">\((\mathbb{R}, \tau)\)</span> is the
+standard topological space for <span
+class="math inline">\(\mathbb{R}\)</span> and <span
+class="math inline">\(A \subseteq \mathbb{R}\)</span>, then the relative
+topology of <span class="math inline">\(A\)</span> is denoted <span
+class="math inline">\(\mathcal{O}\)</span> is denoted <span
+class="math inline">\(\mathcal{0} = \{ U \cap A | U \in \tau
+\}\)</span>. For example, if <span class="math inline">\(A\)</span> is
+the set of all rationals, then intuitively, you would want open sets in
+<span class="math inline">\(\mathbb{Q}\)</span> to be any set <span
+class="math inline">\(S\)</span> such that for all <span
+class="math inline">\(q_0 \in S\)</span> it follows that there exists an
+<span class="math inline">\(\epsilon &gt; 0\)</span> such that for any
+<em>rational</em> <span class="math inline">\(q \in (q_0 - \epsilon, q_0
++ \epsilon)\)</span> it follows that <span class="math inline">\(q \in
+S\)</span>.</p>
+<p>This makes a lot of sense when going back to the <span
+class="math inline">\(\epsilon - \delta\)</span> definition of
+continuity. Suppose <span class="math inline">\(f\)</span> is continuous
+by the <span class="math inline">\(\epsilon - \delta\)</span> definition
+of limits. Then for any <span class="math inline">\(a \in A, \epsilon
+&gt; 0\)</span>, there exists a <span class="math inline">\(\delta &gt;
+0\)</span> such that for all <span class="math inline">\(x \in (a -
+\delta, a + \delta) \cap A\)</span> implies <span
+class="math inline">\(f(x) \in (f(a) - \epsilon, f(a) +
+\epsilon)\)</span>. This is basically saying that the pre-image of the
+open interval <span class="math inline">\((f(a) - \epsilon, f(a) +
+\epsilon)\)</span> strictly contains the set <span
+class="math inline">\((a - \delta, a + \delta) \cap X\)</span> which is
+an open set under the space <span class="math inline">\((A,
+\tau_A)\)</span> and so it lines up with the topological definition
+since it follows the pattern that is the pre-image of an open set is
+related to open sets. You can just go a bit further from there to prove
+that the <span class="math inline">\(\epsilon - \delta\)</span>
+definition implies the topological definition.</p>
+<p>I suppose I simply wasn’t thinking much about how much it makes sense
+since my mind was just thinking of it as facts. That it HAS to be true
+and I’m just being stupid for not being able to prove it. One thing
+which also caused me to get even more confused is the fact that I
+actually did not have a very good understanding of the funtion
+declaration notation. I thought that <span class="math inline">\(f: X
+\to Y\)</span> doesn’t necessarily mean that <span
+class="math inline">\(f\)</span> is defined for all of <span
+class="math inline">\(X\)</span> and on some occasions, I even thought
+that it is deined for all <span class="math inline">\(X\)</span> but
+then <span class="math inline">\(Y\)</span> is xtrictly equal to <span
+class="math inline">\(f(X)\)</span>.</p>
+<p>The lesson to be taken here for me after going through all of that
+is</p>
+<ul>
+<li>Understand the “function declaration notation” better. <span
+class="math inline">\(f: X \to Y\)</span> is saying that <span
+class="math inline">\(f\)</span> is defined for all elements of <span
+class="math inline">\(X\)</span>.</li>
+<li>Be more mindul about the specific topologies you’re dealing with
+when dealing with topological spaces in topology.</li>
+<li>Be more mindful when looking at definitions/problems especially when
+it comes from unfamiliar sources. If it comes from unfamiliar sources,
+then the statement of the problem from that source may depend on
+previous assumptions, concepts, notations and so on defined on the
+source which may cause some confusion just like what happened in
+here.</li>
+</ul>
+<p>Anyway, the following will be my proof that these two definitions are
+equivalent.</p>
+<h3
+id="proof-of-the-equivalence-of-the-epsilon---delta-definition-with-the">Proof
+of the equivalence of the <span class="math inline">\(\epsilon -
+\delta\)</span> definition with the $$</h3>
+<blockquote>
+<p><strong>Definition 3 (Standard Topology of <span
+class="math inline">\(\mathbb{R}\)</span>).</strong> <span
+class="math inline">\(\tau\)</span> is the standard topology if <span
+class="math inline">\(R\)</span> if <span
+class="math inline">\(\tau\)</span> is the set of all open sets in <span
+class="math inline">\(\mathbb{R}\)</span></p>
+</blockquote>
+<blockquote>
+<p><strong>Definition 4 (Relative Topology).</strong> If <span
+class="math inline">\((X, \tau)\)</span> is a topological space and
+<span class="math inline">\(A \subseteq X\)</span>, then the relative
+topology of <span class="math inline">\(A\)</span> under <span
+class="math inline">\(\tau\)</span> is denoted <span
+class="math inline">\(\tau_A = \{ U \cap A | U \in \tau \}\)</span></p>
+</blockquote>
+<p>Notice that this implies any <span class="math inline">\(B \in
+A\)</span> is an open set in <span class="math inline">\((A,
+\tau_A)\)</span> if and only if, for all <span class="math inline">\(b
+\in B\)</span>, there exists an <span
+class="math inline">\(\epsilon\)</span> such that <span
+class="math inline">\((b - \epsilon, b + \epsilon) \cap A \subseteq
+B\)</span></p>
+<blockquote>
+<p><strong>Lemma 1 (Open Sets are Intersections of Open
+Intervals).</strong> Suppose <span class="math inline">\(A\)</span> is
+an open set in <span class="math inline">\(\mathbb{R}\)</span>, then
+there exists a set of open intervals <span
+class="math inline">\(S\)</span> such that <span
+class="math inline">\(\bigcup_{I \in S} I = A\)</span> and for all <span
+class="math inline">\(a \in A\)</span>, there exists an <span
+class="math inline">\(I \in S\)</span> where <span
+class="math inline">\(a \in I\)</span>.</p>
+</blockquote>
+<p><em>Proof.</em> By definition, <span class="math inline">\(A\)</span>
+satisfy for all <span class="math inline">\(a \in A\)</span> there
+exists an <span class="math inline">\(\epsilon &gt; 0\)</span> such that
+for all <span class="math inline">\(x \in (a - \epsilon, a +
+\epsilon)\)</span>, <span class="math inline">\(x \in A\)</span>. Now
+define <span class="math inline">\(S = \{(a - \epsilon, a + \epsilon) |
+a \in A, \epsilon &gt; 0 \text{ satisfies } (a - \epsilon, a + \epsilon)
+\subseteq A \}\)</span>. Since such an <span
+class="math inline">\(\epsilon\)</span> always exists for any <span
+class="math inline">\(a \in A\)</span>, then there is always an open
+interval <span class="math inline">\(I\)</span> in <span
+class="math inline">\(S\)</span> which contains <span
+class="math inline">\(a\)</span> for any <span class="math inline">\(a
+\in A\)</span> (which is already one part of the lemma proved) meaning
+<span class="math inline">\(a \in \bigcup_{I \in S} I\)</span> and so
+<span class="math inline">\(A\)</span> is a subset of the union. By
+definition, everything in <span class="math inline">\(S\)</span> is an
+interval in the form of <span class="math inline">\((a - \epsilon, a +
+\epsilon) \subseteq A\)</span> so since we’re literally just unionizing
+a set of subsets of <span class="math inline">\(A\)</span> then the
+result, <span class="math inline">\(\bigcup_{I \in S} I\)</span> must
+also be a subset of <span class="math inline">\(A\)</span>.</p>
+<blockquote>
+<p><strong>Theorem 1 (<span class="math inline">\(\epsilon -
+\delta\)</span> Continuity is Equivalent to Topological
+Continuity).</strong> Suppose <span class="math inline">\((\mathbb{R},
+\tau)\)</span> is the standard topological space of the reals and <span
+class="math inline">\((X, \tau_X)\)</span> is a topological space with
+<span class="math inline">\(X \subseteq \mathbb{R}\)</span> and <span
+class="math inline">\(\tau_X\)</span> is the relative topology of <span
+class="math inline">\(X\)</span> under <span
+class="math inline">\(\mathbb{R}\)</span> and there’s the function <span
+class="math inline">\(f: X \to \mathbb{R}\)</span>. Then <span
+class="math inline">\(f\)</span> satisfy for all <span
+class="math inline">\(x_0 \in \mathbb{X}, \epsilon &gt; 0\)</span> there
+exists a <span class="math inline">\(\delta &gt; 0\)</span> where for
+all <span class="math inline">\(x \in (x_0 - \delta, x_0 + \delta) \cap
+X\)</span> it follows that <span class="math inline">\(f(x) \in (f(x_0)
+- \epsilon, f(x_0) + \epsilon)\)</span> if and only if the pre-image of
+every open set in <span class="math inline">\((\mathbb{R},
+\tau)\)</span> is open in <span class="math inline">\((X,
+\tau_X)\)</span></p>
+</blockquote>
+<p><em>Proof.</em> (<span class="math inline">\(\implies\)</span>)
+Suppose <span class="math inline">\(f\)</span> satisfy for all <span
+class="math inline">\(x_0 \in X, \epsilon &gt; 0\)</span> there exists a
+<span class="math inline">\(\delta &gt; 0\)</span> where for all <span
+class="math inline">\(x \in (x_0 - \delta, x_0 + \delta) \cap X\)</span>
+it follows that <span class="math inline">\(f(x) \in (f(x_0) - \epsilon,
+f(x_0) + \epsilon)\)</span>. We want to prove that - Take any open set
+<span class="math inline">\(B\)</span> in <span
+class="math inline">\(\mathbb{R}\)</span> and denote it’s preimage under
+<span class="math inline">\(f\)</span> to be <span
+class="math inline">\(A = f^{-1}(B)\)</span> which is known to be a
+subset of <span class="math inline">\(X\)</span>. - If <span
+class="math inline">\(A\)</span> is empty, then we already know that
+it’s an open set. - If <span class="math inline">\(A\)</span> is
+non-empty, we want to prove that <span class="math inline">\(A\)</span>
+is open under the topology <span class="math inline">\(\tau_X\)</span>.
+- We know that for all <span class="math inline">\(a \in A\)</span>,
+since <span class="math inline">\(a \in X\)</span> as well, then for all
+<span class="math inline">\(\epsilon &gt; 0\)</span> there exists a
+<span class="math inline">\(\delta &gt; 0\)</span> such that <span
+class="math inline">\(f((a - \delta, a + \delta) \cap X) \subseteq (f(a)
+- \epsilon, f(a) + \epsilon)\)</span> - By the openness of <span
+class="math inline">\(B\)</span>, we know that for all <span
+class="math inline">\(b \in B\)</span> there exists an <span
+class="math inline">\(\epsilon &gt; 0\)</span> where <span
+class="math inline">\((b - \epsilon, b + \epsilon) \in B\)</span> -
+Since <span class="math inline">\(f(a) \in B\)</span>, we can pick the
+same epsilon as before and the corresponding delta and know that <span
+class="math inline">\(B \supseteq (f(a) - \epsilon, f(a) + \epsilon)
+\supseteq f((a - \delta, a + \delta) \cap X)\)</span> which implies
+<span class="math inline">\((a - \delta, a + \delta) \cap X \subseteq
+A\)</span> - It can be concluded that <span
+class="math inline">\(A\)</span> is closed under the relative topology
+<span class="math inline">\(\tau_X\)</span> since the previous bullet
+point applies for all <span class="math inline">\(a \in A\)</span>.</p>
+<p>(<span class="math inline">\(\impliedby\)</span>) Suppose the
+pre-image of every open set in <span class="math inline">\((\mathbb{R},
+\tau)\)</span> is open in <span class="math inline">\((X,
+\tau_X)\)</span>.</p>
+<ul>
+<li>We want to prove that for any <span class="math inline">\(x_0 \in X,
+\epsilon &gt; 0\)</span> there exists a <span
+class="math inline">\(\delta &gt; 0\)</span> such that <span
+class="math inline">\(x \in (x_0 - \delta, x_0 + \delta) \cap X\)</span>
+implies <span class="math inline">\(f(x) \in (f(x_0) - \epsilon, f(x_0)
++ \epsilon)\)</span></li>
+<li>Take any <span class="math inline">\(x_0 \in X, \epsilon &gt;
+0\)</span>. Since <span class="math inline">\((f(x_0) - \epsilon, f(x_0)
++ \epsilon)\)</span> is an open set since it’s an open interval, then
+it’s pre-image <span class="math inline">\(S = f^{-1}((f(x_0) -
+\epsilon, f(x_0) + \epsilon))\)</span> is known to also be an open set
+under the space <span class="math inline">\((X, \tau_X)\)</span> and it
+also known that <span class="math inline">\(x_0 \in S\)</span> because
+<span class="math inline">\(S\)</span> is the pre-image of a set which
+contains <span class="math inline">\(f(x_0)\)</span>.</li>
+<li>Since <span class="math inline">\(S\)</span> is an open set under
+the space <span class="math inline">\((X, \tau_X)\)</span> and <span
+class="math inline">\(x_0 \in S\)</span> then by definition there exists
+a <span class="math inline">\(\delta &gt; 0\)</span> such that for all
+<span class="math inline">\(x \in (x_0 - \delta, x_0 + \delta) \cap
+X\)</span> it follows that <span class="math inline">\(x \in S\)</span>
+therefore <span class="math inline">\(f(x) \in (f(x_0) - \epsilon,
+f(x_0) + \epsilon)\)</span></li>
+<li>Since such a delta can be found for any <span
+class="math inline">\(x_0 \in A, \epsilon &gt; 0\)</span>, then we have
+proven that the <span class="math inline">\(\epsilon - \delta\)</span>
+definition is also true.</li>
+</ul>
+<p>And yeah we’re done with everything now. Note that the lemma didn’t
+actually end up being used. I thought it would end up being used since I
+wrote it before writing fully thinking out the actual proof. I’ll keep
+it in here because why not.</p>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic and Order Limit Theorems Exercises</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <script>
+        let important_statements = new Map();
+        function add_important_statements()
+        {
+            let impstats = document.getElementsByClassName("important-statement");
+            for (let i = 0; i < impstats.length; ++i)
+        }
+    </script>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        ul {
+            padding-left: 1em;
+        }
+        ol {
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Creating a CPU with logical circuits.</h1>
+        This is a project I've always wanted to do but have never ever finished before.
+        Let's set the goal to be a 16-bit CPU.
+        <h2>Registers</h2>
+        PC, Acc, CMP, r1, ..., r8
+        <h2>Instruction set</h2>
+        There will be four types of instructions:
+        <h3>Arithmetic</h3>
+        add/sub/mul/div &lt; register &gt; <br>
+        Each instruction essentially does: Acc = f(Acc, &lt; register &gt;)
+        if f is the operation.
+        <h3>Binary operations</h3>
+        and/xor/or &lt; register &gt; <br>
+        not <br>
+        <h3></h3>
+    </div>
+</body>
+</html>

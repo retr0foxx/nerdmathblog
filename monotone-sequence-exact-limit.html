@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic and Order Limit Theorems Exercises</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <script>
+        let important_statements = new Map();
+        function add_important_statements()
+        {
+            let impstats = document.getElementsByClassName("important-statement");
+            for (let i = 0; i < impstats.length; ++i)
+        }
+    </script>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        ul {
+            padding-left: 1em;
+        }
+        ol {
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Exact limits of certain recursively defined monotone sequenes</h1>
+        This article was originally made for multiple exercises in the the monotone convergence and infinite series exercises in my analysis book 
+        that is in <a href="./monoconv-and-infseries-start.html">this page</a>. However this property seems pretty useful in general. <br>
+        <br>
+        The sequences we will concern ourselves with are recursively defined convergent sequences $(x_n)$ such that
+        there exists an open interval $A$ where if the starting point of the sequence $x_1$ is in $A$, then $(x_n)$ is strictly increasing
+        and is always contained within $A$. Also if $f(x)$ is the function in the recursive definition of $(x_n)$, therefore
+        $x_{n+1} = f(x)$, then $f(x)$ is 1-1 and continuous in $A$. Another important part in the investigation of such sequences
+        is the upper bound of all such sequences which will be defined as $M = \sup A$. 
+        It will later be proven that in this case the sequence converges to $M$.
+        <br><br>
+        Before that, I will show some examples of such sequences. <br>
+        <b>Example 1.</b> $r > 2$, $x_{n+1} = \frac{1}{r - x}$.
+        In this case, the sequence function is $f(x) = \frac{1}{r - x}$ and $A = (0, \frac{r \pm \sqrt{r^2 - 4}}{2})$.
+        Clearly, $$
+        <b>Example 2.</b> $r > 2$
+    </div>
+</body>
+</html>

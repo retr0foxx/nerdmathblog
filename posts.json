@@ -79,5 +79,41 @@
         "length": "medium",
         "url": "./basic-derivative-framework.html",
         "creation_date": 1715522900
+    },
+    {
+        "title": "$\\epsilon-\\delta$ definition of continuity and topological definition of continuity for the reals",
+        "description": "A story of me trying to prove that",
+        "url": "./epsilon-delta-and-topological-continuity-equivalence.html",
+        "categories": "math",
+        "progress": "ongoing",
+        "length": "medium",
+        "creation_date": 1719935540
+    },
+    {
+        "title": "Monotone Convergence and Infinite Series Exercises",
+        "description": "Monotone Convergence and Infinite Series Exercises",
+        "url": "./monoconv-and-infseries-start.html",
+        "categories": "math",
+        "progress": "ongoing",
+        "length": "long",
+        "creation_date": 1716779867
+    },
+    {
+        "title": "A Simple Lemma of Open Maps and it's usage",
+        "description": "Suppose $a < b$ is defined with $a \\in \\mathbb{R} \\cup \\{ -\\infty \\}, b \\in \\mathbb{R}$ and $f: (a, b) \to \\mathbb{R}$ is increasing and is an open map and $f((a, b)) \\subseteq (a, b)$ and $x \\in (a, b)$ implies $f(x) > x$, then if $(x_n)$ is a sequence which starts out in $(a, b)$ and is recursively defined with $f$, therefore $x_1 \\in (a, b)$ and $x_{n+1} = f(x_n)$, then $(x_n) \\to b$.",
+        "url": "./specific-monotone-sequences-exact-limit.html",
+        "categories": "math",
+        "progress": "completed",
+        "length": "short",
+        "creation_date": 1720247754
+    },
+    {
+        "title": "The convergence of sequences in the form $x_{n+1} = \\frac{1}{r-x_n}$ with $|r| \\geq 2$",
+        "description": "A full investigation on the convergence of sequences in the form of The convergence of sequences in the form $x_{n+1} = \\frac{1}{r-x_n}$ with $|r| \\geq 2$",
+        "url": "./recip-r-x-recurseq-convergence.html",
+        "categories": "math",
+        "progress": "completed",
+        "length": "short",
+        "creation_date": 1720034153
     }
 ]

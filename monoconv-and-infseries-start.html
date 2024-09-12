@@ -255,7 +255,9 @@
         The book says that this corollary will be proved later on an exercise in section 2.7.
         <br><br>
         <b>Exercise 2.4.1.</b> (a) Prove that the sequence defined by $x_1 = 3$ and
-        $$x_{n+1} = \frac{1}{4 - x_n}$$ converges.
+        $$x_{n+1} = \frac{1}{4 - x_n}$$ converges. <br>
+        (b) Now that we know $\lim x_n$ exists, explain why $\lim x_{n+1}$ must also exist and equal the same value. <br>
+        (c) 
         
         <br><br>
         <!-- This seems like a good opportunity to generally talk about recursive sequences defined as
@@ -275,164 +277,40 @@
         Therefore, anything negative and anything greater than $r$ ends up being in $(0, \frac{1}{r})$
         which satisfy the nice-behaved condition from earlier.
         All that is left is what is between the greatest $x$ and $r$. -->
+        For (a),
         This seems like a good opportunity to generally talk about recursive sequences defined as
-        $x_{n+1} = \frac{1}{r - x_n}$ in general. Before that, I will talk about the
-        behvaiour of taking reciprocals with strict ineqalities.
-        Suppose $a < x < b$, then: <br>
-        1. $\frac{1}{a} < x < \frac{1}{b}$ if and only if $a < 0 < b$ <br>
-        2. $\frac{1}{a} > x > \frac{1}{b}$ if and only if $a < b < 0$ or $0 < a < b$. In other words, they are of the same sign. <br>
-
-        Now regarding the behaviour of recursively defined sequences in the form of:
-        $x_{n+1} = \frac{1}{r - x_n}$
-        for some real number $r$ assigned to each sequence.
-
-        On what subset of R for $x_n$ does it converge on depending on $r$?
-        What are it's limit points?
-
-        We will limit our view to $r > 2$ for reasons that will be clear later.
-        What are it's limit points? What value of $x_n$ such that $x_{n+1} = x_n$?
-        You can try to solve for $x = \frac{1}{r - x}$.
-        Of course, an obvious concern with finding the limit like this is that this means we are assuming that such a value exist.
-        We will not concern ourselves with this for now, we will only intuitively think about why this is valid by simply verifying that the resulting value for $x$ is algebraically valid and satisfy the original equation.
-
-        By using the quadratic equation, you can conclude that $x = \frac{r \pm \sqrt{r^2 - 4}}{2}$.
-        We will attempt to verify that this is value satisfy the original equation.
-        The most straightforward attempt to do this is by literally doing $\frac{1}{1 - x}$ and seeing if it is equal to $x$.
+        $x_{n+1} = \frac{1}{r - x_n}$ in general. I have put a complete investigation of it in <a href="./recip-r-x-recurseq-convergence.html">here</a>.
+        It can be used as a complete proof that the sequence in the book converges to the smallest solution of $\frac{4 - 2\sqrt{3}}{2}$.
+        <br>
+        <br>
+        (a) Anyway, in the end I'll be reproving this without all of the things from that article even though I already wasted weeks writing it.
+        It's clear that the sequence can be defined recursively as $x_1 = \sqrt{2}$ and $x_{n+1} = \sqrt{2 + x_n}$.
+        This sequence is strictly increasing because clearly $x_1 = \sqrt{2} < \sqrt{2 + \sqrt{2}} = x_2$
+        and when $x_1 < x_2$ then $2 + x_1 < 2 + x_2$ and so $x_2 < x_3$. 
+        (b) Suppose $a = \lim x_{n}$
+        therefore for all $\epsilon > 0$ there exists an $N$ such that for all $n \geq N$, $|x_{n} - a| < \epsilon$
+        which also means that $|x_{n+1} - a| < \epsilon$ since $n+1 > n > N$ which implies that $a = \lim x_{n+1}$.
+        (c) Okay, well, 
         $$
         \begin{align*}
-        x &= \frac{r \pm \sqrt{r^2 - 4}}{2} \\
-        r - x &= \frac{r \mp \sqrt{r^2 - 4}}{2} \\
-        \frac{1}{r - x} &= \frac{2}{r \mp \sqrt{r^2 - 4}} \\
-        &= \frac{2}{r \mp \sqrt{r^2 - 4}} \cdot \frac{r \pm \sqrt{r^2 - 4}}{r \pm \sqrt{r^2 - 4}} \\
-        &= \frac{2 r \pm \sqrt{r^2 - 4}}{(r^2 - (r^2 - 4))} \\
-        &= \frac{2 r \pm \sqrt{r^2 - 4}}{4} \\
-        &= \frac{r \pm \sqrt{r^2 - 4}}{2} \\
-        &= x
+        \lim x_n = \lim \frac{2}{4 - x_n}
         \end{align*}
         $$
-        and so, yes, such an $x$ really does satisfy the original equation. We now intuitively know the limit points of the sequence.
-        Now it's clear that the reason we used $r \geq 2$ earlier is that, if it less than two, then based on this formula,
-        the limit points will not be defined. Actually, $|r| \geq 2$ would also work fine, so we will partially do that from now on.
-        Now we will actually start investigating the convergence of this sequence based on the starting point $x_n$.
         
-        <ul>
-            <li>Define $k_d = sqrt{r^2 - 4}$ therefore the limit point of $(x_n)$ is now $\frac{r \pm k_d}{2}$</li>
-            <li>It's also clear that $k_d < |r|$</li>
-            <li>Define $k_1, k_2$ to be limit points of $(x_n)$ such that $|k_1| < |k_2|$ if $|r| > 2$ and $k_1 = k_2$ if $|r| = 2$.
-                This implies $k_1, k_2$ is both in the form of $\frac{r \pm k_d}{2}$ but with the $\pm$ changed into either $+$ or $-$ depending on the sign of $|r|$.
-            </li>
-            <li>Properties of $k_1, k_2$
-                <ul>
-                    <li>$|k_1|, |k_2| < |r|$ and $|k_1 - r|, |k_2 - r| < |r|$ in other words $k_2$ and $k_1$ is between 0 and $r$<br>
-                        It is clear that $|k_d| = |\sqrt{r^2 - 4}| < r$. By the triangle inequality, $|\frac{r \pm k_d}{2}| < |\frac{r}{2}| + |\frac{k_d}{2}| < |r|$.
-                        We also already know that $$
-                        End of proof.
-                    </li>
-                    <li>$r - k_1 = \frac{1}{k_1}$ and $r - k_2 = \frac{1}{k_2}$ <br>
-                        This is because if $k$ is a number which satisfies $\frac{1}{r - k} = k$, which we know is true for $k_1, k_2$, then it implies $r - k = \frac{1}{k}$. 
-                    </li>
-                    <li>$|\frac{1}{r}| < |k_2|$ <br>
-                        This is beacuse $|r| \geq 2$ meaning $\frac{1}{r} < 1$
-                        yet since $|k_2| = |r| + |k_d|$
-                    </li>
-                </ul>
-            </li>
-            <li>Useful preservation of inequality property: When $r \geq 2$ and $0 \leq a < b < r$, then $0 \leq \frac{1}{r - a} < \frac{1}{r - b}$
-                and when $r \leq 2$ and $r < a < b \leq 0$, then $\frac{1}{r - a} < \frac{1}{r - b} < 0$
-                In other words, the sequence operation preserves inequalities on values between zero and $r$.
-                This is because in the case where $r \geq 2$, $r \geq r - a > r - b > 0$ which means everything still has the same sign and so taking it's reciprocal reverts it to the original inequalities.
-                You can also do something similar for when $r \leq 2$.
-            </li>
-            <li>When $x_n$ is inbetween $k_2$ and $0$, then $x_{n+1}$ is also inbetween $k_2$ and $0$.
-                This is because suppose $0 < x_n < k_2$, then $r - \frac{1}{r} < x_{n+1} < k_2$ and it's also similar for when $k_2 < x_n < 0$.
-                This implies the sequence is monotone when $x_n$ is betewen $k_2$ and $0$. 
-                This is because suppose $x_{n} < x_{n+1}$ then since both of them is between $0$ and $r$ (because $k_2$ is between $0$ and $r$) then the inequality is preserved under the sequence operation
-                therefore $x_{n+1} < x_{n+2}$. It's also similar for when $x_{n} > x_{n+1}$.
-                This implies that $x_n$ is monotone and bounded starting from the $n$ where $x_n$ is inbetween zero and $k_2$ and so by the MCT, it is convergent.
-            </li>
-            <li>When $x_n$ is of different signs than $r$, then $x_{n+1}$ will be of the same sign as $r$ and is inbetween $r$ and zero.
-                This is because suppose $r > 0$, then when $x_n < 0$, $r - x_n > r$ and so $x_{n+1} < \frac{1}{r}$.
-                Now since $\frac{1}{r}$ is actually inbetween $r$ and $k_2$ which would imply that $x_{n+1}$ is inbetween zero and $k_2$
-                meaning you can fallback to the previous case and so $x_n$ converges.
-            </li>
-            <li>When $x_n < 0$, $r - x_n > r$ therefore $0 < \frac{1}{r - x_n} < \frac{1}{r}$ and so you can fallback into the previous case since $\frac{1}{r} < k_2$</li>
-            <li>When $x_n > r$, $r - x_n < 0$ and so $x_{n+1} < 0$ therefore you can fallback into the previous case</li>
-            <li>When $k_2 < x_n < r$, it's complicated, but here's the proof anyway
-                <ul>
-                    <li>Define $g(x) = r - \frac{1}{x}$ therefore it is the inverse of the sequence operation $\frac{1}{r - x}$.</li>
-                    <li>Useful property: $g(k_2) = k_2$ and $g$ also preserves inequalities for values between zero and $r$ since it is the inverse of another operation which does that</li>
-                    <li>Define the sequence $(g_n)$ such that $g_1 = r$ and $g_{n+1} = g(g_n)$</li>
-                    <li>$(g_n)$ is dereasing <br>
-                        Clearly $g_2 = r - \frac{1}{r} < r = g_1$ therefore $g_2 < g_1$.
-                        UNFINISHED
-                    </li>
-                    <li>$(g_n)$ is bounded below by $k_2$:
-                        Clearly, $g_1 = r > k_2$ therefore $g(g_1) = g_2 > k_2$
-                        and in general, $g_n > k_2$ imply $g_{n+1} > k_2$ since $g(k_2) = k_2$
-                        NEEDS IMPROVEMENT
-                    </li>
-                    <li>Since $(g_n)$ is decreasing and bounded below by $k_2$, then by the MCT, it converges.</li>
-                    <li>Define $p = \lim g_n$</li>
-                    <li>Proof of convergence when $p < x_n < r$
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                    <li>Proof of convergence when $k_2 < p$ <br>
-                        Before I go onto the proof, it is presumed that $k_2 = p$ must be true,
-                        but I don't know how to prove that so...
-                        <ul>
-                            <li></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-        all of the proof above is valid for $r > 2$, but is very easily changed to also be valid for $r < 2$ by simply 
-        switching all of the inequalities.
-        I'm still really bad with triangle inequalities so yeah I didn't even try to make the proof more general by using that.
-        That would be absolute hell for me.
-        
-        <!-- Before that, let's define $k_1, k_2$ to be the limit points of the sequence.
-        If $|r| > 2$, set $|k_1| < |k_2|$, we know that this is possible. If $|r| = 2$, then $k_1 = k_2$.
-        Refer back to the behaviour of taking reciprocals. 
-        They imply that you can't know the actual behaviour of a variable under taking reciprocals based on it's bounds.
-        You have to make sure that the value also satisfy some other constraints.
-        Say we try to check what happens if $a < x_n < b$, then you will also have to find out what exactly
-        $r - x_n$ is and you can't immediately just take it's reciprocal and then be sure that it still satisfy the final bounds.
-        To help with dealing with that later on, we will find out about if $k_1, k_2 < r$.
-        Well, it's clear that $\sqrt{r^2 - 4} < |r|$, therefore $\frac{r + \sqrt{r^2 - 4}}{2} < |r|$.
-        This also implies that $\frac{r - \sqrt{r^2 - 4}}{2} < |r|$.
-        If $r$ is positive, then both of those expressions are also positive.
-        And if $r$ is negative, it's also clear that both of them will stay negative.
-        Meaning, for any $r_1 < x_n < r_2$, taking the reciprocal of $r - x_n$ always behaves in a nice way.
-        <ul>
-            <!-- <li>Suppose $0 < |x_n| < |r|$ and $0 < |r - x_n| < |r|$ which just means the signs of $x_n$ and $r$ is the same.
-                It is equivalent to saying that $x_n$ is always between $r$ and zero. <!-- if $r > 0$, then $r > x_n > 0$ and if $r < 0$, then $r < x_n < 0$. -- >
-                This implies that $\infty > \frac{1}{|r - x_n|} > \frac{1}{|r|}$ and that their signs stay the same.
-                Which means $|x_{n+1}| > |\frac{1}{r}|$.
-                Since $r \geq 2$, then it's reciprocal is less than itself meaning it is possible for the next term to still be between $r$ and zero
-                which means that case is now already handled. What we need now is to know what happens when $|x_n| > |r|$ and their signs are the same.
-            </li>
-            <li>
-                Suppose $|x_n| > |r|$ and $|r - x_n| < |x_n - 0|$. The latter is the same as saying that $x_n$ is always closer to $r$ than to zero which, combined with the 
-                other condition, is equivalent to saying that if $r$ is negative, then $x_n$ is less than $r$ and if $r$ is positive, then $x_n$ is greater than $r$.
-                Intuitively, we know that $r - x_n$ would result in a value that is of the opposite sign of $r$ which would mean that $|r - x_{n+1}|$ would result in a value greater than $|r|$ making the next value, $x_{n+2}$
-                have the same sign as $r$ yet still less than $r$ meaning we can fallback into the previous case.
-            </li> -- >
-            <li>Suppose $x_n$ is between $0$ and $k_2$. More formally, $|x_n| < |k_2|$ and $|x_n - k_2| < |k_2|$.
-                What we will need to show next is the value of $r - x_n$ and whether or not it will behave nicely with taking reciprocals
-                in the sense that there is only one possibility regardless of what $x_n$ is if it satisfy the specified conditions.
-                It is known that $|k_2| < |r|$ and they are of the same sign which implies that |r - k_2| < |r|.
-            </li>
-        </ul> -->
-        <ul></ul>
         <br>
-        <br>
-        I give up already lol I'm just going to prove that this specific sequence is monotone and bounded now.
+        <b>Exercise 2.4.2.</b> (a) Consider the recursively defined sequence $y_1 = 1$.
+        $$y_{n+1} = 3 - y_n$$
+        and set $y = \lim y_n$. Because $(y_n)$ and $(y_{n+1})$ have the same limit,
+        taking the limit across the recursive equation gives $y = 3 - y$. Solving for $y$, we conclude $\lim y_n = 3/2$. <br>
+        What is wrong with this argument? <br>
+        (b) This time set $y_1 = 1$ and $y_{n+1} = 3 - \frac{1}{y_n}$.
+        Can the strategy in (a) be applied to compute the limit of this sequence? <br>
 
-        <br><br>
+        (a) The mistake is that the proof assumes that $\lim (y_n)$ exists when, in reality, it doesn't. 
+        It's clear that the sequence will have the pattern $(1, 2, 1, 2, 1, 2, \dots)$. <br>
+        (b) Yes because we can prove that the sequence is monotone and bounded meaning it converges and so
+        $\lim y_n$ exists. 
+
         <b>Exercise 2.4.6 (Arithmetic-Geometric Mean).</b>
         (a) Explain why $\sqrt{xy} \leq (x + y)/2$ for any two positive real numbers $x$ and $y$.
         (The geometric mean is always less than the arithmetic mean.)
@@ -482,8 +360,155 @@
         The image uses intuition to show that that expression is less than or equal to half of $\epsilon$ which means the difference between $x_n$ and $y_n$ is less than $\epsilon$.
         You can also describe it more formally by using the triangle inequality. Since $|y_{n+1} - y_n| = |(y_{n+1} - l) - (y_n - l)| < |y_{n+1} - l| + |y_n - l| < \frac{\epsilon}{2}$.
         Then it is also known that $|y_{n+1} - y_n| = \frac{|x_n - y_n|}{2}$ which implies that $|x_n - y_n| < \epsilon$.
+        <br><br>
+
+        <br><br>
+        <b>Exercise 2.4.7 (Limit Superior).</b> <br>
+        (a) Prove that the sequence defined by $y_n = \sup \{ a_k | k \geq n \}$ converges. <br>
+        (b) The <i>limit superior</i> of $(a_n)$, or $\lim \sup a_n$, is defined by $$\lim \sup a_n = \lim y_n$$
+        where $y_n$ is the sequence from part (a) of this exercise. 
+        Provide a reasonable definition for $\lim \inf a_n$ and briefly explain why it always exists for any bounded sequence. <br>
+        (c) Prove that $\lim \inf a_n \leq \lim \sup a_n$ for every bounded sequence, and give an example of a sequence for which the inequality is strict. <br>
+        (d) Show that $\lim \inf a_n = \lim \sup a_n$ if and only if $\lim a_n$ exist. In this case, all three share the same value.
+        <br><br>
+        (a) Generally, $A \subseteq B$ implies $\sup A \leq \sup B$. This is because $a \in A$ implies $a \in B$ and so $a \leq \sup B$ meaning $\sup B$ is an upper bound of $A$ therefore, by definition ($\sup A \leq s$ for all $s$ upper bound of $A$), $\sup A \leq \sup B$.
+        <!-- Clearly, $\{ a_k | k \geq n + 1 \} \subset \{ a_k | k \geq n \}$ therefore $y_{n+1} \leq y_n$ and so $(y_n)$ is decreasing (by induction).
+        Since $(a_n)$ is bounded, then the set $\{ a_k | k \in \mathbb{N} \}$ is bounded below, say by $b$. 
+        $\{ a_k | k \geq n \}$ is a subset of that set for any $n$ meaning it is also bounded below by $b$ and so $y_n \geq b$ for any $n$
+        (because $b \leq p$ for all $p \in \{ a_k | k \geq n \}$ by the definition of infimum yet $y_n \geq p$ by the definition of supremum)
+        therefore $y_n$ is monotonically decreasing and is bounded below by $b$ meaning it is convergent by the MCT. -->
+        <ul>
+            <li>(y_n) is decreasing<br>
+                It is true that $\{ a_k | k \geq n+1 \} \subset \{ a_k | k \geq n \}$
+                therefore $\sup \{ a_k | k \geq n+1 \} \leq \sup \{ a_k | k \geq n \}$
+                meaning $y_{n+1} \leq y_n$ for all $n$</li>
+            <li>(y_n) is bounded below <br>
+                It is true that $(a_n)$ is a bounded sequence, meaning it is bounded below, say by $b$.
+                In that case, $A = \{ a_k | k \in \mathbb{N} \}$ is bounded below by $b$ and since
+                $\{ a_k | k \geq n \}$ for any $n$ is a subset of $A$, then $b$ is also it's lower bound.
+                This implies $\sup \{ a_k | k \geq n \} = y_n \geq b$ for any $n$ meaning it is bounded below.
+            </li>
+            <li>It is convergent by the MCT</li>
+        </ul>
+        $(x_n)$ <br>
+        (b) $\lim \inf a_n = \lim_{n \to \infty} (\inf \{ a_k : k \geq n \})$. In other words, if $y_n = \inf \{ a_k : k \geq n \}$, then $\lim \inf a_n = \lim y_n$.
+        $\lim \inf a_n$ always exists for any bounded sequence $(a_n)$ because, since it is bounded as a sequence, then the set $A = \{ a_k | k \in \mathbb{N} \}$ is bounded above and below.
+        Since $\{ a_k | k \geq n \}$ for any natural $n$ is a subset of $A$, then it is also bounded below by any bound of $A$. This implies $\inf \{ a_k | k \geq n \}$ exists. 
+        In general, $\{ a_k | k \geq n+1 \} \subset \{ a_k | k \geq n \}$ which implies $\inf \{ a_k | k \geq n+1 \} \geq \inf \{ a_k | k \geq n \}$ which is equivalent to saying $y_{n+1} \geq y_n$
+        therefore $(y_n)$ is monotonically increasing. $\{ a_k | k \geq n \}$ is clearly a subset of $A$ meaning if $b$ is an upper bound of $A$, then $b$ is also an upper bound of the set.
+        This implies that that $\inf \{ a_k | k \geq n \} \leq b$ must also be true since an upper bound of a set is always greater than all of it's lower bounds.
+        This means $(y_n)$ is bounded above. Since it is increasing and bounded above, then it converges by the MCT. <br>
+        (c) We will use the order limit theorems, which states that $a_n \leq b_n$ for all $n$ imply $\lim a_n \leq \lim b_n$. <br>
+        <ul>
+            <li>Define $S_n = \{ a_k | k \geq n \}$ and $x_n = \inf S_n$ and $y_n = \sup S_n$</li>
+            <li>$x_n \leq y_n$ for any natural $n$<br>
+            $x_n$ is a lower bound of $S_n$ while $y_n$ is an upper bound of $S_n$. 
+            This implies, for all $s \in \mathbb{S_n}$, it's true that $x_n \leq s$ while $y_n \geq s$
+            therefore $x_n \leq y_n$. 
+            </li>
+            <li>$\lim x_n \leq \lim y_n$ <br>
+            Following the previous point, this is true by the order limit theorems, which states that $x_n \leq y_n$ for all natural $n$ imply $\lim x_n \leq \lim y_n$. 
+            </li>
+            <li>Since $\lim x_n = \lim \inf a_n$ and $\lim y_n = \lim \sup a_n$, then it is true that $\lim \inf a_n \leq \lim \sup a_n$</li>
+        </ul>
+        $a_n = (-1)^n$ is an example of when the inequality is strict. This is because $\{ a_k | k \geq n \}$ for any $n$, contains $1$ and $-1$ which implies
+        it's infimum is always $-1$ and it's supremum is always $1$. <br>
+        (d) 
+        <ul>
+            <li>Define $S_n = \{ a_k | k \geq n \}$</li>
+            <li>(<=) Suppose $a = \lim a_n$ exists <br>
+                Then, for all $\epsilon > 0$, there exists an $n$ where for all $k \geq n$, $|a_k - a| < \epsilon$
+                <ul>
+                    <li>Take any $\epsilon > 0$ and the $n$ where for all $k \geq n$, it follows that $|a_k - a| < \epsilon$</li>
+                    <li>$a - \epsilon$ is a lower bound of $S_k$ and $a + \epsilon$ is an upper bound of $S_k$ <br>
+                        $s \in S_k$ means there exists a $q \geq n$ where $s = a_q$ and since $q \geq n$, then $|a_q - a| < \epsilon$
+                        which means $a - \epsilon < a_q = s < a + \epsilon$. Therefore, for all $s \in S_k$, $a - \epsilon < s$ and $a + \epsilon > s$.
+                    </li>
+                    <li>$a - \epsilon \leq \inf S_k, \sup S_k \leq a + \epsilon$ <br>
+                        Clearly, $\inf S_k \leq \sup S_k$. Since $a - \epsilon$ is a lower bound of $S_k$, then $a - \epsilon \leq \inf S_k$
+                        and since $a + \epsilon$ is an upper bound of $S_k$, then $a + \epsilon \geq \sup S_k$.
+                        Combining all of that, $a - \epsilon \leq \inf S_k \leq \sup S_k \leq a + \epsilon$.
+                    </li>
+                    <li>The previous point implies $|a - \inf (S_k)| < \epsilon$ and $|a - \sup (S_k)| < \epsilon$</li>
+                    <li>All of this implies $\lim_n \inf S_k = a$ and $\lim_n \sup S_k = a$ therefore $\lim \inf a_n = \lim \sup a_n = \lim (a_n)$</li>
+                </ul>
+            </li>
+            <li>(=>) Suppose $\lim \inf a_n = \lim \sup a_n = a$. <br>
+                <ul>
+                    <li>
+                        Take any $\epsilon > 0$, then take the natural $J$ and $K$ where for all $j \geq J, k \geq K$, it's true that $|\inf S_j - a| < \epsilon$ and $|\sup S_k - a| < \epsilon$.
+                    </li>
+                    <li>
+                        Take $N = \max \{ J, K \}$, therefore $|\inf S_N - a| < \epsilon$ and $|\sup S_N - a| < \epsilon$ since $N \geq J,K$
+                    </li>
+                    <li>
+                        for all natural $k \geq N$: $|a_k - a| < \epsilon$ <br>
+                        The previous point implies $a - \epsilon < \inf S_N < a + \epsilon$ and 
+                        $a - \epsilon < \sup S_N < a + \epsilon$.
+                        For all $k \geq N$, $a_k \in S_N$ and since $\inf S_N \leq s$ for all $s \in S_N$, then $\inf S_N \leq a_k$.
+                        You may also use the same logic to conclude that $a_k \leq \sup S_N$.
+                        Both of those points implies that $a - \epsilon < \inf S_N \leq a_k \leq \sup S_N < a + \epsilon$
+                        for all $k \geq N$ which also implies $|a_k - a| < \epsilon$.
+                    </li>
+                    <li>It can be concluded that $(a_n) \to a$</li>
+                </ul>
+            </li>
+        </ul>
+        <br><br>
+        <b>Exercise 2.4.8.</b> For each series, find an explicit formula for the sequence of partial sums
+        and determine if the series converges. <br>
+        (a) $\sum_{n=1}^{\infty} \frac{1}{2^n}$ <br>
+        (b) $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}$ <br>
+        (c) $\sum_{n=1}^{\infty} log(\frac{n + 1}{n})$ <br>
+        <br>
+        (a) $\sum_{n=1}^{N} \frac{1}{2^n} = \frac{1 - \frac{1}{2^{N+1}}}{\frac{1}{2}}$ which is also equal to
+        $2\frac{2^{N+1} - 1}{2^{N+1}}$. It should be clear that the fraction approaches one as $N$ approaches infinity, and so the final
+        infinite sum should converge to 2. <br>
+        (b) $\frac{1}{n(n + 1)}$ <br>
+        Clearly, $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n + 1}$ which really makes it clear that
+        $\sum_{i=1}^n \frac{1}{i} - \frac{1}{i + 1} = 1 - \frac{1}{n + 1}$ and so it converges to $1$.
+        <br>
+        (c) $\log(\frac{n + 1}{n}) = \log(n + 1) - \log(n)$. 
+        It will be proven that the partial sum up to the $n$th term is equal to $\log(n + 1) - \log(1)$.
+        It's clearly true for $n=1$. When it's true for any $n$,
+        we know that:
+        $$
+        \begin{align*}
+        \sum_{i=1}^{n+1} \log(i + 1) - \log(i) &= \left( \sum_{i=1}^n \log(i + 1) - \log(i) \right) + \log(n + 2) - \log(n + 1) \\
+        &= \log(n + 1) - \log(1) - \log(n + 1) + \log(n + 2) \\
+        &= \log(n + 2) - \log(1)
+        \end{align*}
+        $$
+        and so it's true for $n+1$ as well which means by induction it's true for any $n$.
+        This implies that the sequence diverges since $\log(n)$ diverges as $n$ approaches infinity.
         <br>
         <br>
+        <b>Exercise 2.4.9.</b> Complete the proof of Theorem 2.4.6 by showing that if the series $\sum_{n=1}^{\infty} 2^n b_n$ diverges,
+        then so does $\sum_{n=1}^{\infty} b_n$. Example $2.4.5$ may be a useful reference. <br>
+        I already proved this earlier, go back to the upper portions of this page.
+        Though now I will try to restate it in a nicer way. <br>
+        Notice the following
+        $$
+        \underbrace{2 \left( \underbrace{b_{2^{n} + 1} + b_{2^n + 2} + \dots + b_{2^{n+1}}}_{2^n \text{ terms}} \right)}_{2^{n+1} \text{ "terms"}} = 2 \sum_{i=2^n + 1}^{2^{n+1}} b_i
+        $$
+        Each term in the sum above is in the form of $b_k$ where $k \leq 2^{n+1}$ which, since $b_n$ is decreasing, means that each term $b_k$ in the sum satisfies $b_k \geq b_{2^{n+1}}$.
+        When you expand all of the multiplication by two, there are $2^{n+1}$ terms in the form of $b_k$, this implies that the final sum is greater than $2^{n+1} b_{2^{n+1}}$. <br><br>
+        From there, you can use induction to conclude that
+        $$ 2 \sum_{i=1}^{2^{n}} b_i \geq \sum_{i=0}^{n} 2^i b_{2^i} $$
+        for all $n \in \mathbb{N} \cup \{ 0 \}$. For $n = 0$, $2b_1 \geq b_1$ is clearly true.
+        Before going to the general case, notice that we also know the following
+        $$
+        \begin{align}
+        2 \sum_{i=1}^{2^{n+1}} b_i &= 2 \sum_{i=1}^{2^{n}} b_i + 2 \sum_{2^n + 1}^{2^{n+1}} b_i \\
+        \sum_{i=0}^{n+1} 2^i b_{2^i} &= \sum_{i=0}^{n} 2^i b_{2^i} + 2^{n+1} b_{2^{n+1}}
+        \end{align}
+        $$
+        now for the general case for when it's true for some $n$, it will be proven that it's also true for $n+1$.
+        Combining that (the equations from before and the fact that it is true for $n$)
+        with the fact that $2 \sum_{2^n + 1}^{2^{n+1}} b_i \geq 2^{n+1} b_{2^{n+1}}$, we can conclude that
+        $2 \sum_{i=1}^{2^{n+1}} b_i \geq \sum_{i=0}^{n+1} 2_i b_{2^i}$.
+
+        <br><br>
         <b>Exercise 2.4.10 (Infinite Products).</b> A close relative of infinite series is the <i>infinite product</i>
         $$\prod_{n=1}^{\infty} b_n = b_1b_2b_3 \ddots$$
         which is understood in terms of its sequence of partial products

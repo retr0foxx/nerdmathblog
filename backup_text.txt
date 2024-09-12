@@ -1,0 +1,269 @@
+
+<!-- Atleast that is the easy way out, I will properly prove it here now. This is going to be quite tedious though.
+        By the previous process, it is known that there exist an $N \in \mathbb{N}$ such that for any $n \geq N$, $b_n \neq 0$.
+        Therefore you can define $c_i = \frac{1}{b_{N + i}}$ and know that it is a valid sequence that is defined for all $i \in \mathbb{N}$.
+        Now take a bound of $b$ and define it as $B = \sup \{ |b_i| | i in mathbb{N} \}$ therefore $|b_i| \leq B$ for any natural $i$ and $B > 0$.
+        Take any $\epsilon > 0$, by the convergence of $(b_i)$ it is known that there exist an $M \in \mathbb{N}$ such that for all $m \geq M$, $|b_m - b| < \epsilon b B$.
+        Define P to be $P = \max \{ M, N + 1 \}$, therefore for any $k \geq P$, $k \geq M$ meaning $|b_k - b| < \epsilon b B$ and $k \geq N + 1$ meaning $b_k \neq 0$ and $c_{k - N} = \frac{1}{b_k}$.
+        Therefore any $i \geq P - N$ means $\frac{1}{c_i}$ satisfy all of the perks of such a $b_k$.
+        With a bit of algebra, it is known that $|\frac{1}{b_k} - \frac{1}{b}| = |\frac{b - b_k}{b b_k}| = \frac{|b - b_k|}{|b b_k|} < \frac{\epsilon b B}{b b_k}$.
+        Since $B \geq b_k$, then $\frac{B}{b_k} \geq 1$ and so multiplying that by the last expression, we can conclude that $|\frac{1}{b_k} - \frac{1}{b}| < \epsilon$.
+        Notice that $k$ may be any number that is higher than or equal to $P$ yet $P$ is greater than $N$ so any $k$ has a corresponding $i$ where $c_i = \frac{1}{b_{N + i}}$
+        with $i = k - N$. Therefore this is the same as saying that $|c_i - \frac{1}{b}| < \epsilon$.
+        If we summarize while going back to the definition of convergence, you can say that for any $\epsilon$, you may pick P with the rule from before,
+        then there exist the starting term $P - N$ such that any term after it in $(c_i)$ satisfy $|c_i - \frac{1}{b}| < \epsilon$ therefore $c_i$ converges to $\frac{1}{b}$.
+        <br><br>
+        After that, you can define $d_i = a_{N + i}$ therefore you can use (iii) to say that $\lim (c_i d_i) = a/b$.
+        The limit of $d_i$ is $a$ because for any $\epsilon > 0$ there's an $J \in \mathbb{N}$ such that for any $k \geq N$,
+        $|a_k - a| < \epsilon$ therefore you can choose $M = \max \{ N + 1, J \} - N$ therefore for any $m \geq M$
+        $d_m = a_{m + N}$ since $m + N = \max \{ N + 1, J \}$ so $m + N \geq J$ so then $|a_{m + N} - a| < \epsilon$ and so $|d_m - a| < \epsilon$. 
+        Since $c_i d_i$ converges to $\frac{a}{b}$, you know that for any $\epsilon > 0$, there exists a $J \in \mathbb{N}$ such that for all $j \geq J$, $|c_j d_j - \frac{a}{b}| < \epsilon$.
+        Since $c_i d_i = \frac{ a_{N + i} }{ b_{N + i} }$, then for the sequence $a_i b_i$, you can also choose $L = J + N$, 
+        therefore for any $l \geq L$, $l \geq N + J$ therefore you can have some $i \geq J$ such that $l = i + N$ and so $c_i d_i = a_l b_l$ 
+        while $|c_i b_i - \frac{a}{b}| < \epsilon$ therefore $|c_i b_i - \frac{a}{b}| = |a_l b_l - \frac{a}{b}| < \epsilon$ and so $(a_i b_i)$ also converges to $\frac{a}{b}$.
+-->
+
+
+        Okay man I struggled a LOT on that goddamit.
+        <!-- To make it complete, I will define $c_n = b_{n+N}$ where $N$ satisfy for all $n \geq N$, $b_n \neq 0$ which we know exist from the previous part.
+        Then prove that $\lim c_n = b$ because for any $\epsilon > 0$, it is known that there exist an $M$ such that for all $m \geq M$, $|b_m - b| < \epsilon$
+        so pick $P = \max \{ M, N + 1 \}$ therefore $b_n \neq 0$ and $|b_n - b| < \epsilon$ -->
+        <br>
+        Okay, to tell you the truth, I actually struggled with this a bit because I wasn't familiar to and was struggling to reason that $|b| - |b_n - b| \leq |b + b_n - b|$.
+        
+
+        <!-- First it will be helpful to know that if $|x_k - x| < \epsilon$ for all k greater than some natural number $K$,
+        then for any $Q \geq K$, $|\frac{x_K + x_{K+1} + ... + x_Q}{Q - K + 1} - x| < \epsilon$.
+        In other words, if finitely many terms in a sequence is closer to $x$ than some $\epsilon$,
+        then it's average is also closer to $x$ than the $\epsilon$. -->
+
+        
+        "creation_date": "2024-04-05"
+        //"creation_date": "2024-04-06",
+
+        For (1) and (ii):
+        Take $(x_n)$ to be a bounded divergence sequence and $(y_n)$ to be an always-positive sequence which converges to zero. <br>
+        (i) Only one of the iterated limit exists and the doubly-indexed limit exist. <br>
+        Define $a_{mn} = x_n \cdot y_m$. $\lim_{m \to \infty} a_{mn} = \lim_{m \to \infty} x_n \cdot y_m$ which by the algebraic limit theorem is equal to
+        $x_n \cdot (\lim_{m \to \infty} y_m) = 0$. 
+        Since $(x_n)$ diverges, you can take the $\epsilon > 0$ such that for all natural $N$, there exists an $n \geq N$ where $|x_n - 0| \geq \epsilon$.
+        This means, for any locked $m$ you can take $\epsilon y_m$ (with $\epsilon$ being the same as before) 
+        then it is known that $|a_{mn} - 0| = |x_n \cdot y_m - 0| = y_m |x_n - 0| > \epsilon \cdot y_m$ therefore $\lim_{n \to \infty} a_{mn}$ doesn't exist.
+        Take $M > 0$ to be a bound of $(x_n)$, now take any $\epsilon > 0$ and so there exists an $N$ such that for all $m \geq N$, $|y_m - 0| < \frac{\epsilon}{M}$.
+        and so $|a_{mn} - 0| = |x_n| |y_m - 0| < \epsilon$. This is true no matter what $n$ is so it already proves that the doubly-indexed limit exists.
+        <br>
+        (ii) Same as (1) but now define $a_{mm} = 1$ for all natural $m$. I will proof this tomorrow if I remember. 
+        There is probably a nice way of redescribing (i) to make (ii) only describe a small change in the description of (i). <br>
+        (iii) Take $x_{mn}$ to be a series where the iterated limit exist and $y_m = \lim_{n \to \infty} x_{mn}$.
+        now define $a_{mn}$ in terms of $x_{mn}$ such that, suppose you take some $\epsilon$
+        then take $N$ to be the number which satisfy, for all $m \geq N$, $|y_m - y| < \epsilon$
+        <!-- and define $N_m$ to be the <i>smallest</i> number satisfying, for all $n \geq N_m$, $|x_{mn} - y_m| < \epsilon$, -->
+        then take $k_m$ such that $|k_m - y_m| \geq \epsilon$, then 
+
+        <!-- I am actually confused about what $\lim_{m,n \to \infty} a_{mn} \to b_m$ really means. 
+        I'm thinking of two possibilities: <br>
+        (1) For all $\epsilon > 0$ there exists an $N \in \mathbb{N}$ such that for all $m, n \geq N$, it is true that $|a_{mn} - b_m| < \epsilon$. <br>
+        (2) $b_m = \lim_{n \to \infty} a_{mn}$. <br>
+        A good reason to think it is not (1) is because the $m$ variable in "$\lim_{m,n \to \infty} a_{mn} \to b_m$" is in different "scopes."
+        The $m$ variable on the left is just something used to denote, when we're taking the limit, which variables are we doing it in terms of. 
+        It is a local definition that is used inside of the limit but then becomes invalid outside of it. 
+        Then a good reason to think it is not (2) is because.. if it is then I'm sure the author is smart enough to make it not ambiguous like this and so they would have just written it just like that. <br>
+        -->
+
+
+        <ul>
+            <li>To make things easier for later, define $k_d = sqrt{r^2 - 4}$ therefore the limit point of $(x_n)$ is now $\frac{r \pm k_d}{2}$</li>
+            <li>Define $k_1, k_2$ to be limit points of $(x_n)$ such that $|k_1| < |k_2|$ if $|r| > 2$ and $k_1 = k_2$ if $|r| = 2$</li>
+            <li>Properties of $k_1, k_2$
+                <ul>
+                    <li>$|k_1|, |k_2| < |r|$ <br>
+                        It is clear that $|k_d| = |\sqrt{r^2 - 4}| < r$. By the triangle inequalitiy, $|\frac{r \pm \sqrt{r^2 - 4}}{2}| < |\frac{r}{2}| + |\frac{\sqrt{r^2 - 4}}{2}| < |r|$.
+                        End of proof.
+                    </li>
+                    <li>$r - k_1 = \frac{1}{k_1}$ and $r - k_2 = \frac{1}{k_2}$ <br>
+                        $$
+                        \begin{align*}
+                        r - k &= r - \frac{r \pm \sqrt{r^2 - 4}}{2} \\
+                        &= \frac{r \mp \sqrt{r^2 - 4}}{2} \\
+                        \frac{1}{k} &= \frac{2}{r \pm \sqrt{r^2 - 4}} \cdot \frac{r \mp \sqrt{r^2 - 4}}{r \mp \sqrt{r^2 - 4}} \\
+                        &= \frac{2 \left( r \mp \sqrt{r^2 - 4} \right)}{r^2 - \left( r^2 - 4 \right)} \\
+                        &= \frac{r \mp \sqrt{r^2 - 4}}{2} \\
+                        \end{align*}
+                        $$
+                        ...or you can also easily prove it by doing
+                        $\frac{1}{r - k} = k$ implies $r - k = \frac{1}{k}$
+                    </li>
+                </ul>
+            </li>
+            <li>Useful property: when $r \geq 2$, then $0 \leq a < b < r$, then $0 \leq \frac{1}{r - a} < \frac{1}{r - b}$.
+                This is also true for when you flip the inequalities for when $r \leq 2$.
+                In other words, the sequence operation preserves inequalities on values between zero and $r$.
+                This is because $r \geq r - a > r - b > 0$ which means everything still has the same sign and so taking it's reciprocal preserves inequalities.
+            </li>
+            <li>When $0 \leq x_n \leq k_2$, $\frac{1}{r} \leq x_{n+1} \leq k_2$ which also means $0 \leq x_{n+1} \leq k_2$.
+                Meaning the sequence is bounded if it is ever in that interval. 
+                Since ineqalities are preserved in that interval, the sequence is monotone.
+                This is because the next term after $x_n$ is either less than or higher than or equal to $x_n$.
+                Since inequalities are preserved, you can conclude that $x_{n+1}$ and $x_{n+2}$ preserves the inequality which describes $x_n$ and $x_{n+1}$
+                and this holds true for any $n+m$ and so by induction it is monotone.
+                Therefore, by the MCT, it is convergent since it is monotone and bounded.
+            </li>
+            <li>When $x_n < 0$, $r - x_n > r$ therefore $0 < \frac{1}{r - x_n} < \frac{1}{r}$ and so you can fallback into the previous case since $\frac{1}{r} < k_2$</li>
+            <li>When $x_n > r$, $r - x_n < 0$ and so $x_{n+1} < 0$ therefore you can fallback into the previous case</li>
+            <li>When $k_2 < x_n < r$, it's complicated, but here's the proof anyway
+                <ul>
+                    <li>Define $g(x) = r - \frac{1}{x}$ therefore it is the inverse of the sequence operation $\frac{1}{r - x}$.</li>
+                    <li>Useful property: $g(k_2) = k_2$ and $g$ also preserves inequalities for values between zero and $r$ since it is the inverse of another operation which does that</li>
+                    <li>Define the sequence $(g_n)$ such that $g_1 = r$ and $g_{n+1} = g(g_n)$</li>
+                    <li>$(g_n)$ is dereasing <br>
+                        Clearly $g_2 = r - \frac{1}{r} < r = g_1$ therefore $g_2 < g_1$.
+                        UNFINISHED
+                    </li>
+                    <li>$(g_n)$ is bounded below by $k_2$:
+                        Clearly, $g_1 = r > k_2$ therefore $g(g_1) = g_2 > k_2$
+                        and in general, $g_n > k_2$ imply $g_{n+1} > k_2$ since $g(k_2) = k_2$
+                        NEEDS IMPROVEMENT
+                    </li>
+                    <li>Since $(g_n)$ is decreasing and bounded below by $k_2$, then by the MCT, it converges.</li>
+                    <li>Define $p = \lim g_n$</li>
+                    <li>Proof of convergence when $p < x_n < r$
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>Proof of convergence when $k_2 < p$ <br>
+                        Before I go onto the proof, it is presumed that $k_2 = p$ must be true,
+                        but I don't know how to prove that so...
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+<!-- <ul>
+                    <li><b>Definition 4.1.4.</b> $g_1 = r$, $g_n = f^{-1}(g_{n-1})$, $g = \lim g_n$ <br></li>
+                    <li><b>Observation 4.1.6.</b> $f^{-1}(k_2) = k_2$ <br>
+                        By observationX, $\frac{1}{k_2} = r - k_2$ therefore $r - \frac{1}{k_2} = f^{-1}(k_2) = k_2$.
+                    </li>
+                    <li><b>Observation 4.1.7.</b> When $a$ and $b$ is of the same sign, $f^{-1}$ preserves their inequality.
+                        Proof: Since they are of the same sign, then taking their reciprocal flips their inequality
+                        and negating their reciprocals returns their inequality back to the original. Adding $r$ to that will still keep the same inequality.
+                        Therefore $f^{-1}(a) = r - \frac{1}{a}$ and $f^{-1}(b) = r - \frac{1}{b}$ has the same inequality relation as $a$ and $b$.
+                    </li>
+                    <li><b>Observation 4.1.8.</b> For all natural $n$, $|k_2| < |g_{n+1}| < |g_n| \leq |r|$ and they are all of the same sign.
+                        There are two parts to this observation: $(g_n)$ gets closer and closer to $k_2$ and $g_n$ is always of the same sign as $r$.
+                        It is already known that $k_2$ and $r$ is of the same sign. Therefore if $g_{n+1}$ and $g_n$ is between them,
+                        then all of them are of the same sign. <br>
+                        For $n = 1$, it is known that $g_1 = r$ which is between $k_2$ and $r$.
+                        For any $n$ in general,
+                        If $g_n$ and $k_2$ is of the same sign (which is true for $n = 1$ by observation 4.1.2.) and $f^{-1}(k_2) = k_2$, then the inequality relation of $g_2$ and $g_1$
+                        is the same as the inequality relation between $g_1$ and $k_2$ based on observation 4.1.7.
+                        Now for the specific signs because I'm not good enough with absolute value inequalities.
+                        Suppose $r \geq 2$, then $0 < \frac{1}{r} < r$, therefore $0 < r - \frac{1}{r} = g_2 < r = g_1$ and so $g_1, g_2, k_2$ is of the same signs.
+                        By the previous statement, it is known that $k_2 < g_2 < g_1$ because $f^{-1}(k_2) = k_2$ and $f^{-1}$ preserves
+                        the inequality relation of $k_2$ and $g_1$ and we know that $g_1 = r > k_2$.
+                        Suppose $k_2 < g_{n+1} < g_n$ and they are all of the same sign for some natural $n$, then $k_2 < g_{n+2} < g_{n+1}$ by observation 4.1.7.
+                        meaning $(g_n)$ is monotone and bounded in the direction of change by $k_2$ and so it is convergent.
+                        Now you can use a very similar copy-paste argument for the case when $r \leq 2$. Just switch the signs man, you can do it.
+                    </li>
+                    <li>Proof that $\lim g_n$ exists: 
+
+                    </li>
+                    <li>It will be proven that if there exists a natural $m$ such that $x_n$ is exclusively between $g_m$ and $g_{m+1}$. 
+                        then $(x_n)$ converges. Otherwise, if there's a natural $m$ such that $x_n = g_m$ then $(x_n)$ diverges.
+                        It should be clear intuitive to say that $(g_n)$ is $k_2$ however I'm actually not sure on how to prove that.
+                        Therefore, this part case will be split into two possibilities:
+                        $x_n$ is between $k_2$ and $g$ including $g$ and $x_n$ is between $g$ and $r$ including $r$.
+                    </li>
+                    <li>
+                    </li>
+                </ul>
+            </li>
+            <li>When $x_n < 0$, $r - x_n > r$ therefore $0 < \frac{1}{r - x_n} < \frac{1}{r}$ and so you can fallback into the previous case since $\frac{1}{r} < k_2$</li>
+            <li>When $x_n > r$, $r - x_n < 0$ and so $x_{n+1} < 0$ therefore you can fallback into the previous case</li>
+            <li>When $k_2 < x_n < r$, it's complicated, but here's the proof anyway
+                <ul>
+                    <li>Define $g(x) = r - \frac{1}{x}$ therefore it is the inverse of the sequence operation $\frac{1}{r - x}$.</li>
+                    <li>Useful property: $g(k_2) = k_2$ and $g$ also preserves inequalities for values between zero and $r$ since it is the inverse of another operation which does that</li>
+                    <li>Define the sequence $(g_n)$ such that $g_1 = r$ and $g_{n+1} = g(g_n)$</li>
+                    <li>$(g_n)$ is dereasing <br>
+                        Clearly $g_2 = r - \frac{1}{r} < r = g_1$ therefore $g_2 < g_1$.
+                        UNFINISHED
+                    </li>
+                    <li>$(g_n)$ is bounded below by $k_2$:
+                        Clearly, $g_1 = r > k_2$ therefore $g(g_1) = g_2 > k_2$
+                        and in general, $g_n > k_2$ imply $g_{n+1} > k_2$ since $g(k_2) = k_2$
+                        NEEDS IMPROVEMENT
+                    </li>
+                    <li>Since $(g_n)$ is decreasing and bounded below by $k_2$, then by the MCT, it converges.</li>
+                    <li>Define $p = \lim g_n$</li>
+                    <li>Proof of convergence when $p < x_n < r$
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>Proof of convergence when $k_2 < p$ <br>
+                        Before I go onto the proof, it is presumed that $k_2 = p$ must be true,
+                        but I don't know how to prove that so...
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li> -->
+
+<!-- all of the proof above is valid for $r > 2$, but is very easily changed to also be valid for $r < 2$ by simply 
+        switching all of the inequalities.
+        I'm still really bad with triangle inequalities so yeah I didn't even try to make the proof more general by using that.
+        That would be absolute hell for me. -->
+        
+        <!-- Before that, let's define $k_1, k_2$ to be the limit points of the sequence.
+        If $|r| > 2$, set $|k_1| < |k_2|$, we know that this is possible. If $|r| = 2$, then $k_1 = k_2$.
+        Refer back to the behaviour of taking reciprocals. 
+        They imply that you can't know the actual behaviour of a variable under taking reciprocals based on it's bounds.
+        You have to make sure that the value also satisfy some other constraints.
+        Say we try to check what happens if $a < x_n < b$, then you will also have to find out what exactly
+        $r - x_n$ is and you can't immediately just take it's reciprocal and then be sure that it still satisfy the final bounds.
+        To help with dealing with that later on, we will find out about if $k_1, k_2 < r$.
+        Well, it's clear that $\sqrt{r^2 - 4} < |r|$, therefore $\frac{r + \sqrt{r^2 - 4}}{2} < |r|$.
+        This also implies that $\frac{r - \sqrt{r^2 - 4}}{2} < |r|$.
+        If $r$ is positive, then both of those expressions are also positive.
+        And if $r$ is negative, it's also clear that both of them will stay negative.
+        Meaning, for any $r_1 < x_n < r_2$, taking the reciprocal of $r - x_n$ always behaves in a nice way.
+        <ul>
+            <!-- <li>Suppose $0 < |x_n| < |r|$ and $0 < |r - x_n| < |r|$ which just means the signs of $x_n$ and $r$ is the same.
+                It is equivalent to saying that $x_n$ is always between $r$ and zero. <!-- if $r > 0$, then $r > x_n > 0$ and if $r < 0$, then $r < x_n < 0$. -- >
+                This implies that $\infty > \frac{1}{|r - x_n|} > \frac{1}{|r|}$ and that their signs stay the same.
+                Which means $|x_{n+1}| > |\frac{1}{r}|$.
+                Since $r \geq 2$, then it's reciprocal is less than itself meaning it is possible for the next term to still be between $r$ and zero
+                which means that case is now already handled. What we need now is to know what happens when $|x_n| > |r|$ and their signs are the same.
+            </li>
+            <li>
+                Suppose $|x_n| > |r|$ and $|r - x_n| < |x_n - 0|$. The latter is the same as saying that $x_n$ is always closer to $r$ than to zero which, combined with the 
+                other condition, is equivalent to saying that if $r$ is negative, then $x_n$ is less than $r$ and if $r$ is positive, then $x_n$ is greater than $r$.
+                Intuitively, we know that $r - x_n$ would result in a value that is of the opposite sign of $r$ which would mean that $|r - x_{n+1}|$ would result in a value greater than $|r|$ making the next value, $x_{n+2}$
+                have the same sign as $r$ yet still less than $r$ meaning we can fallback into the previous case.
+            </li> -- >
+            <li>Suppose $x_n$ is between $0$ and $k_2$. More formally, $|x_n| < |k_2|$ and $|x_n - k_2| < |k_2|$.
+                What we will need to show next is the value of $r - x_n$ and whether or not it will behave nicely with taking reciprocals
+                in the sense that there is only one possibility regardless of what $x_n$ is if it satisfy the specified conditions.
+                It is known that $|k_2| < |r|$ and they are of the same sign which implies that |r - k_2| < |r|.
+            </li>
+        </ul> -->
+
+
+        <!-- - Take any $a \in A$, since $a \in X$ as well, it is known that for all $\epsilon > 0$ there exists a $\delta > 0$ such that for all $x \in (a - \delta, a + \delta) \cap X$ it follows that $f(x) \in (f(a) - \epsilon, f(a) + \epsilon)$.
+- By the fact that $B$ is open, there exists an $\epsilon > 0$ such that $(f(a) - \epsilon, f(a) + \epsilon) \subseteq B$ therefore you can pick that $\epsilon$ and choose the $\delta > 0$ satisfying the previous bullet point.
+- This means $a$ is part of some open interval in 
+- Since every element of $A$ is part of an open set in $X$ entirely within $A$, then $A$ is open.
+- this shit is not done -->
+
+<!-- Here are some restating of the same definition. A function $f : A \to \mathbb{R}$ with $A \subseteq \mathbb{R}$ is continuous iff:
+
+1. Suppose $V_\epsilon(x) = (x - \epsilon, x + \epsilon)$, then $f$ is continuous iff for all $x_0 \in A$ and $\epsilon > 0$ there exists a $\delta > 0$ such that $f(V_{\delta}(x_0)) \subseteq V_{\epsilon}(f(x_0))$ -->
+
+The proof will be done by contradiction. The strategy is to assume that $(x_n) \to x$ with $x \in (a, b)$. If that's the case, then $x_n < x$ for all natural $n$ and it also means $(x_n)$ gets arbitrarily close to $x$ from the left meaning for any $\epsilon > 0$ there's an $n$ such that $|x_n - x| < \epsilon$ but since $(x_n)$ is increasing then $x - \epsilon < x_n < x$. This also means that for any $k < x$, there's an $n$ where $k < x_n < x$ since you can pick an $\epsilon = x - k$. This implies that $f(k) < x_{n+1}$ because $f$ is increasing and since $x_{n+1}$ is also part of the sequence then $x_{n+1} < x$ and so $f(k) < x$. All of that implies that anything less than $x$ implies to something less than $x$ meaning $f((a, x)) \subseteq (a, x)$ and it is also an open set. But then we also know that $f(x) > x$ and by the fact that it is increasing then for all $p \in [x, b)$ then $f(p) \in [f(x), b)$. The point is that both of those combined would imply that if $c < d \in (a, b)$ and $x \in (c, d)$ then $(c, d) = (c, x) \cup [x, d)$ therefore $f((c, d)) = (f(c), x) \cup [f(x), f(d))$ and since $x < f(x)$ then it's the union of a non-open interval and an open interval which results in an open interval which contradicts the fact that it's supposed to be an open map.
+
+That was supposed to be a summary but then I put too many details. I'm just gonna try to write the proof in a more complete way again down below.
