@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script>
+        // thx chatgpt
+    function createElementWithAttributes(tag, attributes) {
+        // Create the element using the provided tag
+        const element = document.createElement(tag);
+
+        // Iterate over the attributes object and set each attribute on the element
+        for (const [key, value] of Object.entries(attributes)) {
+            if (key === 'style' && typeof value === 'object') {
+                // If the attribute is 'style' and the value is an object, set styles individually
+                Object.assign(element.style, value);
+            } else if (key === 'dataset' && typeof value === 'object') {
+                // If the attribute is 'dataset' and the value is an object, set data attributes individually
+                for (const [dataKey, dataValue] of Object.entries(value)) {
+                    element.dataset[dataKey] = dataValue;
+                }
+            } else {
+                // Otherwise, set the attribute directly
+                element.setAttribute(key, value);
+            }
+        }
+
+        return element;
+    }
+    </script>
+
+    <script>
+        /*
+        Important statements
+        These are statements used to explain other statements. All explanation statements will be put in the important_statements_list variable.
+        You can mark a statement to be important by using a span in the HTML document marked with the important-statement class
+        and you may denote their ID using the 'stid' attribute.
+        Such tags without an stid attribute will be ignored (which may change into being automatically identified somehow in the future)
+        and if there are multiple tags with the same stid, it will use the one furthest down in the document.
+
+        Explained statements
+        These are statements that will be explained with important statements.
+        You can mark a statement to be explained by using a span in the HTML document marked with the explained-statement class
+        and you can put the list of IDs of the important statements that will explain the statement in the stid attribute separated by spaces.
+
+        Upon loading the page, important statements will be loaded into important_statements_list
+        and important_statements_tbl will map the ID of each important statements into the integer index that the statement is in on the list.
+        After that, explained statements will be loaded into a list with each of it's element containing a list of important statements
+        that will be used to explain the statement it corresponds to. The span tag's stid attribute for the explained statement will change into an index for this list.
+
+        When an explained statement is clicked (or hovered on in the future) a tag containing the explanations for it will be created (and not cached in any way for now)
+        and displayed
+        
+        The current implementation approach here is very "static." It would be difficult to change the data when the page has already been loaded.
+        */
+
+        // this is most likely unecessary optimization, but i was thinking that doing this would be more efficient.
+        let important_statements_list = [];
+        let important_statements_tbl = new Map();
+        function add_important_statements()
+        {
+            let impstats = document.getElementsByClassName("important-statement");
+            for (let i = 0; i < impstats.length; ++i)
+            {
+                let attr = impstats[i].getAttribute("stid");
+                // two options: 1. automatically assign an ID (and somehow show it ot the user); 2. dont save unIDed statements.
+                if (attr != null)
+                {
+                    important_statements_list.push(impstats[i].textContent);
+                    important_statements_tbl.set(attr, important_statements_list.length - 1);
+                }
+                console.log(attr, impstats[i].textContent);
+            }
+        }
+
+
+        /*
+        first of all, i'm thinking that each explained statements may have multiple explanation statements
+        that will be displayed upon hovering/clicking.
+        the issue is how the displays are stored
+        some options:
+        1. have a single HTML element that always changes when the user moves on to a different hover explanation.
+        2. have multiple html elements for each explained texts
+        3. have multiple cached html elements for each different combinations of explanations
+
+        im gonna use use the first option for now
+        */
+        let explained_statements = [];
+        function apply_explain_statements()
+        {
+            let expstats = document.getElementsByClassName("explained-statement");
+            for (let i = 0; i < expstats.length; ++i)
+            {
+                let attr = expstats[i].getAttribute("stid");
+                if (attr == null)
+                    continue;
+
+                console.log(important_statements_tbl);
+                let explanations = attr.split(/ +/)
+                    .map((element) => important_statements_tbl.get(element))
+                    .filter((element) => element != undefined);
+
+                // .map((element, index) => Number(element)).filter((element) => element != NaN);
+                // if (explanations.length == 0)
+                //     continue;
+
+                explained_statements.push(explanations);
+                expstats[i].setAttribute("stid", explained_statements.length - 1);
+
+                expstats[i].addEventListener('click', explained_statement_onclick)
+            }
+        }
+
+        function clearChildren(element) {
+    // Remove all child nodes
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+  }
+
+        let explanation_element = createElementWithAttributes("div", { "class": "explanation-container" });
+        explanation_element.style.display = "none";
+        document.body.appendChild(explanation_element);
+        function explained_statement_onclick(expstat)
+        {
+            expstat = expstat.target;
+            let index = Number(expstat.getAttribute("stid"));
+            let explanation_ids = explained_statements[index];
+
+            for (let i = 0; i < explanation_ids.length; ++i)
+            {
+                let exp = important_statements_list[explanation_ids[i]];
+                //explanation_element.innerHTML = "";
+                clearChildren(explanation_element);
+                let child = createElementWithAttributes("div", { "class": "explanation" });
+                child.textContent = exp;
+                console.log("added", explanation_ids[i], i, explanation_ids);
+                explanation_element.appendChild(child);
+            }
+            document.body.appendChild(explanation_element);
+            explanation_element.style.display = "block";
+            explanation_element.style.left = mouse_pos[0] + 'px';
+            explanation_element.style.top = mouse_pos[1] + 'px';
+        }
+        // thx chatgpt
+    </script>
+
+<style>
+    /* Styles for the main container */
+    .explanation-container {
+      background-color: lightblue;
+      border: 2px solid black;
+      padding: 10px;
+      width: 300px;
+      max-width: 100%;
+      box-sizing: border-box;
+      position: absolute; /* To make it movable */
+      z-index: 1000; /* Ensures it appears above other elements */
+      position: fixed; 
+    }
+    
+    /* Styles for each subblock */
+    .explanation {
+      width: 100%;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      padding: 5px 0;
+    }
+
+    /* First subblock doesn't need a top border */
+    .explanation:first-child {
+      border-top: none;
+    }
+
+    /* Last subblock doesn't need a bottom border */
+    .explanation:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+    <span class="important-statement" stid="1">This is a very important statement one</span>.
+    <span class="important-statement" stid="2">This is a very important statement two</span>.
+    <span class="explained-statement" stid="1 2">This is a very confusing statement</span>.
+
+    <script>
+        // Add click event listener to the document
+        document.addEventListener('click', function(event) {
+            console.log(event.target);
+            // Check if the clicked target is outside the element
+            if (explanation_element.style.display != "none" && !event.target.classList.contains("explained-statement") && !explanation_element.contains(event.target)) {
+                explanation_element.style.display = "none";
+                console.log("fucking gone.");
+            }
+        });
+
+        let mouse_pos = [0, 0];
+        document.addEventListener('mousemove', (event) => mouse_pos = [event.clientX, event.clientY]);
+
+        add_important_statements();
+        apply_explain_statements(); 
+
+        explained_statement_onclick({target: document.querySelector("body > span.explained-statement")});
+        
+    </script>
+</body>
+</html>

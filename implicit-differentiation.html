@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic and Order Limit Theorems Exercises</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Implicit Differentation</h1>
+        This is an interpretation of implicit differentation with multivariable calculus that I have.
+        Implicit differentiation is a very useful concept of differentating an equation.
+        For example, you can differentiate $r^2 = x^2 + y^2$ with implicit differentiation.
+        The result of that will be $0 = 2xdx + 2ydy$.
+        One way of interpreting that is, for certain values of $x$ and $y$ that satisfy the original equation,
+        how can you change $y$ and $x$ so that the resulting equation still holds.
+        Except that the statement "how you can change $x$ and $y$" talks more about how you can change them
+        for the original equations such that <i>"the best linear approximation"</i> of the equation holds true.
+        Another interpretation is that it gives you an equation in terms of the variables which represent
+        how much you may $x$ and $y$ such that, as those delta variables get closer and closer to zero,
+        the original equation would get closer and closer to being true.
+        Which is very similar to the interpretations of derivatives
+        which tells you the <i>ratio</i>, $\frac{dy}{dx}$, of the change in y and the change in x,
+        such that as those two variables get closer to zero, 
+    </div>
+</body>
+</html>

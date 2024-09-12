@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic and Order Limit Theorems Exercises</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <script>
+        let important_statements = new Map();
+        function add_important_statements()
+        {
+            let impstats = document.getElementsByClassName("important-statement");
+            for (let i = 0; i < impstats.length; ++i)
+        }
+    </script>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        ul {
+            padding-left: 1em;
+        }
+        ol {
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Combinatorics and "nested sums"</h1>
+        Define $S(d, m)$ to be a "nested sum" of degree $d$ with $m$ terms
+        where $S(1, m) = \sum_{i=1}^m i$ and $S(d, m) = \sum_{i=1}^m S(d - 1, m - i + 1)$.
+        For example, $S(2, m) = (1) + (1 + 2) + ... + (1 + 2 + ... + m)$.
+        <br><br>
+        Define $C(n, k)$ to be n choose k which is equivalent to
+        $C(n, k) = \sum_{i=1}^{n - k + 1} C(n - i, k - 1)$
+        but then we also know that $C(n, k) = \frac{n!}{k!(n - k)!}$
+        and we will talk about the relation of $C$ with $S$.
+        As of writing this, the goal is to prove that $S(d, x)$ with $d$ being locked as a function of $x$ is equal to a polynomial with degree $d + 1$.
+        
+    </div>
+</body>
+</html>
