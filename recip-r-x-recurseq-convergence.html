@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Regarding sequences in the form of x_{n+1} = \frac{1}{r-x_n} with |r| \geq 2</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Regarding sequences in the form of <span
+class="math inline">\(x_{n+1} = \frac{1}{r-x_n}\)</span> with <span
+class="math inline">\(|r| \geq 2\)</span></h1>
+</header>
+<style>
+body { min-width: 80% !important; font-size: 18px !important; }
+</style>
+<p>Before I go into such sequences, I will first make one thing
+clear</p>
+<p>Suppose <span class="math inline">\(a &lt; x &lt; b\)</span>,
+then:</p>
+<ol type="1">
+<li><span class="math inline">\(\frac{1}{a} &lt; x &lt;
+\frac{1}{b}\)</span> if and only if <span class="math inline">\(a &lt; 0
+&lt; b\)</span></li>
+<li><span class="math inline">\(\frac{1}{a} &gt; x &gt;
+\frac{1}{b}\)</span> if and only if <span class="math inline">\(a &lt; b
+&lt; 0\)</span> or <span class="math inline">\(0 &lt; a &lt; b\)</span>.
+In other words, they are of the same sign.</li>
+</ol>
+<p>Now for the actual sequence. On which subsets of <span
+class="math inline">\(\mathbb{R}\)</span> for <span
+class="math inline">\(x_n\)</span> does it converge on depending on
+<span class="math inline">\(r\)</span>? What are it’s limit points? We
+will limit our view to <span class="math inline">\(|r| \geq 2\)</span>
+for reasons that will be clear later. What are it’s limit points in that
+case?</p>
+<h2 id="constant-points-of-frac1r---x">Constant points of <span
+class="math inline">\(\frac{1}{r - x}\)</span></h2>
+<p>To find the constant points of the function, which should intuitively
+translate to the limit points of the sequence, you can simply try to
+solve <span class="math inline">\(x = \frac{1}{r - x}\)</span> for x. Of
+course, an obvious concern with trying to find the limit points like
+this is that this means we are assuming that such a value exists. We
+will not concern ourselves with this for now, we will only intuitively
+think about why this is valid by simply verifying that the resulting
+value for <span class="math inline">\(x\)</span> is algebraically valid
+and satisfy the original equation.</p>
+<p>By using the quadratic equation, you can conclude that <span
+class="math inline">\(x = \frac{r \pm \sqrt{r^2 - 4}}{2}\)</span>. We
+will attempt to verify that this is value satisfies the original
+equation. The most straightforward way to do this is by literally doing
+<span class="math inline">\(\frac{1}{1 - x}\)</span> and seeing if it is
+equal to <span class="math inline">\(x\)</span>. <span
+class="math display">\[
+\begin{align*}
+x &amp;= \frac{r \pm \sqrt{r^2 - 4}}{2} \\
+r - x &amp;= \frac{r \mp \sqrt{r^2 - 4}}{2} \\
+\frac{1}{r - x} &amp;= \frac{2}{r \mp \sqrt{r^2 - 4}} \\
+&amp;= \frac{2}{r \mp \sqrt{r^2 - 4}} \cdot \frac{r \pm \sqrt{r^2 -
+4}}{r \pm \sqrt{r^2 - 4}} \\
+&amp;= \frac{2 r \pm \sqrt{r^2 - 4}}{(r^2 - (r^2 - 4))} \\
+&amp;= \frac{2 r \pm \sqrt{r^2 - 4}}{4} \\
+&amp;= \frac{r \pm \sqrt{r^2 - 4}}{2} \\
+&amp;= x
+\end{align*}
+\]</span> and so, yes, such an <span class="math inline">\(x\)</span>
+really does satisfy the original equation. We now intuitively know the
+constant points of the sequence function which should intuitively
+translate to limit points of the sequence. Now it’s clear that the
+reason we used <span class="math inline">\(|r| \geq 2\)</span> earlier
+is that, if it less than two, then based on this formula, the limit
+points will be undefined. Now we will actually start investigating the
+convergence of this sequence based on the starting point <span
+class="math inline">\(x_n\)</span>.</p>
+<h2
+id="full-investigation-of-the-sequence-depending-on-the-starting-value-x_1.">Full
+investigation of the sequence depending on the starting value <span
+class="math inline">\(x_1\)</span>.</h2>
+<ul>
+<li><strong>Definition 4.1.1.</strong> <span class="math inline">\(f(x)
+= \frac{1}{r - x}\)</span><br />
+Which is simply the sequence operation</li>
+<li><strong>Definition 4.1.2.</strong> <span class="math inline">\(k_d =
+\sqrt{r^2 - 4}\)</span><br />
+Therefore the limit points of <span class="math inline">\((x_n)\)</span>
+is now of the form <span class="math inline">\(\frac{r \pm
+k_d}{2}\)</span></li>
+<li><strong>Observation 4.1.1.</strong> <span
+class="math inline">\(|k_d| &lt; |r|\)</span></li>
+<li><strong>Definition 4.1.3.</strong> <span class="math inline">\(k_1,
+k_2\)</span> are limit points of <span
+class="math inline">\((x_n)\)</span> such that <span
+class="math inline">\(|k_1| &lt; |k_2|\)</span> if <span
+class="math inline">\(|r| &gt; 2\)</span> and <span
+class="math inline">\(k_1 = k_2\)</span> if <span
+class="math inline">\(|r| = 2\)</span>.<br />
+Therefore <span class="math inline">\(k_1, k_2\)</span> is defined to
+both be in the form of <span class="math inline">\(\frac{r \pm
+k_d}{2}\)</span>. If <span class="math inline">\(r &gt; 0\)</span>, then
+<span class="math inline">\(k_1 = \frac{r - k_d}{2}\)</span> and <span
+class="math inline">\(k_2 = \frac{r + k_d}{2}\)</span>. If <span
+class="math inline">\(r &lt; 0\)</span>, then the sign of <span
+class="math inline">\(k_d\)</span> will be flipped from each of <span
+class="math inline">\(k_1, k_2\)</span>.</li>
+<li>Properties of <span class="math inline">\(k_1, k_2\)</span>
+<ul>
+<li><strong>Observation 4.1.2.</strong> <span
+class="math inline">\(|k_1|, |k_2| &lt; |r|\)</span> and <span
+class="math inline">\(|k_1 - r|, |k_2 - r| &lt; |r|\)</span> in other
+words <span class="math inline">\(k_2\)</span> and <span
+class="math inline">\(k_1\)</span> is between 0 and <span
+class="math inline">\(r\)</span><br />
+<span class="math inline">\(|k_1|, |k_2| &lt; |r|\)</span> and <span
+class="math inline">\(|k_1 - r|, |k_2 - r| &lt; |r|\)</span> in other
+words <span class="math inline">\(k_2\)</span> and <span
+class="math inline">\(k_1\)</span> is between 0 and <span
+class="math inline">\(r\)</span> By the triangle inequality following
+from <span class="math inline">\(|k_d| &lt; |r|\)</span>, <span
+class="math inline">\(|\frac{r \pm k_d}{2}| \leq |\frac{r}{2}| +
+|\frac{k_d}{2}| &lt; |r|\)</span>. It is also known that <span
+class="math inline">\(k - r = \frac{\pm k_d - r}{2}\)</span> which means
+<span class="math inline">\(\frac{\pm k_d - r}{2} \leq |\frac{k_d}{2}| +
+|\frac{r}{2}| &lt; |r|\)</span>. End of proof.</li>
+<li><strong>Observation 4.1.3.</strong> <span class="math inline">\(r -
+k_1 = \frac{1}{k_1}\)</span> and <span class="math inline">\(r - k_2 =
+\frac{1}{k_2}\)</span><br />
+This is because, if <span class="math inline">\(k\)</span> is a number
+which satisfies <span class="math inline">\(\frac{1}{r - k} =
+k\)</span>, which we know is true for <span class="math inline">\(k_1,
+k_2\)</span>, then it implies <span class="math inline">\(r - k =
+\frac{1}{k}\)</span>.</li>
+<li><strong>Observation 4.1.4.</strong> <span
+class="math inline">\(|\frac{1}{r}| &lt; |k_2|\)</span><br />
+This is beacuse <span class="math inline">\(|r| \geq 2\)</span> meaning
+<span class="math inline">\(\frac{1}{r} &lt; 1\)</span> yet since <span
+class="math inline">\(|k_2| = \frac{|r|}{2} + \frac{k_d}{2}\)</span>
+then <span class="math inline">\(|k_2| \geq 1\)</span> since <span
+class="math inline">\(\frac{|r|}{2} \geq 1\)</span>.</li>
+</ul></li>
+<li><strong>Observation 4.1.5.</strong> When <span
+class="math inline">\(r \geq 2\)</span> and <span
+class="math inline">\(0 \leq a &lt; b &lt; r\)</span>, then <span
+class="math inline">\(0 \leq f(a) &lt; f(b)\)</span> and when <span
+class="math inline">\(r \leq 2\)</span> and <span
+class="math inline">\(r &lt; a &lt; b \leq 0\)</span>, then <span
+class="math inline">\(f(a) &lt; f(b) &lt; 0\)</span>. In other words,
+the sequence operation preserves inequalities on values between zero and
+<span class="math inline">\(r\)</span>.<br />
+This is because in the case where <span class="math inline">\(r \geq
+2\)</span>, <span class="math inline">\(r \geq r - a &gt; r - b &gt;
+0\)</span> which means everything still has the same sign and so taking
+it’s reciprocal reverts it to the original inequalities. You can also do
+something similar for when <span class="math inline">\(r \leq
+2\)</span>.</li>
+<li>The following bullet points will be an investigation of the
+sequence’s convergence by splitting it into four cases.<br />
+When <span class="math inline">\(x_n\)</span> is between <span
+class="math inline">\(k_2\)</span> and zero including zero, <span
+class="math inline">\(x_n\)</span> is between <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(r\)</span>, <span
+class="math inline">\(x_n\)</span> is of opposite signs than <span
+class="math inline">\(r\)</span>, and <span
+class="math inline">\(x_n\)</span> is of the same sign as <span
+class="math inline">\(r\)</span> yet <span class="math inline">\(|x_n|
+&gt; |r|\)</span>.</li>
+<li>When <span class="math inline">\(x_n\)</span> is inbetween <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(0\)</span> or equal to <span
+class="math inline">\(0\)</span>, then <span
+class="math inline">\(x_{n+1}\)</span> is inbetween <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(0\)</span>.<br />
+This is because suppose <span class="math inline">\(0 \leq x_n &lt;
+k_2\)</span>, then <span class="math inline">\(\frac{1}{r} \leq x_{n+1}
+&lt; k_2\)</span> by observations 4.1.2. and 4.1.5. It’s also similar
+for when <span class="math inline">\(k_2 &lt; x_n &lt; 0\)</span>. This
+implies the sequence is monotone when <span
+class="math inline">\(x_n\)</span> is betewen <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(0\)</span>. This is because suppose <span
+class="math inline">\(0 &lt; x_{n} &lt; x_{n+1} &lt; k_2\)</span> then
+since both of them is between <span class="math inline">\(0\)</span> and
+<span class="math inline">\(r\)</span> (because <span
+class="math inline">\(k_2\)</span> is between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(r\)</span>) then the inequality is preserved under
+the sequence operation therefore <span class="math inline">\(x_{n+1}
+&lt; x_{n+2} &lt; k_2\)</span>. It’s also similar for when <span
+class="math inline">\(x_{n} &gt; x_{n+1}\)</span>. This implies that
+<span class="math inline">\(x_n\)</span> is monotone and bounded
+starting from the <span class="math inline">\(n\)</span> where <span
+class="math inline">\(x_n\)</span> is inbetween zero and <span
+class="math inline">\(k_2\)</span> and so by the MCT, it is
+convergent.</li>
+<li>When <span class="math inline">\(x_n\)</span> is of different signs
+than <span class="math inline">\(r\)</span>, then <span
+class="math inline">\(x_{n+1}\)</span> will be of the same sign as <span
+class="math inline">\(r\)</span> and is inbetween <span
+class="math inline">\(r\)</span> and zero.<br />
+This is because suppose <span class="math inline">\(r &gt; 0\)</span>,
+then when <span class="math inline">\(x_n &lt; 0\)</span>, <span
+class="math inline">\(r - x_n &gt; r\)</span> and so <span
+class="math inline">\(x_{n+1} &lt; \frac{1}{r}\)</span>. Now since <span
+class="math inline">\(\frac{1}{r}\)</span> is actually inbetween 0 and
+<span class="math inline">\(k_2\)</span> by observation 4.1.4., then
+<span class="math inline">\(x_{n+1}\)</span> is inbetween zero and <span
+class="math inline">\(k_2\)</span> meaning you can fallback to the
+previous case and so <span class="math inline">\(x_n\)</span>
+converges.</li>
+<li>When <span class="math inline">\(x_n\)</span> is of the same sign as
+<span class="math inline">\(r\)</span> and <span
+class="math inline">\(|x_n| &gt; |r|\)</span>, then <span
+class="math inline">\(x_{n+1}\)</span> is of the opposite signs of <span
+class="math inline">\(r\)</span> meaning you can fallback into the
+previous case and know that the sequence converges.<br />
+Then is because suppose <span class="math inline">\(r &gt; 2\)</span>
+and <span class="math inline">\(x_n &gt; r\)</span>. Then clearly <span
+class="math inline">\(r - x_n &lt; 0\)</span> meaning <span
+class="math inline">\(\frac{1}{r - x_n} = x_{n+1} &lt; 0\)</span>. Same
+for when <span class="math inline">\(r &lt; 2\)</span>.</li>
+<li>When <span class="math inline">\(x_n\)</span> is inbetween <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(r\)</span> including <span
+class="math inline">\(r\)</span>. This is where it gets
+interesting.<br />
+I will tell you straight the sequence diverges only on a countably
+infinite subset of <span class="math inline">\((k_2, r]\)</span> and
+then it converges on the rest. The following proof of that will only be
+for the case where <span class="math inline">\(r \geq 2\)</span> because
+I am too stupid with absolute value inequalities however it is easily
+changed so that it would work with <span class="math inline">\(r \leq
+2\)</span> by changing the inequalities and stuff.
+<ul>
+<li><strong>Definition 4.1.4.</strong> <span class="math inline">\(g_1 =
+r\)</span>, <span class="math inline">\(g_n = f^{-1}(g_{n-1})\)</span>,
+<span class="math inline">\(g = \lim g_n\)</span></li>
+<li><strong>Observation 4.1.6.</strong> <span
+class="math inline">\(f^{-1}(k_2) = k_2\)</span><br />
+By observation 4.1.3., <span class="math inline">\(\frac{1}{k_2} = r -
+k_2\)</span> therefore <span class="math inline">\(r - \frac{1}{k_2} =
+k_2 = f^{-1}(k_2)\)</span></li>
+<li><strong>Observation 4.1.7.</strong> When <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> is of the same sign, <span
+class="math inline">\(f^{-1}\)</span> preserves their inequality.<br />
+Proof: Since they are of the same sign, then taking their reciprocal
+flips their inequality and negating their reciprocals returns their
+inequality back to the original. Adding <span
+class="math inline">\(r\)</span> to that will still keep the same
+inequality. Therefore <span class="math inline">\(f^{-1}(a) = r -
+\frac{1}{a}\)</span> and <span class="math inline">\(f^{-1}(b) = r -
+\frac{1}{b}\)</span> has the same inequality relation as <span
+class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span>.</li>
+<li><strong>Observation 4.1.8.</strong> For all natural <span
+class="math inline">\(n\)</span>, <span class="math inline">\(k_2 &lt;
+g_{n+1} &lt; g_n \leq r\)</span>. In other words, <span
+class="math inline">\(g_n\)</span> is always between <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(r\)</span> including <span
+class="math inline">\(r\)</span> AND <span
+class="math inline">\((g_n)\)</span> always moves in the direction of
+<span class="math inline">\(k_2\)</span> yet it is bounded by <span
+class="math inline">\(k_2\)</span>.<br />
+For <span class="math inline">\(n = 1\)</span>, it’s clear that <span
+class="math inline">\(k_2 &lt; g_1 \leq r\)</span> since, well, <span
+class="math inline">\(g_1 = r\)</span>. Since <span
+class="math inline">\(r \geq 2\)</span>, then <span
+class="math inline">\(0 &lt; \frac{1}{r} &lt; 1\)</span> meaning <span
+class="math inline">\(0 &lt; r - \frac{1}{r} &lt; r\)</span> and so
+<span class="math inline">\(g_2 &lt; g_1\)</span>. And by observation
+4.1.7. and observation 4.1.6., <span class="math inline">\(k_2 &lt;
+g_1\)</span> implies <span class="math inline">\(f^{-1}(k_2) = k_2 &lt;
+g_2\)</span>. You can conclude that <span class="math inline">\(k_2 &lt;
+g_2 &lt; g_1 \leq r\)</span>. Suppose for some natural <span
+class="math inline">\(n\)</span> that <span class="math inline">\(k_2
+&lt; g_{n+1} &lt; g_n \leq r\)</span> then <span
+class="math inline">\(k_2 &lt; g_{n+2} &lt; g_{n+1} \leq r\)</span> by
+observation 4.1.7. and observation 4.1.6. and the fact that <span
+class="math inline">\(g_{n+1} \leq r\)</span> is known to be true.</li>
+<li>Proof that <span class="math inline">\(\lim g_n\)</span>
+exists<br />
+By observation 4.1.8., <span class="math inline">\((g_n)\)</span> is
+monotone and is bounded in the direction that it is monotone in
+therefore by the MCT it is convergent.</li>
+<li>It will be proven that if there exists a natural <span
+class="math inline">\(m\)</span> such that <span
+class="math inline">\(x_n\)</span> is exclusively between <span
+class="math inline">\(g_{m+1}\)</span> and <span
+class="math inline">\(g_m\)</span>. then <span
+class="math inline">\((x_n)\)</span> converges. Otherwise, if there’s a
+natural <span class="math inline">\(m\)</span> such that <span
+class="math inline">\(x_n = g_m\)</span> then <span
+class="math inline">\((x_n)\)</span> diverges. It should be intuitive to
+say that <span class="math inline">\(g = \lim g_n\)</span> is <span
+class="math inline">\(k_2\)</span> however I’m actually not sure on how
+to prove that. Therefore, this part case will be split into two
+possibilities: First is if <span class="math inline">\(x_n\)</span> is
+between <span class="math inline">\(k_2\)</span> and <span
+class="math inline">\(g\)</span> including <span
+class="math inline">\(g\)</span> and the second is if <span
+class="math inline">\(x_n\)</span> is between <span
+class="math inline">\(g\)</span> and <span
+class="math inline">\(r\)</span> including <span
+class="math inline">\(r\)</span>.</li>
+<li>If there exists a natural <span class="math inline">\(m, n\)</span>
+such that <span class="math inline">\(x_n = g_m\)</span>, then composing
+<span class="math inline">\(f\)</span> <span
+class="math inline">\(m-1\)</span> times with <span
+class="math inline">\(x_n\)</span> results in <span
+class="math inline">\(x_{n+m-1} = g_1 = r\)</span> meaning <span
+class="math inline">\(f(x_{n+m})\)</span> is undefined since <span
+class="math inline">\(f(r) = \frac{1}{r - r} = \frac{1}{0}\)</span> is
+undefined.</li>
+<li>If there exists a natural <span class="math inline">\(m, n\)</span>
+such that <span class="math inline">\(x_n \in (g_{m+1}, g_m)\)</span>,
+then composing <span class="math inline">\(f\)</span> <span
+class="math inline">\(m-1\)</span> times with <span
+class="math inline">\(x_n\)</span> results in <span
+class="math inline">\(x_{n+m-1} \in (g_2, g_1) = (r - \frac{1}{r},
+r)\)</span> meaning <span class="math inline">\(r - \frac{1}{r} &lt;
+x_{n+m-1} &lt; r\)</span> which implies <span class="math inline">\(r
+&lt; x_{n+m}\)</span> therefore you can fallback into the case where
+<span class="math inline">\(|x_n| &gt; |r|\)</span> with <span
+class="math inline">\(x_n\)</span> and <span
+class="math inline">\(r\)</span> having the same signs.</li>
+<li>If there exists a natural <span class="math inline">\(n\)</span>
+such that <span class="math inline">\(x_n \in (k_2, g]\)</span>. It’s
+clear that <span class="math inline">\(g \leq g_m\)</span> for all
+natural <span class="math inline">\(m\)</span> since in this case, by
+observation 4.1.8., <span class="math inline">\((g_m)\)</span> is
+decreasing. This implies that <span class="math inline">\((k_2, g]
+\subseteq (k_2, g_m]\)</span> meaning <span class="math inline">\(k_2
+&lt; x_n \leq g_m\)</span> for all natural <span
+class="math inline">\(m\)</span>. This means that <span
+class="math inline">\(k_2 &lt; x_{n+1} \leq g_{m-1}\)</span> for all
+natural <span class="math inline">\(m\)</span> excluding <span
+class="math inline">\(1\)</span> which is the exact same as saying that
+<span class="math inline">\(k_2 &lt; x_{n+1} \leq g_m\)</span> for all
+natural <span class="math inline">\(m\)</span>. By the order limit
+theroems, this implies that <span class="math inline">\(k_2 &lt; x_{n+1}
+\leq g\)</span>. By induction, you can conclude that for all natural
+<span class="math inline">\(N\)</span>, <span class="math inline">\(k_2
+&lt; x_{n+N} \leq g\)</span> and so <span
+class="math inline">\((x_n)\)</span> is bounded. Since <span
+class="math inline">\(f(x)\)</span> preserves ineqalities for values of
+<span class="math inline">\(x\)</span> between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(r\)</span> and it is known that <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(g\)</span> is clearly between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(r\)</span> and <span
+class="math inline">\((x_n)\)</span> is always between <span
+class="math inline">\(k_2\)</span> and <span
+class="math inline">\(g\)</span> starting from a certain <span
+class="math inline">\(n\)</span>, then you can say that <span
+class="math inline">\((x_n)\)</span> is monotone. Since it is monotone
+and bounded in this scenario, then it converges. Hurray!</li>
+<li>It will be proven that we have covered all cases of when <span
+class="math inline">\(x_n \in (k_2, r]\)</span>. This means proving that
+<span class="math inline">\((k_2, r] \subseteq \left( \bigcup_{i \in
+\mathbb{N}} [g_{i+1}, g_i] \right) \cup (k_2, g]\)</span>. Well that
+should be obvious anyway. If <span class="math inline">\(k_2 &lt; x_n
+\leq r\)</span>, then either <span class="math inline">\(k_2 &lt; x_n
+\leq g\)</span> or <span class="math inline">\(g &lt; x_n \leq
+r\)</span>. We already explicitly unionized the case of <span
+class="math inline">\(k_2 &lt; x_n \leq g\)</span> so we only need to
+prove that <span class="math inline">\((g, r] \subseteq \bigcup_{i \in
+\mathbb{N}} [g_{i+1}, g_i]\)</span>. Now suppose <span
+class="math inline">\(g &lt; x \leq r\)</span>. By the definition of
+limits, for all <span class="math inline">\(\epsilon &gt; 0\)</span>
+there exists an <span class="math inline">\(m\)</span> such that <span
+class="math inline">\(|g_m - g| &lt; \epsilon\)</span> yet we know that
+in this case <span class="math inline">\((g_m)\)</span> is decreasing
+therefore <span class="math inline">\(g_m \geq g\)</span> for all <span
+class="math inline">\(m\)</span> otherwise it would lead to a
+contradiction. This implies that <span class="math inline">\(g \leq g_m
+&lt; g + \epsilon\)</span> so you can pick <span
+class="math inline">\(\epsilon = x - g\)</span> which would mean that
+there always exists an <span class="math inline">\(m\)</span> such that
+<span class="math inline">\(g \leq g_m &lt; x\)</span>. In that case,
+<span class="math inline">\(m\)</span> also cannot be <span
+class="math inline">\(1\)</span> since otherwise <span
+class="math inline">\(g_1 = r &lt; x\)</span> which is a contradiction
+to the fact that <span class="math inline">\(x\)</span> is supposed to
+be less than or equal to <span class="math inline">\(r\)</span>. Now
+pick the smallest <span class="math inline">\(m\)</span> possible for
+such an <span class="math inline">\(\epsilon\)</span>. This means <span
+class="math inline">\(g_m &lt; x \leq g_{m-1} \leq g_1 = r\)</span>
+since <span class="math inline">\(m\)</span> is the smallest <span
+class="math inline">\(m\)</span> possible. Therefore there exists an
+<span class="math inline">\(m\)</span> such that <span
+class="math inline">\(x \in [g_m, g_{m-1}]\)</span> and so yeah it is in
+the infinite union.</li>
+</ul></li>
+</ul>
+<p>IN CONCLUSION the sequence converges on a most points except for some
+small countably infinite set of points which are points defined by
+applying <span class="math inline">\(f^{-1}\)</span> to <span
+class="math inline">\(r\)</span> an arbitrary amount of times.</p>
+<p>Now you can combine this with <a
+href="./specific-monotone-sequences-exact-limit.html">specific monotone
+sequences exact limit</a> to know that <span
+class="math inline">\(k_1\)</span> and <span
+class="math inline">\(k_2\)</span> are actually limit points of all such
+sequences which converges. Because I’m lazy, I will only prove the case
+where <span class="math inline">\(r \geq 2\)</span>. The strategy is to
+prove that <span class="math inline">\((x_n)\)</span> is strictly
+increasing in <span class="math inline">\((0, k_1)\)</span> and is
+strictly decreasing in <span class="math inline">\((k_1,
+k_2)\)</span>.</p>
+<ul>
+<li>Suppose <span class="math inline">\(0 &lt; x &lt; k_1\)</span>, then
+we want to prove that <span class="math inline">\(x &lt;
+f(x)\)</span>.<br />
+This is equivalent to proving that <span class="math inline">\(xr - x^2
+- 1 &lt; 0\)</span> which we know by basic properties of quadratics and
+the fact that the second degree coefficient is negative, is satisfied
+for all <span class="math inline">\(x\)</span> that is NOT inbetween
+<span class="math inline">\(k_1\)</span> and <span
+class="math inline">\(k_2\)</span> which is in the range of <span
+class="math inline">\((0, k_1)\)</span>.</li>
+<li>Suppose <span class="math inline">\(k_1 &lt; x &lt; k_2\)</span>,
+then we want to prove that <span class="math inline">\(f(x) &lt;
+x\)</span>.<br />
+This is equivalent to proving that <span class="math inline">\(xr - x^2
+- 1 &gt; 0\)</span> which, again, by basic properties of quadratics and
+the fact that the second degree coefficient is negative, it’s satisfied
+for all <span class="math inline">\(x\)</span> that is inbetween <span
+class="math inline">\(k_1\)</span> and <span
+class="math inline">\(k_2\)</span>.</li>
+<li>Suppose <span class="math inline">\(x \in (0, k_1)\)</span>, we want
+to prove that <span class="math inline">\(f(x) \in (0, k_1)\)</span>. By
+the original statement, we know that <span class="math inline">\(r - x
+\in (r - k_1, r)\)</span> and since <span class="math inline">\(k_1 &lt;
+r\)</span> by observation 4.1.2. then <span class="math inline">\(r -
+k_1, r &gt; 0\)</span> therefore reciprocals flip their inequalities and
+so <span class="math inline">\(\frac{1}{r - x} \in (\frac{1}{r},
+\frac{1}{r - k_1})\)</span> meaning <span class="math inline">\(0 &lt;
+\frac{1}{r - x} &lt; k_1\)</span>.</li>
+<li>Suppose <span class="math inline">\(k_1 &lt; x &lt; k_2\)</span>, we
+want to prove that <span class="math inline">\(k_1 &lt; f(x) &lt;
+k_2\)</span>.<br />
+We know that <span class="math inline">\(k_1, k_2 &lt; r\)</span> by
+observation 4.1.2., therefore it’s true that <span
+class="math inline">\(0 &lt; r - k_1, r - k_2\)</span> meaning <span
+class="math inline">\(r - k_1 &gt; r - x &gt; r - k_2 &gt; 0\)</span>
+therefore reciprocals flip all of the inequalities and so <span
+class="math inline">\(k_1 &lt; \frac{1}{r - x} &lt; k_2\)</span>.</li>
+<li>Suppose <span class="math inline">\(x_1 &lt; x_2 \in (0,
+k_2)\)</span>, we want to prove that <span class="math inline">\(f(x_1)
+&lt; f(x_2)\)</span> (the function is increasing)<br />
+It’s known that <span class="math inline">\(k_2 &lt; r\)</span> by
+observation 4.1.2. therefore it is enough to prove that it’s true for
+all <span class="math inline">\(x_1, x_2 \in (0, r)\)</span> so let’s
+suppose that instead. <span class="math inline">\(0 &lt; x_1 &lt; x_2
+&lt; r\)</span> implies <span class="math inline">\(0 &gt; -x_1 &gt;
+-x_2 &gt; -r\)</span> meaning <span class="math inline">\(r &gt; r - x_1
+&gt; r - x_2 &gt; 0\)</span> implying they are all of the same sign
+meaning reciprocals flip their inequalities and so <span
+class="math inline">\(\frac{1}{r} &lt; f(x_1) &lt; f(x_2) &lt;
+\infty\)</span> and so yes the function is increasing.</li>
+</ul>
+<p>The proposition and lemma in the theorems imply that <span
+class="math inline">\(x_n \in (0, k_2)\)</span> means <span
+class="math inline">\(\lim (x_n) = k_1\)</span>. This is because <span
+class="math inline">\(f(x) &gt; x\)</span> when <span
+class="math inline">\(x \in (0, k_1)\)</span> and so it converges to
+<span class="math inline">\(k_1\)</span> by the main proposition, and
+then <span class="math inline">\(f(x) &lt; x\)</span> when <span
+class="math inline">\(x \in (k_1, k_2)\)</span> and so it converges to
+<span class="math inline">\(k_1\)</span> as well by the corollary of the
+proposition. Obviously <span class="math inline">\(f\)</span> and <span
+class="math inline">\((x_n)\)</span> also satisfies all of the other
+conditions needed for both of those propositions to apply, I was simply
+stating the main reasons which decides whether to use the main
+proposition or the corollary when I said that <span
+class="math inline">\(f(x) &gt; x\)</span> or <span
+class="math inline">\(f(x) &lt; x\)</span>.</p>
+<p>We know that if <span class="math inline">\((x_n)\)</span> is
+convergent and <span class="math inline">\(x_1 \notin (0, k_2)\)</span>,
+it eventually goes to <span class="math inline">\((0, k_2)\)</span>
+unless it’s originally <span class="math inline">\(k_2\)</span>.
+Therefore, unless <span class="math inline">\(x_1 = k_2\)</span>, then
+the sequence always converges to <span
+class="math inline">\(k_1\)</span>.</p>
+</body>
+</html>

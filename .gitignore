@@ -1,2 +1,5 @@
 test.py
 test2.py
+.tmp.drive*
+*homework*
+*.md

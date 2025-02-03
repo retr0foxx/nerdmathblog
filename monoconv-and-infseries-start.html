@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebraic and Order Limit Theorems Exercises</title>
+    <script>
+        MathJax = {
+            loader: {
+            load: ['[custom]/xypic.js'],
+            paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+          },
+          tex: {
+            packages: ['base', 'ams', 'xypic'],
+            tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          }
+        };
+      </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <template>
+        <div class="dropdown-box">
+            <h3 class="dropdown-box-title">
+            </h3>
+            <div class="dropdown-box-content"></div>
+        </div>
+    </template>
+    <template>
+        <div class="spoiler">
+            <div class="spoiler-head"></div>
+        </div>
+    </template>
+
+    <script>
+        let important_statements = new Map();
+        function add_important_statements()
+        {
+            let impstats = document.getElementsByClassName("important-statement");
+            for (let i = 0; i < impstats.length; ++i)
+        }
+    </script>
+
+    <style>
+        body {
+            font-size: 20px; /* Adjust the font size to your preference */
+        }
+        img {
+            max-width: 100%;
+        }
+        .MathJax, .overflow-hidden {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        ul {
+            padding-left: 1em;
+        }
+        ol {
+            padding-left: 2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>The Monotone Convergence Theorem and a First Look at Infinite Series.</h1>
+        <b>Definition 2.4.1.</b> A sequence $(a_n)$ is <i>increasing</i> if $a_n \leq a_{n+1}$ for all $n \in \mathbb{N}$ and 
+        <i>decreasing</i> if $a_n \geq a_{n + 1}$ for all $n \in \mathbb{N}. A sequence is <i>monotone</i> if it is either increasing or decreasing. <br>
+        <br>
+        <b>Theorem 2.4.2 (Monotone Convergence Theorem).</b> <i>If a sequence is monotone and bounded, then it converges.</i> <br>
+        Proof: <br>
+        Hmm.. The first way I can think of proving this is using a binary search combined with the nested interval property.
+        The strategy is to take a closed interval which contains the entire sequence, 
+        and have an inductive process which divides the current set into two closed intervals (so it has to intersect in the middle and that's fine). Atleast one of the sets must contain an infinite number of terms.
+        After that, you would prove that only one of the set contain an infinite number of terms if there aren't an infinite number of terms in the intersection of the two sets.
+        This is done by taking the smallest term on the closed interval that is in the direction that the sequence moves in (the right set if increasing, left if decreasing)
+        and since every term in the other set is greater/less than it, then on the other set, there must only be the terms before the chosen term (since anything after has the opposite less/greater than relation) which means there are only finitely many terms.
+        If there are an infinite number of the terms in the intersection, then you can do something similar, but now with just the intersection set and the terms on the side in the opposite direction of the direction that the sequence moves in.
+        Get the smallest term in the intersection, then conclude that there are only finite amount of terms not in the intersection.
+        Then prove that there are no terms after it therefore that intersection is the limit. You can say that this case is a possible end of the inductive process.
+        In the other case where this never happens, the nested interval property will be used to get the limit after the inductive process.
+        Lemma: If a set contains an infinite number of terms, then it's compliment doesn't.
+        <br>
+        <br>
+        And that is when my brain finally went onto the idea of using supremum and infimums. Why do I keep overcomplicating things.
+        If it is increasing, then you can take the supremum of the set containing all terms in the sequence. By definition, 
+        any $x$ less than the supremum satisfy there exists an element in the set, which is equivalent to a term in the sequence,
+        such that it is higher than $x$. Since every term after that is even higher then by the order limit theorem the sequence converges to something greater than $x$
+        and this is true for any $x$ less than the supremum. The value is also less than or equal to the supremum because every term is less than the supremum and so order limit theorem implies that.
+        <ul>
+            <li>Define $X = \{ x_n | n \in \mathbb{N} \}$</li>
+            <li>If $(x_n)$ is increasing
+                <ul>
+                    <li>Set $s = \sup X$</li>
+                    <li>Take any $\epsilon > 0$</li>
+                    <li>$s - \epsilon < s$ therefore there exists an $N$ such that $s - \epsilon < x_N$</li>
+                    <li>For all $n \geq N$, $x_n \geq x_N$ and since $x_n \in X$, $x_n \leq s$</li>
+                    <li>Since $s - \epsilon < x_N \leq x_n \leq s < s + \epsilon$ then $|s - x_n| < \epsilon$</li>
+                    <li>It can be concluded that the sequence converges to $s$</li>
+                </ul>
+            </li>
+            <li>If $(x_n)$ is decreasing... I don't think it's necessary to cover this since it can just be a copy paste of the previous part just with the supremum and signs changed</li>
+        </ul>
+        <br><br>
+        <b>Definition 2.4.3 (Convergence of a Series).</b> Let $(b_n)$ be a sequence. An <i>infinite series</i> is a formal expression of the form <br>
+        $$\sum_{n=1}^{\infty} b_n = b_1 + b_2 + b_3 + b_4 + b_5 + ...$$
+        We define the corresponding sequence of partial sums $(s_m)$ by
+        $$s_m = b_1 + b_2 + b_3 + ... + b_m$$
+        and say that the series $\sum_{n=1}^{\infty} b_n$ converges to $B$ if the sequence $(s_m)$ converges to $B$. In this case we write $\sum_{n=1}^{\infty} b_n = B$.
+        <br><br>
+        <b>Theorem 2.4.6 (Cauchy Condensation Test).</b> Suppose $(b_n)$ is decreasing and satisfies $b_n \geq 0$ for all $n \in \mathbb{N}$. Then, the series $\sum_{n=1}^{\infty}$ converges if and only if the series
+        $$\sum_{n=0}^{\infty} 2^n b_{2^n} = b_1 + 2b_2 + 4b_4 + 8b_8 + 16b_16 + ...$$
+        converges.
+        <br>
+        I am EXTREMELY struggling to prove this. 
+        Proving it in one direction where the "cauchy sum" converges implies the original sum converges is simple.
+        We're jumping terms yet on each term we are multiplying it literally just enough to replace the missing terms such that the replacement is bigger.
+        Therefore the cauchy sum is greater than the original sum and so the original sum converges.
+        The other way, however, is very hard for me to do. 
+        <br> <br>
+        If a sequence is strictly decreasing, then it's sum converges if and only if the supremum of every ratio between two terms is less than one.
+        That is something that feels intuitive to me. What I'm thinking of next is to find a condition of convergence for a similar scenario but the sequence is decreasing but not strictly.
+        The condition I'm thinking of should have something to do with, for each group of terms where the ratio between them is one, how many terms are in that group?
+        How many terms can all groups which satisfy that condition have such that the sum of the sequence still converges?
+        If I decompose any of such sequences into the biggest subsequence such that the ratio between any two terms is less than one, 
+        and have another condition which is that the decomposed sequence must have a ratio supremum less than one, then 
+        what is a nice intuitive condition of convergence if we individually add a scalar to each term? This is a clearly equivalent question.
+        My intuition simply based on how exponentials are related to sums so far tells me that it has to be exponential.
+        Clearly a constant scalar is not good enough because it would be equivalent to multiplying the final value.
+        What about a polynomial? One identifying property of them is that if you keep taking the "nth degree" differences, an analog to nth derivative for discrete sequences, then it will eventually be zero after doing it a finite amount of times and if you construct a sequence for each nth degree then it will be a polynomial of degree original degree minus n.
+        Additively increasing scalars is just a special case of polynomially increasing scalars so we should focus on that first. 
+        Choosing the scalars to be additively increasing by one, it is clear that it's equivalent to having the original sum, added byitself but without the first term, again and again where on the nth step it is added by itself but without the first to the nth term.
+        Does this sum converge or diverge? Thinking of the summed sequences as a matrix where on each nth row it contains the sequence without the first to the nth terms, you can add up along the diagonals and see that the nth diagonal is the original sum times r to the n which is just another geometric series with the starting term being the original sum.
+        So yes, it converges in that case. This strengthens the idea in my mind that a polynoimally increasing one also converges.
+        I want to just assume that it's true in general for polynomial and so that, in my mind, leaves us with just exponential.
+        Exponential also doesn't imply divergence because the original sequence may be exponentially decreasing with a ratio of, say, one onehundreth and the exponential scalar has a ratio of only two.
+        But it feels like now we know that it's probably, most likely, at least exponential it has to be.
+        What was the point of all of this? I don't know but I did end up thinking of many interesting things because of it.
+        Now I'm interested in having the intuition for a proof that a polynomially increasing scalars for a convergent sequence as I've described before always converges as well.
+        Actually yeah you can easily use the ratio test for that, but I did think about an unnecessarily really complicated proof of it which involves combinatorics and "nested sums" (like a second degree nested sum with m terms is (1) + (1 + 2) + (1 + 2 + 3) + ... + (1 + 2 + 3 + ... + m)).
+        Basically, such a nested sum with degree d as a function of the amount of terms is the same as a polynomial of degree d + 1.
+        The plan is to use combinatorics' k choose n combination stuff to prove that.
+        All of that means you can make any nth degree polynomial with, like, about n nested sums. 
+        Then, by taking advantage of nested sums being nested, you can prove that for each nested sum of degree d,
+        a convergent geometric series term-wise multiplied by such a nested sum converges.
+        This is done by expanding the nested sum in each term in the extended geometric series,
+        and notice that if you visualize it as an infinite top-right triangle matrix summation,
+        you can sum along the diagonals and notice each nth diagonal is the sum of the first diagonal multiplied by the geometric sum's ratio to the n minus one.
+        But the first diagonal itself is a convergent geometric sum multiplied by a nested sum but now with degree d - 1.
+        It is known that if that converges, then the outer sum converges. But you can keep expanding these nested-sum-geometric-sum series until it's just a geometric series
+        which means the bottom converges, but the one right above it also converges, then the one above as well since each is just a geometric series and so on. 
+        So the final thing converges.
+        <br><br>
+        Anyway that's enough brainstorming. All of it ended up being irrelavant since I just managed to think about a really simple way of proving this.
+        <!-- If the "cauchy sum" diverges, then it's UNBOUNDED and the corresponding sequence which represents the series is always increasing.
+        The strategy is to substract the cauchy sum by $b_1$, then divide by two, then add by $b_2$ which makes the sum be equal to:
+        $$
+        2b_2 \sum_{i=1}^{\infty} 2^{i}b_{2^{i + 1}} = 2b_2 + 2b_4 + 4b_8 + ... 
+        $$
+        Up until the first term, it misses $b_1$ but it tries to make up for it with $b_2$ which is less than $b_1$.
+        Then between the first and second term, it misses $b_3$ yet makes up for it with $b_4$ which again is less than $b_3$.
+        Then between the third and second term, it misses $b_5, b_6, b_7$ yet it makes up for it with $b_8$ which is less than each of those.
+        This is just saying that, if $(c_n)$ is the corresponding sequence for the cauchy sum, then $c_n < s_{2^{n + 1}}$.
+
+        Since it is unbounded, you can take any $\epsilon > 0$ and know that there exists an $N \in \mathbb{N}$ such that for all $n \geq N$, $|c_n| \geq |\epsilon|$.
+        Which also means $|s_{2^{n + 1}}| \geq \epsilon$ and so the original sum is also unbounded.
+        Anyway I'll do all of the proof formally in the next section.
+        <br><br>
+        Define $c_n = \sum_{i=1}^{n} 2^{i - 1} b_{2^{i - 1}}$ therefore the Cauchy sum from earlier is equal to the limit of that.
+        This also means $c_n = c_{n-1} + 2^{n - 1} b_{2^{n - 1}}$ and $c_1 = b_1$.
+        Take any natural $N$ and then the $2^{N-1}$th term of $b$. It is known that, for all natural $n$, $b_{2^{N-1} + n - 1} \leq b_{2^{N - 1}}$.
+        Therefore, $\sum_{i=1}^{2^{N-1}} b_{2^{N-1} + i - 1} \leq 2^{N-1} b_{2^{N - 1}}$.
+        It is known that $c_1 = b_1 \geq s_1 = \sum_{i=1}^{1} b_i$.
+        Suppose, for any natural $n$, $c_n \geq s_{2^n - 1}$, then
+        $c_{n+1} = c_n + 2^{n} b_{2^{n}} \geq s_{2^n - 1} + \sum_{i=1}^{2^{n}} b_{2^{n} + i - 1}$.
+        The expression on the right is equivalent to $\sum_{i=1}^{2^{n} - 1} + \sum_{i=2^{n}}^{2^{n+1} - 1} b_{i}$
+        which may be combined to get $\sum_{i=1}^{2^{n + 1} - 1} b_i = s_{2^{n + 1} - 1}$.
+        Therefore, $c_{n+1} \geq s_{2^{n + 1} - 1}$ and by induction you can conclude that, for any $n$,
+        $c_{n+1} \geq s_{2^{n + 1} - 1}$.
+        <br> -->
+        <ul>
+            <li>Define $c_n = \sum_{i=1}^{n} 2^{i - 1} b_{2^{i - 1}}$ <br>
+                Therefore $\lim c_n = \sum_{i=1}^{\infty} 2^{i - 1} b_{2^{i - 1}}$ which is equivalent to the Cauchy sum <br>
+                Also that $c_1 = b_1$ and $c_n = c_{n-1} + 2^{n - 1} b_{2^{n - 1}}$ is an equivalent definition of $(c_n)$.
+            </li>
+            <li>It is known that for all natural $N$ and $n$, $b_{2^{N-1} + n - 1} \leq b_{2^{N - 1}}$</li>
+            <li>This implies $\sum_{i=1}^{2^{N-1}} b_{2^{N-1} + i - 1} \leq 2^{N-1} b_{2^{N - 1}}$
+                because the sum contains $2^{N-1}$ terms and every term is less than or equal to $b_{2^{N-1}}$
+            </li>
+            <li>Induction for $c_{n} \geq s_{2^{n} - 1}$ for all natural $n$
+                <ul>
+                    <li>For $n = 1$: $c_1 = b_1 \geq s_1 = \sum_{i=1}^{1} b_i$</li>
+                    <li>For any $n \in \mathbb{N}$: Suppose, for any natural $n$, $c_n \geq s_{2^n - 1}$, then
+                        $$
+                        \begin {align*}
+                        c_{n+1} = c_n + 2^{n} b_{2^{n}} & \geq s_{2^n - 1} + \sum_{i=1}^{2^{n}} b_{2^{n} + i - 1} \\
+                        & = \sum_{i=1}^{2^{n} - 1} b_i + \sum_{i=2^{n}}^{2^{n+1} - 1} b_{i} & \text{ expansion of $s_{2^{n} - 1}$ and change of variables for the right sum} \\
+                        & = \sum_{i=1}^{2^{n+1} - 1} b_i & \text{ the sums are combined} \\
+                        &= s_{2^{n + 1} - 1}
+                        \end {align*}
+                        $$
+                        therefore $c_{n+1} \geq s_{2^{n + 1} - 1}$
+                    </li>
+                    <li>By induction, it can be concluded that, for all natural $n$, $c_{n} \geq s_{2^n - 1}$</li>
+                </ul>
+            </li>
+            <li>Since $(c_n)$ converges, it is bounded and so there exists an $M > 0$ such that, for every natural $n$, $|c_n| < M$</li>
+            <li>It is clear that $(s_n)$ is increasing. Take any natural $n$, $2^{n} - 1 \geq n$ and so $c_n \geq s_{2^{n} - 1} \geq s_n$</li>
+            <li>Therefore $M \geq |c_n| \geq |s_n|$ meaning $s_n$ is also bounded.</li>
+            <li>By the MCT, since $s_n$ is bounded and monotone, then it is convergent.</li>
+        </ul>
+        <!-- The strategy for the next part is that it is known that if the Cauchy sum diverges, then it is unbounded by the MCT.
+        Then create a slightly modified version of the Cauchy sum such that for any nth term in the modified sum, it is easy to find a corresponding term in the sequence which represents the original series
+        that is less than that nth term. The change in the modified version is also small enough for it to be easy to prove that it is also unbounded.
+        This would imply that the original series is also unbounded. -->
+        The strategy for the next part is that it is known that if the Cauchy sum diverges, then it is unbounded by the MCT.
+        Then you can show that, if you take the original sum multiplied by two, then for each partial sum of the cauchy sum, you can
+        easily find a partial sum for the original sum times two such that the cauchy partial sum is less than it.
+        This means that the original sum is also unbounded.
+        <ul>
+            <li>Suppose $(c_n)$ diverges therefore the negation of the MCT implies that $(c_n)$ is either unbounded or not monotone.
+                Since it is monotone (increasing) then it is known that <i>$(c_n)$ must be unbounded.</i>
+            </li>
+            <li>
+                For any $n$, $c_n \leq 2s_{2^{n - 1}}$:
+                <ul>
+                    <li>For $n = 1$: $c_1 = b_1 \leq 2s_1 = 2b_1$</li>
+                    <li>For any $n \in \mathbb{N}$: If $c_n \leq 2s_{2^{n-1}}$:
+                        <ul>
+                            <li>It is known that, for all $n \geq 2^{N-1} + 1$, $b_n \leq b_{2^{N-1} + 1}$</li>
+                            <li>Since $c_{n+1} = c_n + 2^{n} b_{2^n}$ and $s_{2^{n}} = s_{2^{n-1}} + \sum_{i=2^{n-1} + 1}^{2^n} b_i$,
+                                it is enough to show that $2^{n} b_{2^n} \leq 2 \sum_{i=2^{n-1} + 1}^{2^n} b_i$
+                            </li>
+                            <li>The sum for $s_{2^{n}}$ has $2^{n-1}$ terms, and every term inside of the sum is geq than $b_{2^{n}}$</li>
+                            <li>Therefore $\sum_{i=2^{n-1} + 1}^{2^n} b_i \geq 2^{n-1} b_{2^{n}}$</li>
+                            <li>It can be concluded that $2 \sum_{i=2^{n-1} + 1}^{2^n} b_i \geq 2^n b_{2^{n}}$</li>
+                            <li>Therefore $c_{n+1} \leq 2s_{2^n}$</li>
+                        </ul>
+                    </li>
+                    <li>By induction, $c_n \leq 2s_{2^{n-1}}$ for all natural $n$</li>
+                </ul>
+            </li>
+            <li>Pick any $M > 0$, since $c_n$ is unbounded there exists an $n$ such that $|c_n| \geq 2M$ therefore $|s_{2^{n-1}}| \geq M$ and so $(s_n)$ is also unbounded.</li>
+        </ul>
+        <br><br>
+        <b>Corollary 2.4.7.</b> The series $\sum_{n=1}^{\infty} \frac{1}{n^p}$ converges if and only if $p > 1$. <br>
+        My initial intuition about this was that this is false. I thought about something similar which is that
+        such a series always diverges before reading this corollary. My logic was that if a sequence is decreasing
+        and is always in $[0, 1)$, then it's sum will always diverge if the ratio between two terms is always increasing and the supremum of every ratio between two terms is one.
+        This should be the case for such a series but apparently it may converge.
+        The reason I thought that was intuitive was beacuse, if that's the case, then for any $x \in (0, 1)$ there's a starting term $N$ such that the ratio between two terms for every term after it is greater than $x$.
+        So you can take, say, any $k \in \mathbb{N}$ and then a ratio of $\frac{10^{k} - 1}{10^k}$ and so by the geometric series sum formula,
+        it would converge to $a \cdot 10^k$ where $a$ is about the $N$th term.
+        However I guess I did forget to think about the fact that the $N$th term also always gets smaller...
+        The book says that this corollary will be proved later on an exercise in section 2.7.
+        <br><br>
+        <b>Exercise 2.4.1.</b> (a) Prove that the sequence defined by $x_1 = 3$ and
+        $$x_{n+1} = \frac{1}{4 - x_n}$$ converges. <br>
+        (b) Now that we know $\lim x_n$ exists, explain why $\lim x_{n+1}$ must also exist and equal the same value. <br>
+        (c) 
+        
+        <br><br>
+        <!-- This seems like a good opportunity to generally talk about recursive sequences defined as
+        $x_{n+1} = \frac{1}{r - x_n}$.
+        Suppose $0 < x_n < r - \frac{1}{r}$, then $r > r - x_n > \frac{1}{r}$, then
+        $\frac{1}{r} < \frac{1}{r - x_n} < r$ which then doesn't satisfy the previous condition anymore
+        unless the original upper bound gets changed to $r - \frac{1}{r - \frac{1}{r}}$. But then even with that, after two iterations,
+        it doesn't satisfy the original equation either. What if you define $x = r - \frac{1}{x}$, would that work as an upper bound?
+        It feels like it should. Let's say we can be certain that $x = r - \frac{1}{x}$ exists for all $|r| > 2$ based on
+        the fact that solving it using the quadratic formula yields an expression that is real if and only if $|r| > 2$. 
+        Then does that bound really work...?
+        $0 < x_n < r - \frac{1}{x}$ therefore $r > r - x_n > \frac{1}{x}$ therefore $\frac{1}{r} < \frac{1}{r - x_n} < r - \frac{1}{x}$
+        which still satisfy the original inequality.
+        Maybe it's even better if you set the bounds to be the two possible $x$ values.
+        A natural question which comes from there is what happens when $x$ is outside of those bounds.
+        Suppose $x_n > r$, then the next term is negative, making the term after that be positive but less than $\frac{1}{r}$.
+        Therefore, anything negative and anything greater than $r$ ends up being in $(0, \frac{1}{r})$
+        which satisfy the nice-behaved condition from earlier.
+        All that is left is what is between the greatest $x$ and $r$. -->
+        For (a),
+        This seems like a good opportunity to generally talk about recursive sequences defined as
+        $x_{n+1} = \frac{1}{r - x_n}$ in general. I have put a complete investigation of it in <a href="./recip-r-x-recurseq-convergence.html">here</a>.
+        It can be used as a complete proof that the sequence in the book converges to the smallest solution of $\frac{4 - 2\sqrt{3}}{2}$.
+        <br>
+        <br>
+        (a) Anyway, in the end I'll be reproving this without all of the things from that article even though I already wasted weeks writing it.
+        It's clear that the sequence can be defined recursively as $x_1 = \sqrt{2}$ and $x_{n+1} = \sqrt{2 + x_n}$.
+        This sequence is strictly increasing because clearly $x_1 = \sqrt{2} < \sqrt{2 + \sqrt{2}} = x_2$
+        and when $x_1 < x_2$ then $2 + x_1 < 2 + x_2$ and so $x_2 < x_3$. 
+        (b) Suppose $a = \lim x_{n}$
+        therefore for all $\epsilon > 0$ there exists an $N$ such that for all $n \geq N$, $|x_{n} - a| < \epsilon$
+        which also means that $|x_{n+1} - a| < \epsilon$ since $n+1 > n > N$ which implies that $a = \lim x_{n+1}$.
+        (c) Okay, well, 
+        $$
+        \begin{align*}
+        \lim x_n = \lim \frac{2}{4 - x_n}
+        \end{align*}
+        $$
+        
+        <br>
+        <b>Exercise 2.4.2.</b> (a) Consider the recursively defined sequence $y_1 = 1$.
+        $$y_{n+1} = 3 - y_n$$
+        and set $y = \lim y_n$. Because $(y_n)$ and $(y_{n+1})$ have the same limit,
+        taking the limit across the recursive equation gives $y = 3 - y$. Solving for $y$, we conclude $\lim y_n = 3/2$. <br>
+        What is wrong with this argument? <br>
+        (b) This time set $y_1 = 1$ and $y_{n+1} = 3 - \frac{1}{y_n}$.
+        Can the strategy in (a) be applied to compute the limit of this sequence? <br>
+
+        (a) The mistake is that the proof assumes that $\lim (y_n)$ exists when, in reality, it doesn't. 
+        It's clear that the sequence will have the pattern $(1, 2, 1, 2, 1, 2, \dots)$. <br>
+        (b) Yes because we can prove that the sequence is monotone and bounded meaning it converges and so
+        $\lim y_n$ exists. 
+
+        <b>Exercise 2.4.6 (Arithmetic-Geometric Mean).</b>
+        (a) Explain why $\sqrt{xy} \leq (x + y)/2$ for any two positive real numbers $x$ and $y$.
+        (The geometric mean is always less than the arithmetic mean.)
+        (b) Now let $0 \leq x_1 \leq y_1$ and define
+        $$x_{n+1} = \sqrt{x_n y_n} \quad \text{and} \quad y_{n+1} = \frac{x_n + y_n}{2}$$
+        Show $\lim x_n$ and $\lim y_n$ both exist and are equal.
+        <br><br>
+        (a) Start from $x_1 = y_1$ which means $(x_1 + y_1)/2 = \sqrt{x_1 y_1} = x_1 = y_1$.
+        Now suppose $2x_1 \geq x_2 > x_1$ and $x_2 + y_2 = x_1 + y_1$ which implies that $x_2, y_2$'s' arithmetic mean is the same as $x_1, y_1$'s arithmetic mean.
+        This implies that $y_2 = x_1 + y_1 - x_2 = 2x_1 - x_2 \leq 2x_1$ which means $2x_1 \geq y_2 > 0$.
+        The fact that $y_2$ is positive comes from the fact that $2x_1 \geq x_2 > x_1 > 0$.
+        Since $x_2 > x_1$, then $x_1 = y_1 > y_2$. 
+        <br>
+        Next, it will be proven that $x_2y_2 < x_1y_1$.
+        $x_2y_2 = x_1y_1 + (x_2 - x_1)y_2 - (y_1 - y_2)x_1$.
+        This comes from the following awfully mouse-drawn image: <br>
+        <img src="images/monoconv-and-infseries-start.html"> <br>
+        Now we only need to prove that $(x_2 - x_1)y_2 < (y_1 - y_2)x_1$.
+        It is known from earlier that $y_2 = 2y_1 - x_2$ therefore $y_1 - y_2 = x_2 - y_1 = x_2 - x_1$.
+        Since $y_2 < x_1$ is also known, then $(x_2 - x_1)y_2 < (x_2 - x_1)x_1 = (y_1 - y_2)x_1$.
+        <br>
+        Therefore, you can conclude that $x_2y_2 < x_1y_1$.
+        You can also apply the same logic for if you pick any $x_2, y_2$ such that $y_2 > y_1$ and $x_2 + y_2 = x_1 + y_1$
+        because of the symmetry of the expression.
+        <br>
+        This implies that the geometric mean is always less than the arithmetic mean because,
+        for any choice of $x, y$, you can pick $p = \frac{x + y}{2}$ and know that
+        $x, y$ satisfy either $x < p$ or $y < p$ with the arithmetic mean of $x, y$ and $p, p$ being the same,
+        therefore $\sqrt{xy} < \sqrt{p^2} = \frac{x + y}{2}$. You can do that if $x \neq y$ but if that's not the case then the condition is already satisfied anyway.
+        <br><br>
+        (b) By the AM-GM inequality and induction, it's clear that $0 \leq x_n \leq y_n$ is true for all natural $n$.
+        It is also true that both of them is monotone. Since $x_n \leq y_n$, then $y_{n+1} = \frac{x_n + y_n}{2} \leq y_n$.
+        You can also use similar logic for $x_{n+1}$. Since $x_n \leq y_n$, then $x_n^2 \leq x_ny_n$ which implies $x_n \leq x_{n+1}$.
+        $x_n$ is bounded above by $y_n$ yet $y_n$ is bounded above by $y_1$ and both of the sequences are bounded below by zero therefore both $(y_n)$ and $(x_n)$ is bounded.
+        Since they are monotone and bounded, then they are convergent based on the MCT.
+        Now to prove that they converge to the same limit. First define $l$ to be the limit of $(y_n)$.
+        Take any $\epsilon > 0$ and take an $N \in \mathbb{N}$ such that for all $n \geq N$, $|y_{n} - l| < \epsilon/3$.
+        This means $|\frac{x_n + y_n}{2} - l| < \epsilon/3$ and so $|x_n + y_n - 2l| < \epsilon 2/3$ therefore $\epsilon 2/3 > |x_n + y_n - 2l| > |x_n - l| - |y_n - l| > |x_n - l| - \epsilon/3$
+        by the triangle inequality and by the fact that $|y_n - l| < \epsilon/3$.
+        This means $|x_n - l| - \epsilon/3 < \epsilon 2/3$ and so $|x_n - l| < \epsilon$.
+        Alternatively, you can also do it this way: <br>
+        <img src="images/monoconv-and-infseries-start-2.html"> <br>
+        The picture above essentially tries to prove that $\lim (y_n - x_n) = 0$ which, by the algebraic order limit theorems, imply that $\lim y_n = \lim x_n$.
+        First, since $(y_n)$ converges, you can take an $\epsilon > 0$ and take an $N \in \mathbb{N}$ such that for all $n \geq N$, $|y_n - l| < \frac{\epsilon}{4}$.
+        This means that $|y_{n+1} - l| < \frac{\epsilon}{4}$ is also true and is also shown in the image.
+        It is also known that $|y_{n+1} - y_n| = |\frac{x_n}{2} + \frac{y_n}{2} - y_n| = \frac{|x_n - y_n|}{2}$.
+        The image uses intuition to show that that expression is less than or equal to half of $\epsilon$ which means the difference between $x_n$ and $y_n$ is less than $\epsilon$.
+        You can also describe it more formally by using the triangle inequality. Since $|y_{n+1} - y_n| = |(y_{n+1} - l) - (y_n - l)| < |y_{n+1} - l| + |y_n - l| < \frac{\epsilon}{2}$.
+        Then it is also known that $|y_{n+1} - y_n| = \frac{|x_n - y_n|}{2}$ which implies that $|x_n - y_n| < \epsilon$.
+        <br><br>
+
+        <br><br>
+        <b>Exercise 2.4.7 (Limit Superior).</b> <br>
+        (a) Prove that the sequence defined by $y_n = \sup \{ a_k | k \geq n \}$ converges. <br>
+        (b) The <i>limit superior</i> of $(a_n)$, or $\lim \sup a_n$, is defined by $$\lim \sup a_n = \lim y_n$$
+        where $y_n$ is the sequence from part (a) of this exercise. 
+        Provide a reasonable definition for $\lim \inf a_n$ and briefly explain why it always exists for any bounded sequence. <br>
+        (c) Prove that $\lim \inf a_n \leq \lim \sup a_n$ for every bounded sequence, and give an example of a sequence for which the inequality is strict. <br>
+        (d) Show that $\lim \inf a_n = \lim \sup a_n$ if and only if $\lim a_n$ exist. In this case, all three share the same value.
+        <br><br>
+        (a) Generally, $A \subseteq B$ implies $\sup A \leq \sup B$. This is because $a \in A$ implies $a \in B$ and so $a \leq \sup B$ meaning $\sup B$ is an upper bound of $A$ therefore, by definition ($\sup A \leq s$ for all $s$ upper bound of $A$), $\sup A \leq \sup B$.
+        <!-- Clearly, $\{ a_k | k \geq n + 1 \} \subset \{ a_k | k \geq n \}$ therefore $y_{n+1} \leq y_n$ and so $(y_n)$ is decreasing (by induction).
+        Since $(a_n)$ is bounded, then the set $\{ a_k | k \in \mathbb{N} \}$ is bounded below, say by $b$. 
+        $\{ a_k | k \geq n \}$ is a subset of that set for any $n$ meaning it is also bounded below by $b$ and so $y_n \geq b$ for any $n$
+        (because $b \leq p$ for all $p \in \{ a_k | k \geq n \}$ by the definition of infimum yet $y_n \geq p$ by the definition of supremum)
+        therefore $y_n$ is monotonically decreasing and is bounded below by $b$ meaning it is convergent by the MCT. -->
+        <ul>
+            <li>(y_n) is decreasing<br>
+                It is true that $\{ a_k | k \geq n+1 \} \subset \{ a_k | k \geq n \}$
+                therefore $\sup \{ a_k | k \geq n+1 \} \leq \sup \{ a_k | k \geq n \}$
+                meaning $y_{n+1} \leq y_n$ for all $n$</li>
+            <li>(y_n) is bounded below <br>
+                It is true that $(a_n)$ is a bounded sequence, meaning it is bounded below, say by $b$.
+                In that case, $A = \{ a_k | k \in \mathbb{N} \}$ is bounded below by $b$ and since
+                $\{ a_k | k \geq n \}$ for any $n$ is a subset of $A$, then $b$ is also it's lower bound.
+                This implies $\sup \{ a_k | k \geq n \} = y_n \geq b$ for any $n$ meaning it is bounded below.
+            </li>
+            <li>It is convergent by the MCT</li>
+        </ul>
+        $(x_n)$ <br>
+        (b) $\lim \inf a_n = \lim_{n \to \infty} (\inf \{ a_k : k \geq n \})$. In other words, if $y_n = \inf \{ a_k : k \geq n \}$, then $\lim \inf a_n = \lim y_n$.
+        $\lim \inf a_n$ always exists for any bounded sequence $(a_n)$ because, since it is bounded as a sequence, then the set $A = \{ a_k | k \in \mathbb{N} \}$ is bounded above and below.
+        Since $\{ a_k | k \geq n \}$ for any natural $n$ is a subset of $A$, then it is also bounded below by any bound of $A$. This implies $\inf \{ a_k | k \geq n \}$ exists. 
+        In general, $\{ a_k | k \geq n+1 \} \subset \{ a_k | k \geq n \}$ which implies $\inf \{ a_k | k \geq n+1 \} \geq \inf \{ a_k | k \geq n \}$ which is equivalent to saying $y_{n+1} \geq y_n$
+        therefore $(y_n)$ is monotonically increasing. $\{ a_k | k \geq n \}$ is clearly a subset of $A$ meaning if $b$ is an upper bound of $A$, then $b$ is also an upper bound of the set.
+        This implies that that $\inf \{ a_k | k \geq n \} \leq b$ must also be true since an upper bound of a set is always greater than all of it's lower bounds.
+        This means $(y_n)$ is bounded above. Since it is increasing and bounded above, then it converges by the MCT. <br>
+        (c) We will use the order limit theorems, which states that $a_n \leq b_n$ for all $n$ imply $\lim a_n \leq \lim b_n$. <br>
+        <ul>
+            <li>Define $S_n = \{ a_k | k \geq n \}$ and $x_n = \inf S_n$ and $y_n = \sup S_n$</li>
+            <li>$x_n \leq y_n$ for any natural $n$<br>
+            $x_n$ is a lower bound of $S_n$ while $y_n$ is an upper bound of $S_n$. 
+            This implies, for all $s \in \mathbb{S_n}$, it's true that $x_n \leq s$ while $y_n \geq s$
+            therefore $x_n \leq y_n$. 
+            </li>
+            <li>$\lim x_n \leq \lim y_n$ <br>
+            Following the previous point, this is true by the order limit theorems, which states that $x_n \leq y_n$ for all natural $n$ imply $\lim x_n \leq \lim y_n$. 
+            </li>
+            <li>Since $\lim x_n = \lim \inf a_n$ and $\lim y_n = \lim \sup a_n$, then it is true that $\lim \inf a_n \leq \lim \sup a_n$</li>
+        </ul>
+        $a_n = (-1)^n$ is an example of when the inequality is strict. This is because $\{ a_k | k \geq n \}$ for any $n$, contains $1$ and $-1$ which implies
+        it's infimum is always $-1$ and it's supremum is always $1$. <br>
+        (d) 
+        <ul>
+            <li>Define $S_n = \{ a_k | k \geq n \}$</li>
+            <li>(<=) Suppose $a = \lim a_n$ exists <br>
+                Then, for all $\epsilon > 0$, there exists an $n$ where for all $k \geq n$, $|a_k - a| < \epsilon$
+                <ul>
+                    <li>Take any $\epsilon > 0$ and the $n$ where for all $k \geq n$, it follows that $|a_k - a| < \epsilon$</li>
+                    <li>$a - \epsilon$ is a lower bound of $S_k$ and $a + \epsilon$ is an upper bound of $S_k$ <br>
+                        $s \in S_k$ means there exists a $q \geq n$ where $s = a_q$ and since $q \geq n$, then $|a_q - a| < \epsilon$
+                        which means $a - \epsilon < a_q = s < a + \epsilon$. Therefore, for all $s \in S_k$, $a - \epsilon < s$ and $a + \epsilon > s$.
+                    </li>
+                    <li>$a - \epsilon \leq \inf S_k, \sup S_k \leq a + \epsilon$ <br>
+                        Clearly, $\inf S_k \leq \sup S_k$. Since $a - \epsilon$ is a lower bound of $S_k$, then $a - \epsilon \leq \inf S_k$
+                        and since $a + \epsilon$ is an upper bound of $S_k$, then $a + \epsilon \geq \sup S_k$.
+                        Combining all of that, $a - \epsilon \leq \inf S_k \leq \sup S_k \leq a + \epsilon$.
+                    </li>
+                    <li>The previous point implies $|a - \inf (S_k)| < \epsilon$ and $|a - \sup (S_k)| < \epsilon$</li>
+                    <li>All of this implies $\lim_n \inf S_k = a$ and $\lim_n \sup S_k = a$ therefore $\lim \inf a_n = \lim \sup a_n = \lim (a_n)$</li>
+                </ul>
+            </li>
+            <li>(=>) Suppose $\lim \inf a_n = \lim \sup a_n = a$. <br>
+                <ul>
+                    <li>
+                        Take any $\epsilon > 0$, then take the natural $J$ and $K$ where for all $j \geq J, k \geq K$, it's true that $|\inf S_j - a| < \epsilon$ and $|\sup S_k - a| < \epsilon$.
+                    </li>
+                    <li>
+                        Take $N = \max \{ J, K \}$, therefore $|\inf S_N - a| < \epsilon$ and $|\sup S_N - a| < \epsilon$ since $N \geq J,K$
+                    </li>
+                    <li>
+                        for all natural $k \geq N$: $|a_k - a| < \epsilon$ <br>
+                        The previous point implies $a - \epsilon < \inf S_N < a + \epsilon$ and 
+                        $a - \epsilon < \sup S_N < a + \epsilon$.
+                        For all $k \geq N$, $a_k \in S_N$ and since $\inf S_N \leq s$ for all $s \in S_N$, then $\inf S_N \leq a_k$.
+                        You may also use the same logic to conclude that $a_k \leq \sup S_N$.
+                        Both of those points implies that $a - \epsilon < \inf S_N \leq a_k \leq \sup S_N < a + \epsilon$
+                        for all $k \geq N$ which also implies $|a_k - a| < \epsilon$.
+                    </li>
+                    <li>It can be concluded that $(a_n) \to a$</li>
+                </ul>
+            </li>
+        </ul>
+        <br><br>
+        <b>Exercise 2.4.8.</b> For each series, find an explicit formula for the sequence of partial sums
+        and determine if the series converges. <br>
+        (a) $\sum_{n=1}^{\infty} \frac{1}{2^n}$ <br>
+        (b) $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}$ <br>
+        (c) $\sum_{n=1}^{\infty} log(\frac{n + 1}{n})$ <br>
+        <br>
+        (a) $\sum_{n=1}^{N} \frac{1}{2^n} = \frac{1 - \frac{1}{2^{N+1}}}{\frac{1}{2}}$ which is also equal to
+        $2\frac{2^{N+1} - 1}{2^{N+1}}$. It should be clear that the fraction approaches one as $N$ approaches infinity, and so the final
+        infinite sum should converge to 2. <br>
+        (b) $\frac{1}{n(n + 1)}$ <br>
+        Clearly, $\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n + 1}$ which really makes it clear that
+        $\sum_{i=1}^n \frac{1}{i} - \frac{1}{i + 1} = 1 - \frac{1}{n + 1}$ and so it converges to $1$.
+        <br>
+        (c) $\log(\frac{n + 1}{n}) = \log(n + 1) - \log(n)$. 
+        It will be proven that the partial sum up to the $n$th term is equal to $\log(n + 1) - \log(1)$.
+        It's clearly true for $n=1$. When it's true for any $n$,
+        we know that:
+        $$
+        \begin{align*}
+        \sum_{i=1}^{n+1} \log(i + 1) - \log(i) &= \left( \sum_{i=1}^n \log(i + 1) - \log(i) \right) + \log(n + 2) - \log(n + 1) \\
+        &= \log(n + 1) - \log(1) - \log(n + 1) + \log(n + 2) \\
+        &= \log(n + 2) - \log(1)
+        \end{align*}
+        $$
+        and so it's true for $n+1$ as well which means by induction it's true for any $n$.
+        This implies that the sequence diverges since $\log(n)$ diverges as $n$ approaches infinity.
+        <br>
+        <br>
+        <b>Exercise 2.4.9.</b> Complete the proof of Theorem 2.4.6 by showing that if the series $\sum_{n=1}^{\infty} 2^n b_n$ diverges,
+        then so does $\sum_{n=1}^{\infty} b_n$. Example $2.4.5$ may be a useful reference. <br>
+        I already proved this earlier, go back to the upper portions of this page.
+        Though now I will try to restate it in a nicer way. <br>
+        Notice the following
+        $$
+        \underbrace{2 \left( \underbrace{b_{2^{n} + 1} + b_{2^n + 2} + \dots + b_{2^{n+1}}}_{2^n \text{ terms}} \right)}_{2^{n+1} \text{ "terms"}} = 2 \sum_{i=2^n + 1}^{2^{n+1}} b_i
+        $$
+        Each term in the sum above is in the form of $b_k$ where $k \leq 2^{n+1}$ which, since $b_n$ is decreasing, means that each term $b_k$ in the sum satisfies $b_k \geq b_{2^{n+1}}$.
+        When you expand all of the multiplication by two, there are $2^{n+1}$ terms in the form of $b_k$, this implies that the final sum is greater than $2^{n+1} b_{2^{n+1}}$. <br><br>
+        From there, you can use induction to conclude that
+        $$ 2 \sum_{i=1}^{2^{n}} b_i \geq \sum_{i=0}^{n} 2^i b_{2^i} $$
+        for all $n \in \mathbb{N} \cup \{ 0 \}$. For $n = 0$, $2b_1 \geq b_1$ is clearly true.
+        Before going to the general case, notice that we also know the following
+        $$
+        \begin{align}
+        2 \sum_{i=1}^{2^{n+1}} b_i &= 2 \sum_{i=1}^{2^{n}} b_i + 2 \sum_{2^n + 1}^{2^{n+1}} b_i \\
+        \sum_{i=0}^{n+1} 2^i b_{2^i} &= \sum_{i=0}^{n} 2^i b_{2^i} + 2^{n+1} b_{2^{n+1}}
+        \end{align}
+        $$
+        now for the general case for when it's true for some $n$, it will be proven that it's also true for $n+1$.
+        Combining that (the equations from before and the fact that it is true for $n$)
+        with the fact that $2 \sum_{2^n + 1}^{2^{n+1}} b_i \geq 2^{n+1} b_{2^{n+1}}$, we can conclude that
+        $2 \sum_{i=1}^{2^{n+1}} b_i \geq \sum_{i=0}^{n+1} 2_i b_{2^i}$.
+
+        <br><br>
+        <b>Exercise 2.4.10 (Infinite Products).</b> A close relative of infinite series is the <i>infinite product</i>
+        $$\prod_{n=1}^{\infty} b_n = b_1b_2b_3 \ddots$$
+        which is understood in terms of its sequence of partial products
+        $$p_m = \prod_{n=1}^{m} b_n = b_1b_2b_3 \ddots b_m$$
+        Consider the special class of infinite products of the form
+        $$\prod_{n=1}^{\infty} (1 + a_n) = (1 + a_1)(1 + a_2)(1 + a_3)..., \quad \text{where $a_n \geq 0$}$$
+        (a) Find an explicit formula for the sequence of partial products in the case where $a_n = 1/n$ and decide whether the sequence converges.
+        Write out the first few terms in the sequence of partial products in the ccase where $a_n = 1/n^2$ and make a conjecture about the convergence of this sequence. <br>
+        (b) Show, in general, that the sequence of partial products converges if and only if $\sum_{n=1}^{\infty} a_n$ converges. (The inequality $1 + x \leq 3^x$ for positive $x$ will be useful in one direction.) <br>
+        Side story, in the middle of doing this problem, it took me many days to realize the existance of the constraint $a_n \geq 0$. I thought that $a_n$ could be anything and I was so confused about how to prove that. <br>
+        <br>
+        (a) If $a_n = 1/n$, then $1 + a_n = (n+1)/n$ meaning that $\prod_{n=1}^{m} a_n = \prod_{n=1}^{m} \frac{n+1}{n} = \frac{2}{1} \cdot \frac{3}{2} \cdot ... \cdot \frac{m+1}{m} = \frac{m+1!}{m!} = m+1$.
+        Meaning $p_m = m+1$ and so the sequence of partial product converges.
+        The first few terms of the partial product when $a_n = \frac{1}{n^2}$ are: $a_1 = 2$, $a_2 = 2 \cdot \frac{5}{4} = \frac{5}{2}$, $a_5 = \frac{5}{2} \cdot \frac{10}{9} \cdot \frac{17}{16} \cdot \frac{26}{25} ~ 3.069$, $a_{20}  ~ 3.501$, $a_{100} ~ 3.64$, $a_{1000} ~ 3.672$, $a_{1000000} ~ 3.676$.
+        The series seems to increase very slowly and so it probably converges (well we already know for sure that it does anyway.) <br>
+        (b)
+        Before that, notice that the sequence of partial products for $1 + a_n$ and the sequence of partial sums for $a_n$
+        is always positive and increasing. Therefore we only need to prove that both of them are bounded above.
+        The fact that they are both increasing also implies that $\sum_{i=1}^{m} a_i \leq \sum_{i=1}^{\infty}$ for all natural $m$ which will be used later.
+        <ul>
+            <li>(<=) If the infinite sum converges, then the infinite product converges
+                <ul>
+                    <li>Since $a_n$ is positive for all $n$, then $1 + a_n \leq 3^{a_n}$ for all $n$ by the hint given by the book</li>
+                    <li>Therefore, $\prod_{i=1}^{m} (1 + a_i) \leq 3^{\sum_{i=1}^{m} a_i} \leq 3^{\sum_{i=1}^{\infty} a_i}$ for all $m$</li>
+                    <li>Since the infinite sum converges, we can denote the limit of the sum to be $s$ and know that it's a real number, then it is known that $\prod_{i=1}^{m} 1 + a_i \leq 3^s$ for all $m$</li>
+                    <li>Meaning the sequence of partial product is bounded above and so it converges by the MCT</li>
+                </ul>
+            </li>
+            <li>(=>) If the infinite product converges, then the infinite sum converges <br>
+                The strategy here is to prove that for any $n$, there exists a natural $m$ such that $s_n \leq p_m$ which means $s_n \leq p$ for all $n$ since, for any $m$, $p_m \leq p$.
+                <ul>
+                    <li>It is known that if $p_0 = 1$, then $p_n = p_{n-1} (1 + a_n)$ = p_{n-1} + p_{n-1}a_n. <br>
+                        Then it is also known that if $s_1 = a_1$, then $s_n = s_{n-1} + a_n$.
+                    </li>
+                    <li>It is also known that $p_n \geq 1$ for all $n$ therefore $a_ip_n \geq a_i $ for all natural $i, n$</li>
+                    <li>For $n = 1$, it is known that $s_1 = a_1 \leq p_1 = 1 + a_1$ therefore $s_1 \leq p_1$</li>
+                    <li>Now suppose it is true for some $n$ that $s_n \leq p_n$, then $s_n + a_n \leq p_n + p_n a_{n+1}$ by bullet point two
+                        therefore $s_{n+1} \leq p_{n+1}$.
+                    </li>
+                    <li>By induction, you can conclude that $s_n \leq p_n$ for all natural $n$</li>
+                    <li>Since $(p_n)$ is increasing, then $s_n \leq p_m$ for all $m \geq n$ meaning you can use the order limit theorems to conclude that $s_n \leq p$ for all natural $n$</li>
+                    <li>Since $s_n$ is bounded above $p$ and it is always increasing, you can conclude that it converges by the MCT.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

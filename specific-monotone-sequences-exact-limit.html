@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>specific-monotone-sequences-exact-limit</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<blockquote>
+<p><strong>Definition (Open Map).</strong> <span
+class="math inline">\(f: A \to \mathbb{R}\)</span> is an open map if
+<span class="math inline">\(f\)</span> maps open sets in <span
+class="math inline">\(A\)</span> into open sets.</p>
+</blockquote>
+<blockquote>
+<p><strong>Proposition:</strong> Suppose <span class="math inline">\(a
+&lt; b\)</span> is defined with <span class="math inline">\(a \in
+\mathbb{R} \cup \{ -\infty \}, b \in \mathbb{R}\)</span> and <span
+class="math inline">\(f: (a, b) \to \mathbb{R}\)</span> is increasing
+and is an open map and <span class="math inline">\(f((a, b)) \subseteq
+(a, b)\)</span> and <span class="math inline">\(x \in (a, b)\)</span>
+implies <span class="math inline">\(f(x) &gt; x\)</span>, then if <span
+class="math inline">\((x_n)\)</span> is a sequence which starts out in
+<span class="math inline">\((a, b)\)</span> and is recursively defined
+with <span class="math inline">\(f\)</span>, therefore <span
+class="math inline">\(x_1 \in (a, b)\)</span> and <span
+class="math inline">\(x_{n+1} = f(x_n)\)</span>, then <span
+class="math inline">\((x_n) \to b\)</span>.</p>
+</blockquote>
+<p><em>Proof.</em> The strategy is to prove that if <span
+class="math inline">\((x_n) \to x\)</span> with <span
+class="math inline">\(x \neq b\)</span>, then <span
+class="math inline">\(x \in (a, b)\)</span> must be true. Now since
+<span class="math inline">\((x_n)\)</span> is increasing, then it gets
+arbitrarily close to <span class="math inline">\(x\)</span> from the
+left side and since <span class="math inline">\(f\)</span> is
+increasing, it preserves inequalities. This means all of <span
+class="math inline">\((x_n)\)</span> is less than <span
+class="math inline">\(x\)</span> and so everything less than <span
+class="math inline">\(x\)</span> stays being less than <span
+class="math inline">\(x\)</span> under <span
+class="math inline">\(f\)</span>. Since <span
+class="math inline">\(f\)</span> is strictly increasing, then <span
+class="math inline">\(f(x) &gt; x\)</span>. Notice the issue here,
+anything less than <span class="math inline">\(x\)</span> stays less
+than <span class="math inline">\(x\)</span> yet when a value is <span
+class="math inline">\(x\)</span> it suddenly jumps to being greater than
+<span class="math inline">\(x\)</span>. This means any open interval
+which contains <span class="math inline">\(x\)</span> will result in a
+non-open interval under <span class="math inline">\(f\)</span>.</p>
+<ul>
+<li><span class="math inline">\(x_n \in (a, b)\)</span> for all natural
+<span class="math inline">\(n\)</span> and <span
+class="math inline">\((x_n)\)</span> is strictly increasing<br />
+<span class="math inline">\(x_1 \in (a, b)\)</span>, <span
+class="math inline">\(x_{n+1} = f(x_n)\)</span> and <span
+class="math inline">\(f((a, b)) \subseteq (a, b)\)</span> clearly
+implies <span class="math inline">\(x_n \in (a, b)\)</span> for all
+natural <span class="math inline">\(n\)</span>.<br />
+<span class="math inline">\(x &lt; f(x)\)</span> clearly implies <span
+class="math inline">\(x_n &lt; f(x_n) = x_{n+1}\)</span> for all natural
+<span class="math inline">\(n\)</span>.</li>
+<li><span class="math inline">\(a &lt; \lim (x_n) \leq b\)</span><br />
+Since <span class="math inline">\((x_n)\)</span> is increasing, then
+<span class="math inline">\(x_1 \leq x_n\)</span> for all natural <span
+class="math inline">\(n\)</span> and since <span
+class="math inline">\(x_n &lt; b\)</span> is also true for all natural
+<span class="math inline">\(n\)</span>, then by the order limit
+theorems, <span class="math inline">\(x_1 \leq \lim x_n \leq b\)</span>.
+Since <span class="math inline">\(a &lt; x_1\)</span>, then <span
+class="math inline">\(a &lt; \lim x_n \leq b\)</span>.</li>
+<li>Define <span class="math inline">\(x = \lim x_n\)</span> and suppose
+<span class="math inline">\(x \neq b\)</span>, the previous points imply
+that <span class="math inline">\(x \in (a, b)\)</span>.</li>
+<li><span class="math inline">\(x_n &lt; x\)</span> for all natural
+<span class="math inline">\(n\)</span>.<br />
+This is mainly because <span class="math inline">\(f(p) &gt; p\)</span>
+for any <span class="math inline">\(p \in (a, b)\)</span>. I don’t think
+I need to explain much further, but otherwise, if there’s an <span
+class="math inline">\(n\)</span> where <span class="math inline">\(x_n
+\geq x\)</span>, then <span class="math inline">\(f(x_n) = x_{n+1} &gt;
+x_n \geq x\)</span> and so by induction for every <span
+class="math inline">\(m &gt; n\)</span> it follows that <span
+class="math inline">\(x_m &gt; x\)</span> which, by the algebraic limit
+theorems, means that <span class="math inline">\(\lim (x_m) &gt;
+x\)</span>.</li>
+<li>For all <span class="math inline">\(\epsilon &gt; 0\)</span>, there
+exists an <span class="math inline">\(n\)</span> where <span
+class="math inline">\(x - \epsilon &lt; x_n &lt; x\)</span>.<br />
+Since <span class="math inline">\((x_n) \to x\)</span>, then for all
+<span class="math inline">\(\epsilon &gt; 0\)</span> there exists an
+<span class="math inline">\(n\)</span> such that <span
+class="math inline">\(|x_n - x| &lt; \epsilon\)</span> which by the fact
+that <span class="math inline">\(x_n &lt; x\)</span>, then <span
+class="math inline">\(x - \epsilon &lt; x_n &lt; x\)</span>.</li>
+<li>For all <span class="math inline">\(k &lt; x\)</span>, it follows
+that <span class="math inline">\(f(k) &lt; x\)</span><br />
+From the previous bullet point, for all <span class="math inline">\(k
+&lt; x\)</span>, you can pick <span class="math inline">\(\epsilon = x -
+k\)</span> and know that there exists an <span
+class="math inline">\(n\)</span> where <span class="math inline">\(k
+&lt; x_n &lt; x\)</span> therefore, since <span
+class="math inline">\(f\)</span> is increasing, then <span
+class="math inline">\(f(k) &lt; f(x_n) = x_{n+1}\)</span> and since
+<span class="math inline">\(x_{n+1} &lt; x\)</span> then <span
+class="math inline">\(f(k) &lt; x_{n+1} &lt; x\)</span> and so <span
+class="math inline">\(f(k) &lt; x\)</span>.</li>
+<li><span class="math inline">\(f((a, x)) \subseteq (a, x)\)</span> and
+it an open set.<br />
+It is an open set since <span class="math inline">\(f\)</span> is an
+open map. Now, for any <span class="math inline">\(k \in (a,
+x)\)</span>, we know that <span class="math inline">\(f(k) &lt;
+x\)</span> and since <span class="math inline">\(f((a, b)) \subseteq (a,
+b)\)</span> in our definitions, then <span class="math inline">\(f(k)
+\in (a, x)\)</span>.</li>
+<li><span class="math inline">\(f([x, b)) \subseteq [f(x), b)\)</span>
+and it is not an open set.<br />
+Anything in <span class="math inline">\((x, b)\)</span> is greater than
+<span class="math inline">\(x\)</span> and since <span
+class="math inline">\(f\)</span> is increasing then <span
+class="math inline">\(k \in (x, b)\)</span> imply <span
+class="math inline">\(f(k) &gt; f(x)\)</span> therefore <span
+class="math inline">\(f((x, b)) \subseteq (f(x), b)\)</span>. Simply
+unionize <span class="math inline">\(x\)</span> into the input and <span
+class="math inline">\(f(x)\)</span> into the output and you get the
+desired result.</li>
+<li><span class="math inline">\((a, x)\)</span> is disjoint with <span
+class="math inline">\([f(x), b)\)</span>.<br />
+<span class="math inline">\(f(x) &gt; x\)</span> therefore anything in
+<span class="math inline">\([f(x), b)\)</span> is strictly greater than
+everything in <span class="math inline">\((a, x)\)</span> and anything
+in <span class="math inline">\((a, x)\)</span> is strictly less than
+everything in <span class="math inline">\([f(x), b)\)</span>.</li>
+<li>This is where the contradiction appears. <span
+class="math inline">\(f((a, b)) = f((a, x)) \cup f([x, b))\)</span>.
+<span class="math inline">\(f((a, x))\)</span> is open and <span
+class="math inline">\(f([x, b))\)</span> is not open and the two of them
+are known to be disjoint. The union of disjoint sets where one of them
+is not an open set results is a non open set which is a contradiction to
+the fact that <span class="math inline">\(f\)</span> is an open
+map.</li>
+</ul>
+<blockquote>
+<p><strong>Corollary.</strong> If, instead, <span
+class="math inline">\(f(x) &lt; x\)</span> and <span
+class="math inline">\(a \in \mathbb{R}, b \in \mathbb{R} \cup \{ \infty
+\}\)</span>, then <span class="math inline">\((x_n) \to a\)</span>.</p>
+</blockquote>
+<p><em>Proof.</em></p>
+<ul>
+<li>Define <span class="math inline">\(g(x) = -f(-x)\)</span>, <span
+class="math inline">\(y_1 = -x_1\)</span>, and <span
+class="math inline">\(y_{n+1} = g(y_n)\)</span> therefore <span
+class="math inline">\(y_1 \in (-b, -a)\)</span></li>
+<li><span class="math inline">\(g(x)\)</span> is increasing, is an open
+map, and <span class="math inline">\(x &lt; g(x)\)</span> in <span
+class="math inline">\((-b, -a)\)</span>
+<ul>
+<li>Clearly, <span class="math inline">\(x \in (-b, -a)\)</span> implies
+<span class="math inline">\(g(x) = -f(-x) \in (-b, -a)\)</span> since
+<span class="math inline">\(f((a, b)) \subseteq (a, b)\)</span></li>
+<li>Take <span class="math inline">\(x_1 &lt; x_2\)</span>, then <span
+class="math inline">\(-x_1 &gt; -x_2\)</span> and since <span
+class="math inline">\(f\)</span> is increasing, then <span
+class="math inline">\(f(-x_1) &gt; f(-x_2)\)</span> which means <span
+class="math inline">\(g(x_1) &lt; g(x_2)\)</span>.</li>
+<li><span class="math inline">\(-x\)</span> and <span
+class="math inline">\(f(x)\)</span> are open maps and composition of
+open maps are open maps</li>
+</ul></li>
+<li><span class="math inline">\((y_n) \to -a\)</span><br />
+This is implied by the previous theorem since <span
+class="math inline">\((y_n)\)</span> and <span
+class="math inline">\(g\)</span> satisfies all of the requirements.</li>
+<li><span class="math inline">\(x_n = -y_n\)</span> for all natural
+<span class="math inline">\(n\)</span>.<br />
+It’s true for <span class="math inline">\(y_1\)</span> by definition. If
+<span class="math inline">\(x_n = -y_n\)</span> for any <span
+class="math inline">\(n\)</span>, then <span
+class="math inline">\(x_{n+1} = f(x_n) = f(-y_n) = -g(y_n) =
+-y_{n+1}\)</span>. By induction, it is true.</li>
+<li><span class="math inline">\((x_n) \to a\)</span><br />
+Previous bullet point implies <span class="math inline">\(\lim x_n =
+-\lim y_n\)</span> by the algebraic limit theorem and <span
+class="math inline">\(\lim y_n = -a\)</span> therefore <span
+class="math inline">\(\lim x_n = a\)</span>.</li>
+</ul>
+<h2 id="example-usages">Example usages</h2>
+<p>These problems came straight out of my analysis book</p>
+<ol type="1">
+<li>It is defined <span class="math inline">\(r &gt; 2\)</span>, <span
+class="math inline">\(k, j = \frac{r \pm \sqrt{r^2 - 4}}{2}\)</span>
+(<span class="math inline">\(j\)</span> is minus and <span
+class="math inline">\(k\)</span> is plus) and <span
+class="math inline">\((x_n)\)</span> is defined with <span
+class="math inline">\(x_1 \in (0, k)\)</span>, <span
+class="math inline">\(x_{n+1} = \frac{1}{r - x_n}\)</span>, then <span
+class="math inline">\((x_n) \to k\)</span></li>
+<li><span class="math inline">\(x_1 = \sqrt{2}\)</span> and <span
+class="math inline">\(x_{n+1} = \sqrt{2 + x_n}\)</span>, then <span
+class="math inline">\((x_n) \to 2\)</span></li>
+<li><span class="math inline">\(x_1 = \sqrt{2}\)</span>, <span
+class="math inline">\(x_{n+1} = \sqrt{2x_{n-1}}\)</span> then <span
+class="math inline">\((x_n) \to 2\)</span></li>
+</ol>
+<blockquote>
+<p><strong>Lemma (Composition of Open Maps are Open Maps).</strong>
+Suppose <span class="math inline">\(f: A \to \mathbb{R}\)</span> and
+<span class="math inline">\(g: B \to \mathbb{R}\)</span> are open maps
+with <span class="math inline">\(g(B) \subseteq A\)</span>, then the
+composition of <span class="math inline">\(f\)</span> and <span
+class="math inline">\(g\)</span> denoted <span
+class="math inline">\(h(x) = f(g(x))\)</span> is also an open map.</p>
+</blockquote>
+<p>List of obviously open maps:</p>
+<ol type="1">
+<li><span class="math inline">\(f(x) = \frac{1}{x}\)</span> is open in
+<span class="math inline">\(A\)</span> if everything in <span
+class="math inline">\(A\)</span> is of the same sign and <span
+class="math inline">\(A\)</span> does not contain zero.<br />
+In other words, <span class="math inline">\(A = A \cap (0,
+\infty)\)</span> or <span class="math inline">\(A = A \cap (-\infty,
+0)\)</span>.</li>
+<li><span class="math inline">\(f(x) = ax + b\)</span> is an open map in
+<span class="math inline">\(\mathbb{R}\)</span> if <span
+class="math inline">\(a \neq 0\)</span>.</li>
+<li><span class="math inline">\(f(x) = \sqrt{x}\)</span> is an open map
+for all positive real numbers.</li>
+</ol>
+<p>With the previous lemma and list of open maps, it should follow
+that:</p>
+<ol type="1">
+<li><span class="math inline">\(h(x) = \frac{1}{r - x}\)</span> is an
+open map in <span class="math inline">\((-\infty, r)\)</span>.<br />
+This is because it’s a composition of <span class="math inline">\(f(x) =
+\frac{1}{x}\)</span> and <span class="math inline">\(g(x) = r -
+x\)</span>. <span class="math inline">\(g\)</span> maps <span
+class="math inline">\((-\infty, r)\)</span> to <span
+class="math inline">\((0, \infty)\)</span> and we know that <span
+class="math inline">\(f\)</span> is open in <span
+class="math inline">\((0, \infty)\)</span>.</li>
+<li><span class="math inline">\(f(x) = \sqrt{2 + x}\)</span> is an open
+map in <span class="math inline">\((-2, \infty)\)</span>.</li>
+<li><span class="math inline">\(f(x) = \sqrt{2x}\)</span> is an open map
+in <span class="math inline">\((0, \infty)\)</span>.</li>
+</ol>
+<p>Now to prove that the other requirements of the domain being mapped
+onto itself with all three functions using algebraic methods</p>
+<ol type="1">
+<li>I have talked a lot about number one in another page including the
+fact that <span class="math inline">\(f\)</span> maps to itself on <span
+class="math inline">\((0, k)\)</span>. It has also been proven there
+that if <span class="math inline">\(j = \frac{r - \sqrt{r^2 -
+4}}{2}\)</span>, then <span class="math inline">\(f\)</span> is
+increasing in <span class="math inline">\((j, k)\)</span>.</li>
+<li><span class="math inline">\(f(x) = \sqrt{2 + x}\)</span> maps <span
+class="math inline">\((0, 2)\)</span> into itself.<br />
+This is because additions and square roots preserves inequalities and
+<span class="math inline">\(0 &lt; x &lt; 2\)</span> imply <span
+class="math inline">\(2 &lt; x + 2 &lt; 4\)</span> which means <span
+class="math inline">\(\sqrt{2} &lt; \sqrt{x + 2} &lt; 2\)</span> and so
+the function does map the <span class="math inline">\((0, 2)\)</span>
+into itself.<br />
+Then, since <span class="math inline">\(x &lt; 2\)</span>, it’s true
+that <span class="math inline">\(x - 1 &lt; 1\)</span> then combining
+them together implies <span class="math inline">\(x(x - 1) &lt;
+2\)</span> therefore <span class="math inline">\(x^2 - x &lt; 2\)</span>
+and so <span class="math inline">\(x &lt; \sqrt{2 + x}\)</span>.</li>
+<li><span class="math inline">\(f(x) = \sqrt{2x}\)</span> maps <span
+class="math inline">\((0, 2)\)</span> into itself.<br />
+Similarly, this is because square roots and multiplications preserves
+inequalities and <span class="math inline">\(0 &lt; x &lt; 2\)</span>
+imply <span class="math inline">\(0 &lt; 2x &lt; 4\)</span> and so <span
+class="math inline">\(0 &lt; \sqrt{2x} &lt; 2\)</span>. Again, we will
+also just accept that <span class="math inline">\(x &lt;
+\sqrt{2x}\)</span> for all <span class="math inline">\(x \in (0,
+2)\)</span>.<br />
+Then, since <span class="math inline">\(x &lt; 2\)</span>, it’s true
+that <span class="math inline">\(x - 2 &lt; 0\)</span> therefore <span
+class="math inline">\(x(x - 2) &lt; 0\)</span> therefore <span
+class="math inline">\(x^2 - 2x &lt; 0\)</span> meaning <span
+class="math inline">\(x &lt; \sqrt{2x}\)</span>.</li>
+</ol>
+<p>Since all of the functions and sequence starting points satisfy all
+the requirements for the main proposition earlier, then all of the three
+statements are true. It’s clear that <span
+class="math inline">\(\sqrt{2} \in (0, 2)\)</span> as well, right, which
+is needed for the second and third statements.</p>
+</body>
+</html>
