@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+
+                                    <script>
+            MathJax = {
+                loader: {
+                load: ['[custom]/xypic.js'],
+                paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+            },
+            tex: {
+                packages: ['base', 'ams', 'xypic'],
+                tags: 'none',
+                inlineMath: [['$', '$']]
+            }
+            };
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                                      <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tmpnh8r6e3r</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<h2>Bolzano-Weierstrass theorem</h2>
+<blockquote>
+<p><strong>Definition 1.4.4 (Subsequences).</strong> A subsequence of a sequence $(x_n)$ is defined as a sequence $(y_n)$ such that there exists a sequence $(a_n)$ satisfying $a_i \in \mathbb{N}$ for every $i \in \mathbb{N}$ and $i &lt; j$ implies $a_i &lt; a_j$ where $y_n = x_{a_n}$.</p>
+</blockquote>
+<blockquote>
+<p><strong>Theorem 1.4.5.</strong> Every subsequence of a convergent sequence converges to the same limit.</p>
+</blockquote>
+<p><em>Proof.</em> Suppose we have the sequence $(x_n) \to x$ and we have it&#39;s subsequence defined as $y_n = x_{a_n}$ using the natural number sequence $(a_n)$ which satisfy $a_1 &lt; a_2 &lt; a_3 &lt; \dots$. We know that for any $\epsilon &gt; 0$, there exists a natural $N$ such that for all $n \geq N$, it follows that $|x_n - x| &lt; 0$. Now take $M = \min \{ n | a_n \geq N \}$, which means that $a_M \geq N$. We also know that for every $m \geq M$, $a_m &gt; a_M$ therefore $a_m &gt; N$. This means that $|x_{a_m} - x| &lt; \epsilon$ therefore $|y_{m} - x| &lt; \epsilon$ since $y_m = x_{a_{m}}$.</p>
+<blockquote>
+<p><strong>Theorem 1.4.6 (Bolzano-Weierstrass Theorem).</strong> Every bounded sequence contains a convergent subsequence.</p>
+</blockquote>
+<p><em>Proof.</em> Suppose we have the bounded sequence $(x_n)$. Therefore, there exists a real $M$ such that $|x_n| &lt; M$ for every natural $n$. The strategy is that, suppose the set of all of the current $(x_n)$ is in some closed interval $[a, b]$, then it will split that area into two &quot;equal&quot; parts $[a, (a+b)/2)$ and $[(a+b)/2, b]$. If all of the remaining $x_n$ are only in one of those regions, then the current step will not define a new $a_i$, and the next region will be the region with all of the current $x_n$. Otherwise, $a_i$ will be picked from the region that has the least number of $a_i$. Notice that it&#39;s guaranteed for one of the region to contain a countably infinite number of terms when there are an infinite number of terms in $[a, b]$. The next set of $x_n$ will be picked from the region which still has an infinite number of terms in it, however the terms that will be picked must all be <em>after</em> the currently picked $a_i$. Notice that unless all of the current terms are equal, if all of the current terms are only in one of the region in a certain step, then <em>eventually</em>, there will be some step where both of the regions are non-empty. This is because the size of each region always gets halved, suppose there&#39;s some $j, k \in \mathbb{R}$ where $j \neq k$ in the current set of terms, then eventually, the size of each region will be less than $|j - k|$ which means that it will not contain both of them. Yet the process guarantees that the current region always contains an infinite number of elements, so when that happens, it&#39;s also guaranteed to still have an infinite number of elements. When there is only a single value in the current region, then simply set the rest of $a_i$ to be anything in the current set. Now to formalize this.</p>
+<p>First, define $A_i$ to be the current set of terms indices with $A_1 = \mathbb{N}$. Now assume $A_i \sim \mathbb{N}$ for the induction that we will do later. After that, define $d_i$ with $d_1 = 1$. Now for the induction. Define $B_i = \{ x_n | n \in A_i \}$. Suppose $|B_i| = 1$, which implies that $x_i = x_j$ for all $i, j \in A_i$, then define $a_{d_i}$ to be anything in $A_i$ and let $A_{i+1} = \{ n | n \in A_i \land n &gt; a_{d_i} \}$ which means that $A_{i+1} \sim \mathbb{N}$ is still true. Also, define $d_{i+1} = d_i + 1$. Notice that since $A_{i+1} \subseteq A_i$, then $|B_{i+1}| = 1$ is still true and that for any $i \in A_{i+1}, j \in A_{i}$, $a_i = a_j$ is still true. This also means that $d_{i+n} = d_i + n$ for any $i$ where $|B_i| = 1$ and that $x_{a_{d_i}} = x_{a_{d_i + 1}} = x_{a_{d_i + 2}} = ...$ since $d_{i+1} \in A_{i+1}$ and $d_i \in A_i$. This means that $x_n$ clearly converges if there is ever a step $i$ where $|B_i| = 1$.</p>
+<p>Now suppose $|B_i| \neq 1$, then define $l_i = \inf B_i$ and $r_i = \sup B_i$. Now define $L_i = \left[l_i, \frac{l_i + r_i}{2}\right)$ and $R_i = \left[\frac{l_i + r_i}{2}, r_i\right]$ and define $P_i = \{ n | n \in A_i \land x_n \in L_i \}$ and $Q_i = \{ n | n \in A_i \land x_n \in R_i \}$. Now, if $|P_i| = 0$ or $|Q_i| = 0$, then nothing will happen in this step. That is, no new term for $(a_n)$ will be defined and $d_{i+1} = d_i$ and $A_{i+1} = P_i$ or $A_{i+1} = Q_i$ such that $|A_{i+1}| \neq 0$ which also means that $A_{i+1} \sim \mathbb{N}$ should still be true. Otherwise, notice that $P_i \cup Q_i = A_i$. This means that if $A_i \sim \mathbb{N}$, which is true for $i = 1$, then $P_i \sim \mathbb{N}$ or $Q_i \sim \mathbb{N}$. Now define $I_i$ and $Q_i$ such that $I_i \sim \mathbb{N}$ and either $I_i = P_i \land F_i = Q_i$ or $I_i = Q_i \land F_i = P_i$. Now $a_{d_i}$ will be defined as anything in $F_i$ and $A_{i+1} = \{ n | n \in I_i \land n &gt; a_{d_i} \}$ and $d_{i+1} = d_i + 1$. Notice that $A_{i+1} \sim \mathbb{N}$ will still be true. Also that if $r_i - l_i = \epsilon$, then $r_{i+1} - l_{i+1} \leq \epsilon/2$. This means that, if there is ever a time where $|P_i| = 0$ or $|Q_i| = 0$ while $|B_i| \neq 0$, which means that there exists atleast two distinct $j, k \in B_i$, then eventually, $r_i - l_i &lt; |j - k|$ which means that $j$ and $k$ cannot be both in $P_i$ and $Q_i$. We have also made sure earlier that $A_{i+1}$ is continued with a non-empty set. This means that $(a_n)$ will keep being defined for more and more natural $n$ and it never stops so I&#39;m just saying that it&#39;s gonna be defined for every natural $n$. Also, the sequence will converge since $r_i - l_i$ keeps getting halved again and again until $|B_i| = 1$ if it ever happens.</p>
+<p>I give up dude, you get the point though. I just don&#39;t know how to properly formalize all of this shit man. I&#39;ll just go straight into the exercises now.</p>
+<p>I&#39;m just going to try to properly prove this again, there&#39;s an exercise on the next subchapter which tells you to prove BW using the Cauchy Criterion while also paying attention to where AP comes from, so one important part of it is what earlier theorems are used to prove it which I don&#39;t think I was paying attention to in this proof.</p>
+<p>First, take $M$ to be the bound of the sequence, hence $x_n \in [-M, M]$ for every natural $n$. Now start from the set $I_1 = [-M, M]$ and notice that since all terms of the sequence $(x_n)$ is in $I_1$, then it contains an infinite number of terms of the sequence, in other words $\{ n | x_n \in I_1 \}$ is infinite.</p>
+<p>Thinking of this as an inductive/iterative process, for the current $i$, we will have the closed interval $I_i = [a_i, b_i]$ while assuming that $\{ n | x_n \in I_i \}$ is infinite (which is true for $i=1$), hence $a_1 = -M$ and $b_1 = M$ (the emphasis here is that the endpoints of the closed interval $I_i$ is $a_i$ and $b_i$). After that define $L_i = [a_i, \frac{a_i + b_i}{2}]$ and $R_i = [\frac{a_i + b_i}{2}, b_i]$. Since $L_i \cup R_i = I_i$, then $(L_i \cap A) \cup (R_i \cap A) = I_i$ hence at least one of $\{ n | x_n \in L_i \}$ or $\{ n | a_x \in R_i \}$ is infinite. Pick $I_{i+1}$ out of $L_i$ and $R_i$ which contains an infinite number of terms of the sequence. By induction, $\{ n | x_n \in I_i \}$ is infinite for all $i$.</p>
+<p>After all of that is finished, define $d_i$ to be the indices of the convergent subsequence. Take $d_i$ such that $d_i \in \{ n | x_n \in I_i \}$ and $d_i \geq d_{i-1}$. This is possible because $\{ n | x_n \in I_i \}$ is infinite hence for any natural number there is an element of it greater than the natural number. It will be proven next that $a_{d_i}$ converges.</p>
+<p>This is the part where I must be careful regarding the theorems I use. The strategy here is to prove that since for any $k$, for all $i, j \geq k$, it follows that $x_{d_i}, x_{d_j} \in I_k$, and the fact that $I_k = [a_k, b_k]$, then $|x_{d_i} - x_{d_j}| \leq |a_k - b_k|$. Oh, that&#39;s literally it if you want to prove it using CC and AP lmao, which is what I was trying to do in that exercise I mentioned. Ignore that part here, I&#39;ll just be using it for later.</p>
+<p>Now, use the NIP to get a base for the limit. Since $I_i$ is a sequence of nested closed intervals, then it&#39;s intersection $I = \cap_{i=1}^{\infty} I_i$ is non-empty. Suppose $x$ is an element of $I$, then it is an element of all of $I_i$. Since $x_{d_n} \in I_n$ and $I_n \subseteq I_i$ for all $i \leq n$, then $|x_{d_n} - x| \leq |a_i - b_i|$ for all $n \geq i$. This is based on the obvious assumption that if $x, y \in [j, k]$, then $|x - y| \leq |j - k|$.</p>
+<p>Now, you can use the Archimedean Property to conclude that $|a_i - b_i| = M \cdot \frac{1}{2^{i-1}}$ converges to zero. Hence, for all $\epsilon &gt; 0$, there is some $i$ such that $|a_i - b_i| &lt; \epsilon$ hence $|x_{d_n} - x| &lt; \epsilon$ for all $n \geq i$ meaning you can conclude that $(x_{d_n}) \to x$. Additionally, by the unicity of limits of sequences, $I$ contains only one element that is $x$ since all elements of $I$ is a limit of $(x_{d_n})$, not that that matters here though.</p>
+<p><strong>Exercise 2.5.1.</strong> Given an example of each of the following, or argue that such a request is impossible.</p>
+<p>(a) Impossible. That bounded subseuquence is still a sequence in itself.</p>
+<p>(b) $x_n = 1/(n+1)$ for all even $n$ ad $1 + 1/n$ for all odd $n$.</p>
+<p>(c) Yes, just do something like $1, 1, 1/2, 1, 1/2, 1/3, ...$. Basically concatenating $(1), (1, 2), (1, 2, 3), ..., (1, 2, 3, ..., n)$</p>
+<p>(d) Impossible. Take a term of a subsequence which converges to $1$ and has a difference of at most some $1/2$, then take a term of a subsequence which converges to $1/2$ and has a difference of at most $1/3$, and so on. It&#39;ll converge to zero.</p>
+<p><strong>Exercise 2.5.2.</strong> Decide whether the following propositions are true or false,
+providing a short justification for each conclusion.</p>
+<p>(a) True. Take $a_n = x_{n+1}$, since it converges then $(x_n)$ converges.</p>
+<p>(b) True. Take $(a_n)$ to be the indices of the subsequence of $(x_n)$ which diverges, therefore $a_1 &lt; a_2 &lt; a_3 &lt; ...$ and if $(y_n)$ is the divergent subsequence of $(x_n)$, then $y_n = x_{a_n}$. Since it diverges, then for any proposed limit $x_0$, there exists some $\epsilon &gt; 0$ such that for all natural $N$ there exists some $n \geq N$ where $|y_n - x_0| = |x_{a_n} - x_0| &gt; \epsilon$.</p>
+<p>(c) If $(x_n)$ is bounded and diverges, then there exist two subsequences of $(x_n)$ that converge to different limits.</p>
+<p>Yes, here&#39;s the proof:</p>
+<p>Take $p_1 &lt; p_2 &lt; p_3 &lt; ... \in \mathbb{N}$ to be the indices of $(x_n)$ such that the subsequence $(x_{p_n}) \to y$. Since $(x_n)$ diverges, then there exists $\epsilon &gt; 0$ s.t. for all natural $N$ there exists some $n \geq N$ where $|x_n - y| \geq \epsilon$. Take any such $\epsilon$ and denote it $\epsilon_0$, now define the function $f_{\epsilon_0}(N)$ which returns the corresponding $n$ for the natural input $N$. This means that $|x_{f_{\epsilon_0}(N) - y}| \geq \epsilon$. Notice that since $f(N) \geq N$, then $f(f(N) + 1) \geq f(N) + 1 &gt; f(N)$. That is, $f(f(N) + 1) &gt; f(N)$.</p>
+<p>Now inductively define $(q_i) \in \mathbb{N}$ such that $q_0 = 0$ and $q_i = F(q_{i - 1} + 1)$. This means that $q_1 = F(1)$ and
+$$
+\begin{align*}
+q_{i+1} = F(q_i + 1) = F(F(q_{i-1} + 1) + 1) &amp;&gt; F(q_{i-1} + 1) = q_i \\
+q_{i+1} &amp;&gt; q_i
+\end{align*}$$
+meaning $q_1 &lt; q_2 &lt; q_3 &lt; ...$ and clearly $|x_{q_n} - y| \geq \epsilon$ for all natural $n$ therefore any subsequence of it will never get close enough to $y$ to ever converge to it, yet it is the subsequence of the bounded sequence $(x_n)$ therefore it has a convergent subsequence by BW therefore $(x_n)$ has subsequences that converge to different limits.</p>
+<p>(d) Well of course. Suppose it&#39;s increasing and it diverges, then it&#39;s unbounded by the MCT and because it&#39;s increasing then it&#39;s subsequence will be increasing even more quickly since it&#39;s just skipping some of the terms and so it&#39;s also gonna be unbounded so it diverges.</p>
+<p><strong>Exercise 2.5.3.</strong> (a) Prove that if an infinite series converges, then the associative property holds. Assume $a_1 + a_2 + a_3 + a_4 + a_5 + ...$ converges to a limit $L$ (i.e., the sequence of partial sums (s_n)\ to L). Show that any regrouping off the terms
+$$
+(a_1 + a_2 + \dots + a_{n_1}) +
+(a_{n_1 + 1} + a_{n_1 + 2} + \dots + a_{n_2}) +
+(a_{n_2 + 1} + a_{n_2 + 2} + \dots + a_{n_3}) + \dots
+$$</p>
+<p>leads to a series that also converges to $L$.</p>
+<p>Now, clearly, this is equivalent to defining a sequence of the regrouping of terms $b_i = a_{n_{i - 1} + 1} + a_{n_{i - 1} + 2} + ... + a_{n_i} = \sum_{j=n_{i-1}}^{n_i} a_j$ where $n_0 = 0$ and taking the limit of the partial sums $c_i = b_1 + b_2 + ... + b_i$. However, since $b_i + b_{i+1}$ simply ends up being $a_{n_{i-1} + 1} + a_{n_{i-1} + 2} + ... + a_{n_{i+1}}$, then $c_i$ is actually the same as $s_{n_i}$ where $(s_i)$ is the corresponding sequence of partial sums for the series of $(a_i)$. You can prove this more formally with induction but I am too lazy for that.</p>
+<p>Since $(s_n)$ converges and $(c_n)$ is just a subsequence of $(s_n)$, then it converges to the same value.</p>
+<p>(b) cuz it doesn&#39;t converge duh</p>
+<p><strong>Exercise 2.5.4.</strong> The Bolzano–Weierstrass Theorem is extremely important, and so is the strategy employed in the proof. To gain some more experience with this technique, assume the Nested Interval Property is true and use it to provide a proof of the Axiom of Completeness. To prevent the argument from being circular, assume also that $(1/2^n) \to 0$. (Why exactly is this last assumption needed to prevent circularity?)</p>
+<p>To review, the Axiom of Completeness states that every set that is bounded above has a least upper bound. The Nested Interval Property states that the intersection of any infinite sequence of closed intervals is non-empty. Note that this proof will use statements from the algebraic and order limit theorems, and I&#39;m not sure if that will make this argument circular or not.</p>
+<p>Suppose $S$ is a set that is bounded above, this means that there exists some $k \in \mathbb{R}$ such that for all $a \in S$ it follows that $a \leq k$. Now inductively define a sequence of closed interval as follows starting from any such $k$ (in other words, any upper bound of S) denoted $k_1$ and any $a_1 \in S$:</p>
+<ul>
+<li>$I_1 = [a_1, k_1]$<br />
+This means that that $I_1 \cap S \neq \emptyset$ because $a_1 \in I_1$.
+We now define $a_n$ and $k_n$ to be the left and right endpoints of $I_n$.
+We know that $a \leq k_1$ for all $a \in S$.</li>
+<li>$L_n = \left[ a_n, \frac{(a_n + k_n)}{2} \right]$, $R_n = \left[ \frac{(a_n + k_n)}{2}, k_n \right]$<br />
+Clearly, this means that $L_n \cup R_n = I_n$, which also means that $L_n \subseteq I_n$ and $R_n \subseteq I_n$. Now assume that $[a_n, k_n] \cap S \neq \emptyset$ is true, which is the case for $n = 1$, then atleast one of the following is true: $L_n \cap S \neq \emptyset$ or $R_n \cap S \neq \emptyset$. $I_{n+1}$ will be defined in based on that.
+It is also true that the &quot;size&quot; of $R_n$ and $L_n$ is half the size of $I_1$.</li>
+<li>If $R_n \cap S \neq \emptyset$, then choose $I_{n+1} = R_n$. Otherwise, choose $I_{n+1} = L_n$.<br />
+This means that $I_{n+1}$ has half the size of $I_n$, and also that $I_{n+1} \cap S \neq \emptyset$, which makes the second step always valid (since it assumes that), and also that $I_{n+1} \subseteq I_n$. We then also know that $a \leq k_n$ for all $a \in S, n \in \mathbb{N}$ (prove this). Since there is always some $s \in S$ in $I_n$, then $a_n$ is always less than or equal to an element of $s$.</li>
+</ul>
+<p>Define $A = \lim a_n$ and $K = \lim k_n$ (prove that they converge).
+Suppose $m$ is the size of $I_1$, then $m \cdot \frac{1}{2^n}$ is the size of $I_n$. Since $(\frac{1}{2^n}) \to 0$, then $(\frac{m}{2^n}) \to 0$ by the algebraic limit theorems.</p>
+<p>Hey, everything after this is written a few months after the previous stuff, so I&#39;ve forgotten a lot of the things I learned in here.</p>
+<p><strong>Exercise 2.5.5.</strong> Assume $(a_n)$ is a bounded sequence with the property that every convergent subsequence of $(a_n)$ converges to the same limit $a \in \mathbb{R}$. Show that $(a_n)$ must converge to $a$.</p>
+<p>brainstorm: attempt at contradiction: assume existence of divergence, take divergence subsequence -&gt; take convergent subsequence of the divergence subsequence -&gt; focus on the &quot;complement&quot; of the convergent subsequence in terms of the divergent subsequence -&gt; take the epsilon for which there exists an infinite amount of terms in the complement subsequence which goes out of the epsilon neighborhood of the convergent subsequence -&gt; take the subsequence of those terms which go out of the epsilon neighborhood -&gt; any subsequence of it cannot converge to a since the entire subsequence itself is epsilon away from a -&gt; contradiction -&gt; all subsequences converge to a -&gt; the entire sequence is a subsequence anyway -&gt; it converges to a -&gt; realize that taking the first divergent subsequence is unecessary, just assume the entire sequence diverges -&gt; but for the proof to work in that case i think you must know that all subsequences converge to the same value if the original sequence converge -&gt; restate things -&gt; prove that if the sequence converges then all of its subsequence converge to the same limit -&gt; since all subsequence converge to a, it follows that if one doesn&#39;t, then the sequence doesn&#39;t converge.</p>
+<p><em>Proof.</em> We simply need to prove that the initial statements imply that the sequence converge. The sequence is a subsequence of itself, hence it converges to $a$.</p>
+<p>Assume that the sequence diverges, in which case we can use the negation of the epsilon definition of convergence, and know that there is an $\epsilon$ for which there exists infinitely many terms of the sequence which is outside of the epsilon neighborhood of $a$. By the Bolzano-Weierstrass Theorem, we can take the a <em>convergent</em> subsequence of the subsequence with all of the terms mentioned earlier, and know that it must converge to a different limit than $a$ since all of it&#39;s terms are more than $\epsilon$ away from $a$. That is a contradiction to the fact that all subsequences of the original sequence must converge to $a$, hence the original sequence must converge. End of proof.</p>
+<p><strong>Exercise 2.5.6.</strong> Use a similar strategy to the one in <em>Example 2.5.3</em> to show $\lim b^{1/n}$ exists for all $b \geq 0$ and find the value of the limit. (The results in Exercise 2.3.1 may be assumed.)</p>
+<p>If $b &gt; 1$, then $b^{1/n}$ is decreasing an bounded below by $1$. It is bounded below because exponentiating anything less than one will still yield a value less than one. This means that it converges to some value. If $b &lt; 1$, then $b^{1/n}$ is increasing and bounded above by $1$, hence it also converges. Both converge by the MCT.</p>
+<p>How am I supposed to prove this without simply proving that the sequence of $b$s must be decreasing in one case and increasing in another case, and that something above one to the power of something big will eventually yield something big hence it can&#39;t be that as $b$ above one gets smaller, the value doesn&#39;t tend to one, and something similar to when $b$ is below one? Like all of that is just some really trivial stuff but annoyingly tedious to prove. Like, man, this is why I often get discouraged to continue this, damn it.</p>
+<ul>
+<li>Proof that if $b &gt; 1$, $b^{1/n}$ is decreasing. You can use the sequence of multiplications here to prove it by contradiction. Suppose $b^{1/n} = (1 + p)$ and $b^{1/(n+1)} = (1 + q)$, where obviously $p, q &gt; 0$. We want to prove that $q &lt; p$, so let&#39;s instead assume the opposite, that $q \geq p$.
+Before that, it will be proven in general that if there is a sequence defined with $x_i = (1 + k)^i$ such that $k &gt; 0$, then this sequence will be strictly increasing. Assuming $x_i &gt; 0$ for all $i$, since $x_{i+1} = x_i + kx_i$, and $k &gt; 0$ implying $kx_i &gt; 0$, then clearly $x_{i+1} &gt; x_i$. Since $x_1 &gt; 0$ is true, then this is true for all $i$.
+Now that that&#39;s done, we will define two sequences $x_i = (1 + p)^i$ and $y_i = (1 + q)^i$. From the previous lemma, they are both increasing. Given that $q \geq p$, it also follows that $x_1 \leq y_1$. Suppose $x_i \leq y_i$, then since $p \leq q$, then $px_i \leq qy_i$ is also true. By both of those, $x_i + px_i \leq y_i + qy_i$ and hence $x_{i+1} \leq y_{i+1}$. Since $x_1 \leq y_1$ is true, then this is true for all $i$. Now, since $x_{n+1} \leq y_{n+1}$ and $x_n &lt; x_{n+1}$, then $x_n &lt; y_{n+1}$. But then this is a contradiction to the fact that $x_n = y_{n+1} = b$.</li>
+<li>pROOF THAT IF $B &lt; I$, $B^{1/N}$ IS INCREASING. nO iM fUCKING lAZY</li>
+</ul>
+<p>Now suppose that $b^{1/n}$ converges to something greater than $1$ when $b &gt; 1$. If $\lim b^{1/n} = 1 + p$, then the sequence of partial products for $(1+p)^i$ is clearly always greater than or equal to the sequence of partial sums for $\sum_{i=1}^{\infty} p$, which can be proven using a recursive definition in the sequence of partial products. Now this means that if $b^{1/n}$ converge to something greater than $1$ as such, then $b^{1/n} \geq 1 + p$ for every $n$ since the sequence is decreasing, but then we know that the sequence of partial sums from earlier diverges to infinity, meaning partial product also diverges to infinity, with both of them being increasing, therefore for any real number $r$ there will always be some $n$ such that $(1 + p)^n$ is greater than $r$ and since the actual $b^{1/n}$ is guaranteed to be greater than $(1 + p)$, then it powered by $n$ will be greater than $(1 + p)^n$ as have been proven earlier in a lemma, therefore what we&#39;re saying here is that for any real number $r$, there will be some $n$ such that $(b^{1/n})^n$ is greater than $r$, which can be $b$ itself, which is a contradiction to the fact that it should be equal to $b$. Hence $b^{1/n}$ is converges to $1$ or something less, though it can&#39;t be anything less for the obvious reason that $(b^{1/n})^n$ will be less than one for some $n$ which shouldn&#39;t be because $b \geq 1$. So it must converge to exactly $1$.</p>
+<p>You know what? Atleast I fucking wrote something. How the fuck am I supposed to prove this without all of that tedious shit, man. In the end it relies on &quot;assumpstions&quot; such that $(b^{1/n})^n = n$ for any $b \geq 0$, and $a &lt; b \land c &lt; d \implies a + c &lt; b + d$ and shit like fucking what am I supposed to do?</p>
+<p>FUCK are you serious, that&#39;s how you&#39;re supposed to prove it??</p>
+<p>We assume that if $0 &lt; b &lt; 1$, then $b &lt; b^{1/2} &lt; b^{1/3} &lt; \dots &lt; 1$, since if $b^n$ is decreasing, then to get the same value $b$ with a higher $n$, the value to be exponentiated must become higher. It is always less than one since anything greater than one exponentiated by a positive power always stays greater than one. By the MCT, we know that $b^{1/n}$ converges to some value $l$ such that $b \leq l \leq 1$. Since $b^{1/(2n)} = (b^{1/n})^2$ is a subsequence of $b^{1/n}$, then it converges to the same value that is $l$, yet we also know by the algebraic limit theorem that $\lim (b^{1/n})^2 = l^2$, therefore $l^2 = l$ which is only true in $0 &lt; l \leq 1$ when $l = 1$.</p>
+<p>A very similar technique can be used when $1 &lt; b$. In that case, $b^{1/n}$ is decreasing yet is always $\geq 1$ since anything less than one powered by any $n$ stays being less than one. By the MCT, it converges to some $l$ such that $1 \leq l \leq b$. Since $b^{1/(2n)} = (b^{1/n})^2$ is a subsequence of $b^{1/n}$, then it converges to the same limit that is $l$. Yet by the algebraic limit theorem, it&#39;s limit is also equal to $l^2$. Hence, $l = l^2$ which is only possible in the constraint when $l = 1$.</p>
+<p><strong>Exercise 2.5.7.</strong> Extend the result proved in Example 2.5.3 to the case $|b| &lt; 1$; that is, show $\lim (b^n) = 0$ if and only if $-1 &lt; b &lt; 1$.</p>
+<p>We assume the two obvious facts that $b^2 = (-b)^2$ and $|ab| = |a||b|$ for any real numbers $a, b$. From there, we know that even if $-1 &lt; b &lt; 0$, it is still true that $|b^n| = |b|^n$. We know from the previous exercise that $|b|^n$ converges to zero since $0 &lt; |b| &lt; 1$, hence $|b^n|$ also does, meaning $b^n$ gets arbitrarily close to zero no matter it&#39;s sign. It should be obvious that this means $b^n$ converges to zero. Also it&#39;s clear that if $b = 0$, then $b^n = 0$ no matter the $n$, so we&#39;ve gotten rid of that case as well now.</p>
+<p>It&#39;s easy to prove that if $b &gt; 1$, $b^n$ diverges. Therefore, we know that $|b|^n$ diverges as well. Since we know that $|b^n| = |b|^n$ by the assumptions from earlier, then we know that even if $b &lt; -1$, $b^n$ still diverges. Hence we can conclude that $b^n$ converges if and only if $-1 &lt; b &lt; 1$.</p>
+<p><strong>Exercise 2.5.8.</strong> Another way to prove the Bolzano-Weierstrass Theorem is to show that every sequence contains a monotone subsequence. A useful device in this endeavor is the notion of a <em>peak term</em>. Given a sequence $(x_n)$, a particular term $x_m$ is a peak term if no later term in the sequence exceeds it; i.e., if $x_m \geq x_n$ for all $n \geq m$.</p>
+<p>(a) Find examples of sequences with zero, one, and two peak terms. Find an example of a sequence with infinitely many peak terms that is not monotone.
+(b) Show that every sequence contains a monotone subsequence and explain how this furnishes a new proof of the Bolzano–Weierstrass Theorem.</p>
+<p>(a) For the first task, use a convergent but monotonically increasing sequence, and zero, one or two terms with values greater than the value which the sequence converges to. For the second task, based on the formal definition of a peak term, any any constant sequence would work. Since it would mean that everything after a certain term is always greater than or equal to the current term.</p>
+<p>(b) Try to take peak terms until it runs out, which it either will or will not. If it runs out of peak terms, hence it must have ran out after a finite number of peak terms, then if $l$ is the supremum of the remaining set of values, then it can be proven that for any positive $\epsilon$, there is an infinite number of terms greater than $l - \epsilon$. Otherwise, you could have taken the maximum of it, the set of all terms greater than $l - \epsilon$, as the next peak term (yeah this is literally the proof). Hence you can <em>restart</em> the sequence construction process by starting from any $\epsilon$ and take any term after $l - \epsilon$ as the first term, then take the next term to be any term higher in value than the previous term, which must exist since the previously chosen term is less than $l$ (therefore there&#39;s an $\epsilon_0$ such that the previous term is $l - \epsilon_0$), and so on.</p>
+<p>It is easy to mix up an infinite number of terms and an infinite number of distinct elements, I have mixed that up before, and this time I am not. I mean it when I say there is an infinite amount of values, hence also terms, greater than $l - \epsilon$. Also, it is guaranteed in the case of running out of peak terms, to be able to find a next term with a term index higher than the previous <em>because</em> the set of possible next terms to be chosen in each &quot;iteration&quot; is infinite. Also that when I talk about taking peak terms, I mean take a peak term in say index $i$ and ignore every term with index less than or equal to $i$ after that.</p>
+<p>Anyway, the resulting subsequence is then clearly monotone. This new sequence also converges since the original sequence is bounded hence the subsequence also is hence it converges by the MCT.</p>
+<p><strong>Exercise 2.5.9.</strong> Let $(a_n)$ be a bounded sequence, and define the set $$S = \{x \in \mathbb{R} : x &lt; a_n \text{ for infinitely many terms } a_n\}.$$ Show that there exists a subsequence $(a_{n_k})$ converging to $s = \sup S$. (This is a direct proof of the Bolzano-Weierstrass Theorem using the Axiom of Completeness).</p>
+<p>I don&#39;t know how to prove this completely directly from the Axiom of Completeness. I need to rely on at least the existence of a monotone sequence which converges to zero, which can be easily proven using the Archimedean property, hence it relies at least on the Archimedean property.</p>
+<p>I&#39;ll also be experimenting with a certain way of proving this now. Start with a positive decreasing sequence $(\epsilon_n)$ that is known to converge to zero, this will be used in the same way in place of the more specific $(1/2)^n$ sequence. Now do the following process inductively: Starting from $i = 1$, take $\epsilon_i$, there must be a term of the sequence $a_n$ that is in the $\epsilon_i$ neighborhood of $s$. This is because, by the definition of a supremum, there is an element of $S$ greater than $s - \epsilon_i$, meaning there is an infinite number of terms in the sequence greater than $s - \epsilon_i$, yet there are no elements of $S$ strictly between $s$ and $s + \epsilon$, meaning there is only a finite number of terms greater than or equal to $\epsilon_i$. This means that there must be an infinite number of terms of the sequence in $(s - \epsilon, s + \epsilon)$. Pick any of those terms and remove or ignore any of the terms before it. This means that we still have an infinite number of terms left hence the amount of terms in the same open interval is still infinite. Now since this is an inductive process, you can think of the $a_i$ sequence mentioned earlier as the remains of the sequence after getting rid of the terms mentioned earlier. The supremum of $S$ also stays the same because we have only removed terms from the sequence hence it can&#39;t be greater, and it can&#39;t be lower either since we have only removed a finite number of terms. That is, if you suppose that $q &lt; s$ is the new supremum, it will be a contradiction since there is an infinite number of terms between $\frac{q + s}{2}$ (which is between $q$ and $s$) and $s$ therefore it stays the case after the removal of terms hence $q + s$ should also be an element of the new set $S$, hence $q$ cannot be the new supremum. Once again, this means that $S$ should be interpreted as the $S$ for the current truncated sequence in the inductive processed. Formalizing that for $S$ and $a_n$ is just a massive bother to me so I won&#39;t even try.</p>
+<p>This entire process produces a sequence $b_n$ such that $|b_n - s| &lt; \epsilon_n$. Since $\epsilon_n$ converges to zero, then $b_n$ converges to $s$.</p>
+</body>
+</html>

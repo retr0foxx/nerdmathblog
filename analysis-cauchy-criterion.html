@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+
+                                    <script>
+            MathJax = {
+                loader: {
+                load: ['[custom]/xypic.js'],
+                paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+            },
+            tex: {
+                packages: ['base', 'ams', 'xypic'],
+                tags: 'none',
+                inlineMath: [['$', '$']]
+            }
+            };
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                                      <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tmpdngq4w1e</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<h1>The Cauchy Criterion</h1>
+<p><strong>Definition 2.6.1 (Cauchy Sequence).</strong> A sequence $(a_n)$ is <em>Cauchy</em> if for every $\epsilon &gt; 0$, there exists an $N \in \mathbb{N}$ such that whenever $m, n \geq N$ it follows that $|a_n - a_m| &lt; \epsilon$.</p>
+<p>This definition is very similar to the definition of a convergent sequence, the only difference is that in here the terms get arbitrarily closer to each other while in sequences that converge the term get arbitrarily closer to it&#39;s limit.</p>
+<hr />
+<p><strong>Theorem 2.6.2.</strong> <em>Every convergent sequence is a Cauchy sequence.</em></p>
+<p><em>Proof.</em> If for any $\epsilon &gt; 0$, there exists a natural $N$ such that for all $n \geq N$ it follows that $|a_n - a| &lt; \frac{\epsilon}{2}$, which is the case for convergent sequences, then you can use the triangle inequality to conclude that for every $m, n \geq N$, $|a_n - a_m| &lt; \epsilon$. ($|a_n - a| &lt; \epsilon/2$ and $|a_m - a| &lt; \epsilon/2$ combined with the triangle inequality $|a_n - a_m| \leq |a_n - a| + |a_m - a|$ implies $|a_n - a_m| &lt; \epsilon$).</p>
+<hr />
+<p><strong>Lemma 2.6.3.</strong> <em>Cauchy sequences are bounded.</em></p>
+<p><em>Proof.</em> Just take any $\epsilon &gt; 0$. We know that there&#39;s some $N \in \mathbb{N}$ such that every term $n$ after $N$ in the sequence satisfies $|a_N - a_n| &lt; \epsilon$, therefore only a finite number of terms of the sequence is outside of $(a_N - \epsilon, a_N + \epsilon)$ while the rest is inside, hence it is bounded by $\max \left( \{ |a_N - \epsilon|, |a_N + \epsilon| \} \cup \{a_i | i &lt; N\}| \} \right)$, which exist since the latter set is finite.</p>
+<hr />
+<p><strong>Theorem 2.6.4 (Cauchy Criterion).</strong> <em>A sequence converges if and only if it is a Cauchy sequence.</em></p>
+<p><em>Proof.</em> Denote the Cauchy sequence to be $(a_n)$. We have proven earlier that every convergent sequence is a Cauchy sequence. Now if a sequence is a Cauchy sequence, we will prove that it converges. First, take any of it&#39;s convergent subsequence. This is possible since it is bounded by the previous lemma and hence contains a convergent subsequence by the Bolzano-Weierstrass theorem.</p>
+<p>Suppose this subsequence is represented by the indices $(d_i) \in \mathbb{N}$ and we denote the limit of the subsequence it represents to be $d$. The following will be a proof that the original sequence converges to $d$. First, for any $\epsilon &gt; 0$, there is a natural $N$ such that for all $n, m \geq N$, it follows that $|a_n - a_m| &lt; \epsilon$ because the original sequence is Cauchy. Take any index $M$ such that $d_m \geq N$ and that for all $m \geq M$, $|a_{d_m} - d| &lt; \epsilon$, hence we know that for any $m \geq M$ and $n \geq N$, $|a_n - a_{d_m}| &lt; \epsilon$ while $|a_{d_m} - d| &lt; \epsilon$, therefore $|a_n - d| &lt; 2\epsilon$ by the triangle inequality. Therefore $N$ satisfies for all $n \geq N$ it follows that $|a_n - d| &lt; 2\epsilon$. Replace all of the $\epsilon$s except for the first $\epsilon &gt; 0$ with $\frac{\epsilon}{2}$ and we&#39;re done with the proof.</p>
+<p>That is how the proof would be if I follow the path given by the book. However, I already had an idea of how I would prove this before reading the lemma. I will also write out that proof here.</p>
+<p>Take any $(\epsilon_i)$ to be a decreasing sequence of positive integers which converge to zero. Inductively define the strictly increasing sequence of natural numbers $N_i$ such that $N_i$ satisfy both for all $m, n \geq N_i$ it follows that $|a_n - a_m| &lt; \epsilon_i$ (which exist since $(a_n)$ is a Cauchy sequence) <strong>and</strong> that $N_i &gt; N_{i - 1}$ if $i &gt; 1$ (which is possible since if $n$ satisfy the first condition, then any $m &gt; n$ also does). Take any $\epsilon &gt; 0$. This means that every term starting from $N_i$ is in the closed interval $I_i = [a_{N_i} - \epsilon_i, a_{N_i} + \epsilon_i]$. It will be proven later that $I = \cap_{i=1}^{\infty} I_i$ is also a closed interval with a size of zero, hence it only has one element. For now, assume that is true and suppose that $a$ is the one and only element of $I$. To prove that it is the limit, we know that $a \in I_i$ for every $i$, therefore $|a_{N_i} - a| &lt; \epsilon_i$ (it is strictly less since in reality all terms after $N_i$ is in the open interval version of the closed interval earlier, it was turned into a closed interval for convenience) and for all $n \geq N_i$, $|a_{n} - a_{N_i}| &lt; \epsilon_i$, therefore $|a_{n} - a| &lt; 2\epsilon_i$ by the triangle inequality. Now since $(\epsilon_i)$ converges to zero, then for every $\epsilon &gt; 0$ there is an $\epsilon_i &lt; \epsilon$ from which we can take the $N$, which is $N_i$, which satisfies for all $n \geq N$ it follows that $|a_n - a| &lt; 2\epsilon$. To prove that $I$ is non-empty with only a single value, we first state the obvious assumption that the intersection of two intersecting closed intervals is a close interval as well. From there, we know that $I_i$ always shares at least one common element with every one of $I_{j}$ where $j &lt; i$. This is because all terms after $N_j$ is in $I_j$ while all terms after $N_i$ is in $I_i$, and since $(N_i)$ is increasing, then all terms after $N_i$ is all terms after $N_j$ as well, therefore all terms after $N_i$ is in $I_i$ and $I_j$ for every $j &lt; i$. Suppose $\cap_{j=1}^{i-1} I_{j}$ is a closed interval, then it shares an element with $I_i$ (that is any term after $N_i$) by what we have argued earlier, therefore $U_i = \cap_{j=1}^i I_j$ is also a closed interval. You can think of $U_i$ as the $i$th term of a sequence of nested closed intervals (since naturally $U_i \subseteq U_{i-1}$) to be able to apply the NIP and conclude that the final intersections $I = \cap_{j=1}^\infty I_j$ is a closed interval. Now the final closed interval must contain a single element since the sequence of closed intervals that get intersected, $(I_i)$, has a size that gets arbitrarily close to zero, hence the final intersection must have a size not greater than anything greater than zero, which is zero.</p>
+<p>Damn, yeah the proof which uses BW is actually a lot simpler.</p>
+<h2>Exercises</h2>
+<p><strong>Exercise 2.6.1.</strong> Supply a proof of Theorem 2.6.2.</p>
+<p>We already did earlier.</p>
+<hr />
+<p><strong>Exercise 2.6.2.</strong> Give an example of each of the following, or argue that such a request is impossible.<br />
+(a) A Cauchy sequence that is not monotone.<br />
+(b) A Cauchy sequence with an unbounded subsequence.<br />
+(c) A divergent monotone sequence with a Cauchy subsequence.<br />
+(d) An unbounded sequence containing a subsequence that is Cauchy.</p>
+<p>Answers:</p>
+<p>(a) Any convergent sequence that is not monotone. Like $a_n = ((-1)^n)/n$
+(b) A sequence that has an unbounded subsequence is guaranteed to diverge, hence it cannot be Cauchy.
+(c) This is impossible. Since it is monotone, then there is some point such that $|a_n|$ is increasing to the point of divergence. Suppose we propose a subsequence which converges to some value $l$, then a contradiction occurs since at some point $|a_n| &gt; |l| + 1$ for all $n \geq N$ by the fact that $a_n$ diverges to infinity, hence only a finite number of terms of the sequence is at most $1$ away from $l$, but a subsequence must have an infinite number of terms, which is the contradiction.
+(d) Now this one is possible, take the sequence where the first element is one, the next two is one and two, the next three is one, two, three, and so on. One, or any natural number really, occurs infinitely many times in there and hence you can have a subsequence which converges to that. Yet every natural number is in the sequence hence it must be divergent.</p>
+<hr />
+<p><strong>Exercise 2.6.3.</strong> If $(x_n)$ and $(y_n)$ are Cauchy sequences, then one easy way to prove that $(x_n + y_n)$ is Cauchy is to use the Cauchy criterion. By Theorem 2.6.4, $(x_n)$ and $(y_n)$ must be convergent, and the Algebraic Limit Theorem then implies $(x_n + y_n)$ is convergent and hence Cauchy.</p>
+<p>(a) Give a direct argument that $(x_n +y_n)$ is a Cauchy sequence that does not use the Cauchy Criterion or the Algebraic Limit Theorem.<br />
+(b) Do the same for the product $(x_n y_n)$.</p>
+<p>Answers:</p>
+<p>(a) The key to this proof: $$|(x_n + y_n) - (x_m + y_m)| = |(x_n - x_m) + (y_n - y_m)| \leq |x_n - x_m| + |y_n - y_m| &lt; \epsilon$$
+As usual, for any $\epsilon &gt; 0$, we take the $M$ and $N$ such that $|x_n - x_m| &lt; \frac{\epsilon}{2}$ for all $n, m \leq M$, and in a separate context $|y_n - y_m| &lt; \frac{\epsilon}{2}$ for all $n, m \leq N$. Hence if you define $K = \max \{ M, N \}$, then in the same context, for all $m, n \geq K$, both $|x_n - x_m| &lt; \frac{\epsilon}{2}$ and $|y_n - y_m| &lt; \frac{\epsilon}{2}$ are true. Then, you can use the triangle inequality as follows $$|(x_n + y_n) - (x_m + y_m)| = |(x_n - x_m) + (y_n - y_m)| \leq |x_n - x_m| + |y_n - y_m| &lt; \epsilon$$</p>
+<p>(b) Brainstorm (ignore this part):
+$x_m = x_n + \delta_x$, $y_m = y_n + \delta_y$. $x_my_m = x_ny_n + y_n\delta_x + x_n\delta_y + \delta_x \delta_y$, $|x_ny_n - x_my_m| = |y_n \delta_x + x_n \delta_y + \delta_x \delta_y|$, $|y_n| &lt; M_y \land |x_n| &lt; M_x$, $|x_n \delta_y| &lt; M_n \delta_y$ and so on, hence $|y_n\delta_x + x_n \delta_y + \delta_x \delta_y| &lt; M_x \delta_y + M_y \delta_x + \delta_x \delta_y$, $\delta_x = \delta_y$ therefore $\delta^2 + \delta(M_x + M_y)$, $\delta = \frac{\sqrt{\epsilon}}{M_x + M_y}$, $B = \max \{1, M_x + M_y\}$, $\gamma = \frac{\sqrt{e}}{2B}$, why is $\gamma^2 + \gamma(M_x + M_y) &lt; \epsilon$. Now this is actual analysis, trying to do tricks with the triangle inequality and finding the thing which would make the thing less than something else.
+$\gamma^2 = \frac{e}{4B}$, $\gamma(M_x + M_y)$, since $B \geq (M_x + M_y)$, $\frac{M_x + M_y}{B} \leq 1$, $\gamma(M_x + M_y) &lt; \frac{\sqrt{\epsilon}}{2}$
+$\frac{e}{4B} + \frac{\sqrt{\epsilon}}{2} &lt; \frac{e}{4} + \frac{\sqrt{\epsilon}}{2} = \frac{e + 2\sqrt{e}}{4}$ (when did epsilon become e idk)
+Well, $\delta_x = \delta_y$ doesn&#39;t have to be true and their values don&#39;t need to have a closed form formula in terms of $\epsilon$, it could depend on whether or not it is less than one. That would work.</p>
+<p>Take $X$ to be the bound for $(x_n)$ and $Y$ to be the bound of $(y_n)$, hence $|x_n| &lt; X$ and $|y_n| &lt; Y$ for all $n$. Define $B = \max \{ X + Y, 1 \}$, hence $B \geq X + Y \geq |x_n| + |y_n|$ for every $n$. Now, for any $1 &gt; \epsilon &gt; 0$, we define $\delta = \frac{\epsilon}{3B}$, it will also be important that both of these values are less than one. Finally, we take the $M$ and $N$ such that for all $m, n \geq N$, it follows that $|x_n - x_m| &lt; \delta$ and in a separate context, for all $m, n \geq N$, it follows that $|y_n - y_m| &lt; \delta$. Again, we choose $K = \max \{ M, N \}$, hence it is both true in the same context that for all $m, n \geq K$, it follows that $|x_n - x_m| &lt; \delta$ and $|y_n - y_m| &lt; \delta$. The latter implies that we can define $x_m = x_n + \delta_x$ and $y_m = y_n + \delta_y$ such that $|\delta_x|, |\delta_y| &lt; \delta$. We can then use the triangle inequality and other algebraic manipulation as follows to prove that $|x_ny_n - x_my_m| &lt; \delta$.</p>
+<p>$$
+\begin{align}
+|x_ny_n - y_ny_m| &amp;= |x_ny_n - (x_n + \delta_x)(y_n + \delta_y)| \\
+&amp;= |- x_n\delta_y - y_n\delta_x - \delta_x\delta_y| \\
+&amp;= |x_n\delta_y + y_n\delta_x + \delta_x\delta_y| \\
+&amp;\leq |x_n\delta_y| + |y_n\delta_x| + |\delta_x\delta_y| \\
+&amp;\leq |X\delta_y| + |Y\delta_x| + |\delta_x\delta_y| \\
+&amp;\leq |B\delta| + |B\delta| + \delta^2 \\
+&amp;= 2B\delta + \delta^2 \\
+&amp;= \frac{2\epsilon}{3} + \frac{\epsilon^2}{3B} \\
+&amp;\leq \frac{2\epsilon}{3} + \frac{\epsilon}{3} \\
+&amp;= \epsilon
+\end{align}
+$$</p>
+<p>Notice that $\epsilon^2 &lt; \epsilon$ due to $\epsilon &lt; 1$ is utilized in there, so is the fact that $B &gt; 1$ implying that $\frac{\epsilon}{3B} &lt; \frac{\epsilon}{3}$. These were applied in the last parts. The fourth line is justified by the triangle inequality, the next by the fact that $X \geq |x_n|$ and $Y \geq |y_n|$, then after that by $B \geq X, Y$ and $\delta &gt; |\delta_x|, |\delta_y|$.</p>
+<hr />
+<p><strong>Exercise 2.6.4.</strong> Let $(a_n)$ and $(b_n)$ be Cauchy sequences. Decide whether each of the following sequences is a Cauchy sequence, justifying each consclusion.</p>
+<p>(a) $c_n = |a_n - b_n|$.<br />
+(b) $c_n = (-1)^n a_n$.<br />
+(c) $c_n = [[a_n]]$ where $[[x]]$ refers to the greatest integer less than or equal to $x$.</p>
+<p>Answers:</p>
+<p>(a) Is obviously Cauchy based on what we&#39;ve proven on the previous exercise, that the addition of two Cauchy sequences and multiplication of two Cauchy sequences (the negative) is Cauchy, hence it&#39;s absolute value is as well.
+(b) Obviously not Cauchy, just make $a_n$ be a non-zero constant and so the sequence clearly diverges thus is not Cauchy.
+(c) I thought it would be Cauchy but that&#39;s not true, actually. Just make the sequence converge to an integer but before that it kinds of alternates between each sides of the integer. Like if $a_n = (\frac{-1}{2})^n$, then $(c_n)$ alternates between $-1$ and $0$.</p>
+<hr />
+<p><strong>Exercise 2.6.5.</strong> Consider the following (invented) definition: A sequence $(s_n)$ is <em>pseudo-Cauchy</em> if, for all $\epsilon &gt; 0$, there exists an $N$ such that if $n \geq N$, then $|s_{n+1} - s_n| &lt; \epsilon$.
+Decide which one of the following two propositions is actually true. Supply a proof for the valid statement and a counterexample for the other.</p>
+<p>(i) Pseudo-Cauchy sequences are bounded.<br />
+(ii) If $(x_n)$ and $(y_n)$ are pseudo-Cauchy, then $(x_n + y_n)$ is pseudo-Cauchy as well.</p>
+<p>(i) No. Let it be monotone and make the first term have a difference of $\delta$, then the next two terms have a difference of $\frac{\delta}{2}$, then the next four have a difference of $\frac{\delta}{4}$, and so on. It satisfies the $\epsilon$ condition yet clearly diverges to infinity since the difference between the first and the second term is $\delta$, the difference between the first and third is $2\delta$, difference between first and seventh is $3\delta$, and so on.</p>
+<p>(ii) Yeah, $$|x_{n+1} + y_{n+1} - x_n - y_n| = |x_{n+1} - x_n + y_{n+1} - y_n| \leq |x_{n+1} - x_n| + |y_{n+1} - y_n| &lt; 2\epsilon$$.</p>
+<hr />
+<p><strong>Exercise 2.6.6.</strong> Let’s call a sequence $(a_n)$ quasi-increasing if for all $\epsilon &gt; 0$ there exists an $N$ such that whenever $n &gt;m \geq N$ it follows that $a_n &gt; a_m - \epsilon$.</p>
+<p>(a) Give an example of a sequence that is quasi-increasing but not monotone or eventually monotone.<br />
+(b) Give an example of a quasi-increasing sequence that is divergent and not monotone.<br />
+(c) Is there an analogue of the Monotone Convergence Theorem for quasi-increasing sequences? Give an example of a bounded, quasi-increasing sequence that doesn’t converge, or prove that no such sequence exists.</p>
+<p>Answers:</p>
+<p>(a) If $(a_n)$ is a strictly increasing sequence, then define $b_n$ such that if $n$ is odd, then it $b_n = a_{\lfloor n/2 \rfloor}$, otherwise, $b_n = b_{n - 1} - \frac{1}{2^n}$.</p>
+<p>(b) The sequence construction from (a) also works here, except that you replace $(a_n)$ with a divergent strictly increasing sequence.</p>
+<p>(c) I&#39;m quite sure that it does converge. If every sequence has a monotone subsequence, take one of them, we know it converges since it&#39;s bounded, take some $\epsilon/2$ and find the lower term limit $N$ and then the same $\epsilon/2$ to get the lower term limit $M$ related to the quasi-increasing stuff, and you&#39;d know that every term after the max of $N$ and $M$ is at most $\epsilon$ away from the limit. Does it have to be monotone? Take a convergent subsequence with BW and I&#39;m quite sure that a similar argument would still work. How would I prove this without using BW or any other theorem which gives the limit from the beginning like the MCT trick earlier? Okay, this brainstorm is wrong but I did end up using the BW technique to get an initial reference to the actual limit and it does work in a similar way.</p>
+<p>Well, take some $\epsilon_i$, get the $N_i$ according to the quasi-increasing definition, take the supremum of all terns after $N_i$ to be $s_i$, know that it exists and that every term after $N_i$ is now in $I_i = [s_i - \epsilon_i, s_i]$. Also that $s_{i+1} \leq s_i$. Then use the same technique related to NIP that I used in my proof of the Cauchy Criterion.</p>
+<p>Anyway, I&#39;ll use the proof with BW in here because it&#39;s going to be simpler. Take $b_{i}$ to be the sequence of indices for the subsequence which converges, then define $b = \lim a_{b_n}$. For any $\epsilon &gt; 0$, define $K = b_{\max \{ M, N \}}$ such that for all $n \geq N$, it follows that $|a_{b_n} - b| &lt; \frac{\epsilon}{2}$ and that for all $m &gt; n \geq M$, it follows that $a_m &gt; a_n - \frac{\epsilon}{\epsilon}$. (removed). Now we know that for all $n \geq K$, there is a term $a_m$ with $m &gt; n$ of the original sequence that is part of the subsequence because that&#39;s how subsequences work. Therefore $a_n &lt; a_m + \frac{\epsilon}{2}$ and since $a_m &lt; b + \frac{\epsilon}{2}$ then $a_n &lt; b + \epsilon$. After that, since $a_K$ itself is a part of the subsequence and is less than $n$, then $b - \frac{\epsilon}{2} &lt; a_K$ yet since the original sequence is quasi-increasing, then $a_K - \frac{\epsilon}{2} &lt; a_n$ hence $b - \epsilon &lt; a_n$. Thus, $b - \epsilon &lt; a_n &lt; b + \epsilon$ and so $|a_n - b| &lt; \epsilon$.</p>
+<p>(removed) = Now since $K \geq \max \{ M, N \}$ due to $b_i \geq i$ and that $\max\{M, N\} \geq M, N$, then every $m &gt; n \geq K$ satisfies both of the previous conditions.</p>
+<hr />
+<p><strong>Exercise 2.6.7.</strong> Exercises 2.4.4 and 2.5.4 establish the equivalence of the Axiom of Completeness and the Monotone Convergence Theorem. They also show the Nested Interval Property is equivalent to these other two in the presence of the Archimedean Property.</p>
+<p>(a) Assume the Bolzano–Weierstrass Theorem is true and use it to construct a proof of the Monotone Convergence Theorem without making any appeal to the Archimedean Property. This shows that BW, AoC, and MCT are all equivalent.</p>
+<p>(b) Use the Cauchy Criterion to prove the Bolzano–Weierstrass Theorem, and find the point in the argument where the Archimedean Property is implicitly required. This establishes the final link in the equivalence of the five characterizations of completeness discussed at the end of Section 2.6.</p>
+<p>(c) How do we know it is impossible to prove the Axiom of Completeness starting from the Archimedean Property?</p>
+<p>Answers:</p>
+<p>(a) Suppose the sequence is increasing, now take one of it&#39;s convergent subsequence and denote it&#39;s limit to be $b$. For any $\epsilon &gt; 0$, by the existence of a subsequence which converges to $b$, there is an infinite number of terms which is less than $\epsilon$ away from $b$. Take the index of any of such term, then we know that every term after it is greater than $b - \epsilon$. Suppose there exists a term greater than $b$, then all terms after it is greater than $b$, and since there will be an infinite number of terms from the subsequence after any certain term (any infinite subset of the naturals satisfy for any natural number there is an element of the set greater than it, the certain term represents the set natural number while the subsequence represent the infinite set of naturals in this case), then an infinite number of terms of the subsequence is greater than or equal to a value greater than $b$, meaning it cannot converge to $b$, therefore if it does, then it must be that all terms are less than or equal to $b$. Therefore we know that all terms after the term we mentioned earlier is greater than $b - \epsilon$ yet less than $b$ hence is at most $\epsilon$ away from $b$ thus the sequence converges to $b$.</p>
+<p>(b) Here it is...</p>
+<p>First, take $M$ to be the bound of the sequence, hence $x_n \in [-M, M]$ for every natural $n$. Now start from the set $I_1 = [-M, M]$ and notice that since all terms of the sequence $(x_n)$ is in $I_1$, then it contains an infinite number of terms of the sequence, in other words $\{ n | x_n \in I_1 \}$ is infinite.</p>
+<p>Thinking of this as an inductive/iterative process, for the current $i$, we will have the closed interval $I_i = [a_i, b_i]$ while assuming that $\{ n | x_n \in I_i \}$ is infinite (which is true for $i=1$), hence $a_1 = -M$ and $b_1 = M$ (the emphasis here is that the endpoints of the closed interval $I_i$ is $a_i$ and $b_i$). After that define $L_i = [a_i, \frac{a_i + b_i}{2}]$ and $R_i = [\frac{a_i + b_i}{2}, b_i]$. Since $L_i \cup R_i = I_i$, then $(L_i \cap A) \cup (R_i \cap A) = I_i$ hence at least one of $\{ n | x_n \in L_i \}$ or $\{ n | a_x \in R_i \}$ is infinite. Pick $I_{i+1}$ out of $L_i$ and $R_i$ which contains an infinite number of terms of the sequence. By induction, $\{ n | x_n \in I_i \}$ is infinite for all $i$.</p>
+<p>After all of that is finished, define $d_i$ to be the indices of the convergent subsequence. Take <em>any</em> $d_i$ such that $d_i \in \{ n | x_n \in I_i \}$ and $d_i \geq d_{i-1}$. This is possible because $\{ n | x_n \in I_i \}$ is infinite hence for any natural number there is an element of it greater than the natural number. It will be proven next that $a_{d_i}$ converges.</p>
+<p>This is the part where I must be careful regarding the theorems I use. Keep in mind of the obvious fact that if $x, y \in [j, k]$, then $|x - y| \leq |j - k|$. Now, take some $n$, we know that for all $i$ greater than $n$, it follows that $I_i \subseteq I_n$ yet we know that $x_{d_i} \in I_i$ therefore $x_{d_i} \in I_n$ for all $i \geq n$. This means that for all $m, n \geq N$, it follows that $x_{d_m}, x_{d_n} \in I_n$ and so by the fact I mentioned earlier, $|x_{d_m} - x_{d_n}| &lt; |a_n - b_n|$.</p>
+<p>Now, you can use the Archimedean Property to conclude that the sequence $|a_i - b_i| = M \cdot \frac{1}{2^{i-1}}$ converges to zero. Hence, for all $\epsilon &gt; 0$, there is some $N$ such that $|a_N - b_N| &lt; \epsilon$ hence $|x_{d_i} - x_{d_j}| &lt; \epsilon$ for all $i, j \geq n$ meaning you can conclude that $(x_{d_n})$ converges by the Cauchy Criterion.</p>
+<p>(c) The Archimedean Property merely states that for every real number there exists a natural number greater than it. You can think of it as only talking about the infinitude or &quot;completeness&quot; of the natural numbers. It states the existence of certain natural numbers, while the Axiom of Completeness asserts the existence of certain real numbers that would otherwise be unattainable with just natural numbers of the rational numbers, and again, the A.P. only talks about the existence of certain natural numbers.</p>
+</body>
+</html>

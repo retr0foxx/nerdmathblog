@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+
+                                    <script>
+            MathJax = {
+                loader: {
+                load: ['[custom]/xypic.js'],
+                paths: {custom: 'https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/'}
+            },
+            tex: {
+                packages: ['base', 'ams', 'xypic'],
+                tags: 'none',
+                inlineMath: [['$', '$']]
+            }
+            };
+        </script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                                      <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>tmphuit1j7n</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<p>An infinite series $\sum_{i=1}^{\infty} a_i$ is defined to be the limit of the partial sums $s_n = \sum_{i=1}^{n} a_i$, therefore $\sum_{i=1}^{\infty} a_i = \lim s_n$. It is important to keep in mind of the distinction between the sequence of terms $a_n$ and the sequence of partial sums $s_n$ of the infinite series.</p>
+<p><strong>Theorem 2.7.1. (Algebraic Limit Theorem for Series).</strong> <em>If $\sum_{k=1}^{\infty} a_k = A$ and $\sum_{k=1}^{\infty} b_k = B$, then</em>
+(i) <em>$\sum_{k=1}^{\infty} ca_k = cA$ for all $c \in \mathbb{R}$ and</em>
+(ii) <em>$\sum_{k=1}^{\infty} (a_k + b_k) = A + B$</em></p>
+<p>These two statements can be easily proven by falling back to the Algebraic Limit Theorems for regular sequences. For (i), notice that if the sequence of partial sums for the original sum with terms $(a_k)$ is denoted $A_k = \sum_{i=1}^k a_i$ and if the sequence of partial sums for this new multiplied series is $Q_k = \sum_{i=1}^k ca_i$, then $Q_k = cA_k$ by factoring $c$ out of the sum, hence by the Algebraic Limit Theorem, $\lim Q_k = c(\lim A_k)$ therefore $\sum_{i=1}^{\infty} ca_i = c\sum_{i=1}^{\infty} a_i = cA$.</p>
+<p>Now for (ii), after inheriting the same notation for $A_k$ and making new ones where $B_k = \sum_{i=1}^{k} b_i$ and $R_k = \sum_{i=1}^{k} a_i + b_i$, you can prove by resorting to a recursive definition for those sequences of partial sums combined with induction (if you really want to prove such an obvious fact) or by simply arguing that you can rearrange the terms of a finite sum in however way you want to achieve the same result, that $R_k = A_k + B_k$, or equivalently, $\sum_{i=1}^k a_i + b_i = \sum_{i=1}^k a_i + \sum_{i=1}^k b_i$. Hence by the Algebraic Limit Theorems, $\lim R_k = (\lim A_k) + (\lim B_k)$ or in another way $\sum_{i=1}^{\infty} a_i + b_i = A + B$.</p>
+<hr />
+<p><strong>Theorem 2.7.2 (Cauchy Criterion for Series).</strong> <em>The series $\sum_{k=1}^{\infty} a_k$ converges if and only if, given $\epsilon &gt; 0$, there exists an $N \in \mathbb{N}$ such that whenever $n &gt; m \geq N$, it follows that $$|a_{m + 1} + a_{m + 2} + \dots + a_n| &lt; \epsilon$$</em></p>
+<p><em>Proof.</em> Notice that if $A_k$ is the sequence of partial sums for the series with terms $(a_k)$, then $|A_n - A_m| = |a_{m+1} + a_{m+2} + \dots + a_n|$, hence the statement is equivalent to the statement of the regular Cauchy Criterion.</p>
+<hr />
+<p><strong>Theorem 2.7.3.</strong> <em>If the series $\sum_{i=1}^{\infty} a_k$ converges, then $(a_k) \to 0$.</em></p>
+<p>Consider the case where $n = m + 1$ in the Cauchy Criterion for Series.</p>
+<hr />
+<p><strong>Theorem 2.7.4 (Comparison Test).</strong> <em>Assume $(a_k)$ and $(b_k)$ are sequences satisfying $0 \leq a_k \leq b_k$ for all $k \in \mathbb{N}$.</em>
+(i) <em>If $\sum_{k=1}^{\infty} b_k$ converges then $\sum_{i=1}^{\infty} a_k$ converges.</em>
+(ii) <em>If $\sum_{k=1}^{\infty} a_k$ diverges then $\sum_{i=1}^{\infty} b_k$ diverges.</em></p>
+<p>The way this theorem is stated is weird, (i) is true if and only if (ii) is true, no? In any case, here&#39;s the proof:</p>
+<p>Since all of the terms are positive, then $|\sum_{i=m}^n a_i| = \sum_{i=m}^n a_i$, which is also the same for $(b_i)$. Since $(b_k)$ converges, then for any $\epsilon &gt; 0$, there exists an $N$ such that for all $n &gt; m \geq N$ it follows that $|\sum_{i=m}^n b_i| &lt; \epsilon$, and since $0 \leq a_i \leq b_i$ for all $i$, then $\sum_{i=m}^n a_i \leq \sum_{i=m}^n b_i$ therefore $|\sum_{i=m}^n a_i| &lt; \epsilon$ as well. Hence by the Cauchy Criterion for Series, $\sum_{i=1}^{\infty} a_i$ converges indeed.</p>
+<p>From the book:</p>
+<blockquote>
+<p>The Comparison Test is used to deduce the convergence or divergence of one series based on the behavior of another. Thus, for this test to be of any great use, we need a catalog of series we can use as measuring sticks.</p>
+</blockquote>
+<hr />
+<p><strong>Example 2.7.5. (Geometric Series).</strong> A series is called geometric if it is of the form $$\sum_{k=0}^{\infty} ar^k = a + ar + ar^2 + \dots$$
+For $|r| \geq 1$ and $a \neq 0$, the sequence clearly diverges. If $|r| &lt; 1$, it will be proven that it&#39;s limit is indeed the infinite power series formula that we&#39;re all familiar with, but the proof will only truly cover the positive $r$ case, the negative version can be proved with this combined with the alternating series test that will appear in just a bit.</p>
+<p>$$
+\begin{align}
+s_n &amp;= \sum_{k=0}^n ar^n \\
+&amp;= a(1 + r + r^2 + r^3 + \dots + r^n) \\
+&amp;= a\left(\frac{1 - r^{n+1}}{1 - r}\right) \\
+\lim s_n &amp;= \frac{a}{1 - r} \lim \left( 1 - r^{n+1} \right) \\
+&amp;= \frac{a}{1 - r}
+\end{align}
+$$
+You know, for some reason, I still feel weird with taking limits in equations like this. It makes sense when you think about it. One thing that you could say is wrong with the usage of limits in here is that we can only take limits of convergent sequences yet we haven&#39;t proved that the sequence converges. Even if we&#39;ve assumed that $r^{n+1}$ converges to zero, we haven&#39;t necessarily proven that $\lim s_n$ exists, in other words that $(s_n)$ converges, y&#39;know? However I think that it would become a valid proof if you do it backwards from the convergence of $r^{n+1}$, then use the ALT to state that $1 - r^{n+1}$ converges and that it converges to $1$ as well. It would make a lot of sense that, in some way, if the sequence is some kind of actual algebraic expression that isn&#39;t just a single variable sequence like simply $s_n$, then it converges if and only if when you keep subdividing it into subproblems using the ALT until it essentially becomes &quot;a single term or variable sequence,&quot; those relatively atomic sequences converge. It doesn&#39;t feel like that&#39;s something you can proof, or at least not easily, and I feel like the biggest challenge would be to get the initial statement of what we&#39;re trying to prove in the first place because those phrases, &quot;single term or variable sequence&quot; and &quot;keep subdividing the action of taking a limit of an algebraic expression into subproblems using the ALT,&quot; would be hard to define concretely enough.</p>
+<p>The way I would currently try to justify the validity of this kind of usage of the sequence limit operator is that when you try taking the limit of such an algebraic expression like the one from earlier, the limit operator itself doesn&#39;t care about how the expression looks like, it only know that it&#39;s something which spits out a real number for the $n$ value it gives, so all I&#39;m saying is that the only part of the expression that the limit operator is applied to is the fact that it spits a real number out for any natural number it gives. Then, when we try to &quot;divide it into smaller limit problems&quot; using the ALT, we are making an external statement that this inside expression is actually equal to this inner sequence, which is then assigned as an operand to this operation which is handled by the ALT, and possibly another sequence that is assigned as an operand to the operation if the operation is binary. In which case the ALT would be usable to both state &quot;if those inner sequences converge, then this sequence converge&quot; and &quot;here is it&#39;s value in relation to the limits of the inner sequences.&quot; I don&#39;t even know what I&#39;m saying anymore lol, I&#39;m just overthinking things again.</p>
+<hr />
+<p><strong>Theorem 2.7.6 (Absolute Convergence Test).</strong> <em>If the series $\sum_{n=1}^{\infty} |a_n|$ converges, then $\sum_{n=1}^{\infty} a_n$ converges as well</em>.</p>
+<p>Once again we will use the Cauchy Criterion for Series to prove this. The triangle inequality combined with induction quite clearly imply that $|\sum_{i=m}^n a_i| \leq \sum_{i=m}^n |a_i|$, therefore the Cauchy Criterion for Series imply that the latter sequence (in the initial statement of this theorem) converges. I will simply not formalize it here because I am lazy, but I will at least state that the Cauchy Criterion is used twice, first to know that since the absolute sequence converge then it satisfies the &quot;difference between partial sums getting closer&quot; condition. After that, the triangle inequality from earlier imply that it means this also applies for the original sequence, so then the second time the CCfS is used to know that it converges because of that.</p>
+<hr />
+<p><strong>Theorem 2.7.7 (Alternating Series Test).</strong> <em>Let $(a_n)$ be a sequence satisfying,</em>
+(i) $a_1 \geq a_2 \geq a_3 \geq \dots \geq a_n \geq a_{n+1} \geq \dots$ <em>and</em>
+(ii) $(a_n) \to 0$.
+<em>Then, the alternating series $\sum_{n=1}^{\infty} (-1)^n a_n$ converges.</em></p>
+<p>The book tells us to prove this later on in the exercises, but I feel like trying it out now.
+I think it&#39;s going to be pretty simple though, the strategy is to prove that the sequence of only odd terms is increasing and the sequence of only even terms is decreasing, also that if the current term is odd, the next term is greater than it. Both of these actually mean that if $i$ is odd, then all terms greater than $i + 1$ is in the closed interval made by term $i$ and $i+1$. After that you can use the fact that $(a_n)$ converges to zero to see that those closed intervals get arbitrarily small and hence the terms after $i$ and $i + 1$ get arbitrarily closer to each other, by which you can use the Cauchy Criterion once again to prove that the sequence converges. This entire time, the sequence I mean is already the sequence of partial sums, not terms.</p>
+<p>First, notice that if $i$ is odd, then the current term is $-a_i$ while if it&#39;s even then it&#39;s $a_i$. Suppose $i$ is odd, then $s_{i+2} = s_i + (a_{i+1} - a_{i + 2})$ since $i + 1$ is even and $i + 2$ is odd. Since $a_{i + 2} \leq a_{i + 1}$, then $a_{i+1} - a_{i+2} \geq 0$, hence $s_{i + 2} \geq s_i$. With similar logic if $i$ is even, notice that $s_{i+2} = s_i - a_{i + 1} + a_{i + 2} = s_i + (a_{i + 2} - a_{i + 1})$. Once again, $a_{i + 2} \leq a_{i + 1}$ thus $a_{i + 2} - a_{i + 1} \leq 0$ therefore $s_{i + 2} \leq s_i$.</p>
+<p>But actually, when $i$ is odd, $a_{i+1}$ is positive and $s_{i+1} = s_i + a_{i+1}$ therefore $s_{i + 1} \geq s_i$. Once again with the same logic, when $i$ is even, $a_{i+1}$ is negative hence $s_{i+1} \leq s_i$. Next, suppose we have $i$ and $n$ such that $n &gt; i$. If $i$ is odd and $n$ is odd, we know from earlier and by induction that indeed $s_n \geq s_i$. However if $n$ is even, $n - 1$ is odd thus it is greater than or equal to the previous term, but the previous term is greater or equal to the $i$th term, hence $s_n \geq s_i$. With the same logic, you can also conclude that for all $n \geq i$ with $i$ being even, $s_n \leq s_i$.</p>
+<p>Therefore, suppose $i$ is odd, then all terms after it is greater than it, and if $i$ is even, all terms after it is less than it. This means that if $i$ is odd, then for all $n \geq i + 2$, it follows that $s_i \leq s_n \leq s_{i+1}$. In other words, $s_n \in [s_i, s_{i+1}]$. Now take $|s_{i+1} - s_i|$, we know it equals $a_{i+1}$, which itself gets arbitrarily close to zero since $(a_n)$ converges to zero.</p>
+<p>To finalize the proof, take any $\epsilon &gt; 0$, then take the $N$ such that for all $n \geq N$, it follows that $|a_i| &lt; \epsilon$. Suppose $m$ is the nearest odd integer greater than or equal to $N$, then we know for all $i \geq m + 2$, it follows that $s_i \in [ s_m, s_{m+1} ]$, while $s_{m + 1} - s_m = a_{m+1}$. Since $m + 1 \geq N$ as stated earlier, then $|a_{m+1}| = |s_{m+1} - s_m| &lt; \epsilon$. Therefore, by the obvious assumption that if two values are in the same closed interval with a difference between endpoints of $\delta$ then it follows that the difference between the two values will also be at most delta, then for all $i, j \geq m + 2$, it follows that $|s_i - s_j| \leq |s_{m+1} - s_m| &lt; \epsilon$, meaning $|s_i - s_j| &lt; \epsilon$. By the Cauchy Criterion, this means that $(s_n)$ converges and so the series converges.</p>
+<hr />
+<p><strong>Definition 2.7.8.</strong> If $\sum_{n=1}^{\infty} |a_n|$ converges, then we say that the original series $\sum_{n=1}^{\infty} a_n$ <em>converges absolutely.</em> If, on the other hand, the series $\sum_{n=1}^{\infty} a_n$ converges but the series of absolute values $\sum_{n=1}^{\infty} |a_n|$ does not converge, then we say that the original series $\sum_{n=1}^\infty a_n$ <em>converges conditionally.</em></p>
+<hr />
+<p><strong>Definition 2.7.9.</strong> Let $\sum_{k=1}^\infty a_k$ be a series. A series $\sum_{k=1}^\infty b_k$ is called a <em>rearrangement</em> of $\sum_{k=1}^\infty a_k$ if there exists a one-to-one, onto function $f : \mathbb{N} \to \mathbb{N}$ such that $b_{f(k)} = a_k$ for all $k \in \mathbb{N}$.</p>
+<hr />
+<p>It is finally time for the ultimate Theorem of this subsection:</p>
+<p><strong>Theorem 2.7.10.</strong> <em>If a series converges absolutely, then any rearrangement of the series converges to the same limit.</em></p>
+<p>Suppose $s_n$ is the series of partial sums of the original sequence while $c_n$ is the series of partial sums of the rearrangement, we know that $(s_n)$ converges since it converges absolutely. Ultimately, the proof boils down to proving that $s_n$ and $c_n$ gets arbitrarily close to each other. In other words, for all $\epsilon &gt; 0$, there exists an $N$ such that for all $n \geq N$, $|s_N - c_n| &lt; \epsilon$ which would of course imply that $|c_n - s| &lt; 2\epsilon$ if you add a condition for $N$ which is that all terms after it (including it) is at most epsilon away from the limit of $s$ as well.</p>
+<p>The proof is simple, first take any $\epsilon &gt; 0$, by the Cauchy Criterion for Series we know that there exists some $N \in \mathbb{N}$ such that for all $n &gt; m \geq N$ it follows that $|s_n - s_m| &lt; \frac{\epsilon}{2}$. We then also make $N$ satisfy $|s_n - s| &lt; \frac{\epsilon}{2}$ for all $n \geq N$. We then define $g(n) = f^{-1}(n)$, meaning $b_{f^{-1}(n)} = a_n$. We then take the set $A(N) = f^{-1}(\{ n \leq N \})$, which represents the indices of the set of terms of $b_i$ which correspond to the first $N$ terms of $a_i$, and take it&#39;s maximum and denote it $M$ which must exist since the inside set is finite and non-empty.</p>
+<p>(removed)</p>
+<p>Now, take any $m \geq M$, we are now interested in the absolute difference $|c_m - s_N|$. Take any of the term in the partial sum $c_m$, since $M$ is the maximum of set $A(N)$ and $m \geq M$, then for all elements $k$ of $A(N)$, it is known that $k \leq m$. Given that $f$ is one-to-one and $k \in f^{-1}(\{n \leq N\})$, then $f(k) \in \{n \leq N\}$. Therefore $b_k = a_{f(k)}$ where $f(k) \leq N$. What is trying be said here is that for each element term $a_j$ with $j \leq N$, there is a corresponding term, unique for each different $j$, $b_k$ with $k \leq m$ such that $b_k = a_j$. This means that $\sum_{i=1}^m b_i - \sum_{i=1}^N a_i$ will get rid of the terms of $\sum_{i=1}^m b_i$ which correspond to the first $N$ terms of $a_i$. This means that only the terms which correspond to the terms <em>after</em> the first $N$ terms of $a_i$ is left. More precisely, it is the terms $R = \{n \in \mathbb{N} : n \leq m\} \setminus f^{-1}(\{n \in \mathbb{N} : n \leq N\})$. We are saying that the difference sum earlier contains only those terms of $b_n$, which then correspond only to terms of $a_i$ after the $N$th term. We then take $f(R)$ and know that none of them is an index for term $a_n$ with $n \leq N$. We take the minimum and maximum of $f(R)$ to be $p$ and $q$ respectively, hence we know $|s_q - s_{p}| &lt; \epsilon$ since $q, p &gt; N$. Yet we know that the terms of $a_n$ which correspond to $f(R)$ is a subset of the terms in the range $q$ to $p$, hence $$\left|\sum_{i=1}^m b_i - \sum_{i=1}^N a_i \right| = \left|c_m - s_N \right| = \left| \sum_{i \in R} b_i \right| = \left| \sum_{i \in f(R)} a_i \right| \leq |s_q - s_p| &lt; \frac{\epsilon}{2}$$
+Then, since $|s_N - s| &lt; \frac{\epsilon}{2}$, then by the triangle inequality, $|c_m - s| &lt; \epsilon$ for all $m \geq M$.</p>
+<p>As you can see, I struggled a lot to formalize that. Maybe I should try to do it one more time in the bullet points format</p>
+<ul>
+<li>Define the setup
+<ul>
+<li>$(a_n)$ is the original terms of the series, $(s_n)$ is the sequence of partial sums of the original series.</li>
+<li>$(b_n)$ is the terms of the rearranged series hence $b_n = a_{f(n)}$. Then $(c_n)$ is the sequence of partial sums of the rearranged series.</li>
+<li>$g(n) = f^{-1}(n)$, therefore it takes a term index of the series $(b_n)$ and gets the corresponding term index of it from $(a_n)$.</li>
+</ul></li>
+<li>Observe that $(s_n)$ must converge since it converges absolutely. This is true by the Absolute Convergence Test from earlier. Hence, define $(s_n) \to s$</li>
+<li>Take any $\epsilon &gt; 0$, and take the $N$ which satisfies both of the following:
+<ul>
+<li>For all $n &gt; m \geq N$, it follows that $|s_n - s_m| &lt; \frac{\epsilon}{2}$
+Which is possible since $(s_n)$ converges hence it is a Cauchy Sequence</li>
+<li>For all $n \geq N$, it follows that $|s_n - s| &lt; \frac{\epsilon}{2}$.
+Which is possible since $(s_n)$ converges.</li>
+<li>Of course, both of these conditions are possible because both of them individually are valid for any $N$ which is greater than some lower value which satisfy them.</li>
+</ul></li>
+<li>Define the set $A = f^{-1}(\{ n \in \mathbb{N} : n \leq N \})$.
+This is the terms of the series $(b_n)$ which correspond to the first $N$ terms of $(a_n)$</li>
+<li>Take $M = \max A$
+This is possible because $A$ is non-empty since $f$ is one-to-one and any set $\{ n \in \mathbb{N} : n \leq N \}$ is never empty since $n$ can be $N$.</li>
+<li>Observe that for any $m \geq M$, it is clear that all terms $a_n$ with $n \leq N$, there is a corresponding term $k \leq m$ in $b_n$ such that $a_n = b_n$.
+This of course follows from the fact that $M = \max A$, where $A$ is the set of term indices of $b_n$ which correspond to the terms of $a_i$ with $i \leq N$.</li>
+<li>The previous point implies that the difference $$(b_1 + b_2 + b_3 + \dots + b_m) - (a_1 + a_2 + a_3 + \dots + a_N) = \sum_{i \in R} b_i = \sum_{i \in f(R)} a_i$$ where $R = \{ n \in \mathbb{N} : n \leq m \} \setminus A$, hence $f(R)$ correspond only to indices of terms of $(a_n)$ after the $N$th term. Therefore, the terms in the last sum in the above expression is a &quot;subset&quot; (the terms is a &quot;subset&quot;) of the terms of $a_i$ from $N+1$ to the maximum of $f(R)$. By the triangle inequality, this means that $$\left| \sum_{i \in f(R)} a_i \right| \leq \left| \sum_{i=N+1} ^ {\max f(R)} a_i \right|$$</li>
+<li>Yet since all terms of the latter sum in the last expression is after term $N$, then by the Cauchy Criterion for Series and the definition of $N$ which correspond to it in the third main bullet point, it follows that the latter sum is less than $\frac{\epsilon}{2}$. Hence we can conclude that $$|(b_1 + b_2 + b_3 + \dots + b_m) - (a_1 + a_2 + a_3 + \dots + a_N)| = |c_m - s_N| &lt; \frac{\epsilon}{2}$$</li>
+<li>The third main bullet point also states that $|s_N - s| &lt; \frac{\epsilon}{2}$</li>
+<li>Hence the two last bullet points combined with the triangle inequality imply that $|c_m - s| &lt; \epsilon$. Of course, this applies for all $m \geq M$ which itself exists for each of the $\epsilon$ we defined earlier. The point is that this means we can conclude that $(c_m) \to s$.</li>
+</ul>
+<p>The part of this bullet point version that&#39;s formalized the least but I think is like clear enough since formalizing it that much would be so tedious, especially you&#39;d need to proof something related to the triangle inequality with arbitrary length partial sums, and the &quot;subset of terms&quot; partial sums and stuff, that&#39;s going to be annoying to kinda formalize so I&#39;m leaving it out... This is still really far from perfect but I&#39;m very satisfied with the result here, actually.</p>
+<h3>Exercises</h3>
+<p><strong>Exercise 2.7.1.</strong> Proving the Alternate Series Test (Theorem 2.7.7.) amounts to showing that the sequence of partial sums $$s_n = a_1 - a_2 + a_3 - \dots \pm a_n$$
+converges. (The opening example in Section 2.1 includes a typical illustration of $(s_n)$.) Different characterizations of completeness lead to different proofs.</p>
+<p>(a) Prove the Alternating Series Test by showing that $(s_n)$ is a Cauchy sequence.
+(b) Supply another proof for this result using the Nested Interval Property (Theorem 1.4.1).
+(c) Consider the subsequences $(s_{2n})$ and $(s_{2n + 1})$, and show how the Monotone Convergence Theorem leads to a third proof for the Alternating Series Test.</p>
+<p>(a) This is how I already proved it earlier, by showing that $(s_n)$ is a Cauchy sequence.
+(b) Going back to the fact that if $i$ is odd, then $s_i \leq s_{i+1}$ and that if $j &gt; i$ then $s_j \geq s_i$. After that, if $i$ is even and $j &gt; i$, then $s_j \leq s_i$. This was used in the proof for (a). Now, this means that $I_i = [s_{2i - 1}, s_{2i}]$ makes a sequence of nested closed intervals such that such that $s_j \in I_i$ for all $j &gt; i$. By the NIP, $I = \cap_{i=1}^\infty I_i$ is non-empty, so suppose that $s$ is an element of $I$, meaning $s \in [s_{2n-1}, s_{2n}]$ for every $n$.</p>
+<p>Remember that $(a_i) \to 0$, hence, for all $\epsilon &gt; 0$ there exists some $N$ such that for all $n \geq N$, $|a_n| &lt; \epsilon$. However we know that $|s_{2N - 1} - s_{2N}| = |a_{2N - 1}| &lt; \epsilon$ because $2N - 1 \geq N$. We also know that for all $m \geq 2N$, it follows that $s_m \in [ s_{2N - 1}, s_{2N} ]$ which we know is a closed interval with a size less than epsilon because $|s_{2N-1} - s_{2N}| &lt; \epsilon$, and also contains $s$. Therefore, $|s_{m} - s| &lt; \epsilon$ and thus you can conclude that $(s_n) \to s$.</p>
+<p>(c) Continuing while modifying the previous proof a bit, we know that all terms after $a_1$ including itself is in the closed interval $[a_1, a_2]$. Therefore, this sequence is bounded. We also know that the subsequence of all but only odd terms is non-decreasing, hence it converges by the MCT. The sequence of only even terms also converges by the MCT. Suppose $(s_{2n - 1}) = o$, it will be proven that the sequence converges to $o$.</p>
+<p>Take any $\epsilon &gt; 0$, there exists some $N$ such that for all $n \geq N$ it follows that $|s_{2n - 1} - o| &lt; \frac{\epsilon}{2}$ and $|a_{n}| &lt; \frac{\epsilon}{2}$. We also know that for all $m \geq 2N$, it follows that $s_m \in [s_{2n - 1}, s_{2n}]$, and since $|s_{2n - 1} - s_{2n}| = |a_{2n - 1}| &lt; \frac{\epsilon}{2}$, then $|s_m - s_{2n - 1}| &lt; \frac{\epsilon}{2}$. Since we also know that $|s_{2n - 1} - o| &lt; \frac{\epsilon}{2}$, then by the triangle inequality we can conclude that $|s_{m} - o| &lt; \epsilon$.</p>
+<hr />
+<p><strong>Exercise 2.7.2.</strong> Decide whether each of the following series converges or diverges:</p>
+<p>(a) $\sum_{n=1}^\infty \frac{1}{2^n + n}$<br />
+(b) $\sum_{n=1}^\infty \frac{\sin(n)}{n^2}$<br />
+(c) $1 + \frac{3}{4} + \frac{4}{6} + \frac{5}{8} + \frac{6}{10} + \frac{7}{12} + \dots$<br />
+(d) $1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots$<br />
+(e) $\frac{1}{1^2} + \frac{1}{2^3} + \frac{1}{3^4} + \frac{1}{4^5} + \dots$</p>
+<p>(a) $2^n + n &gt; 2^n$ for all natural $n$, therefore $\frac{1}{2^n + n} &lt; 2^{-n}$ and since $\sum_{i=1}^{\infty} \frac{1}{2^n}$ converges due to it being an infinite geometric sum with a less than one positive ratio, then $\sum_{i=1}^\infty \frac{1}{2^n + n}$ converges by the comparison test.
+(b) $\sin(n) \leq 1$ is always true, hence $|\sin(n)/n^2| \leq 1/n^2$ is always true. The series with terms $1/n^2$ converges hence by the comparison test, the series with the terms $|\sin(n)/n^2|$ converges and so by the Absolute Convergence Test, $\sin(n)/n^2$ converges.
+(c) Clearly, all terms are greater than $\frac{1}{2}$ and so it clearly diverges by the comparison test since the sum of only $1/2$ diverges...
+(d) Clearly, the absolute value of the terms of the sum, $1/(2n - 1)$, is decreasing and converges to zero, and so by the Alternating Series Test, it converges.
+(e) $a_n = \frac{1}{n^{n+1}}$, and since for every $n &gt; 1$, it follows that $\frac{1}{a_n} = n^{n+1} \geq 2^n$ therefore $a_n \leq \frac{1}{2^n}$ and so the sum converges by the comparison test.</p>
+<hr />
+<p><strong>Exercise 2.7.3.</strong></p>
+<p>(a) Provide the details for the proof of the Comparison Test (Theorem 2.7.4) using the Cauchy Criterion for Series.</p>
+<p>(b) Give another proof for the Comparison Test, this time using the Monotone Convergence Theorem.</p>
+<p>(a) This is already how I proved it earlier.
+(b) Suppose $b = \sum_{i=1}^{\infty} b_k$ (and so we&#39;re starting from if that sum converges), we know that $0 \leq A_n \leq B_n \leq b$ for every natural $n$ which can be proven by induction. We also know that $(A_n)$ is monotone since $A_{n+1} = A_{n} + a_{n+1}$ where $a_{n+1} \geq 0$, therefore $(A_n)$ converges by the MCT.</p>
+<hr />
+<p><strong>Exercise 2.7.4.</strong> Give an example of each or explain why the request is impossible referencing the proper theorem(s):</p>
+<p>(a) Two series $\sum x_n$ and $\sum y_n$ that both diverge but where $\sum x_n y_n$ converges.</p>
+<p>(b) A convergent series $\sum x_n$ and a bounded sequence $(y_n)$ such that $\sum x_n y_n$ diverges.</p>
+<p>(c) Two sequences $(x_n)$ and $(y_n)$ where $\sum x_n$ and $\sum (x_n + y_n)$ both converge but $\sum y_n$ diverges.</p>
+<p>(d) A sequence $(x_n)$ satisfying $0 \leq x_n \leq 1/n$ where $\sum (-1)^n x_n$ diverges.</p>
+<p>(a) $x_n = (-1)^n$, $y_n = \frac{1}{n}$. The sum of their product converges by the Alternating Series Test.
+(b) It is impossible since $\sum y_n = \sum (x_n + y_n) - \sum x_n$. The Algebraic Limit Theorem for Series implies that $\sum y_n$ converges.
+(c) In that case, $(x_n)$ can only converge to zero, there is no way it doesn&#39;t because it&#39;s lower bound is constant while it&#39;s upper bound gets arbitrarily close to zero as $n$ increases. Thus by the Alternating Series Test, it converges.</p>
+<hr />
+<p><strong>Exercise 2.7.5.</strong> Now that we have proved the basic facts about geometric series, supply a proof for Corollary 2.4.7.</p>
+<p><strong>Corollary 2.4.7.</strong> <em>The series $\sum_{i=1}^{\infty} a/i^p$ converges if and only if $p &gt; 1$.</em></p>
+<p>Use the Cauchy Condensation Test, which is what this is a corollary of. We must prove that $\sum_{i=1}^{\infty} \frac{2^i}{2^{pi}} = \sum_{i=1}^{\infty} \frac{1}{(2^{(p - 1)})^i}$. This is clearly a geometric series with $r = \frac{1}{2^{p - 1}}$ where $p - 1 &gt; 0$ therefore $2^{p - 1} &gt; 1$ hence $r = \frac{1}{2^{p-1}} &lt; 1$ which means the geometric series converges. You can conclude that $\sum_{i=1}^{\infty} a/i^p$ converges by applying the ALT for Series after that.</p>
+<hr />
+<p><strong>Exercise 2.7.6.</strong> Let’s say that a series <em>subverges</em> if the sequence of partial sums contains a subsequence that converges. Consider this (invented) definition for a moment, and then decide which of the following statements are valid propositions about subvergent series:</p>
+<p>(a) If $(a_n)$ is bounded, then $\sum a_n$ subverges.<br />
+(b) All convergent series are subvergent.<br />
+(c) If $\sum |a_n|$ subverges, then $\sum a_n$ subverges as well.<br />
+(d) If $\sum a_n$ subverges, then $(a_n)$ has a convergent subsequence.</p>
+<p>(a) Clearly not, right. Just make the value of the sequence constant and no subsequence of the partial sums will be bounded.
+(b) Of course, any subsequence of a convergent sequence converges to the same limit.
+(c) Of course, you can create another series $(b_n)$ such that if $(k_n) \in \mathbb{N}$ is the indices of the subsequence of $(S_n)$ which converges then $b_n = S_{k_n} - S_{k_{n-1}}$ where $a_0 = k_0 = S_0 = 0$. Hence $b_n = \sum_{i=k_{n-1} + 1}^{k_n} |a_i|$ therefore we know that $b_n = |b_n|$ and since it means that $\sum |b_n|$ converges since $\sum_{i=1}^n |b_i| = S_{k_n}$ and we know that the latter sequence in the equality converges. But wait, we also know that $b_n \geq |\sum_{i=k_{n-1} - 1}^{k_n} a_i|$ by the triangle inequality, and so by the comparison test $\sum_{j=1}^\infty |\sum_{i={k_{j-1}} - 1}^{k_j} a_i|$ converges and so by the absolute value test, $\sum_{j=1}^{\infty} (\sum_{i=k_{j-1} - 1}^{k_j} a_i)$ also converges, but that partial sums for that sum is equivalent to the subsequence of the partial sums for $\sum a_i$, that is, $\sum_{j=1}^N (\sum_{i=k_{j-1} - 1}^{k_j} a_i) = \sum_{i=1}^{k_j} a_i$ and so indeed $\sum a_i$ subverges.
+(d) This is equivalent to asking if when the sum subverges then the terms of the sum is bounded. Of course this is not true since you can do something like $a_n = (-1)^n \lfloor \frac{n + 1}{2} \rfloor$. The subsequence of the partial sums which only has even terms of the partial sums clearly converges but $(a_n)$ clearly diverges.</p>
+<hr />
+<p><strong>Exercise 2.7.7.</strong></p>
+<p>(a) Show that if $a_n &gt; 0$ and $\lim (n a_n) = l$ with $l \neq 0$, then the series $\sum a_n$ diverges.
+(b) Assume $a_n &gt; 0$ and $\lim (n^2 a_n)$ exists. Show that $\sum a_n$ converges.</p>
+<p>This motivates a question about whether or not the following is true:
+Assume $a_n &gt; 0$, then if $f: \mathbb{R} \to \mathbb{R}$ is a function such that $(\frac{1}{f(n)})$ converges, then if $\lim(f(n)a_n)$ exists, it follows that $\sum a_n$ converges. Now if $f : \mathbb{R} \to \mathbb{R}$ is a function such that $(\frac{1}{f(n)})$ diverges, then if $\lim(na_n) = l$ with $l \neq 0$, it follows that $\sum a_n$ diverges. Just a random thought.</p>
+<p>(a) Take $\epsilon = \frac{l}{2}$, there exists some $N$ such that for all $n \geq N$ it follows that $|na_n - l| &lt; \epsilon$ which implies that $|a_n - \frac{l}{n}| &lt; \frac{\epsilon}{n}$ therefore $a_n \geq \frac{l - \epsilon}{n} = \frac{l}{2n} = \frac{l}{2} \cdot \frac{1}{n}$. We know that $\sum_{i=N}^{\infty} \frac{l}{2} \cdot \frac{1}{i}$ diverges since $\sum_{i=N}^{\infty} \frac{1}{i}$ itself diverges to infinity. By the comparison test, we know that $\sum_{i=N}^{\infty} a_i$ diverges as well, therefore $\sum_{i=1}^{\infty} a_i$ diverges.
+(b) Use a similar technique as (a). Take $\epsilon = \frac{l}{2}$ where of course $l = \lim(n^2a_n)$. We know that there exists an $N$ such that for all $n \geq N$ it follows that $|n^2a_n - l| &lt; \epsilon$ therefore $|a_n - \frac{l}{n^2}| &lt; \frac{\epsilon}{n^2}$ therefore $a_n \leq \frac{l + \epsilon}{n^2} = \frac{3l}{2n^2} = \frac{3l}{2} \cdot \frac{1}{n^2}$. We know that $\sum_{i=N}^\infty \frac{1}{i^2}$ converges therefore $\sum_{i=N}^{\infty} \frac{3l}{2} \cdot \frac{1}{i^2}$ converges as well by the ALT for Series. Therefore, by the comparison test we know that $\sum_{i=N}^{\infty} a_i$ also converges.</p>
+<hr />
+<p><strong>Exercise 2.7.8.</strong> Consider each of the following propositions. Provide short proofs for those that are true and counterexamples for any that are not.</p>
+<p><strong>(a)</strong> If $\sum a_n$ converges absolutely, then $\sum a_n^2$ also converges absolutely.</p>
+<p><strong>(b)</strong> If $\sum a_n$ converges and $(b_n)$ converges, then $\sum a_n b_n$ converges.</p>
+<p><strong>(c)</strong> If $\sum a_n$ converges conditionally, then $\sum n^2 a_n$ diverges.</p>
+<p>Answers:
+(a) Of course. We have proven earlier in Theorem 2.7.3. that if $\sum |a_n|$ converges, then $|a_n| \to 0$. Therefore, there exists some $N$ such that for all $n \geq N$ it follows that $|a_n| &lt; 1$ meaning $|a_n^2| = |a_n|^2 &lt; |a_n|$. By the comparison test, $\sum |a_n|$ converges therefore $\sum a_n$ converges by the absolute value test.</p>
+<p>(b) Oh it&#39;s actually so simple why did I spend so much time on this.
+Let the sequence basically be $1, -1$ and then $1/2, -1/2$ repeated four times, and then $1/4, -1/4$ repeated sixteen times, and so basically the nth time you&#39;re doing this you have $1/2^{n-1}, -1/2^{n-1}$ repeated $2^{2(n-1)}$ times. Clearly, $\sum b_n$ converges. Now simply let $a_n = b_n$. The first two terms of $a_nb_n$ will be $1$. The next four terms will be $1/4$. The next sixteen terms will be $1/16$. So it&#39;s sum clearly diverges to infinity.</p>
+<p>(c) Suppose $\sum n^2a_n$ converges, then $(n^2a_n) \to 0$, therefore there exists an $N$ such that for all $n \geq N$ it follows that $|a_n| &lt; \frac{1}{n^2}$, therefore by the absolute value test combined with the fact that $\frac{1}{n^2}$ converges, $\sum |a_n|$ converges thus $\sum a_n$ converges absolutely. We have now proven the statement by contrapositive.</p>
+<hr />
+<p><strong>Exercise 2.7.9 (Ratio Test).</strong><br />
+Given a series $\sum_{n=1}^\infty a_n$ with $a_n \neq 0$, the Ratio Test states that if $(a_n)$ satisfies</p>
+<p>$$\lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = r &lt; 1,$$</p>
+<p>then the series converges absolutely.</p>
+<p>I don&#39;t feel like I need a guide exercise to prove the validity of this test. So I&#39;m gonna try to prove it here without the exercise guide.</p>
+<p>Take $\epsilon = \min\{\frac{1 - r}{2}, \frac{r}{2}\}$, there exists an $N$ such that for all $n \geq N$ it follows that $||\frac{a_n+1}{a_n}| - r| &lt; \epsilon$ which implies that $0 &lt; r - \epsilon &lt; |\frac{a_{n+1}}{a_n}| &lt; r + \epsilon &lt; 1$. Now, we know that $\sum_{i=1}^\infty |a_N| (r + \epsilon)^{i}$ converges, but we also know by induction that $|a_{N+k}| &lt; |a_N|(r + \epsilon)^k$, therefore $\sum_{k=1}^{\infty} |a_{N+k}|$ converges by the comparison test which also means that $\sum_{k=1}^{\infty} |a_k|$ converges and thus $\sum_{k=1}^{\infty} a_k$ converges by the absolute value test.</p>
+<p>(a) Let $r&#39;$ satisfy $r &lt; r&#39; &lt; 1$. Explain why there exists an $N$ such that $n \geq N$ implies $|a_{n+1}| \leq |a_n| r&#39;$.</p>
+<p>Observe that $r&#39; = r + \epsilon$. We know that there exists some $N$ such that for all $n \geq N$ it follows that $||\frac{a_{n+1}}{a_n}| - r| &lt; \epsilon$, therefore $r - \epsilon &lt; |\frac{a_{n+1}}{a_{n}}| &lt; r + \epsilon = r&#39;$. Therefore, $|a_{n+1}| &lt; |a_n|r&#39;$.</p>
+<p>(b) Why does $|a_N| \sum (r&#39;)^n$ converge?
+Because it&#39;s a geometric series with $r&#39; &lt; 1$.</p>
+<p>(c) Now, show that $\sum |a_n|$ converges, and conclude that $\sum a_n$ converges.<br />
+Suppose $b_k = |a_N|(r&#39;)^k$. We know that $|a_{N+1}| &lt; |a_N|r&#39;$ and that for all $k \geq 1$, it follows that $|a_{N+k}| &lt; |a_{N + k - 1}|r&#39;$. Suppose, in general, that $|a_{N + k}| &lt; |a_N|(r&#39;)^k$, then since $|a_{N+k+1}| &lt; |a_{N+k}|r&#39;$ which itself is less than $|a_N|(r&#39;)^{k+1}$, then by induction, $|a_{N+k}| &lt; |a_{N+k}|(r&#39;)^k$. Therefore $\sum_{i=1}^\infty |a_{N+i}|$ converges by the comparison test meaning $\sum_{i=1}^{\infty} |a_{i}|$ also converges thus by the absolute value test $\sum a_n$ converges.</p>
+<hr />
+<p><strong>Exercise 2.7.10 (Infinite Products).</strong><br />
+Review Exercise 2.4.10 about infinite products and then answer the following questions:</p>
+<p>(a) Does $\prod_{i=1}^{\infty} \frac{1 + 2^{n-1}}{2^n}$ converge?</p>
+<p>$p_n = p_{n-1}\frac{1 + 2^{n-1}}{2^n}$ converges since the fraction is always less than $1$ for all $n &gt; 1$.
+So yeah it does converge.</p>
+<p>(b) The infinite product $\prod_{i=1}^n \frac{2n - 1}{2n}$ certainly converges. (Why?) Does it converge to zero?</p>
+<p>I&#39;m stupid because this took me a long while to realize.
+You can prove by induction that if $t_k = \prod_{n=1}^k \frac{2n}{2n+1}$, $q_k = \prod_{n=1}^k \frac{n}{n+1}$, and $p_k = \prod_{n=1}^k \frac{2n-1}{2n}$, then $q_{2k} = p_kt_k$. We know for a fact that $(q_k) \to 0$ since you can easily show that $q_k = \frac{1}{k}$, thus $(q_{2k}) \to 0$ as well. This means that, by the algebraic limit theorems, <em>if</em> $(p_k)$ and $(t_k)$ both converge, then one of them has to be zero. We know that both of them do indeed converge, which can be proven by the MCT since each of the fractions which make up the product for each sequence of partial products is strictly between one and zero.</p>
+<p>Now, Notice how $$\frac{2n}{2n+1} = \frac{2n-1}{2n} \cdot \frac{(2n)(2n)}{(2n+1)(2n-1)} = \frac{2n - 1}{2n} \cdot \left(1 + \frac{1}{4n^2 - 1}\right)$$
+So we will now define $r_k = \prod_{n=1}^k 1 + \frac{1}{4n^2 - 1}$, where $t_k = p_k \cdot r_k$. Since, clearly, $(r_k)$ is non-decreasing starting from a value greater than one, then it would converge to a non-zero value. We know that it converges since $\sum \frac{1}{4n^2 - 1}$ clearly converges, which implies that this converges by what was proven in Exercise 2.4.10. This means that $q_{2k} = (p_k)^2 \cdot r_k$. Since $(r_k) \not \to 0$, then $(p_k^2) \to 0$, which also means that $(p_k) \to 0$, where those three chains of implications is all based on the algebraic limit theorem. Most if not all of the usage of the algebraic limit theorem here is of course about how $(a_k \cdot b_k) \to 0$ if and only if $(a_k) \to 0$ or $(b_k) \to 0$.</p>
+<p>(c) In 1655, John Wallis famously derived the formula</p>
+<p>$$\left( \frac{2}{1} \cdot \frac{2}{3} \right) \cdot \left( \frac{4}{3} \cdot \frac{4}{5} \right) \cdot \left( \frac{6}{5} \cdot \frac{6}{7} \right) \cdot \left( \frac{8}{7} \cdot \frac{8}{9} \right) \cdot \dots = \frac{\pi}{2}$$</p>
+<p>Show that the left side of this identity at least converges to something. (A complete proof of this result is taken up in Section 8.3.)</p>
+<p>The formula for each partial product is clearly $p_k = \prod_{n=1}^k \frac{(n+1)}{n(n+2)} = \prod_{n=1}^k \left( 1 + \frac{1}{n^2 + 2n} \right)$. Since $\sum \frac{1}{n^2 + 2n}$ converges to zero by the comparison test with $\sum \frac{1}{n^2}$, then $(p_k)$ indeed converges by the result in Exercise 2.4.10.</p>
+<hr />
+<p><strong>Exercise 2.7.11.</strong><br />
+Find examples of two series $\sum a_n$ and $\sum b_n$ both of which diverge but for which $\sum \min \{a_n, b_n\}$ converges. To make it more challenging, produce examples where $(a_n)$ and $(b_n)$ are strictly positive and decreasing.</p>
+<p>$$a_n = \begin{cases}
+\frac{1}{n} &amp; \text{if $n$ is odd} \\
+\frac{1}{2^n} &amp; \text{if n is even}
+\end{cases}
+$$</p>
+<p>$$b_n = \begin{cases}
+\frac{1}{n} &amp; \text{if $n$ is even} \\
+\frac{1}{2^n} &amp; \text{if n is odd}
+\end{cases}
+$$
+Since $\frac{1}{n} \geq \frac{1}{2^n}$ for all $n$, then</p>
+<p>$$\min\{a_n, b_n\} =
+\frac{1}{2^n}
+$$</p>
+<p>Now since $\sum a_n$ and $\sum b_n$ is monotonically increasing, and both $\sum \frac{1}{2n}$ and $\sum \frac{1}{2n - 1}$ diverge, then indeed $\sum a_n$ and $\sum b_n$ diverges.</p>
+<hr />
+<p><strong>Exercise 2.7.12 (Summation-by-parts).</strong><br />
+Let $(x_n)$ and $(y_n)$ be sequences, let $s_n = x_1 + x_2 + \dots + x_n$ and set $s_0 = 0$. Use the observation that $x_j = s_j - s_{j-1}$ to verify the formula</p>
+<p>$$\sum_{j=m}^n x_j y_j = s_n y_{n+1} - s_{m-1} y_m + \sum_{j=m}^n s_j (y_j - y_{j+1}).$$</p>
+<p>Observe that for $n = m$, the formula is correct: $s_my_{m+1} - s_{m-1}y_m + s_my_m - s_my_{m+1}$ is indeed equal to $y_m(s_m - s_{m-1})$ which is equal to $x_my_m$. Now suppose we know that it is true for some $n$, it will be proven to be true for $n+1$ as well.
+$$
+\begin{align}
+-s_ny_{n+1} + s_{n+1}y_{n+2} + s_{n+1}(y_{n+1} - y_{n+2}) &amp;= y_{n+1}(s_{n+1} - s_n) + y_{n+2}(s_{n+1} - s_{n+1}) \\
+&amp;= x_{n+1}y_{n+1}
+\end{align}
+$$
+Simply add that top left expression to the sum
+$$
+\begin{align}
+&amp;s_n y_{n+1} - s_{m-1} y_m + \sum_{j=m}^n s_j (y_j - y_{j+1}) + (-s_ny_{n+1} + s_{n+1}y_{n+2} + s_{n+1}(y_{n+1} - y_{n+2})) \\
+&amp;=s_{n+1}y_{n+2} - s_{m-1}y_m + (s_{n+1}(y_{n+1} - y_{n+2})) + \sum_{j=m}^n s_j (y_j - y_{j+1}) \\
+\sum_{j=m}^{n+1} x_jy_j &amp;= s_{n+1}y_{n+2} - s_{m-1}y_m + \sum_{j=m}^{n+1} s_j (y_j - y_{j+1})
+\end{align}
+$$</p>
+<hr />
+<p><strong>Exercise 2.7.13 (Abel’s Test).</strong><br />
+Abel’s Test for convergence states that if the series $\sum_{k=1}^\infty x_k$ converges, and if $(y_k)$ is a sequence satisfying</p>
+<p>$$y_1 \geq y_2 \geq y_3 \geq \cdots \geq 0,$$</p>
+<p>then the series $\sum_{k=1}^\infty x_k y_k$ converges.</p>
+<p>(a) Use Exercise 2.7.12 to show that</p>
+<p>$$\sum_{k=1}^n x_k y_k = s_n y_{n+1} + \sum_{k=1}^n s_k (y_k - y_{k+1}),$$</p>
+<p>where $s_n = x_1 + x_2 + \cdots + x_n$.</p>
+<p>What am I supposed to show other than since $s_{m-1} = s_{0} = \sum_{i=1}^{0} x_i = 0$, then the $s_{m-1}y_m$ term is equal to zero and so is gone from the sum??</p>
+<p>(b) Use the Comparison Test to argue that $\sum_{k=1}^\infty s_k (y_k - y_{k+1})$ converges absolutely, and show how this leads directly to a proof of Abel’s Test.</p>
+<p>Notice that if $c_k = \sum_{n=1}^k |s_n(y_n - y_{n+1})|$, then since $s_n$ converges, then $|s_n|$ is bounded, meaning if you take $M$ to be it&#39;s bound, then $|s_n(y_n - y_{n+1})| \leq M(y_n - y_{n+1})$. We know that the sequence on the right. We know that $\sum_{n=1}^k (y_n - y_{n+1}) = y_1 - y_{k+1}$, therefore it&#39;s limit is $y_1 - \lim (y_n)$ (we know that $(y_n)$ converges by the MCT). Hence, $\sum M(y_n - y_{n+1}) = M(1 - \lim(y_n))$. By the comparison test, $\sum |s_n(y_n - y_{n+1})|$ converges.</p>
+<p>This leads to a proof of Abel&#39;s test because $\sum_{k=1}^\infty x_ky_k = \lim_{n \to \infty}(\sum_{k=1}^n x_ky_k)$, which itself is equal to $\lim (s_ny_{n+1}) + \lim (\sum_{k=1}^n s_k(y_k - y_{k+1}))$, we have proven that the limit on the right converges (if you apply the absolute value test to the previous part), and so the limit on the left clearly converges by the ALT since both $(y_n)$ and $(s_n)$ converges. Thus the entire sum converges.</p>
+<hr />
+<p><strong>Exercise 2.7.14 (Dirichlet’s Test).</strong><br />
+Dirichlet’s Test for convergence states that if the partial sums of $\sum_{k=1}^\infty x_k$ are bounded (but not necessarily convergent), and if $(y_k)$ is a sequence satisfying</p>
+<p>$$y_1 \geq y_2 \geq y_3 \geq \cdots \geq 0$$</p>
+<p>with $\lim y_k = 0$, then the series $\sum_{k=1}^\infty x_k y_k$ converges.</p>
+<p>(a) Point out how the hypothesis of Dirichlet’s Test differs from that of Abel’s Test in Exercise 2.7.13, but show that essentially the same strategy can be used to provide a proof.</p>
+<p>The difference is that $\lim y_k = 0$ in here, while in Abel&#39;s test it&#39;s not. Using the exact same strategy, you can prove that $\sum_{k=1}^n s_k(y_k - y_{k+1})$ converges absolutely, since earlier we have only relied in the fact that $(y_k)$ converges and that $(s_k)$ is bounded. We have not strictly relied on the fact that $(s_k)$ converges, we only relied on it to show that it is bounded which is what was truly relied on.</p>
+<p>Now the main difference is in proving that $s_ny_{n+1}$ converges. Suppose $M$ is the bound of $(s_n)$, then clearly $|s_ny_{n+1}| \leq M(y_{n+1})$ and $\lim M(y_{n+1}) = 0$ by the algebraic limit theorems, therefore by the order limit theorems, $|s_ny_{n+1}| \to 0$ as well, therefore $s_ny_{n+1} \to 0$. I think you would need to fall back to the raw definition of sequential limits to prove that $x_n \to 0$ if and only if $|x_n| \to 0$, but that&#39;s not really hard anyway so that will be left as an exercise to the reader.</p>
+<p>(b) Show how the Alternating Series Test (Theorem 2.7.7) can be derived as a special case of Dirichlet’s Test.</p>
+<p>$\sum_{k=1}^{n} (-1)^k a_k = \sum_{k=1}^n a_k b_k$ where $(a_k) \to 0$ is non-increasing. We know that $\sum_{k=1}^n b_k = \sum_{k=1}^n (-1)^k$ is bounded, therefore indeed by Dirichlet&#39;s test, we have the sum of a sequence where it&#39;s sum is bounded multiplied by a non-increasing sequence which converges to zero, hence that product converges.</p>
+<p>(removed) =
+Notice what this means. It means that the sum of all terms $b_n$ with $n \leq m$ where $M \geq N$ includes all of the terms $a_m$ with $m \leq N$. Hence $\sum_{i=1}^M b_i - \sum_{i=1}^N a_i$ is equal to the sum of some distinct terms of $(a_n)$ that are <em>after</em> term $N$. If you take the minimum of those terms and the maximum, which I repeat will all be terms after $N$, then by the Cauchy Criterion for Series and the fact that the series with terms $(a_i)$ converges, then the magnitude of the sum of the terms from the minimum to the maximum terms from earlier is less than $\epsilon$. Hence $|c_M - s_N| &lt; \epsilon$ and since $|s_N - s| &lt; \epsilon$, then $|c_M - s| &lt; \epsilon$. However this paragraph is just the informal description of this, the formalization attempt is in the next paragraph.</p>
+<p>(removed 2) = We know by the Cauchy Criterion (it&#39;s not like we&#39;re not allowed to use it here, since the previous exercise is only talking about showing that $(s_n)$ is a Cauchy sequence, which mentions nothing about using the fact that the sequence of terms is a Cauchy sequence so you can&#39;t argue that you shouldn&#39;t use this since this is what the previous exercise is about because it isn&#39;t), that $|a_{2i} - a_{2i+1}|$ gets arbitrarily close to each other.</p>
+<p>Take any $\epsilon &gt; 0$, by the Cauchy Criterion, there exists some $N \in \mathbb{N}$ such that for all $n \geq N$ it follows that $|a_{2N + 1} - a_{2N}| &lt; \epsilon$ (this is just a more specialized use of the Cauchy Criterion). Therefore, the elements of $I_N$ is at most $\epsilon$ away from each other. Since every element after $a_{2N}$ is in $I_N$, and $I$ is also in $I_N$, then for all $m \geq 2N$, it follows that $|a_m - I| &lt; \epsilon$. Hence, $(a_m)$ converges to $I$ because you can take $2N$ for each $\epsilon &gt; 0$ and know that for all $n \geq 2N$ it follows that $|a_n - I| &lt; \epsilon$. Of course an important part of this is that $2N \pm 1$ is always odd and $2N$ is always even.</p>
+</body>
+</html>
