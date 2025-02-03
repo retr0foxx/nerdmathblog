@@ -21,7 +21,7 @@
                                       <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>tmphuit1j7n</title>
+  <title>tmp242xjcu4</title>
   <style>
 html {
 color: #1a1a1a;
@@ -278,11 +278,12 @@ This of course follows from the fact that $M = \max A$, where $A$ is the set of 
 <h3>Exercises</h3>
 <p><strong>Exercise 2.7.1.</strong> Proving the Alternate Series Test (Theorem 2.7.7.) amounts to showing that the sequence of partial sums $$s_n = a_1 - a_2 + a_3 - \dots \pm a_n$$
 converges. (The opening example in Section 2.1 includes a typical illustration of $(s_n)$.) Different characterizations of completeness lead to different proofs.</p>
-<p>(a) Prove the Alternating Series Test by showing that $(s_n)$ is a Cauchy sequence.
-(b) Supply another proof for this result using the Nested Interval Property (Theorem 1.4.1).
+<p>(a) Prove the Alternating Series Test by showing that $(s_n)$ is a Cauchy sequence.<br />
+(b) Supply another proof for this result using the Nested Interval Property (Theorem 1.4.1).<br />
 (c) Consider the subsequences $(s_{2n})$ and $(s_{2n + 1})$, and show how the Monotone Convergence Theorem leads to a third proof for the Alternating Series Test.</p>
-<p>(a) This is how I already proved it earlier, by showing that $(s_n)$ is a Cauchy sequence.
-(b) Going back to the fact that if $i$ is odd, then $s_i \leq s_{i+1}$ and that if $j &gt; i$ then $s_j \geq s_i$. After that, if $i$ is even and $j &gt; i$, then $s_j \leq s_i$. This was used in the proof for (a). Now, this means that $I_i = [s_{2i - 1}, s_{2i}]$ makes a sequence of nested closed intervals such that such that $s_j \in I_i$ for all $j &gt; i$. By the NIP, $I = \cap_{i=1}^\infty I_i$ is non-empty, so suppose that $s$ is an element of $I$, meaning $s \in [s_{2n-1}, s_{2n}]$ for every $n$.</p>
+<p>Answers:</p>
+<p>(a) This is how I already proved it earlier, by showing that $(s_n)$ is a Cauchy sequence.</p>
+<p>(b) Going back to the fact that if $i$ is odd, then $s_i \leq s_{i+1}$ and that if $j &gt; i$ then $s_j \geq s_i$. After that, if $i$ is even and $j &gt; i$, then $s_j \leq s_i$. This was used in the proof for (a). Now, this means that $I_i = [s_{2i - 1}, s_{2i}]$ makes a sequence of nested closed intervals such that such that $s_j \in I_i$ for all $j &gt; i$. By the NIP, $I = \cap_{i=1}^\infty I_i$ is non-empty, so suppose that $s$ is an element of $I$, meaning $s \in [s_{2n-1}, s_{2n}]$ for every $n$.</p>
 <p>Remember that $(a_i) \to 0$, hence, for all $\epsilon &gt; 0$ there exists some $N$ such that for all $n \geq N$, $|a_n| &lt; \epsilon$. However we know that $|s_{2N - 1} - s_{2N}| = |a_{2N - 1}| &lt; \epsilon$ because $2N - 1 \geq N$. We also know that for all $m \geq 2N$, it follows that $s_m \in [ s_{2N - 1}, s_{2N} ]$ which we know is a closed interval with a size less than epsilon because $|s_{2N-1} - s_{2N}| &lt; \epsilon$, and also contains $s$. Therefore, $|s_{m} - s| &lt; \epsilon$ and thus you can conclude that $(s_n) \to s$.</p>
 <p>(c) Continuing while modifying the previous proof a bit, we know that all terms after $a_1$ including itself is in the closed interval $[a_1, a_2]$. Therefore, this sequence is bounded. We also know that the subsequence of all but only odd terms is non-decreasing, hence it converges by the MCT. The sequence of only even terms also converges by the MCT. Suppose $(s_{2n - 1}) = o$, it will be proven that the sequence converges to $o$.</p>
 <p>Take any $\epsilon &gt; 0$, there exists some $N$ such that for all $n \geq N$ it follows that $|s_{2n - 1} - o| &lt; \frac{\epsilon}{2}$ and $|a_{n}| &lt; \frac{\epsilon}{2}$. We also know that for all $m \geq 2N$, it follows that $s_m \in [s_{2n - 1}, s_{2n}]$, and since $|s_{2n - 1} - s_{2n}| = |a_{2n - 1}| &lt; \frac{\epsilon}{2}$, then $|s_m - s_{2n - 1}| &lt; \frac{\epsilon}{2}$. Since we also know that $|s_{2n - 1} - o| &lt; \frac{\epsilon}{2}$, then by the triangle inequality we can conclude that $|s_{m} - o| &lt; \epsilon$.</p>
@@ -293,26 +294,30 @@ converges. (The opening example in Section 2.1 includes a typical illustration o
 (c) $1 + \frac{3}{4} + \frac{4}{6} + \frac{5}{8} + \frac{6}{10} + \frac{7}{12} + \dots$<br />
 (d) $1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \dots$<br />
 (e) $\frac{1}{1^2} + \frac{1}{2^3} + \frac{1}{3^4} + \frac{1}{4^5} + \dots$</p>
-<p>(a) $2^n + n &gt; 2^n$ for all natural $n$, therefore $\frac{1}{2^n + n} &lt; 2^{-n}$ and since $\sum_{i=1}^{\infty} \frac{1}{2^n}$ converges due to it being an infinite geometric sum with a less than one positive ratio, then $\sum_{i=1}^\infty \frac{1}{2^n + n}$ converges by the comparison test.
-(b) $\sin(n) \leq 1$ is always true, hence $|\sin(n)/n^2| \leq 1/n^2$ is always true. The series with terms $1/n^2$ converges hence by the comparison test, the series with the terms $|\sin(n)/n^2|$ converges and so by the Absolute Convergence Test, $\sin(n)/n^2$ converges.
-(c) Clearly, all terms are greater than $\frac{1}{2}$ and so it clearly diverges by the comparison test since the sum of only $1/2$ diverges...
-(d) Clearly, the absolute value of the terms of the sum, $1/(2n - 1)$, is decreasing and converges to zero, and so by the Alternating Series Test, it converges.
-(e) $a_n = \frac{1}{n^{n+1}}$, and since for every $n &gt; 1$, it follows that $\frac{1}{a_n} = n^{n+1} \geq 2^n$ therefore $a_n \leq \frac{1}{2^n}$ and so the sum converges by the comparison test.</p>
+<p>Answer:</p>
+<p>(a) $2^n + n &gt; 2^n$ for all natural $n$, therefore $\frac{1}{2^n + n} &lt; 2^{-n}$ and since $\sum_{i=1}^{\infty} \frac{1}{2^n}$ converges due to it being an infinite geometric sum with a less than one positive ratio, then $\sum_{i=1}^\infty \frac{1}{2^n + n}$ converges by the comparison test.</p>
+<p>(b) $\sin(n) \leq 1$ is always true, hence $|\sin(n)/n^2| \leq 1/n^2$ is always true. The series with terms $1/n^2$ converges hence by the comparison test, the series with the terms $|\sin(n)/n^2|$ converges and so by the Absolute Convergence Test, $\sin(n)/n^2$ converges.</p>
+<p>(c) Clearly, all terms are greater than $\frac{1}{2}$ and so it clearly diverges by the comparison test since the sum of only $1/2$ diverges...</p>
+<p>(d) Clearly, the absolute value of the terms of the sum, $1/(2n - 1)$, is decreasing and converges to zero, and so by the Alternating Series Test, it converges.</p>
+<p>(e) $a_n = \frac{1}{n^{n+1}}$, and since for every $n &gt; 1$, it follows that $\frac{1}{a_n} = n^{n+1} \geq 2^n$ therefore $a_n \leq \frac{1}{2^n}$ and so the sum converges by the comparison test.</p>
 <hr />
 <p><strong>Exercise 2.7.3.</strong></p>
 <p>(a) Provide the details for the proof of the Comparison Test (Theorem 2.7.4) using the Cauchy Criterion for Series.</p>
 <p>(b) Give another proof for the Comparison Test, this time using the Monotone Convergence Theorem.</p>
-<p>(a) This is already how I proved it earlier.
-(b) Suppose $b = \sum_{i=1}^{\infty} b_k$ (and so we&#39;re starting from if that sum converges), we know that $0 \leq A_n \leq B_n \leq b$ for every natural $n$ which can be proven by induction. We also know that $(A_n)$ is monotone since $A_{n+1} = A_{n} + a_{n+1}$ where $a_{n+1} \geq 0$, therefore $(A_n)$ converges by the MCT.</p>
+<p>Answer:</p>
+<p>(a) This is already how I proved it earlier.</p>
+<p>(b) Suppose $b = \sum_{i=1}^{\infty} b_k$ (and so we&#39;re starting from if that sum converges), we know that $0 \leq A_n \leq B_n \leq b$ for every natural $n$ which can be proven by induction. We also know that $(A_n)$ is monotone since $A_{n+1} = A_{n} + a_{n+1}$ where $a_{n+1} \geq 0$, therefore $(A_n)$ converges by the MCT.</p>
 <hr />
 <p><strong>Exercise 2.7.4.</strong> Give an example of each or explain why the request is impossible referencing the proper theorem(s):</p>
 <p>(a) Two series $\sum x_n$ and $\sum y_n$ that both diverge but where $\sum x_n y_n$ converges.</p>
 <p>(b) A convergent series $\sum x_n$ and a bounded sequence $(y_n)$ such that $\sum x_n y_n$ diverges.</p>
 <p>(c) Two sequences $(x_n)$ and $(y_n)$ where $\sum x_n$ and $\sum (x_n + y_n)$ both converge but $\sum y_n$ diverges.</p>
 <p>(d) A sequence $(x_n)$ satisfying $0 \leq x_n \leq 1/n$ where $\sum (-1)^n x_n$ diverges.</p>
-<p>(a) $x_n = (-1)^n$, $y_n = \frac{1}{n}$. The sum of their product converges by the Alternating Series Test.
-(b) It is impossible since $\sum y_n = \sum (x_n + y_n) - \sum x_n$. The Algebraic Limit Theorem for Series implies that $\sum y_n$ converges.
-(c) In that case, $(x_n)$ can only converge to zero, there is no way it doesn&#39;t because it&#39;s lower bound is constant while it&#39;s upper bound gets arbitrarily close to zero as $n$ increases. Thus by the Alternating Series Test, it converges.</p>
+<p>Answer:</p>
+<p>(a) $x_n = (-1)^n$, $y_n = \frac{1}{n}$. The sum of their product converges by the Alternating Series Test.</p>
+<p>(b) Just do $x_n = \frac{(-1)^n}{n}$ and $y_n = (-1)^n$, then clearly $\sum_{n=1}^{\infty} x_ny_n = \sum_{n=1}^{\infty} \frac{1}{n}$ which we know converges.</p>
+<p>(c) It is impossible since $\sum y_n = \sum (x_n + y_n) - \sum x_n$. The Algebraic Limit Theorem for Series implies that $\sum y_n$ converges.</p>
+<p>(d) In that case, $(x_n)$ can only converge to zero, there is no way it doesn&#39;t because it&#39;s lower bound is constant while it&#39;s upper bound gets arbitrarily close to zero as $n$ increases. Thus by the Alternating Series Test, it converges.</p>
 <hr />
 <p><strong>Exercise 2.7.5.</strong> Now that we have proved the basic facts about geometric series, supply a proof for Corollary 2.4.7.</p>
 <p><strong>Corollary 2.4.7.</strong> <em>The series $\sum_{i=1}^{\infty} a/i^p$ converges if and only if $p &gt; 1$.</em></p>
@@ -323,25 +328,26 @@ converges. (The opening example in Section 2.1 includes a typical illustration o
 (b) All convergent series are subvergent.<br />
 (c) If $\sum |a_n|$ subverges, then $\sum a_n$ subverges as well.<br />
 (d) If $\sum a_n$ subverges, then $(a_n)$ has a convergent subsequence.</p>
-<p>(a) Clearly not, right. Just make the value of the sequence constant and no subsequence of the partial sums will be bounded.
-(b) Of course, any subsequence of a convergent sequence converges to the same limit.
-(c) Of course, you can create another series $(b_n)$ such that if $(k_n) \in \mathbb{N}$ is the indices of the subsequence of $(S_n)$ which converges then $b_n = S_{k_n} - S_{k_{n-1}}$ where $a_0 = k_0 = S_0 = 0$. Hence $b_n = \sum_{i=k_{n-1} + 1}^{k_n} |a_i|$ therefore we know that $b_n = |b_n|$ and since it means that $\sum |b_n|$ converges since $\sum_{i=1}^n |b_i| = S_{k_n}$ and we know that the latter sequence in the equality converges. But wait, we also know that $b_n \geq |\sum_{i=k_{n-1} - 1}^{k_n} a_i|$ by the triangle inequality, and so by the comparison test $\sum_{j=1}^\infty |\sum_{i={k_{j-1}} - 1}^{k_j} a_i|$ converges and so by the absolute value test, $\sum_{j=1}^{\infty} (\sum_{i=k_{j-1} - 1}^{k_j} a_i)$ also converges, but that partial sums for that sum is equivalent to the subsequence of the partial sums for $\sum a_i$, that is, $\sum_{j=1}^N (\sum_{i=k_{j-1} - 1}^{k_j} a_i) = \sum_{i=1}^{k_j} a_i$ and so indeed $\sum a_i$ subverges.
-(d) This is equivalent to asking if when the sum subverges then the terms of the sum is bounded. Of course this is not true since you can do something like $a_n = (-1)^n \lfloor \frac{n + 1}{2} \rfloor$. The subsequence of the partial sums which only has even terms of the partial sums clearly converges but $(a_n)$ clearly diverges.</p>
+<p>Answers:</p>
+<p>(a) Clearly not, right. Just make the value of the sequence constant and no subsequence of the partial sums will be bounded.</p>
+<p>(b) Of course, any subsequence of a convergent sequence converges to the same limit.</p>
+<p>(c) Of course, you can create another series $(b_n)$ such that if $(k_n) \in \mathbb{N}$ is the indices of the subsequence of $(S_n)$ which converges then $b_n = S_{k_n} - S_{k_{n-1}}$ where $a_0 = k_0 = S_0 = 0$. Hence $b_n = \sum_{i=k_{n-1} + 1}^{k_n} |a_i|$ therefore we know that $b_n = |b_n|$ and since it means that $\sum |b_n|$ converges since $\sum_{i=1}^n |b_i| = S_{k_n}$ and we know that the latter sequence in the equality converges. But wait, we also know that $b_n \geq |\sum_{i=k_{n-1} - 1}^{k_n} a_i|$ by the triangle inequality, and so by the comparison test $\sum_{j=1}^\infty |\sum_{i={k_{j-1}} - 1}^{k_j} a_i|$ converges and so by the absolute value test, $\sum_{j=1}^{\infty} (\sum_{i=k_{j-1} - 1}^{k_j} a_i)$ also converges, but that partial sums for that sum is equivalent to the subsequence of the partial sums for $\sum a_i$, that is, $\sum_{j=1}^N (\sum_{i=k_{j-1} - 1}^{k_j} a_i) = \sum_{i=1}^{k_j} a_i$ and so indeed $\sum a_i$ subverges.</p>
+<p>(d) This is equivalent to asking if when the sum subverges then the terms of the sum is bounded. Of course this is not true since you can do something like $a_n = (-1)^n \lfloor \frac{n + 1}{2} \rfloor$. The subsequence of the partial sums which only has even terms of the partial sums clearly converges but $(a_n)$ clearly diverges.</p>
 <hr />
 <p><strong>Exercise 2.7.7.</strong></p>
-<p>(a) Show that if $a_n &gt; 0$ and $\lim (n a_n) = l$ with $l \neq 0$, then the series $\sum a_n$ diverges.
+<p>(a) Show that if $a_n &gt; 0$ and $\lim (n a_n) = l$ with $l \neq 0$, then the series $\sum a_n$ diverges.<br />
 (b) Assume $a_n &gt; 0$ and $\lim (n^2 a_n)$ exists. Show that $\sum a_n$ converges.</p>
 <p>This motivates a question about whether or not the following is true:
 Assume $a_n &gt; 0$, then if $f: \mathbb{R} \to \mathbb{R}$ is a function such that $(\frac{1}{f(n)})$ converges, then if $\lim(f(n)a_n)$ exists, it follows that $\sum a_n$ converges. Now if $f : \mathbb{R} \to \mathbb{R}$ is a function such that $(\frac{1}{f(n)})$ diverges, then if $\lim(na_n) = l$ with $l \neq 0$, it follows that $\sum a_n$ diverges. Just a random thought.</p>
-<p>(a) Take $\epsilon = \frac{l}{2}$, there exists some $N$ such that for all $n \geq N$ it follows that $|na_n - l| &lt; \epsilon$ which implies that $|a_n - \frac{l}{n}| &lt; \frac{\epsilon}{n}$ therefore $a_n \geq \frac{l - \epsilon}{n} = \frac{l}{2n} = \frac{l}{2} \cdot \frac{1}{n}$. We know that $\sum_{i=N}^{\infty} \frac{l}{2} \cdot \frac{1}{i}$ diverges since $\sum_{i=N}^{\infty} \frac{1}{i}$ itself diverges to infinity. By the comparison test, we know that $\sum_{i=N}^{\infty} a_i$ diverges as well, therefore $\sum_{i=1}^{\infty} a_i$ diverges.
-(b) Use a similar technique as (a). Take $\epsilon = \frac{l}{2}$ where of course $l = \lim(n^2a_n)$. We know that there exists an $N$ such that for all $n \geq N$ it follows that $|n^2a_n - l| &lt; \epsilon$ therefore $|a_n - \frac{l}{n^2}| &lt; \frac{\epsilon}{n^2}$ therefore $a_n \leq \frac{l + \epsilon}{n^2} = \frac{3l}{2n^2} = \frac{3l}{2} \cdot \frac{1}{n^2}$. We know that $\sum_{i=N}^\infty \frac{1}{i^2}$ converges therefore $\sum_{i=N}^{\infty} \frac{3l}{2} \cdot \frac{1}{i^2}$ converges as well by the ALT for Series. Therefore, by the comparison test we know that $\sum_{i=N}^{\infty} a_i$ also converges.</p>
+<p>(a) Take $\epsilon = \frac{l}{2}$, there exists some $N$ such that for all $n \geq N$ it follows that $|na_n - l| &lt; \epsilon$ which implies that $|a_n - \frac{l}{n}| &lt; \frac{\epsilon}{n}$ therefore $a_n \geq \frac{l - \epsilon}{n} = \frac{l}{2n} = \frac{l}{2} \cdot \frac{1}{n}$. We know that $\sum_{i=N}^{\infty} \frac{l}{2} \cdot \frac{1}{i}$ diverges since $\sum_{i=N}^{\infty} \frac{1}{i}$ itself diverges to infinity. By the comparison test, we know that $\sum_{i=N}^{\infty} a_i$ diverges as well, therefore $\sum_{i=1}^{\infty} a_i$ diverges.</p>
+<p>(b) Use a similar technique as (a). Take $\epsilon = \frac{l}{2}$ where of course $l = \lim(n^2a_n)$. We know that there exists an $N$ such that for all $n \geq N$ it follows that $|n^2a_n - l| &lt; \epsilon$ therefore $|a_n - \frac{l}{n^2}| &lt; \frac{\epsilon}{n^2}$ therefore $a_n \leq \frac{l + \epsilon}{n^2} = \frac{3l}{2n^2} = \frac{3l}{2} \cdot \frac{1}{n^2}$. We know that $\sum_{i=N}^\infty \frac{1}{i^2}$ converges therefore $\sum_{i=N}^{\infty} \frac{3l}{2} \cdot \frac{1}{i^2}$ converges as well by the ALT for Series. Therefore, by the comparison test we know that $\sum_{i=N}^{\infty} a_i$ also converges.</p>
 <hr />
 <p><strong>Exercise 2.7.8.</strong> Consider each of the following propositions. Provide short proofs for those that are true and counterexamples for any that are not.</p>
 <p><strong>(a)</strong> If $\sum a_n$ converges absolutely, then $\sum a_n^2$ also converges absolutely.</p>
 <p><strong>(b)</strong> If $\sum a_n$ converges and $(b_n)$ converges, then $\sum a_n b_n$ converges.</p>
 <p><strong>(c)</strong> If $\sum a_n$ converges conditionally, then $\sum n^2 a_n$ diverges.</p>
-<p>Answers:
-(a) Of course. We have proven earlier in Theorem 2.7.3. that if $\sum |a_n|$ converges, then $|a_n| \to 0$. Therefore, there exists some $N$ such that for all $n \geq N$ it follows that $|a_n| &lt; 1$ meaning $|a_n^2| = |a_n|^2 &lt; |a_n|$. By the comparison test, $\sum |a_n|$ converges therefore $\sum a_n$ converges by the absolute value test.</p>
+<p>Answers:</p>
+<p>(a) Of course. We have proven earlier in Theorem 2.7.3. that if $\sum |a_n|$ converges, then $|a_n| \to 0$. Therefore, there exists some $N$ such that for all $n \geq N$ it follows that $|a_n| &lt; 1$ meaning $|a_n^2| = |a_n|^2 &lt; |a_n|$. By the comparison test, $\sum |a_n|$ converges therefore $\sum a_n$ converges by the absolute value test.</p>
 <p>(b) Oh it&#39;s actually so simple why did I spend so much time on this.
 Let the sequence basically be $1, -1$ and then $1/2, -1/2$ repeated four times, and then $1/4, -1/4$ repeated sixteen times, and so basically the nth time you&#39;re doing this you have $1/2^{n-1}, -1/2^{n-1}$ repeated $2^{2(n-1)}$ times. Clearly, $\sum b_n$ converges. Now simply let $a_n = b_n$. The first two terms of $a_nb_n$ will be $1$. The next four terms will be $1/4$. The next sixteen terms will be $1/16$. So it&#39;s sum clearly diverges to infinity.</p>
 <p>(c) Suppose $\sum n^2a_n$ converges, then $(n^2a_n) \to 0$, therefore there exists an $N$ such that for all $n \geq N$ it follows that $|a_n| &lt; \frac{1}{n^2}$, therefore by the absolute value test combined with the fact that $\frac{1}{n^2}$ converges, $\sum |a_n|$ converges thus $\sum a_n$ converges absolutely. We have now proven the statement by contrapositive.</p>
@@ -354,7 +360,7 @@ Given a series $\sum_{n=1}^\infty a_n$ with $a_n \neq 0$, the Ratio Test states 
 <p>Take $\epsilon = \min\{\frac{1 - r}{2}, \frac{r}{2}\}$, there exists an $N$ such that for all $n \geq N$ it follows that $||\frac{a_n+1}{a_n}| - r| &lt; \epsilon$ which implies that $0 &lt; r - \epsilon &lt; |\frac{a_{n+1}}{a_n}| &lt; r + \epsilon &lt; 1$. Now, we know that $\sum_{i=1}^\infty |a_N| (r + \epsilon)^{i}$ converges, but we also know by induction that $|a_{N+k}| &lt; |a_N|(r + \epsilon)^k$, therefore $\sum_{k=1}^{\infty} |a_{N+k}|$ converges by the comparison test which also means that $\sum_{k=1}^{\infty} |a_k|$ converges and thus $\sum_{k=1}^{\infty} a_k$ converges by the absolute value test.</p>
 <p>(a) Let $r&#39;$ satisfy $r &lt; r&#39; &lt; 1$. Explain why there exists an $N$ such that $n \geq N$ implies $|a_{n+1}| \leq |a_n| r&#39;$.</p>
 <p>Observe that $r&#39; = r + \epsilon$. We know that there exists some $N$ such that for all $n \geq N$ it follows that $||\frac{a_{n+1}}{a_n}| - r| &lt; \epsilon$, therefore $r - \epsilon &lt; |\frac{a_{n+1}}{a_{n}}| &lt; r + \epsilon = r&#39;$. Therefore, $|a_{n+1}| &lt; |a_n|r&#39;$.</p>
-<p>(b) Why does $|a_N| \sum (r&#39;)^n$ converge?
+<p>(b) Why does $|a_N| \sum (r&#39;)^n$ converge?<br />
 Because it&#39;s a geometric series with $r&#39; &lt; 1$.</p>
 <p>(c) Now, show that $\sum |a_n|$ converges, and conclude that $\sum a_n$ converges.<br />
 Suppose $b_k = |a_N|(r&#39;)^k$. We know that $|a_{N+1}| &lt; |a_N|r&#39;$ and that for all $k \geq 1$, it follows that $|a_{N+k}| &lt; |a_{N + k - 1}|r&#39;$. Suppose, in general, that $|a_{N + k}| &lt; |a_N|(r&#39;)^k$, then since $|a_{N+k+1}| &lt; |a_{N+k}|r&#39;$ which itself is less than $|a_N|(r&#39;)^{k+1}$, then by induction, $|a_{N+k}| &lt; |a_{N+k}|(r&#39;)^k$. Therefore $\sum_{i=1}^\infty |a_{N+i}|$ converges by the comparison test meaning $\sum_{i=1}^{\infty} |a_{i}|$ also converges thus by the absolute value test $\sum a_n$ converges.</p>
@@ -397,18 +403,18 @@ Let $(x_n)$ and $(y_n)$ be sequences, let $s_n = x_1 + x_2 + \dots + x_n$ and se
 <p>$$\sum_{j=m}^n x_j y_j = s_n y_{n+1} - s_{m-1} y_m + \sum_{j=m}^n s_j (y_j - y_{j+1}).$$</p>
 <p>Observe that for $n = m$, the formula is correct: $s_my_{m+1} - s_{m-1}y_m + s_my_m - s_my_{m+1}$ is indeed equal to $y_m(s_m - s_{m-1})$ which is equal to $x_my_m$. Now suppose we know that it is true for some $n$, it will be proven to be true for $n+1$ as well.
 $$
-\begin{align}
+\begin{align*}
 -s_ny_{n+1} + s_{n+1}y_{n+2} + s_{n+1}(y_{n+1} - y_{n+2}) &amp;= y_{n+1}(s_{n+1} - s_n) + y_{n+2}(s_{n+1} - s_{n+1}) \\
 &amp;= x_{n+1}y_{n+1}
-\end{align}
+\end{align*}
 $$
 Simply add that top left expression to the sum
 $$
-\begin{align}
+\begin{align*}
 &amp;s_n y_{n+1} - s_{m-1} y_m + \sum_{j=m}^n s_j (y_j - y_{j+1}) + (-s_ny_{n+1} + s_{n+1}y_{n+2} + s_{n+1}(y_{n+1} - y_{n+2})) \\
 &amp;=s_{n+1}y_{n+2} - s_{m-1}y_m + (s_{n+1}(y_{n+1} - y_{n+2})) + \sum_{j=m}^n s_j (y_j - y_{j+1}) \\
 \sum_{j=m}^{n+1} x_jy_j &amp;= s_{n+1}y_{n+2} - s_{m-1}y_m + \sum_{j=m}^{n+1} s_j (y_j - y_{j+1})
-\end{align}
+\end{align*}
 $$</p>
 <hr />
 <p><strong>Exercise 2.7.13 (Abel’s Test).</strong><br />
@@ -420,7 +426,7 @@ Abel’s Test for convergence states that if the series $\sum_{k=1}^\infty x_k$ 
 <p>where $s_n = x_1 + x_2 + \cdots + x_n$.</p>
 <p>What am I supposed to show other than since $s_{m-1} = s_{0} = \sum_{i=1}^{0} x_i = 0$, then the $s_{m-1}y_m$ term is equal to zero and so is gone from the sum??</p>
 <p>(b) Use the Comparison Test to argue that $\sum_{k=1}^\infty s_k (y_k - y_{k+1})$ converges absolutely, and show how this leads directly to a proof of Abel’s Test.</p>
-<p>Notice that if $c_k = \sum_{n=1}^k |s_n(y_n - y_{n+1})|$, then since $s_n$ converges, then $|s_n|$ is bounded, meaning if you take $M$ to be it&#39;s bound, then $|s_n(y_n - y_{n+1})| \leq M(y_n - y_{n+1})$. We know that the sequence on the right. We know that $\sum_{n=1}^k (y_n - y_{n+1}) = y_1 - y_{k+1}$, therefore it&#39;s limit is $y_1 - \lim (y_n)$ (we know that $(y_n)$ converges by the MCT). Hence, $\sum M(y_n - y_{n+1}) = M(1 - \lim(y_n))$. By the comparison test, $\sum |s_n(y_n - y_{n+1})|$ converges.</p>
+<p>Notice that if $c_k = \sum_{n=1}^k |s_n(y_n - y_{n+1})|$, then since $s_n$ converges, then $|s_n|$ is bounded, meaning if you take $M$ to be it&#39;s bound, then $|s_n(y_n - y_{n+1})| \leq M(y_n - y_{n+1})$. We know that the sequence on the right. We know that $\sum_{n=1}^k (y_n - y_{n+1}) = y_1 - y_{k+1}$, therefore it&#39;s limit is $y_1 - \lim (y_n)$ (we know that $(y_n)$ converges by the MCT). Hence, $\sum M(y_n - y_{n+1}) = M(y_1 - \lim(y_n))$. By the comparison test, $\sum |s_n(y_n - y_{n+1})|$ converges.</p>
 <p>This leads to a proof of Abel&#39;s test because $\sum_{k=1}^\infty x_ky_k = \lim_{n \to \infty}(\sum_{k=1}^n x_ky_k)$, which itself is equal to $\lim (s_ny_{n+1}) + \lim (\sum_{k=1}^n s_k(y_k - y_{k+1}))$, we have proven that the limit on the right converges (if you apply the absolute value test to the previous part), and so the limit on the left clearly converges by the ALT since both $(y_n)$ and $(s_n)$ converges. Thus the entire sum converges.</p>
 <hr />
 <p><strong>Exercise 2.7.14 (Dirichlet’s Test).</strong><br />
