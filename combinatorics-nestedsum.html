@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebraic and Order Limit Theorems Exercises</title>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Algebraic and Order Limit Theorems Exercises</title>
+<script>
         MathJax = {
             loader: {
             load: ['[custom]/xypic.js'],
@@ -17,23 +18,21 @@
           }
         };
       </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <template>
-        <div class="dropdown-box">
-            <h3 class="dropdown-box-title">
-            </h3>
-            <div class="dropdown-box-content"></div>
-        </div>
-    </template>
-    <template>
-        <div class="spoiler">
-            <div class="spoiler-head"></div>
-        </div>
-    </template>
-
-    <script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<template>
+<div class="dropdown-box">
+<h3 class="dropdown-box-title">
+</h3>
+<div class="dropdown-box-content"></div>
+</div>
+</template>
+<template>
+<div class="spoiler">
+<div class="spoiler-head"></div>
+</div>
+</template>
+<script>
         let important_statements = new Map();
         function add_important_statements()
         {
@@ -41,8 +40,7 @@
             for (let i = 0; i < impstats.length; ++i)
         }
     </script>
-
-    <style>
+<style>
         body {
             font-size: 20px; /* Adjust the font size to your preference */
         }
@@ -62,12 +60,12 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Combinatorics and "nested sums"</h1>
+<div class="content">
+<h1>Combinatorics and "nested sums"</h1>
         Define $S(d, m)$ to be a "nested sum" of degree $d$ with $m$ terms
         where $S(1, m) = \sum_{i=1}^m i$ and $S(d, m) = \sum_{i=1}^m S(d - 1, m - i + 1)$.
         For example, $S(2, m) = (1) + (1 + 2) + ... + (1 + 2 + ... + m)$.
-        <br><br>
+        <br/><br/>
         Define $C(n, k)$ to be n choose k which is equivalent to
         $C(n, k) = \sum_{i=1}^{n - k + 1} C(n - i, k - 1)$
         but then we also know that $C(n, k) = \frac{n!}{k!(n - k)!}$

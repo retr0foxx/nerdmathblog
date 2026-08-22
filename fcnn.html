@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ln(x + 1)^2 &gt;= ln(x)ln(x + 2)</title>
+<script>
         MathJax = {
           tex: {
             packages: ['base', 'ams'],
@@ -13,23 +14,21 @@
           }
         };
       </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <template>
-        <div class="dropdown-box">
-            <h3 class="dropdown-box-title">
-            </h3>
-            <div class="dropdown-box-content"></div>
-        </div>
-    </template>
-    <template>
-        <div class="spoiler">
-            <div class="spoiler-head"></div>
-        </div>
-    </template>
-
-    <style>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<template>
+<div class="dropdown-box">
+<h3 class="dropdown-box-title">
+</h3>
+<div class="dropdown-box-content"></div>
+</div>
+</template>
+<template>
+<div class="spoiler">
+<div class="spoiler-head"></div>
+</div>
+</template>
+<style>
         body {
             font-size: 20px; /* Adjust the font size to your preference */
         }
@@ -43,8 +42,8 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Fully connected neural networks</h1>
+<div class="content">
+<h1>Fully connected neural networks</h1>
         I'll be talking about creating a fully connected neural network from scratch in Python with just numpy.
         The neural network will be for digit images classification, which is a classic introduction to fully connected neural networks.
         This is the first ever neural network project that I made and I managed to do it mostly due to the help of 3Blue1Brown.
@@ -54,35 +53,35 @@
         It took me a whole week or two to rediscover and make myself used to vector calculus chain rule and stuff like that.
         It was really hard for me to think about it, but I managed to persevere anyway and I managed to finish the project. 
         I finished this project months ago so I don't remember how I made it so this is gonna be a good review and exercise on neural networks for me.
-        <br><br>
+        <br/><br/>
         Image classification, and any kind of computer vision applications, is better to be implemented with convolutional neural networks.
         We won't be using that here because I still don't know how to implement a good differentiation interface with convolutional neural networks.
         I failed miserably last time I tried.
-        <br><br>
-        <h3>Calculus optimization</h3>
+        <br/><br/>
+<h3>Calculus optimization</h3>
         A concept that will be reviewed here is the basics of calculus optimization.
         Calculus optimization is a tool in calculus to find optima points of functions.
         For example, we might have a quadratic function in the form $f(x) = ax^2 + bx + c$ and you might want to find the minima/maxima of the function.
         It's clear intuitively that the maxima/minima will always have a derivative of 0.
         Therefore, another way to rephrase this problem is to find an x value such that the derivative of $f(x)$ at that x value is equal to 0.
         The derivative of the quadratic function is $2ax + b$, we want that to be 0, you can solve for x and get $x = \frac{-b}{2a}$.
-        <br><br>
+        <br/><br/>
         This concept also generalizes to higher dimensions.
         If you have a multivariable function such as $f(x, y)$ and you want to find an optima point, it is the same as trying to find values of $x$ and $y$ such that the gradient vector at that point is zero (the identity vector).
         Generally, if you have a function $f(\vec{v})$ that takes in a vector and returns a single real number, finding an optima point is the same as finding an input vector $\vec{v}$ such that the gradient vector at that point is zero.
         Which implies the directional derivative in every direction is also zero.
-        <br><br>
+        <br/><br/>
         For example, take the function $f(x, y) = (x - 3)^2 + (y - 5)^2$. It's clear to us that the minima of this function is at $(3, 5)$.
         But using calculus, you can find the minima more systematically by solving the system of equation:
         $$
         \begin{align*}
-        \frac{\partial f}{\partial x} &= 2(x - 3) = 0 \\
-        \frac{\partial f}{\partial y} &= 2(y - 5) = 0
+        \frac{\partial f}{\partial x} &amp;= 2(x - 3) = 0 \\
+        \frac{\partial f}{\partial y} &amp;= 2(y - 5) = 0
         \end{align*}
         $$
         and it is clear that the solution is $x = 3$ and $y = 5$.
-        <br><br>
-        <h3>Gradient descent</h3>
+        <br/><br/>
+<h3>Gradient descent</h3>
         There is also another very useful tool in Calculus Optimization, which is gradient descent.
         The calculus optimization that we did earlier was all done by solving an algebraic equation.
         What if you want to minimize/maximize a function, but it's a function where it's derivative in terms of each variables equated to 0 and then solved for the variable is really hard or impossible to solve using algebra?
@@ -91,7 +90,7 @@
         What it exactly tries to do is that it tries to find the closest optima.
         You have to configure a starting point in the algorithm and then it tries to find the closest optima, which makes it very limited in addition to other things.
         Therefore this algorithm is extremely far from perfect, but it's also extremely useful enough for our purposes.
-        <br><br>
+        <br/><br/>
         As the name suggests, it uses the gradient vector of the function to find where it moves next.
         Here's how it works if you want to minimize the function $f(\vec{v})$:
         you start with a certain value for $\vec{v}$, which is going to be the initial starting point.
@@ -103,7 +102,7 @@
         In other words, the function is decreasing in terms of (or in the direction of) the $k$th element of the input vector.
         And then an extension to that interpretation is that the "speed" at which the function increases/decreases at that point is proportional to the exact value of the $k$th element of the gradient vector at $\vec{v}$.
         Or if you already know that gradients point to the direction of steepest ascent, you would know that the negative of it would point in the direction of steepest descent, so that's another much simpler way of thinking about it.
-        <br><br>
+        <br/><br/>
         Since the task is to minimize the function, we want to iteratively change $\vec{v}$ such that the result decreases by using this gradient vector.
         Since a positive gradient vector element means it's increasing as the input increases, you want to decrease the input when the gradient is positive.
         With the same logic for when the gradient vector element is negative, you'd want to increase the input in that case.
@@ -111,15 +110,15 @@
         In other words, on every iteration, we update $\vec{v}$ in this way:
         $$\vec{v}_{i + 1} = \vec{v}_i - c \cdot \nabla f(\vec{v}_i)$$
         where c is some proportionality constant.
-        <br><br>
+        <br/><br/>
         You might notice that that would mean, as the function increases faster, we actually go further in the opposite direction.
         Which may or may not be reasonable. You can imagine a function that's increasing a LOT but only for a very short time.
         In that case, you would imagine that a reasonably sized $c$ would still make this process overshoot, in other words it might move way too far.
         That is definitely a possible issue that can theoretically be solved if $c$ is really small, but picking a small $c$ would also make things way slower.
         That's why this algorithm is really far from perfect, but it works for our purposes later.
         Also here's a simple visualization of 2D gradient descent, you can also see the formulas on the left side:
-        <img src="./images/fcnn-4.gif">
-        <br><br>
+        <img src="./images/fcnn-4.gif"/>
+<br/><br/>
         Another performance trick that is used in this algorithm is something called Stochastic Gradient Descent.
         When doing an optimization problem with gradient descent, there may be a lot of variables you may change in order to optimize the functions.
         For example, if you have a multivariable function $f(\vec{v})$ where $\vec{v}$ is a 10-thousand dimensional vector.
@@ -136,7 +135,7 @@
         So visually, if you start from a point near $(0, 0)$, normal gradient descent would move the point in the direction of the minima.
         While in stochastic gradient descent, it would move a bit more weirdly, so it would first move in the x-axis such that it decreases the output, and then the y-axis such that it decreases the output and then all of that repeats.
         I'll give an animation later. 
-        <br><br>
+        <br/><br/>
         There are also further improvements to this algorithm. Imagine that we're on a point that is neither a maxima nor a minima, but is relatively kind of flat.
         So the derivative in every direction at that point is relatively low, even though it's absolutely neither a maxima nor a minima and there is actually a maxima/minima waiting for us near that point.
         Then this algorithm would move extremely slowly near that relatively flat point. It is also possible for it to get completely stuck at such a point if it's so flat that the gradient at it is zero.
@@ -144,19 +143,19 @@
         If you've been going down at a steady rate, and you suddenly see a relatively flat point, you don't immediately stop but you should still move as in how physics would work in real life.
         This helps a LOT in these cases for gradient descent. So it helps an issue that might be described as undershooting but it still doesn't help with the other problem of overshooting.
         There's not much that's actually done about that.
-        We'll talk about the details of this later on. Here's an awesome demonstration of it in action though: <br>
-        <img src="./images/fcnn-2.gif">
-        <br><br>
-        <h3>Regression</h3>
+        We'll talk about the details of this later on. Here's an awesome demonstration of it in action though: <br/>
+<img src="./images/fcnn-2.gif"/>
+<br/><br/>
+<h3>Regression</h3>
         The next concept that will be talked about here is regression.
         First, we will talk about Linear Regression, then Logistic Regression, and then finally regression in a more general sense.
         Linear Regression is a task of finding the best linear function that fits a given data.
         In 2-dimensional linear regression, the task would be to find the best linear function $f(x)$, where x is a single number, to best fit the array of inputs $x_i$ and expected outputs $y_i$.
         Since $f(x)$ must be linear, then it's form is $f(x) = mx + c$. Every linear function with one input and one output can be given in that form.
         If you still remember Algebra, you should notice that that is the equation for a line. Therefore, if you visualize that, you will get a line with a slope of $m$ and intercept (where it hits the y-axis) $c$.
-        <br><br>
+        <br/><br/>
         Here's an example of Linear Regression. Suppose you have all of these points in the image below
-        <img src="./images/fcnn-1.png"> <br>
+        <img src="./images/fcnn-1.png"/> <br/>
         in which there are 100 points in the image.
         Each of the point has an x and y coordinate value.
         If you imagine putting those points in a list in any order, then the first point is $(x_1, y_1)$, the second point $(x_2, y_2)$, and the $i$th point in general is $(x_i, y_i)$. These are called the data points.
@@ -183,59 +182,59 @@
         Just like what we've talked about in the optimization section earlier, you can do this by solving the system of equations:
         $$
         \begin{align*}
-        \frac{d}{dm} \left[\sum_{i=1}^{N} (f(x_i, m, c) - y_i)^2\right] &= \frac{d}{dm} \left[\sum_{i=1}^{N} (mx_i + c - y_i)^2\right] \\
-        &= \sum_{i=1}^{N} 2x_i(mx_i + c - y_i) \\
-        &= 0 \\
-        \frac{d}{dc} \left[\sum_{i=1}^{N} (f(x_i, m, c) - y_i)^2\right] &= \frac{d}{dc} \left[\sum_{i=1}^{N} (mx_i + c - y_i)^2\right] \\
-        &= \sum_{i=1}^{N} 2(mx_i + c - y_i) \\
-        &= 0
+        \frac{d}{dm} \left[\sum_{i=1}^{N} (f(x_i, m, c) - y_i)^2\right] &amp;= \frac{d}{dm} \left[\sum_{i=1}^{N} (mx_i + c - y_i)^2\right] \\
+        &amp;= \sum_{i=1}^{N} 2x_i(mx_i + c - y_i) \\
+        &amp;= 0 \\
+        \frac{d}{dc} \left[\sum_{i=1}^{N} (f(x_i, m, c) - y_i)^2\right] &amp;= \frac{d}{dc} \left[\sum_{i=1}^{N} (mx_i + c - y_i)^2\right] \\
+        &amp;= \sum_{i=1}^{N} 2(mx_i + c - y_i) \\
+        &amp;= 0
         \end{align*}
         $$
         for m and c. Here's the simple solution:
         $$
         \begin{align*}
-        \sum_{i=1}^{N} 2x_i(mx_i + c - y_i) &= 0 \\
-        \sum_{i=1}^{N} x_i(mx_i + c - y_i) &= 0 \\
-        \sum_{i=1}^{N} mx_i^2 + x_i(c - y_i) &= 0 \\
-        m\left(\sum_{i=1}^{N} x_i^2\right) + \sum_{i=1}^{N} x_i(c - y_i) &= 0 \\
-        m &= -\frac{\sum_{i=1}^{N} x_i(c - y_i)}{\sum_{i=1}^{N} x_i^2} \\
-        &= \frac{\sum_{i=1}^{N} x_i(y_i - c)}{\sum_{i=1}^{N} x_i^2} \\
+        \sum_{i=1}^{N} 2x_i(mx_i + c - y_i) &amp;= 0 \\
+        \sum_{i=1}^{N} x_i(mx_i + c - y_i) &amp;= 0 \\
+        \sum_{i=1}^{N} mx_i^2 + x_i(c - y_i) &amp;= 0 \\
+        m\left(\sum_{i=1}^{N} x_i^2\right) + \sum_{i=1}^{N} x_i(c - y_i) &amp;= 0 \\
+        m &amp;= -\frac{\sum_{i=1}^{N} x_i(c - y_i)}{\sum_{i=1}^{N} x_i^2} \\
+        &amp;= \frac{\sum_{i=1}^{N} x_i(y_i - c)}{\sum_{i=1}^{N} x_i^2} \\
         \end{align*}
         $$
         and then for $c$:
         $$
         \begin{align*}
-        \sum_{i=1}^{N} 2(mx_i + c - y_i) &= 0 \\
-        \sum_{i=1}^{N} c + mx_i - y_i &= 0 \\
-        Nc + \sum_{i=1}^{N} mx_i - y_i &= 0 \\
-        c &= -\frac{\sum_{i=1}^{N} mx_i - y_i}{N} \\
-        &= \frac{\sum_{i=1}^{N} y_i - mx_i}{N} \\
+        \sum_{i=1}^{N} 2(mx_i + c - y_i) &amp;= 0 \\
+        \sum_{i=1}^{N} c + mx_i - y_i &amp;= 0 \\
+        Nc + \sum_{i=1}^{N} mx_i - y_i &amp;= 0 \\
+        c &amp;= -\frac{\sum_{i=1}^{N} mx_i - y_i}{N} \\
+        &amp;= \frac{\sum_{i=1}^{N} y_i - mx_i}{N} \\
         \end{align*}
         $$
         Putting $c$ into m:
         \begin{align*}
-        m & =\frac{\sum _{i=1}^{N} x_{i} (y_{i} -c)}{\sum _{i=1}^{N} x_{i}^{2}}\\
-        & =\frac{\sum _{i=1}^{N} x_{i} (y_{i} -\frac{\sum _{j=1}^{N} y_{j} -mx_{j}}{N} )}{\sum _{i=1}^{N} x_{i}^{2}}\\
-        & =\frac{\sum _{i=1}^{N} x_{i} (\frac{Ny_{i} -\sum _{j=1}^{N} y_{j} -mx_{j}}{N} )}{\sum _{i=1}^{N} x_{i}^{2}}\\
-        & =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -x_{i}\left(\sum _{j=1}^{N} y_{j} -mx_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
-        & =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right) + mx_{i}\left(\sum _{j=1}^{N} x_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
-        & =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right)\right) + m\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
-        m\left( 1-\frac{\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}}{N\sum _{i=1}^{N} x_{i}^{2}}\right) & =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
-        m\left(\frac{N\left(\sum _{i=1}^{N} x_{i}^{2}\right) -\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\right) & =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
-        m\left( N\left(\sum _{i=1}^{N} x_{i}^{2}\right) -\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)\right) & =\sum _{i=1}^{N} x_{i}\left( N y_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)\\
-        m\left( \sum _{i=1}^{N}\left( Nx_{i}^{2} -\sum _{j=1}^{N} x_{i} x_{j}\right)\right) & =\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)\\
-        m & =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{\sum _{i=1}^{N}\left( Nx_{i}^{2} -\sum _{j=1}^{N} x_{i} x_{j}\right)}\\
-        m & =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{\sum _{i=1}^{N} x_{i}\left( Nx_{i} -\sum _{j=1}^{N} x_{j}\right)}
+        m &amp; =\frac{\sum _{i=1}^{N} x_{i} (y_{i} -c)}{\sum _{i=1}^{N} x_{i}^{2}}\\
+        &amp; =\frac{\sum _{i=1}^{N} x_{i} (y_{i} -\frac{\sum _{j=1}^{N} y_{j} -mx_{j}}{N} )}{\sum _{i=1}^{N} x_{i}^{2}}\\
+        &amp; =\frac{\sum _{i=1}^{N} x_{i} (\frac{Ny_{i} -\sum _{j=1}^{N} y_{j} -mx_{j}}{N} )}{\sum _{i=1}^{N} x_{i}^{2}}\\
+        &amp; =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -x_{i}\left(\sum _{j=1}^{N} y_{j} -mx_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
+        &amp; =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right) + mx_{i}\left(\sum _{j=1}^{N} x_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
+        &amp; =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right)\right) + m\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
+        m\left( 1-\frac{\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}}{N\sum _{i=1}^{N} x_{i}^{2}}\right) &amp; =\frac{\sum _{i=1}^{N}\left( Nx_{i} y_{i} -\left(\sum _{j=1}^{N} x_{i} y_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
+        m\left(\frac{N\left(\sum _{i=1}^{N} x_{i}^{2}\right) -\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\right) &amp; =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{N\sum _{i=1}^{N} x_{i}^{2}}\\
+        m\left( N\left(\sum _{i=1}^{N} x_{i}^{2}\right) -\left(\sum _{i=1}^{N}\sum _{j=1}^{N} x_{i} x_{j}\right)\right) &amp; =\sum _{i=1}^{N} x_{i}\left( N y_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)\\
+        m\left( \sum _{i=1}^{N}\left( Nx_{i}^{2} -\sum _{j=1}^{N} x_{i} x_{j}\right)\right) &amp; =\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)\\
+        m &amp; =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{\sum _{i=1}^{N}\left( Nx_{i}^{2} -\sum _{j=1}^{N} x_{i} x_{j}\right)}\\
+        m &amp; =\frac{\sum _{i=1}^{N} x_{i}\left( Ny_{i} -\left(\sum _{j=1}^{N} y_{j}\right)\right)}{\sum _{i=1}^{N} x_{i}\left( Nx_{i} -\sum _{j=1}^{N} x_{j}\right)}
         \end{align*}
         ...you get how it is, man. I am too lazy to continue this right now and it's just gonna bloat the page anyway.
-        <br><br>
+        <br/><br/>
         Again, this is just annoying algebra that anyone can do but just really long and annoying to do. You don't really need to pay attention to how it was derived, just the result because you should be able to do enough algebra to find this yourself with enough patience.
         And so using that formula, you can do 2-dimensional linear regression. Here's a demo link in desmos.
         Now for higher dimensional linear regression.
         This is only kind of pointless and will just bloat this article because it's more straightforward algebra but I'm legitimately curious about it at the moement, lol.
         If you could follow what happened earlier I'm sure you can do this yourself, maybe try doing it yourself as an exercise. I'm still gonna do it here, though.
         You should atleast read the higher-dimensional reformulation of the task to get an idea of it.
-        <br><br>
+        <br/><br/>
         The task is to find the linear function $f(\vec{v})$ that best fits the list of data denoted $x_i$ and $y_i$.
         The difference here is that each $x_i$ will be a vector instead of a single real number while each $y_i$ is still a real number.
         Every multivariable linear function is in the form:
@@ -263,30 +262,30 @@
         Since both expressions for the derivative in terms of $b$ and $w_k$ is quite similar, the only difference being one having $2x_{i,k}$ and the other being just $2$, you can do this more generally:
         $$
         \begin{align*}
-        2\sum_{i=1}^N A_i \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right) &=
+        2\sum_{i=1}^N A_i \left( \left( \sum_{j=1}^M w_j \cdot x_{i,j} \right) + b - y_i \right) &amp;=
         2 \left( \left( \sum_{i=1}^N A_i \sum_{j=1}^M w_j \cdot x_{i,j} \right) + \sum_{i=1}^N A_i b - \sum_{i=1}^N A_i y_i \right) \\
-        &= 2 \left( \left( \sum_{i=1}^N \sum_{j=1}^M A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
-        &= 2 \left( \left( \sum_{j=1}^M \sum_{i=1}^N A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
-        &= 2 \left( \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
-        &= 0 \\
-        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i &= 0 \\
-        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) &= \sum_{i=1}^N A_i y_i
+        &amp;= 2 \left( \left( \sum_{i=1}^N \sum_{j=1}^M A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &amp;= 2 \left( \left( \sum_{j=1}^M \sum_{i=1}^N A_i w_j \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &amp;= 2 \left( \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i \right) \\
+        &amp;= 0 \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) - \sum_{i=1}^N A_i y_i &amp;= 0 \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N A_i \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N A_i \right) &amp;= \sum_{i=1}^N A_i y_i
         \end{align*}
         $$
         Therefore, the equations for the derivative in terms of the weights becomes:
         $$
         \begin{align*}
-        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,k} \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N x_{i,k} \right) &= \sum_{i=1}^N x_{i,k} y_i
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,k} \cdot x_{i,j} \right) + b \left( \sum_{i=1}^N x_{i,k} \right) &amp;= \sum_{i=1}^N x_{i,k} y_i
         \end{align*}
         $$
         And then the bias:
         $$
         \begin{align*}
-        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + b \left( \sum_{i=1}^N 1 \right) &= \sum_{i=1}^N y_i \\
-        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + bN &= \sum_{i=1}^N y_i
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + b \left( \sum_{i=1}^N 1 \right) &amp;= \sum_{i=1}^N y_i \\
+        \left( \sum_{j=1}^M w_j \sum_{i=1}^N x_{i,j} \right) + bN &amp;= \sum_{i=1}^N y_i
         \end{align*}
         $$
-        Therefore you can turn it into a matrix inverse problem because this is the same as solving $Av = u$ for $v$ with $M$ and $u$ being: <br>
+        Therefore you can turn it into a matrix inverse problem because this is the same as solving $Av = u$ for $v$ with $M$ and $u$ being: <br/>
         For $p, q \in {1, ..., M}$, in other words, the weight coefficients for the weight equations:
         $$
         A_{p,q} = \sum_{i=1}^N x_{i,p} \cdot x_{i,q}
@@ -336,11 +335,11 @@
 
         $$
         \begin{bmatrix}
-        \sum_{i=1}^N x_{i,1} \cdot x_{i,1} & \sum_{i=1}^N x_{i,1} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,1} \cdot x_{i,M} & \sum_{i=1}^N x_{i,1} \\
-        \sum_{i=1}^N x_{i,2} \cdot x_{i,1} & \sum_{i=1}^N x_{i,2} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,2} \cdot x_{i,M} & \sum_{i=1}^N x_{i,2} \\
-        \vdots & \vdots & \ddots & \vdots & \vdots \\
-        \sum_{i=1}^N x_{i,M} \cdot x_{i,1} & \sum_{i=1}^N x_{i,M} \cdot x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} \cdot x_{i,M} & \sum_{i=1}^N x_{i,M} \\
-        \sum_{i=1}^N x_{i,1} & \sum_{i=1}^N x_{i,2} & \dots & \sum_{i=1}^N x_{i,M} & N \\
+        \sum_{i=1}^N x_{i,1} \cdot x_{i,1} &amp; \sum_{i=1}^N x_{i,1} \cdot x_{i,2} &amp; \dots &amp; \sum_{i=1}^N x_{i,1} \cdot x_{i,M} &amp; \sum_{i=1}^N x_{i,1} \\
+        \sum_{i=1}^N x_{i,2} \cdot x_{i,1} &amp; \sum_{i=1}^N x_{i,2} \cdot x_{i,2} &amp; \dots &amp; \sum_{i=1}^N x_{i,2} \cdot x_{i,M} &amp; \sum_{i=1}^N x_{i,2} \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+        \sum_{i=1}^N x_{i,M} \cdot x_{i,1} &amp; \sum_{i=1}^N x_{i,M} \cdot x_{i,2} &amp; \dots &amp; \sum_{i=1}^N x_{i,M} \cdot x_{i,M} &amp; \sum_{i=1}^N x_{i,M} \\
+        \sum_{i=1}^N x_{i,1} &amp; \sum_{i=1}^N x_{i,2} &amp; \dots &amp; \sum_{i=1}^N x_{i,M} &amp; N \\
         \end{bmatrix}
         \begin{bmatrix}
         w_1 \\
@@ -372,11 +371,11 @@
         
         $$  
         \begin{bmatrix}
-        X_1 \cdot X_1 & X_1 \cdot X_2 & \dots & X_1 \cdot X_M & \sum X_1 \\
-        X_2 \cdot X_1 & X_2 \cdot X_2 & \dots & X_2 \cdot X_M & \sum X_2 \\
-        \vdots & \vdots & \ddots & \vdots & \vdots \\
-        X_M \cdot X_1 \cdot & X_M \cdot X_2 & \dots & X_M \cdot X_M & \sum X_M \\
-        \sum X_1 & \sum X_2 & \dots & \sum X_M & N \\
+        X_1 \cdot X_1 &amp; X_1 \cdot X_2 &amp; \dots &amp; X_1 \cdot X_M &amp; \sum X_1 \\
+        X_2 \cdot X_1 &amp; X_2 \cdot X_2 &amp; \dots &amp; X_2 \cdot X_M &amp; \sum X_2 \\
+        \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \\
+        X_M \cdot X_1 \cdot &amp; X_M \cdot X_2 &amp; \dots &amp; X_M \cdot X_M &amp; \sum X_M \\
+        \sum X_1 &amp; \sum X_2 &amp; \dots &amp; \sum X_M &amp; N \\
         \end{bmatrix}
         \begin{bmatrix}
         w_1 \\
@@ -481,8 +480,8 @@
         <h3>Logistic Regression</h3>
         Logistic regression is similar to linear regression, except that we're trying to find the best "logistic function" to fit a given data.
         I honestly don't actually know what exactly logistic regression is <i>generally trying to do</i>, but I can explain what exactly it is mathematically and the obvious possible uses of it from that.
-        A logistic function is basically a function that looks like this: <br>
-        <img src="./images/fcnn-5.png" alt=""> <br>
+        A logistic function is basically a function that looks like this: <br/>
+<img alt="" src="./images/fcnn-5.png"/> <br/>
         As you can see, the output is very much bounded on a certain interval in such a way that there's some kind of small area where the output changes very quickly from opposite ends of the interval, yet everywhere else, the function doesn't change very much and is very close to the endpoints of the interval.
         The possible parameters you would typically have for this logistic function is a parameter that intuitively represents the position of the area where the function changes quickly, and the speed of that change.
         So, yes, you typically don't include it's height and y-position as a parameter. Those values is typically on the range of 0 to 1.

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All real numbers have a decimal representation</title>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All real numbers have a decimal representation</title>
+<script>
         MathJax = {
           tex: {
             packages: ['base', 'ams'],
@@ -13,18 +14,16 @@
           }
         };
       </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <template>
-        <div class="dropdown-box">
-            <h3 class="dropdown-box-title">
-            </h3>
-            <div class="dropdown-box-content"></div>
-        </div>
-    </template>
-
-    <style>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<template>
+<div class="dropdown-box">
+<h3 class="dropdown-box-title">
+</h3>
+<div class="dropdown-box-content"></div>
+</div>
+</template>
+<style>
         body {
             font-size: 20px; /* Adjust the font size to your preference */
         }
@@ -35,53 +34,53 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>All real numbers have a decimal representation</h1>
-        <p>
+<div class="content">
+<h1>All real numbers have a decimal representation</h1>
+<p>
             The goal here is to prove that every real number have a decimal representation.
             A decimal representation of a real number $r$ is defined as a sequence $r_n$ for any integer $n$ such that $$\sum_{i=-\infty}^{\infty} r_i10^i = r$$.
-        <br>The strategy for the proof is to start with any number $a$, and then create a decimal representation and prove that the decimal representation actually represents $a$. It is obvious that if you can have a decimal representation of a positive number, then you can have a decimal representation of any negative numbers. Therefore, the first step of the proof will only prove the positive case.
+        <br/>The strategy for the proof is to start with any number $a$, and then create a decimal representation and prove that the decimal representation actually represents $a$. It is obvious that if you can have a decimal representation of a positive number, then you can have a decimal representation of any negative numbers. Therefore, the first step of the proof will only prove the positive case.
         The first step is to define $r_n$, $p_n$, and $d_n$ for every natural number n. $r_1$ is defined to be $r_1 = |a|$, then $r_{n+1} = r_n - d_n10^{p_n}$, while the rest of the variables is defined as:
         $$
         p_n = \begin {cases}
-            -\infty, & r_n = 0 \\
-            \max \{p | p \in \mathbb{Z} \land 10^p \leq r_n\}, & r_n \neq 0
+            -\infty, &amp; r_n = 0 \\
+            \max \{p | p \in \mathbb{Z} \land 10^p \leq r_n\}, &amp; r_n \neq 0
         \end {cases}
         $$
         $$
         d_n = \begin{cases}
-            0, & r_n = 0 \\
-            \max \{d | d \in \{1, 2, ..., 9\} \land d \cdot 10^{p_n} \leq r_n \}, & r_n \neq 0
+            0, &amp; r_n = 0 \\
+            \max \{d | d \in \{1, 2, ..., 9\} \land d \cdot 10^{p_n} \leq r_n \}, &amp; r_n \neq 0
         \end{cases}
         $$
         The next step is to prove that these steps work. Which is needed because both of these might take the maximum of a set and that does not always exist.
         First is to prove that there, for any real number, there is a power of 10 less than it:
-        <br>
+        <br/>
         $$
         \begin{align}
-        \forall \epsilon > 0\ \exists n \in \mathbb{N}: \frac{1}{n} < \epsilon & \text{ by the Archimedean property}\\
-        &\implies \frac{1}{10^n} < \frac{1}{n} < {\epsilon} \land \frac{1}{10^n} = 10^{-n}\\
-        &\implies \forall \epsilon > 0\ \exists n \in \mathbb{Z}: 10^n < \epsilon
+        \forall \epsilon &gt; 0\ \exists n \in \mathbb{N}: \frac{1}{n} &lt; \epsilon &amp; \text{ by the Archimedean property}\\
+        &amp;\implies \frac{1}{10^n} &lt; \frac{1}{n} &lt; {\epsilon} \land \frac{1}{10^n} = 10^{-n}\\
+        &amp;\implies \forall \epsilon &gt; 0\ \exists n \in \mathbb{Z}: 10^n &lt; \epsilon
         \end{align}
         $$
-        <br>
+        <br/>
         Next is to prove $r_n \geq 0$ for any natural number n by using induction. It is known that $r_1 \geq 0$, and for $r_n$:
         </p>
         $$
         \begin{align}
-        r_n = 0 &\implies d_n = 0 \\
-        &\implies r_{n + 1} = r_n - 0 \cdot 10^{p_m} \\
-        &\implies r_{n + 1} = 0
+        r_n = 0 &amp;\implies d_n = 0 \\
+        &amp;\implies r_{n + 1} = r_n - 0 \cdot 10^{p_m} \\
+        &amp;\implies r_{n + 1} = 0
         \end{align}
         $$
         $$
         \begin{align}
-        r_n > 0 &\implies p_n = \max \{p | p \in \mathbb{Z} \land 10^p \leq r_n\} \\
-        &\implies p_n \text{ exists because the set is non-empty as we've proven earlier} \\
-        &\implies r_{n + 1} = 0 \\
-        &\implies 1 \in \{d | d \in \{1, 2, ..., 9\} \land d \cdot 10^{p_n} \leq r_n \} \\
-        &\implies d_n \text{ exists because there is atleast 1 element in the set in the definition of $d_n$} \\
-        &\implies r_{n+1} = r_n - d_n10^{p_n} \geq 0 \text{ by the definition of $d_n$ and $p_n$ when $r_n \neq 0$ }
+        r_n &gt; 0 &amp;\implies p_n = \max \{p | p \in \mathbb{Z} \land 10^p \leq r_n\} \\
+        &amp;\implies p_n \text{ exists because the set is non-empty as we've proven earlier} \\
+        &amp;\implies r_{n + 1} = 0 \\
+        &amp;\implies 1 \in \{d | d \in \{1, 2, ..., 9\} \land d \cdot 10^{p_n} \leq r_n \} \\
+        &amp;\implies d_n \text{ exists because there is atleast 1 element in the set in the definition of $d_n$} \\
+        &amp;\implies r_{n+1} = r_n - d_n10^{p_n} \geq 0 \text{ by the definition of $d_n$ and $p_n$ when $r_n \neq 0$ }
         \end{align}
         $$
         <!-- <div class="overflow-hidden">
@@ -98,36 +97,36 @@
         2. a $\land$ b $\implies \left(r_n \geq 0 \implies r_{n+1} \geq 0 \right)$ <br>
         </p>
         </div> -->
-        <p>
+<p>
         Therefore it can be concluded that $$ r_n \geq 0 \implies r_{n + 1} \geq 0 $$
         By induction, we can conclude that $r_n \geq 0$ for any natural number n.
         Notice that we have also proved that $d_n$ and $p_n$ is always defined for all natural number n.
         </p>
-        <p>
+<p>
             The next step is to create the sequence to represent $|a|$ to be:
             $$
             a_n = \begin{cases}
-            d_{\min \{m | p_m = n\}}, & \text{if } n \in \{p_m | m \in \mathbb{N}\} \\
-            0, & otherwise
+            d_{\min \{m | p_m = n\}}, &amp; \text{if } n \in \{p_m | m \in \mathbb{N}\} \\
+            0, &amp; otherwise
             \end{cases}
             $$
             This works because
             $$
             \begin{align}
-            n \in \{p_m | m \in \mathbb{N}\} &\implies \exists m \in \mathbb{N}: p_m = n \\
-            &\implies \{m | p_m = n\} \neq \emptyset \\
-            &\implies \min \{m | p_m = n\} \text{ exists}
+            n \in \{p_m | m \in \mathbb{N}\} &amp;\implies \exists m \in \mathbb{N}: p_m = n \\
+            &amp;\implies \{m | p_m = n\} \neq \emptyset \\
+            &amp;\implies \min \{m | p_m = n\} \text{ exists}
             \end{align}
             $$
         </p>
-        <p>
+<p>
             And so the next big step is to prove that $a_n$ really does represent $|a|$. The strategy is to first prove that $\lim_{n \to \infty} r_n = 0$, and then maybe that $\sum_{i=1}^{\infty} d_i10^{p_i} = |a|$ which is an intuitive implication of the former.
-            The first thing we'll do is to prove $\lim_{n \to \infty} r_n = 0$ which can be done by proving that $\forall \epsilon > 0$ $\exists N \in \mathbb{N}: \forall n > N, r_n < \epsilon$.
-            The strategy to prove this is to first prove the implication $(r_m \neq 0 \implies r_{m + 1} < 10^{p_m})$
+            The first thing we'll do is to prove $\lim_{n \to \infty} r_n = 0$ which can be done by proving that $\forall \epsilon &gt; 0$ $\exists N \in \mathbb{N}: \forall n &gt; N, r_n &lt; \epsilon$.
+            The strategy to prove this is to first prove the implication $(r_m \neq 0 \implies r_{m + 1} &lt; 10^{p_m})$
             <!-- The strategy for proving that is to prove that $r_{n+1} < 10^{p_n}$ which should imply that $p_{n + 1} < p_n$ so, whatever $p_1$ is, $p_k$ should be less than $p_1 - k + 2$ for any natural number k, and so for any integer, you can find a k such that $p_k$ is less than that integer. Anyway, here's the proof: <br>
             -->
-        </p>
-        <!-- <p>
+</p>
+<!-- <p>
             Take any $m \in \mathbb{N}$ such that $r_m \neq 0$ then we know that $d_m10^{p_m} \leq r_m$.
             From the definition of $d_m$, $d_m + 1$ satisfies $d_m + 1 \notin \{1, 2, ..., 9\} \lor (d_m + 1)10^{p_m} > r_m$.
             If it satisfies $d_m + 1 \notin \{1, 2, ..., 9\}$, then since $d_m \in \{1, 2, ..., 9\}$, then $d_m + 1$ must be 10
@@ -137,14 +136,14 @@
             Based on that, now we know that $d_m10^{p_m} \leq r_m < (d_m + 1)10^{p_m} \implies 0 \leq r_m - d_m10^{p_m} < 10^{p_m} \implies 0 \leq r_{m + 1} < 10^{p_m}$ <br>
             And there we go, we have proven that $r_{m + 1} \leq 10^{p_m}$ when $r_m \neq 0$.
         </p> -->
-        <p>
+<p>
             Take any $m \in \mathbb{N}$ such that $r_m \neq 0$ then:
             $$
             \begin{align}
-            m \in \mathbb{N} \land r_m \neq 0 &\implies d_m + 1 \notin \{1, 2, ..., 9\} \lor (d_m + 1)10^{p_m} > r_m & \text{ by $a \in max A \implies a+1 \notin max A$} &\\
-            d_m + 1 \notin \{1, 2, ..., 9\} &\implies d_m + 1 = 10 & \text{ because $d_m \in \{1, 2, ..., 9\}$} \\
-            &\implies (d_m + 1)10^{p_m} = 10^{p_m + 1} > r_m & \text{ based on the definition of $p_m$} \\
-            &\implies (d_m + 1)10^{p_m} > r_m
+            m \in \mathbb{N} \land r_m \neq 0 &amp;\implies d_m + 1 \notin \{1, 2, ..., 9\} \lor (d_m + 1)10^{p_m} &gt; r_m &amp; \text{ by $a \in max A \implies a+1 \notin max A$} &amp;\\
+            d_m + 1 \notin \{1, 2, ..., 9\} &amp;\implies d_m + 1 = 10 &amp; \text{ because $d_m \in \{1, 2, ..., 9\}$} \\
+            &amp;\implies (d_m + 1)10^{p_m} = 10^{p_m + 1} &gt; r_m &amp; \text{ based on the definition of $p_m$} \\
+            &amp;\implies (d_m + 1)10^{p_m} &gt; r_m
             \end{align}
             $$
             Because of the general condition that is
@@ -153,39 +152,39 @@
             $$
             then we know
             $$
-            m \in \mathbb{N} \land r_m \neq 0 \implies (d_m + 1)10^{p_m} > r_m
+            m \in \mathbb{N} \land r_m \neq 0 \implies (d_m + 1)10^{p_m} &gt; r_m
             $$
             Therefore we know that 
             $$
             \begin{align}
-            d_m10^{p_m} \leq r_m < (d_m + 1)10^{p_m} &\implies 0 \leq r_m - d_m10^{p_m} < 10^{p_m} \\
-            &\implies 0 \leq r_{m + 1} < 10^{p_m}
+            d_m10^{p_m} \leq r_m &lt; (d_m + 1)10^{p_m} &amp;\implies 0 \leq r_m - d_m10^{p_m} &lt; 10^{p_m} \\
+            &amp;\implies 0 \leq r_{m + 1} &lt; 10^{p_m}
             \end{align}
             $$
-            And there we go, we have proven that $r_{m + 1} < 10^{p_m}$ when $r_m \neq 0$.
-            You can slightly extend this to reveal one more possibly useful property, which is that $p_{m + 1} < p_m$ when $r_m \neq 0$.
-            Since $r_{m + 1} < 10^{p_m}$, $r_m$ is either 0 or non-zero. If it is 0, then $p_{m + 1} = -\infty$ which is less than $p_m$ which is known to be an integer.
-            Otherwise, $p_{m + 1}$ is an integer that must satisfy $10^{p_{m+1}} < r_{m+1}$ therefore $10^{p_{m+1}} < 10^{p_m}$ and so $p_{m + 1} < p_m$ whenever $r_m \neq 0$.
+            And there we go, we have proven that $r_{m + 1} &lt; 10^{p_m}$ when $r_m \neq 0$.
+            You can slightly extend this to reveal one more possibly useful property, which is that $p_{m + 1} &lt; p_m$ when $r_m \neq 0$.
+            Since $r_{m + 1} &lt; 10^{p_m}$, $r_m$ is either 0 or non-zero. If it is 0, then $p_{m + 1} = -\infty$ which is less than $p_m$ which is known to be an integer.
+            Otherwise, $p_{m + 1}$ is an integer that must satisfy $10^{p_{m+1}} &lt; r_{m+1}$ therefore $10^{p_{m+1}} &lt; 10^{p_m}$ and so $p_{m + 1} &lt; p_m$ whenever $r_m \neq 0$.
         </p>
-        <p>
-            The next step is to prove that the actual limit. Start with any $\epsilon > 0$, then $\exists k \in \mathbb{Z}$ such that $10^k < \epsilon$ which is something that has been proved earlier.
+<p>
+            The next step is to prove that the actual limit. Start with any $\epsilon &gt; 0$, then $\exists k \in \mathbb{Z}$ such that $10^k &lt; \epsilon$ which is something that has been proved earlier.
             Define j to be:
             $$
             j = \begin{cases}
-            0, & \text{if } r_1 = 0 \\
-            p_1 + 1, & \text{if } r_1 \neq 0
+            0, &amp; \text{if } r_1 = 0 \\
+            p_1 + 1, &amp; \text{if } r_1 \neq 0
             \end{cases}
             $$
-            Now we will be doing induction. We know that $r_1 < 10^j$, then:
+            Now we will be doing induction. We know that $r_1 &lt; 10^j$, then:
             $$
             \begin{align}
-            r_k < 10^{j - k + 1} &\implies r_k = 0 \lor r_k > 0 \\
-            r_k = 0 &\implies r_{k + 1} = 0 \\
-            &\implies r_{k + 1} < 10^{j - (k + 1) + 1} \leq 10^j \\
-            r_k > 0 &\implies r_{k + 1} < 10^{p_k} < 10^{j - k + 1}$ & \text{ Because $p_k,\ j - k + 1 \in \mathbb{N}$ while $10^{p_k} < 10^{j - k + 1}$} \\
-            &\implies p_k \leq j - (k + 1) + 1 \\
-            &\implies r_{k + 1} < 10^{p_k} \leq 10^{j - (k + 1) + 1} \\
-            &\implies r_{k + 1} < 10^{j - (k + 1) + 1} \leq 10^j
+            r_k &lt; 10^{j - k + 1} &amp;\implies r_k = 0 \lor r_k &gt; 0 \\
+            r_k = 0 &amp;\implies r_{k + 1} = 0 \\
+            &amp;\implies r_{k + 1} &lt; 10^{j - (k + 1) + 1} \leq 10^j \\
+            r_k &gt; 0 &amp;\implies r_{k + 1} &lt; 10^{p_k} &lt; 10^{j - k + 1}$ &amp; \text{ Because $p_k,\ j - k + 1 \in \mathbb{N}$ while $10^{p_k} &lt; 10^{j - k + 1}$} \\
+            &amp;\implies p_k \leq j - (k + 1) + 1 \\
+            &amp;\implies r_{k + 1} &lt; 10^{p_k} \leq 10^{j - (k + 1) + 1} \\
+            &amp;\implies r_{k + 1} &lt; 10^{j - (k + 1) + 1} \leq 10^j
             \end{align}
             $$
             <!-- <div class="overflow-hidden">
@@ -195,11 +194,11 @@
             2. b. $r_k > 0 \implies r_{k + 1} < 10^{p_k} < 10^{j - k + 1}$. Because $p_k,\ j - k + 1 \in \mathbb{N}$ while $10^{p_k} < 10^{j - k + 1}$, then $p_k \leq j - (k + 1) + 1$ which means $r_{m + 1} < 10^{p_k} \leq 10^{j + (k - 1) + 1}$<br>
             2. It can be concluded that $r_k < 10^{j - k + 1} \implies r_{k + 1} < 10^{j - (k + 1) + 1}$ <br>
             </div> -->
-            Because we have covered k = 1 and the general case which states that if it's true for any k, then it is true for k + 1, then by induction, it can be concluded that $\forall k \in \mathbb{N}$, $r_{k} < 10^{j - k + 1} \leq 10^j$ <br>
-        </p>
-        <p>
-            Go back to the $\epsilon$ from before, by what we have proved earlier, $\exists q \in \mathbb{Z}$ such that $10^q < \epsilon$.
-            q either satisfies $q \leq j$ or $q > j$. If $q > j$, then $10^q > 10^j > r_1$ and we're done. Otherwise:
+            Because we have covered k = 1 and the general case which states that if it's true for any k, then it is true for k + 1, then by induction, it can be concluded that $\forall k \in \mathbb{N}$, $r_{k} &lt; 10^{j - k + 1} \leq 10^j$ <br/>
+</p>
+<p>
+            Go back to the $\epsilon$ from before, by what we have proved earlier, $\exists q \in \mathbb{Z}$ such that $10^q &lt; \epsilon$.
+            q either satisfies $q \leq j$ or $q &gt; j$. If $q &gt; j$, then $10^q &gt; 10^j &gt; r_1$ and we're done. Otherwise:
             <!--
             , $q \leq j \implies q - 1 < j \implies j - q + 1 > 0 \implies j - q + 1 \in \mathbb{N}$    
             $j - (j - (q - 1)) = j - j + q - 1 = q - 1 < q < j$ because $j - (q - 1) \in \mathbb{N}$ therefore $j - (j - (q - 1)) < j$ <br>
@@ -208,61 +207,61 @@
             And remember that we have also proved earlier that $r_n \geq 0\ \forall n \in \mathbb{N}$ therefore we can conclude that $\lim_{n \to \infty} r_n = 0$. -->
             $$
             \begin{align}
-            q \leq j &\implies q - 1 < j \\
-            &\implies j - q + 1 > 0 \\
-            &\implies j - q + 1 \in \mathbb{N}
+            q \leq j &amp;\implies q - 1 &lt; j \\
+            &amp;\implies j - q + 1 &gt; 0 \\
+            &amp;\implies j - q + 1 \in \mathbb{N}
             \end{align}
             $$
             $$
             \begin{align}
-            j - (j - (q - 1)) &= j - j + q - 1\\
-            &= q - 1 < q < j
+            j - (j - (q - 1)) &amp;= j - j + q - 1\\
+            &amp;= q - 1 &lt; q &lt; j
             \end{align}
             $$
-            Set $k = j - (q - 1)$ which means $j - k < q < j$ $\land$ $k \in \mathbb{N}$ therefore, based on the induction proof we did before, $r_k < 10^{j - k + 1} \leq 10^q < \epsilon$
-            Therefore, we can conclude that $\forall \epsilon > 0$ $\exists k \in \mathbb{N}$ such that $\epsilon > r_k$.
+            Set $k = j - (q - 1)$ which means $j - k &lt; q &lt; j$ $\land$ $k \in \mathbb{N}$ therefore, based on the induction proof we did before, $r_k &lt; 10^{j - k + 1} \leq 10^q &lt; \epsilon$
+            Therefore, we can conclude that $\forall \epsilon &gt; 0$ $\exists k \in \mathbb{N}$ such that $\epsilon &gt; r_k$.
             And remember that we have also proved earlier that $r_n \geq 0$ $\forall n \in \mathbb{N}$ therefore we can conclude that $\lim_{n \to \infty} r_n = 0$.
         </p>
-        <p>
+<p>
             The next step is to prove that $\sum_{i=1}^{\infty} d_i \cdot 10^{p_i} = |a|$.
             The strategy I'm thinking of is to first prove that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$ 
             which would mean:
             $$
             \begin{align}
-            \lim_{n \to \infty} r_n &= \lim_{n \to \infty} |a| - \sum_{i=1}^{n - 1} d_i \cdot 10^{p_i}\\
-            &= \lim_{n \to \infty} |a| - \sum_{i=1}^{n} d_i \cdot 10^{p_i}\\
-            &= |a| - \lim_{n \to \infty} \sum_{i=1}^{n} d_i \cdot 10^{p_i}\\
-            &= 0 \\
-            |a| &= \lim_{n \to \infty} \sum_{i=1}^{n} d_i \cdot 10^{p_i} \\
-            |a| &= \sum_{i=1}^{\infty} d_i \cdot 10^{p_i}
+            \lim_{n \to \infty} r_n &amp;= \lim_{n \to \infty} |a| - \sum_{i=1}^{n - 1} d_i \cdot 10^{p_i}\\
+            &amp;= \lim_{n \to \infty} |a| - \sum_{i=1}^{n} d_i \cdot 10^{p_i}\\
+            &amp;= |a| - \lim_{n \to \infty} \sum_{i=1}^{n} d_i \cdot 10^{p_i}\\
+            &amp;= 0 \\
+            |a| &amp;= \lim_{n \to \infty} \sum_{i=1}^{n} d_i \cdot 10^{p_i} \\
+            |a| &amp;= \sum_{i=1}^{\infty} d_i \cdot 10^{p_i}
             \end{align}
             $$
             Just to make things clear, since I'm also not very experienced in Real Analysis.
             I haven't reached the chapter for sequence limits on the book I'm reading so I'll be listing the assumptions made in there here:
             $$
             \begin{align}
-            \lim_{n \to \infty} c - f(n) &= c - \lim_{n \to \infty} f(n) \tag{1} \\
-            \lim_{n \to \infty} f(n - c) &= \lim_{n \to \infty} f(n) \tag{2} \\
-            \lim_{n \to \infty} \sum_{i=1}^{n} f(i) &= \sum_{i=1}^{\infty} f(i) \tag{3} \\
+            \lim_{n \to \infty} c - f(n) &amp;= c - \lim_{n \to \infty} f(n) \tag{1} \\
+            \lim_{n \to \infty} f(n - c) &amp;= \lim_{n \to \infty} f(n) \tag{2} \\
+            \lim_{n \to \infty} \sum_{i=1}^{n} f(i) &amp;= \sum_{i=1}^{\infty} f(i) \tag{3} \\
             \end{align}
             $$
             Given that c is a constant. The third assumption is more of a notational assumption though.
             Assumption 1 is used on step 3, assumption 2 is used on step 2, and assumption 3 is used on the last step.
         </p>
-        <p>
-            Now for the inductive proof that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$, first:<br>
-            $$r_1 = |a| = |a| - \sum_{i=1}^0 d_i \cdot 10^{p_i}$$<br>
+<p>
+            Now for the inductive proof that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$, first:<br/>
+            $$r_1 = |a| = |a| - \sum_{i=1}^0 d_i \cdot 10^{p_i}$$<br/>
             Then:
             $$
             \begin{align}
             r_n = |a| - \sum_{i=1}^{n - 1} d_i \cdot 10^{p_i} \land r_{n+1} = r_n - d_n \cdot 10^{p_n}
-            \implies r_{n+1} &= |a| - \sum_{i=1}^{n - 1} d_i \cdot 10^{p_i} - d_n \cdot 10^{p_n} \\
-            &= |a| - \sum_{i=1}^{n} d_i \cdot 10^{p_i}
+            \implies r_{n+1} &amp;= |a| - \sum_{i=1}^{n - 1} d_i \cdot 10^{p_i} - d_n \cdot 10^{p_n} \\
+            &amp;= |a| - \sum_{i=1}^{n} d_i \cdot 10^{p_i}
             \end{align}
             $$
             Therefore, by induction, you can conclude that $r_m = |a| - \sum_{i=1}^{m-1} d_i \cdot 10^{p_i}$ $\forall m \in \mathbb{N}$ therefore $|a| = \sum_{i=1}^{\infty} d_i \cdot 10^{p_i}$ based on the proof from earlier.
         </p>
-        <!--<p>
+<!--<p>
             Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
             Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
             I have never seen a sum that is unbounded below, let alone one that is unbounded above and below.
@@ -275,26 +274,26 @@
             If it is not $-\infty$, then we know $p_{m + (n + 1)} < p_{m + n}$ anyway, so $p_{m + (n + 1)} < p_m$.
             Therefore, by induction, it can be concluded that $p_{m + n} < p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
         </p> -->
-        <p>
+<p>
             Now for the final step, which is to prove that $a_n$ really does represent $|a|$.
             Which is the same as proving that $\sum_{i=-\infty}^{\infty} a_i = |a|$.
             The next step I'm thinking of is to prove that all $i$s higher than $p_1$ doesn't matter.
-            That is going to be done by proving that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} < p_m$  
+            That is going to be done by proving that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} &lt; p_m$  
             Start with $n = 1$, so $r_{m + 1}$.
-            We have proved earlier that $r_m \neq 0$ implies $p_{m + 1} < p_m$ so the first step of the induction is done.
-            Now for the general n case, so assume $p_{m + n} < p_m$.
+            We have proved earlier that $r_m \neq 0$ implies $p_{m + 1} &lt; p_m$ so the first step of the induction is done.
+            Now for the general n case, so assume $p_{m + n} &lt; p_m$.
             p_{m + n} is either $-\infty$ or an integer.
             If it is $-\infty$, then $r_{m + n} = 0$ therefore $r_{m + (n + 1)} = 0$ and so $p_{m + (n + 1)}$ as well which is less than $p_m$.
-            If it is not $-\infty$, then we know $p_{m + (n + 1)} < p_{m + n}$ anyway, so $p_{m + (n + 1)} < p_m$.
-            Therefore, by induction, it can be concluded that $p_{m + n} < p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
+            If it is not $-\infty$, then we know $p_{m + (n + 1)} &lt; p_{m + n}$ anyway, so $p_{m + (n + 1)} &lt; p_m$.
+            Therefore, by induction, it can be concluded that $p_{m + n} &lt; p_m$ for all $n \in \mathbb{N}$ when $r_m \neq 0$.
         </p>
-        <p>
-            Now to actually prove that $a_i = 0$ for all $i > p_1$ when $p_1 \in \mathbb{Z}$.
+<p>
+            Now to actually prove that $a_i = 0$ for all $i &gt; p_1$ when $p_1 \in \mathbb{Z}$.
             From the previous proof, it can be concluded that $\{p_m | m \in \mathbb{N}\}$ is bounded above by $p_1$ when $r_1 \neq 0$.
             By the definition of $a_i$, it is 0 whenever $i \notin \{p_m | m \in \mathbb{N}\}$.
-            Since the set is bounded above by $p_1$, then any $i > p_1$ is not in the set, $a_i$ is equal to 0 whenever $i > p_1$. 
+            Since the set is bounded above by $p_1$, then any $i &gt; p_1$ is not in the set, $a_i$ is equal to 0 whenever $i &gt; p_1$. 
         </p>
-        <p>
+<p>
             If $r_1 = 0$, then every other $r_n$ is also 0 and so all of $p_m$ is $-\infty$.
             Therefore, the set $\{p_m    | m \in \mathbb{N}\}$ is empty. So then every $a_i$ is equal to 0. So we don't need to care about that anymore from now on.
             The sum of $a_i$ is actually equal to:
@@ -302,28 +301,28 @@
             for any $k \in \mathbb{Z}$. Picking k to be $p_1$, we get:
             $$
             \begin{align*}
-            \sum_{i=-\infty}^{\infty} a_i \cdot 10^{p_i} &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + \sum_{p_i+1}^{\infty} a_i \cdot 10^i \\
-            &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + 0 \\
-            &= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i
+            \sum_{i=-\infty}^{\infty} a_i \cdot 10^{p_i} &amp;= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + \sum_{p_i+1}^{\infty} a_i \cdot 10^i \\
+            &amp;= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i + 0 \\
+            &amp;= \sum_{i=-\infty}^{p_1} a_i \cdot 10^i
             \end{align*}
             $$
         </p>
-        <p>
+<p>
             The next part is to ACTUALLY prove that the sum for $a_i$ really does represent $|a|$.
         </p>
-        <p>
-            What have been done: <br>
-            1. Defined a sequence from |a| to 0 with $r_m$, $p_m$, $d_m$ where $d_m$ represents the $p_m$th digit of the decimal representation<br>
-            2. Proved that there is no contradictions in the definition <br>
-            3. Prove that $r_m \geq 0$ for all natural number $m$<br>
-            4. Define the decimal representation and prove it has no contradictions<br>
-            5. Proved that $r_{m + 1} < p_m$ and $p_{m + 1} < p_m$ when $r_m \neq 0$ <br>
-            6. Proved that the limit of the sequence is 0 <br>
-            7. Proved that $\sum_{i = 1}^{\infty} d_i \cdot 10^{p_i} = |a|$ <br>
-            8. Proved that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} < p_m$ <br>
-            9. Proved that $a_i = 0$ for all $i > p_1$ when $p_1 \in \mathbb{Z}$
+<p>
+            What have been done: <br/>
+            1. Defined a sequence from |a| to 0 with $r_m$, $p_m$, $d_m$ where $d_m$ represents the $p_m$th digit of the decimal representation<br/>
+            2. Proved that there is no contradictions in the definition <br/>
+            3. Prove that $r_m \geq 0$ for all natural number $m$<br/>
+            4. Define the decimal representation and prove it has no contradictions<br/>
+            5. Proved that $r_{m + 1} &lt; p_m$ and $p_{m + 1} &lt; p_m$ when $r_m \neq 0$ <br/>
+            6. Proved that the limit of the sequence is 0 <br/>
+            7. Proved that $\sum_{i = 1}^{\infty} d_i \cdot 10^{p_i} = |a|$ <br/>
+            8. Proved that for any $m \in \mathbb{N}$ where $r_m \neq 0$, any $n \in \mathbb{N}$ satisfies $p_{m + n} &lt; p_m$ <br/>
+            9. Proved that $a_i = 0$ for all $i &gt; p_1$ when $p_1 \in \mathbb{Z}$
         </p>
-        <!-- <p>
+<!-- <p>
             I have never seen a sum that starts from negative infinity up to positive infinity like this, so I am truthfully also kind of confused on what to do.
             The strategy is to first prove that all $i$s higher than than a certain integer doesn't matter.
             But with the way I did it, that would mean the sum would now be in the form $\sum_{i=-\infty}^{N}$ which is still really weird because you're starting from $-\infty$ but then you set the upper bound to a finite value.
@@ -351,11 +350,11 @@
             
             After that, you can prove that every term in the sum for |a| is in the sum for $a_n$ and vice versa, and there is only 1 of the "same" term in each.
         </p> -->
-        <p>
+<p>
             I wanted to prove this because there was an exercise on my analysis book which assumes this for some reason. It also assumes that real numbers only have at most 2 representations, that is one having a 9-repeating and one that doesn't have a 9-repeating, which is quite annoying. The whole point of analysis is to study Calculus and properties of the real numbers more rigorously. I feel like this assumption is non-trivial enough for it to need a proof.
             But it is just an exercise. I really do want to know how you would prove that all real numbers have only at most 2 representations.
             I would think that only rational numbers with 0-repeating decimal representations have 2 representations. Everything else only has one.
         </p>
-    </div>
+</div>
 </body>
 </html>

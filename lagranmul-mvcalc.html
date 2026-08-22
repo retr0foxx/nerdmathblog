@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All real numbers have a decimal representation</title>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All real numbers have a decimal representation</title>
+<script>
         MathJax = {
           tex: {
             packages: ['base', 'ams', 'amsmath'],
@@ -13,18 +14,16 @@
           }
         };
       </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <template>
-        <div class="dropdown-box">
-            <h3 class="dropdown-box-title">
-            </h3>
-            <div class="dropdown-box-content"></div>
-        </div>
-    </template>
-
-    <style>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<template>
+<div class="dropdown-box">
+<h3 class="dropdown-box-title">
+</h3>
+<div class="dropdown-box-content"></div>
+</div>
+</template>
+<style>
         p {
             font-size: 20px; /* Adjust the font size to your preference */
         }
@@ -38,9 +37,9 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Lagrange multipliers</h1>
-        <p>
+<div class="content">
+<h1>Lagrange multipliers</h1>
+<p>
             This is going to be my attempt at explaining Lagrange multipliers in multivariable calculus optimization.
             I thought that this concept was really cool the first time I learned about it so I really wanted to talk about it here. So I'm gonna be doing that by attempting to explain it.
             For anyone that already knows about them, the teaching strategy here is to first talk about dot products, specifically about what it means for two vectors to be orthogonal and mainly about how you use dot products to represent the space of all vectors that is perpendicular to a specific one.
@@ -49,7 +48,7 @@
             This will enable the reader to be able to think about directional derivatives orthogonal to the gradient vector without really visualizing the function more nicely.
             After that, the main topic will be covered.
         </p>
-        <p>
+<p>
             So first is a short review of dot products.
             The dot product of 2 vectors A and B is the same as
             $$A \cdot B = |A||B|cos(\theta)$$
@@ -61,8 +60,8 @@
             The set of all vectors that is on the same line as $v$ are all vectors that is just a scalar multiple of v. Therefore, the set can be represented as
             $\{\lambda v | \lambda \in \mathbb{R}\}$ but also as $\{w | w cdot v = |w||v|\}$.
         </p>
-        <p>
-            <!-- https://www.math3d.org/HrXEI9d2L-->
+<p>
+<!-- https://www.math3d.org/HrXEI9d2L-->
             Next will be about gradients and directional derivatives.
             The gradient of a multivariable function $f(\vec{v})$ is a vector representing the partial derivative of $f$ in terms of every individual input variable.
             In other words, if we denote $\vec{v}$ as being $[v_1, v_2, ..., v_n]$, then the gradient vector of f at $\vec{v}$ is denoted:
@@ -77,7 +76,7 @@
             But what about higher dimensional functions? How does the gradient vector relate to the rate of change of the function at a certain point? Is there something analogous to the concept of a line tangent to the curve at a certain point in 3 dimensions?
             Well, yes. In 3-dimension, you can have a plane that is tangent to the curve at a certain point. Here is a picture of an example:
             </p>
-            <img src="./images/lagranmul-mvcalc-1.png"> <br>
+<img src="./images/lagranmul-mvcalc-1.png"/> <br/>
             The graph of $5\sin(\frac{x}{3})\cos(\frac{y}{3})$ at $[-7.4, -4.2]$
             <p>
             In there, you can slightly see that the red plane is tangent to the curve at the point that is the origin of the two blue vectors.
@@ -93,9 +92,9 @@
             In general, given a certain 2-dimensional direction and a certain point in 2-dimensions, you can imagine that taking the directional derivative of a 3D function at that point in that direction is the same taking a 2-dimensional slice of the function such that going up in the x axis is the same as going further in the direction that was given earlier.
             In the case of taking the directional derivative of the previous example in the same general direction as the increasing blue vector, here is how the 2-dimensional slice looks like:
             </p>
-            <img src="./images/lagranmul-mvcalc-2.png"> <br>
-            <a href="https://www.math3d.org/PGUpvb4nC">How exactly the slicing is done</a> <br>
-            <img src="./images/lagranmul-mvcalc-3.png"> <br>
+<img src="./images/lagranmul-mvcalc-2.png"/> <br/>
+<a href="https://www.math3d.org/PGUpvb4nC">How exactly the slicing is done</a> <br/>
+<img src="./images/lagranmul-mvcalc-3.png"/> <br/>
             The result of the slicing
             <p>
             Before I continue, I will introduce the term "directional vector." When I say directional vector, it always means a vector that has a magnitude/length of 1 and that's it.
@@ -107,7 +106,7 @@
             So this should line up with our intuition of "slicing" a function in the same way that was described earlier.
             Therefore, the directional derivative of $f$ in the direction of $\vec{v}$ is just the derivative of $f_{\vec{v}}(x)$.
             </p>
-            <p>
+<p>
             Remember that we've only been exploring intuitive methods of thinking of gradients and directional derivatives.
             We might have that formula and slicing intuition for directional derivatives, but how does that relate to gradients?
             Evaluating the derivative of $f_{\vec{v}}$ feels like it's only doable by expanding the inner $f$ and then manually calculating the derivative.
@@ -124,7 +123,7 @@
             The implication of this is that you can get the slope of the line, which is the directional derivative in the direction of $\vec{v}$ achieved by slicing the multidimensional function about a plane, by getting the slope of the plane tangent to f at $\vec{u}$ in the direction of $\vec{v}$.
             So the problem of getting the directional derivative by slicing the multidimensional function can be done by getting the slope of the plane tangent to the multidimensional function at $\vec{u}$ in the direction of $\vec{v}$.
             </p>
-            <p>
+<p>
             But how is that supposed to make the poblem easier? How do you get the slope of that tangent plane anyway? How is the plane itself even defined? What identifies a certain plane?
             Now this is the time to talk about the last question.
             A plane in 3 dimensions can actually be identified by two intersecting lines. Try to take two pencils and imagine they're lines and put them on top of each other.
@@ -133,7 +132,7 @@
             An implication of this is that you can identify a plane using two intersecting lines.
             So you would imagine that you can identify a plane using two intersecting lines in 3-dimensions.
             </p>
-            <p>
+<p>
             Let's figure out how to do that exactly.
             The intersection is just a single point, so you would imagine that you should be able to pick an origin of the line.
             Let's say that the origin is at some vector $\vec{x}$.
@@ -147,26 +146,26 @@
             $u$ represents the coordinates of that blue dot, $s_1$ represents the ascending speed or slope of the blue line, and $s_2$ for the red line.
             There is only 1 plane that goes through all of that.
             </p>
-            <img src="./images/lagranmul-mvcalc-4.png">
-            <p>
+<img src="./images/lagranmul-mvcalc-4.png"/>
+<p>
             For a vector that is defined like that, you can always get two vectors, one contained in the blue line and one contained in the red line, then this plane is actually the span of those two vectors added by the intersection point.
             In other words, every vector on this plane can be denoted as $\vec{u} + \lambda_1\vec{v_1} + \lambda_2\vec{v_2}$
             where $\lambda_1$, $\lambda_2$ can be any two arbitrary scalars, $\vec{u}$ is the intersection point (blue in the picture), and $\vec{v_1}$, $\vec{v_2}$ are the two vectors on the lines
             
             </p>
-            <p>
+<p>
             Okay, so what? Well, let's go back to what the gradient is.
             Going back to the first image about the sinusoidal function, I will now tell you that the two blue arrows are actually the derivative of f in the direction of the x-axis and the y-axis respectively.
             Meaning that the slope of the lines is the first element of the gradient vector 
             </p>
-        </p>
-        <p>
+
+<p>
             Yeah, I have seriosuly overcomplicated this. I can't teach man, can someone give advice on how to teach things.
             Anyway, I'm just gonna fallback on a less intuitive explanation. If you understand all of that I'm sure you can generalize it into higher dimensions yourself
             because no actual multivariable calculus beginner would be able to understand that if they don't already know about gradients and directional derivatives.
             Next will be an attempt to explain (not prove sadly, not enough analysis knowledge yet), with the formal limit definition of derivatives, that the "intuitive" description of directional derivatives with slicing really is the same as simply multiplying the directional vector with the gradient vector.
             
         </p>
-    </div>
+</div>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ln(x + 1)^2 >= ln(x)ln(x + 2)</title>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ln(x + 1)^2 &gt;= ln(x)ln(x + 2)</title>
+<script>
         MathJax = {
           tex: {
             packages: ['base', 'ams'],
@@ -13,23 +14,21 @@
           }
         };
       </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <template>
-        <div class="dropdown-box">
-            <h3 class="dropdown-box-title">
-            </h3>
-            <div class="dropdown-box-content"></div>
-        </div>
-    </template>
-    <template>
-        <div class="spoiler">
-            <div class="spoiler-head"></div>
-        </div>
-    </template>
-
-    <style>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<template>
+<div class="dropdown-box">
+<h3 class="dropdown-box-title">
+</h3>
+<div class="dropdown-box-content"></div>
+</div>
+</template>
+<template>
+<div class="spoiler">
+<div class="spoiler-head"></div>
+</div>
+</template>
+<style>
         body {
             font-size: 20px; /* Adjust the font size to your preference */
         }
@@ -43,51 +42,51 @@
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Schroder-Bernstein theorem</h1>
+<div class="content">
+<h1>Schroder-Bernstein theorem</h1>
         This is a proof guided by an exercise in my analysis book.
-        Here is the statement of the theorem: <br>
-        <b>Schroder-Bernstein Theorem</b>: Suppose there exists a 1-1 function $f: X \to Y$ and another 1-1 function $g: Y \to X$, then there exists a bijective function $h: X \to Y$. <br>
-        Here are the exercise questions provided by the book for guiding the proof of this theorem: <br>
+        Here is the statement of the theorem: <br/>
+<b>Schroder-Bernstein Theorem</b>: Suppose there exists a 1-1 function $f: X \to Y$ and another 1-1 function $g: Y \to X$, then there exists a bijective function $h: X \to Y$. <br/>
+        Here are the exercise questions provided by the book for guiding the proof of this theorem: <br/>
         (a) Partition $X$ and $Y$ into two components 
         $$X = A \cup A' \quad \text{and} \quad Y = B \cup B'$$
         with $A \cap A' = \emptyset$ and $B \cap B' = \emptyset$ in such a way that $f$ maps $A$ onto $B$, and $g$ maps $B'$ onto $A$.
-        Explain how achieving this would lead to a proof that $X ~ Y$. <br>
+        Explain how achieving this would lead to a proof that $X ~ Y$. <br/>
         (b) Set $A_1 = X \backslash g(Y)$ (what happens if $A_1 = \emptyset$?) and inductively define a sequence of sets by letting $A_{n+1} = f(g(A_n))$.
-        Show that ${A_n : n \in \mathbb{N}}$ is a pairwise disjoint collection of subsets of X, while ${f(A_n) : n \in \mathbb{N}}$ is a similar collection in Y. <br>
-        (c) Let $A = \bigcup_{n=1}^{\infty}$ and $B = \bigcup_{n=1}^{\infty}$. Show that $f$ maps $A$ onto $B$. <br>
-        (d) Let $A' = X \backslash A$ and $B' = Y \backslash B$. Show that $G$ maps $B'$ onto $A'$. <br>
-        <br>
-        Now here's my attempt at answering all of those questions: <br>
+        Show that ${A_n : n \in \mathbb{N}}$ is a pairwise disjoint collection of subsets of X, while ${f(A_n) : n \in \mathbb{N}}$ is a similar collection in Y. <br/>
+        (c) Let $A = \bigcup_{n=1}^{\infty}$ and $B = \bigcup_{n=1}^{\infty}$. Show that $f$ maps $A$ onto $B$. <br/>
+        (d) Let $A' = X \backslash A$ and $B' = Y \backslash B$. Show that $G$ maps $B'$ onto $A'$. <br/>
+<br/>
+        Now here's my attempt at answering all of those questions: <br/>
         (a) Define the $h: X \to Y$ to be 
         $$h(x) = \begin{cases}
-        f(x) & \text{if } x \in A \\
-        g^{-1}(x) & \text{if } x \in A'
+        f(x) &amp; \text{if } x \in A \\
+        g^{-1}(x) &amp; \text{if } x \in A'
         \end{cases}$$
         And notice that since $g$ is bijective, then $g^{-1}$ is also bijective. Also that there is not going to be any conflicts because $A \cap A' = \emptyset$.
         Take any $y \in Y$, then since $B \cup B' = Y$, then $y \in B$ xor $y \in B'$.
         If $y \in B$, then $\exists! x \in A$ such that $f(x) = y$ because $f$ maps $A$ <i>onto</i> $B$ and $f$ is also 1-1 hence the exclamation mark denoting there exists only 1.
         If $y \in B'$, then $x = g(y)$ must exist, and by the injectivity of $g$, there is only 1 such $x$. Therefore $g^{-1}(x) = y$.
         Therefore it can be concluded that $h$ is surjective and injective because in both cases, we have argued why there exists only 1 $x$ for each $y \in Y$.
-        <br><br>
+        <br/><br/>
         (b) Since $A_2 = g(f(A_1))$ and $A_1$ excludes any result of $g$, then $A_1 \cap A_2 = \emptyset$. 
-        It will now be proven that if $A_1, ..., A_n$ with $n > 1$ is pairwise disjoint, then $A_1, ..., A_{n+1}$ is also pairwise disjoint by proving that each of $A_1, ..., A_{n}$ individually is disjoint with $A_{n + 1}$.
+        It will now be proven that if $A_1, ..., A_n$ with $n &gt; 1$ is pairwise disjoint, then $A_1, ..., A_{n+1}$ is also pairwise disjoint by proving that each of $A_1, ..., A_{n}$ individually is disjoint with $A_{n + 1}$.
         $\forall m \in \{1, ..., n-1\}$, $A_m \cap A_n = \emptyset$. By the injectivity of $f$ and $g$ which keeps intersection relations, $g(f(A_m)) \cap g(f(A_n)) = \emptyset$.
         By the definition of $A_{n+1}$, that implies $A_{m + 1} \cap A_{n + 1} = \emptyset$ which means the entire statement now becomes
         $\forall m \in \{2, ..., n\}$, $A_m \cap A_{n} = \emptyset$. But we also know that $A_{n + 1}$ is the result of a call to $g$, and since $A_1$ excludes any result of $g$, then $A_1 \cap A_{n+1} = \emptyset$.
         Therefore we have proven that $A_{n+1}$ is always individually disjoint with each of $A_1, ..., A_n$. Since $A_1, ..., A_n$ is also already pairwise disjoint, then the resulting $A_1, ..., A_{n+1}$ is also pairwise disjoint.
         By induction, it can be conluded that $A_1, ..., A_n$ for any $n \in \mathbb{N}$ is always pairwise disjoint. 
-        <br><br>
+        <br/><br/>
         (c) This is very trivial, take any $b \in B$, this means $\exists n \in \mathbb{N}$ such that $b \in B_n$ which, by the definition of $B_n$, imply $b \in f(A_n)$ which implies that $\exists a \in A_n$ such that $f(a) = b$ which also means $a \in A$.
         So it can be concluded that $\forall b \in B$, $\exists a \in A$ such that $f(a) = b$. We also know that, since for any $a \in A$, $\exists n \in \mathbb{N}$ such that $a \in A_n$, then $f(a) \in B_n$ by the definition of $B_n$. Therefore it can be concluded that $f$ maps $A$ onto $B$.
-        <br><br>
+        <br/><br/>
         (d) Notice that since $A_1 = X \backslash g(Y)$ and $A_1 \subset A$, then $A' = X \backslash A \subset g(Y)$.
         Therefore $\forall a \in A'$, $\exists b \in Y$ such that $g(b) = a$.
         It will now be proven that $b$ must be in $B'$ because if it is not, $a$ must be in $A$.
         Suppose $b \in B$, then $\exists n \in \mathbb{N}$ such that $b \in B_n$, and since $B_n = f(A_n)$ then $a \in A_n$ must be true by the injectivity of $f$ and so $a \in A$.
         Therefore when $a \in A'$, $b$ cannot be in $B$ and so it must be in $B'$.
         And for any $b \in B'$, $g(b) \in A'$ because it cannot be in $A$ since $A$ excludes any result of $g$. 
-        <br><br>
-    </div>
+        <br/><br/>
+</div>
 </body>
 </html>
